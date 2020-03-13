@@ -1,5 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 				http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
@@ -9,37 +10,45 @@
 		        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 
- 	<context:component-scan base-package="com,common.Util" /> 
+	<context:component-scan
+		base-package="com,common.Util" />
 	<!-- Beans Declaration -->
- 	<bean id="springContext" class="com.offie.license.SpringContext" /> 
-<!-- 	<bean id="myUserDetailsService" class="common.util.MyUserDetailsService"/> -->
+	<bean id="springContext" class="com.offie.license.SpringContext" />
+	<!-- <bean id="myUserDetailsService" class="common.util.MyUserDetailsService"/> -->
 	<!-- User Service Declaration -->
-	
-	
-	
 
-	
+
+	<!-- User DAO Declaration -->
+	<bean id="commonDaoImpl" class="com.common.CommonDaoImpl">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="userServiceImpl" class="com.services.UserServiceImpl">
+		<property name="commonDao" ref="commonDaoImpl" />
+	</bean>
+
 	<!-- Data Source Declaration -->
-	
+
 	<!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"> -->
 	<!-- <property name="dataSource" ref="DataSource" /> -->
 	<!-- </bean> -->
 
 	<!-- Session Factory Declaration -->
-		<!-- Enable the configuration of transactional behavior based on annotations -->
-<!-- 	<tx:annotation-driven transaction-manager="txManager" /> -->
+	<!-- Enable the configuration of transactional behavior based on annotations -->
+	<!-- <tx:annotation-driven transaction-manager="txManager" /> -->
 	<!-- Transaction Manager is defined -->
 
-<!-- 	<bean id="txManager" -->
-<!-- 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"> -->
-<!-- 		<property name="sessionFactory" ref="SessionFactory" /> -->
-<!-- 	</bean> -->
+	<!-- <bean id="txManager" -->
+	<!-- class="org.springframework.orm.hibernate4.HibernateTransactionManager"> -->
+	<!-- <property name="sessionFactory" ref="SessionFactory" /> -->
+	<!-- </bean> -->
 
 	<!-- Data Source Declaration -->
-	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	<bean id="DataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/sqldb" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/sqldb?zeroDateTimeBehavior=convertToNull" />
 		<property name="user" value="root" />
 		<property name="password" value="root" />
 		<property name="initialPoolSize" value="1" />
@@ -47,20 +56,21 @@
 		<property name="maxStatements" value="20" />
 		<property name="minPoolSize" value="1" />
 		<property name="maxIdleTime" value="20" />
+		
 	</bean>
-	
+
 	<bean id="SessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="DataSource" />
 		<property name="annotatedClasses">
 			<list>
-<!-- 				<value>com.bkeryah.entities.Article</value> -->
-				
+				<!-- <value>com.bkeryah.entities.Article</value> -->
+
 			</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
- 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">
 					false
 				</prop>
@@ -72,7 +82,8 @@
 			</props>
 		</property>
 	</bean>
-	<tx:annotation-driven transaction-manager="txManager" />
+	<tx:annotation-driven
+		transaction-manager="txManager" />
 	<!-- Transaction Manager is defined -->
 
 	<bean id="txManager"

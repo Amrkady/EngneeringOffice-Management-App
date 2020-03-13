@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+<meta charset="utf-8" name="viewport"
+	content="width=device-width, initial-scale=1"
+	http-equiv="X-UA-Conpatible" />
+<h:outputStylesheet library="css" name="bootstrap.min.css" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Didact+Gothic"
+	rel="stylesheet" />
+<link href="resources/css/default.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link href="resources/fonts/fonts.css" rel="stylesheet" type="text/css"
+	media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+	<h:form>
+		<div>
+			<h:dataTable id="usr" var="user"
+				value="#{userBean.users}" editable="true"
+				widgetVar="cellemp" paginatorPosition="bottom" rows="13"
+				paginator="true"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+				>
+				<h:column headerText="الرقم">
+				#{user.userId}
+				</h:column>
+				<h:column headerText="الاسم ">
+				#{user.name}
+				</h:column>
+				<h:column headerText="الصلاحية">
+				#{user.roleId}
+				</h:column>
+				<h:column headerText="اسم الدخول">
+				#{user.loginName}
+				</h:column>
+     
+</h:dataTable>
+
+
+
+		</div>
+	</h:form>
+</body>
+
+</html>
