@@ -64,7 +64,8 @@
 		<property name="dataSource" ref="DataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<!-- <value>com.bkeryah.entities.Article</value> -->
+				 <value>com.entities.Users</value>
+				 <value>com.entities.Roles</value>  
 
 			</list>
 		</property>
