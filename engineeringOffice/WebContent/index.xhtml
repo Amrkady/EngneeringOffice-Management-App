@@ -1,55 +1,90 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 
-<!DOCTYPE html >
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+     
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
 
-	<ui:composition template="/template.xhtml">
-		  <ui:define name="content">	
-<body
-	style="background-image: url('resources/images/photo.jpg'); background-size:cover ;">
-		
-	<div class="container">
-		<div style="width: 100%">
+ <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+ <h:outputStylesheet library="css" name="bootstrap.min.css" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
+<link href="resources/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="resources/fonts/fonts.css" rel="stylesheet" type="text/css" media="all" />
 
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<h:form>
+<div id="header-wrapper" >
+	<div  id="header" class="container">
+		<div id="logo" >
+			<h1><a href="#">Assembly</a></h1>
 		</div>
-
-<!-- 		        <div class="row"> -->
-<!-- 		            <div class="col-xs-12 col-xs-updated"> -->
-<!-- 		                <h:form id="studentForm" styleClass="form-horizontal"> -->
-<!-- 		                    <div class="form-group"> -->
-<!-- 		                        <h:outputLabel value="First Name" styleClass="control-label col-sm-2" /> -->
-<!-- 		                        <div class="col-sm-10"> -->
-<!-- 		                            <h:inputText value="oooooooooo" styleClass="form-control" /> -->
-<!-- 		                        </div> -->
-<!-- 		                    </div> -->
-<!-- 		                    <div class="form-group"> -->
-<!-- 		                        <h:outputLabel value="Last Name" styleClass="control-label col-sm-2" /> -->
-<!-- 		                        <div class="col-sm-10"> -->
-<!-- 		                            <h:inputText value="llollooo" styleClass="form-control" /> -->
-<!-- 		                        </div> -->
-<!-- 		                    </div> -->
-<!-- 		                    <div class="form-group"> -->
-<!-- 		                        <h:outputLabel value="Standard" styleClass="control-label col-sm-2" /> -->
-<!-- 		                        <div class="col-sm-10"> -->
-<!-- 		                            <h:inputText value="lhuvbi" styleClass="form-control" /> -->
-<!-- 		                        </div> -->
-<!-- 		                    </div> -->
-<!-- 		                    <div class="form-group"> -->
-<!-- 		                        <div class="col-sm-offset-2 col-sm-10"> -->
-<!-- 		                            <h:commandButton value="Create"  styleClass="btn btn-default" /> -->
-<!-- 		                        </div> -->
-<!-- 		                    </div> -->
-<!-- 		                </h:form> -->
-<!-- 		            </div> -->
-<!-- 		        </div> -->
+		<div id="menu">
+			<ul>
+				<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
+				<li><a href="#" accesskey="2" title="">Our Clients</a></li>
+				<li><a href="#"  accesskey="3" title="">About Us</a></li>
+				<h:commandLink action="customers" class="aa" style="font-size: medium;" value="العملاء" ></h:commandLink>
+				<li><a href="#" accesskey="5" title="">Contact Us</a></li>
+			</ul>
+		</div>
 	</div>
-	</body>
-		  </ui:define>
-
-		</ui:composition>
+	<div id="banner" class="container">
+		<div class="title">
+			<h2>Consectetuer adipiscing elit</h2>
+			<span class="byline">Donec pulvinar ullamcorper metus</span>
+		</div>
+		<ul class="actions">
+			<li><a href="#" class="button">Pulvinar mollis</a></li>
+		</ul>
+	</div>
+</div>
+<div id="wrapper">
+	<div id="three-column" class="container">
+		<div class="title">
+			<h2>Feugiat lorem ipsum dolor sed veroeros</h2>
+			<span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span>
+		</div>
+		<div class="boxA">
+			<p>Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc. Praesent pellentesque facilisis elit. Class aptent taciti sociosqu ad  torquent per conubia nostra.</p>
+			<a href="#" class="button button-alt">More Info</a>
+		</div>
+		<div class="boxB">
+			<p>Etiam neque. Vivamus consequat lorem at nisl. Nullam  wisi a sem semper eleifend. Donec mattis. Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc.</p>
+			<a href="#" class="button button-alt">More Info</a>
+		</div>
+		<div class="boxC">
+			<p> Aenean lectus lorem, imperdiet at, ultrices eget, ornare et, wisi. Pellentesque adipiscing purus. Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc.</p>
+			<a href="#" class="button button-alt">More Info</a>
+		</div>
+	</div>
+</div>
+<div id="welcome">
+	<div class="container">
+		<div class="title">
+			<h2>Fusce ultrices fringilla metus</h2>
+			<span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span>
+		</div>
+		<p>This is <strong>Assembly</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+		<ul class="actions">
+			<li><a href="#" class="button">Etiam posuere</a></li>
+		</ul>
+	</div>
+</div>
+<div id="copyright" class="container">
+	<p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+</div>
+</h:form>
+</body>
 
 </html>
-
