@@ -25,6 +25,10 @@
 	<bean id="userServiceImpl" class="com.services.UserServiceImpl">
 		<property name="commonDao" ref="commonDaoImpl" />
 	</bean>
+	
+	<bean id="sandServiceImpl" class="com.services.SandServiceImpl">
+		<property name="commonDao" ref="commonDaoImpl" />
+	</bean>
 
 	<!-- Data Source Declaration -->
 
@@ -50,7 +54,7 @@
 		<property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/sqldb?zeroDateTimeBehavior=convertToNull" />
 		<property name="user" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="root" />
 		<property name="initialPoolSize" value="1" />
 		<property name="maxPoolSize" value="20" />
 		<property name="maxStatements" value="20" />

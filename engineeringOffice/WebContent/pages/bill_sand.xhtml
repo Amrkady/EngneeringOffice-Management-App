@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<h:body>
+	<ui:composition template="/template1.xhtml">
+		<ui:define name="content">
+			<h:form dir="rtl">
+
+				<h1 style="color: #7CB342; float: unset; text-align: center;">
+					سند قبض <span class="ui-icon ui-icon-store"></span>
+				</h1>
+				<p:fieldset width="50%" legend="بيانات السند ">
+	
+					<div class="ui-g">
+						<div class="ui-g-1">
+							<h:outputLabel value="رقم السند" />
+						</div>
+						<div class="ui-g-4">
+							<p:inputText value="#{sandBean.billSnad.sanadNo}">
+							</p:inputText>
+						</div>
+						<div class="ui-g-1">
+							<h:outputLabel value="الاسم " />
+						</div>
+						<div class="ui-g-4">
+							<p:inputText value="#{sandBean.billSnad.customerName}">
+							</p:inputText>
+						</div>
+					</div>
+
+					<div class="ui-g">
+						<div class="ui-g-1">
+							<h:outputLabel value="المبلغ" />
+						</div>
+						<div class="ui-g-4">
+							<p:inputText value="#{sandBean.billSnad.amountPay}">
+							</p:inputText>
+						</div>
+						<div class="ui-g-1">
+							<h:outputLabel value="المتبقي" />
+						</div>
+						<div class="ui-g-4">
+							<p:inputText value="#{sandBean.billSnad.amountRest}">
+							</p:inputText>
+						</div>
+
+					</div>
+					<div class="ui-g">
+						<div class="ui-g-1">
+							<h:outputLabel value="وذلك مقابل" />
+						</div>
+						<div class="ui-g-4">
+							<p:inputText value="#{sandBean.billSnad.billReason}">
+							</p:inputText>
+						</div>
+						<div class="ui-g-1">
+							<h:outputLabel value="طريقة الدفع" />
+						</div>
+						<div class="ui-g-4">
+							<p:inputText value="#{sandBean.billSnad.billType}">
+							</p:inputText>
+						</div>
+
+					</div>
+					
+					<div class="ui-g">
+						<div class="ui-g-1">
+							<h:outputLabel value="القسم" />
+						</div>
+						<div class="ui-g-4">
+							<p:inputText value="#{sandBean.billSnad.deptName}">
+							</p:inputText>
+						</div>
+						<div class="ui-g-1">
+							<h:outputLabel value="التاريخ" />
+						</div>
+						<div class="ui-g-4">
+							<p:calendar styleClass="form-control" id="absenceDate"
+								pattern="dd/MM/yyyy" value="#{sandBean.sandDate}">
+
+							</p:calendar>
+						</div>
+
+					</div>
+
+					<div class="iamge-box-footer" align="left">
+						<p:commandButton value="طباعة " icon="ui-icon ui-icon-print "
+							 action="#{sandBean.save}"
+							styleClass="purple-btn">
+						</p:commandButton>
+<!--   onclick="this.form.target='_blank'" ajax="false" -->
+					</div>
+				</p:fieldset>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>
