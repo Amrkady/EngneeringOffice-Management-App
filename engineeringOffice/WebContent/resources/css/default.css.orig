@@ -2,15 +2,15 @@
 body {
     background-color: #ffffff;
     font-family: sans-serif !important;
+
     color: #000000;  
     margin:  0;
-    font-size: small !important;
+    font-size: small;
     padding-left: 0; padding-right: 0;
     padding: 0;
 
 }
 /**********************BUTTON STYLE***********************/
-
 .ui-button, button.ui-button.ui-state-default, .ui-button.ui-state-default{
     color: #fff;
     background: #36633D !important;;
@@ -18,14 +18,13 @@ body {
     border: none;
     
 }
-.ui-button-text-only .ui-button-text{
-	font-size: small !important;
-}
 .ui-button:hover, button.ui-button.ui-state-hover, .ui-button.ui-state-hover{
     color: #fff;
      text-shadow: -1px 1px #417cb8;
     background-color: #488451 !important;;
     text-shadow: -1px 1px #27496d;
+
+
 }
 
 
@@ -65,7 +64,7 @@ font-weight: bold;
 }
 
 .ui-dialog-title{
-    font-size: large !important;
+    font-size: large;
     overflow: auto;
     direction: rtl;
 }
@@ -136,7 +135,7 @@ font-weight: bold;
 }
 @font-face {
     font-family: 'naskh';
-    font-style: small;
-    font-weight: large;
+    font-style: normal;
+    font-weight: normal;
     src:  url(../fonts/naskh.ttf) format('truetype');
 }
