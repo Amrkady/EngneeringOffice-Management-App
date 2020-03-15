@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<h:form>
+<div class="card card-w-title" dir="rtl">
+					<h1 style="color: #7CB342; text-align: center;">
+						المعلومات</h1>
+					<p:fieldset id="fieldsetform" legend="المعلومات الشخصية"
+						toggleable="true" toggleSpeed="500">
+						<!--         <p:ajax event="toggle"   /> -->
+						<div>
+							<div class="ui-g">
+								
+							</div>
+							
+							<div class="ui-g">
+
+
+								<div class="ui-g-2">
+									<p:outputLabel value="تصنيف الموظف"></p:outputLabel>
+								</div>
+								<div class="ui-g-2">
+									<p:selectOneMenu   requiredMessage="اختر التصنيف" id="empssort"
+										>
+										<f:selectItem itemLabel="اختر التصنيف" itemValue="" />
+										
+										
+									</p:selectOneMenu>
+								</div>
+								<div class="ui-g-2">
+									<p:outputLabel value=""></p:outputLabel>
+								</div>
+								<div class="ui-g-2">
+									<p:outputLabel value=""></p:outputLabel>
+								</div>
+							</div>
+
+							
+
+										</div>				
+
+											</p:fieldset>
+					
+					</div>
+					</h:form>
+</html>
