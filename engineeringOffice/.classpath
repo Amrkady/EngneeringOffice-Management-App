@@ -72,7 +72,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/morena7_win.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/morena7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc7.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-6.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/serenity-theme-1.0.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.6.1.jar"/>

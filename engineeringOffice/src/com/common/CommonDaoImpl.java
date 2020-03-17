@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.entities.Customers;
+
 public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	private SessionFactory sessionFactory;
 
@@ -26,6 +28,18 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+
+	}
+	@Override
+	@Transactional
+	public Integer saveCustomer(Customers customer) {
+		try {
+			Integer id=(Integer)sessionFactory.getCurrentSession().save(customer);
+			return id;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 
 	}
