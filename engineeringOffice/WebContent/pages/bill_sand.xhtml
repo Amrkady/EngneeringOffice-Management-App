@@ -11,23 +11,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-
-
-<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
-
 </head>
 <h:body>
 	<ui:composition template="/template1.xhtml">
 		<ui:define name="content">
 			<h:form dir="rtl">
-
-				<h1 style="color: #7CB342; float: unset; text-align: center;">
-					سند قبض <span class="ui-icon ui-icon-store"></span>
+               <p:messages autoUpdate="true" closable="true"></p:messages>
+				<h1 style="color: #7CB342;  text-align: center;">
+					سند قبض 
 				</h1>
 				<p:fieldset width="50%" legend="بيانات السند ">
 	
@@ -36,32 +27,32 @@
 							<h:outputLabel value="رقم السند" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.sanadNo}">
-							</p:inputText>
+							<p:inputNumber value="#{sandBean.billSnad.sanadNo}">
+							</p:inputNumber>
 						</div>
 						<div class="ui-g-1">
-							<h:outputLabel value="الاسم " />
+							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.customerName}">
-							</p:inputText>
+							<p:inputNumber value="#{sandBean.billSnad.amountPay}">
+							</p:inputNumber>
 						</div>
 					</div>
 
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<h:outputLabel value="المبلغ" />
+							<h:outputLabel value="المبلغ بالحروف " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.amountPay}">
+							<p:inputText value="#{sandBean.billSnad.amountLetters}">
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المتبقي" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.amountRest}">
-							</p:inputText>
+							<p:inputNumber value="#{sandBean.billSnad.amountRest}">
+							</p:inputNumber>
 						</div>
 
 					</div>
@@ -96,7 +87,7 @@
 						</div>
 						<div class="ui-g-4">
 							<p:calendar styleClass="form-control" id="absenceDate"
-								pattern="dd/MM/yyyy" value="#{sandBean.sandDate}">
+								pattern="dd/mm/yyyy" value="#{sandBean.sandDate}">
 
 							</p:calendar>
 						</div>
@@ -104,8 +95,8 @@
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<p:commandButton value="طباعة " icon="ui-icon ui-icon-print "
-							 action="#{sandBean.save}"
+						<p:commandButton value="حفظ و طباعة " icon="ui-icon ui-icon-print "
+							 action="#{sandBean.save}" onclick="this.form.target='_blank'" ajax="false"
 							styleClass="purple-btn">
 						</p:commandButton>
 <!--   onclick="this.form.target='_blank'" ajax="false" -->

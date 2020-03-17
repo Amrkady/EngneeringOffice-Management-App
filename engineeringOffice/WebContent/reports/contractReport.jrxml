@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Bills_snad" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3d43872-09ef-4080-8e66-7a23b6142bd2">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="header" class="java.lang.String"/>
+	<parameter name="footer" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT max(us.id) FROM sqldb.users us;]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="111">
+			<image>
+				<reportElement x="-8" y="5" width="570" height="100" uuid="cc0f3890-5571-4d51-a4ec-384540a45b30"/>
+				<imageExpression><![CDATA[$P{header}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="475">
+			<textField>
+				<reportElement x="355" y="40" width="40" height="30" uuid="eb938754-6911-4660-ac1d-dda5668d7adb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["الخميس"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="325" y="40" width="30" height="30" uuid="403970d0-c21e-4cd7-986d-6d83ff39d7c2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[تاريخ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="235" y="15" width="90" height="7" uuid="4a361441-2180-4ad5-98fb-8aa4f64ee456"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" 01/03/ 2020م".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="165" y="40" width="70" height="30" uuid="750de8bb-3e79-4760-a44e-d41cd26dc883"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[بين كل من :-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="130" width="140" height="30" uuid="a87c6f3e-fbd3-435a-9e88-f334fef5f9ea"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["الخميس"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="130" width="80" height="30" uuid="ddbf026f-491b-4327-a433-1fcc5112fe86"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[سجل مدني رقم/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="210" y="130" width="90" height="30" uuid="19efdad1-9ee6-4204-b5d6-b1a6f04f4c9c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" 01/03/ 2020م".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="130" width="50" height="30" uuid="3a4aba44-aeee-4e67-81a4-d8dca06ac390"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[رقم جوال/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="130" width="90" height="30" uuid="61a2bc9b-61ca-4c56-844b-f5f2921d0f75"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" 01/03/ 2020م".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="130" width="50" height="30" uuid="baea977b-a4c8-4198-8858-e8b74b1ea31c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[طرف ثانى]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-20" y="70" width="590" height="60" uuid="a2450da6-a74a-4f2d-8ea8-174fa8c0d93c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1. مكتب أوزان للاستشارات الهندسية سجل تجاري رقم/  1131055534 الصادر من فرع وزارة التجارة والاستثمار بمنطقة القصيم بتاريخ  09/ 06/1436هـ وبترخيص ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")+
+"هندسي رقم/  4190 الصادر من الهيئة السعودية للمهندسين بتاريخ  02/05/1435هـ.".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")+
+"ويمثلها في التوقيع على هذا العقد الأستاذ/ سلطان صالح النغيمشي سجل مدني رقم/ 1069775656 بصفته مدير الشؤون الإدارية والمالية وعنوان المكتب/ منطقة ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")+
+"القصيم – بريدة حي البشر – طريق علي بن أبي طالب رقم الجوال/ 0549854101 ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")+
+"بريد إلكتروني com.gmail@2030.Awzan طرف اول "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="130" width="45" height="30" uuid="9f3627f5-a05a-4a91-8fc2-2f2a051a082e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["2. الأستاذ/ ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="495" y="160" width="75" height="25" uuid="20098826-46fa-4090-9cdb-312fdbc08707"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة (1)  تمهيد ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="395" y="40" width="160" height="30" uuid="aa483e0b-1b7f-4727-9d63-3fa1518da436"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[بعون الله وتوفيقه تم الاتفاق  في يوم]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-15" y="185" width="585" height="69" uuid="4862a713-8eff-4d4f-9fe8-aaf76b739844"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يعتبر الطرف الأول عبارة عن مكتب استشارات هندسية يقوم بكافة أعمال تصميم المخططات الهندسية للمباني السكنية والتجارية واستخراج 
+ التراخيص  من الجهات ذات العلاقة والإشراف على تنفيذها ، وعليه أبدى كل طرف رغبته وموافقته على إبرام عقد وذلك لخدمة مصالحهما المشتركة , و تحديد حقوق  والتزامات  كل طرف تجاه الأخر  رغبته ، لذلك فقد اتفق  الطرفان بالإيجاب والقبول وهما بكامل الأهلية اللازمة شرعاً لصحة إبرام العقود والتصرفات على ما يلي:-
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="500" y="254" width="70" height="26" uuid="44020f1b-2391-4663-9d93-80d53b6cb1d1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة (2) ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-5" y="280" width="575" height="19" uuid="090345cf-99f4-45b8-bdd3-20756fb6d903"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يعتبر التمهيد أعلاه جزءاً لا يتجزأ من هذا العقد ومكملاً له .]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="415" y="295" width="155" height="25" uuid="3a4f3b7d-7503-44c0-9459-41acbf02b924"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة (3)  الغرض من العقد ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-7" y="320" width="575" height="20" uuid="79f3d60c-dc8d-4c0e-8c5a-b2905fe2183e"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[الغرض من هذا العقد هو أن يقوم الطرف الأول بتنفيذ أعمال تصميم مخطط أوزان الهندسي لمبنى سكني تابع للطرف الثاني بصك ملكية رقم]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-5" y="340" width="575" height="20" uuid="5ced3619-0a57-4ef0-a48e-2ba26d3c60bf"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["37354000758 صادر بتاريخ 12/ 11/ 1440هـ من كتابة عدل محافظة محايل عسير حسب الطلبات التالية:".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-10" y="355" width="580" height="20" uuid="e6958625-bd65-428b-a884-86ba73d4a662"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1. يرغب الطرف الثاني بتصميم مخطط أوزان الهندسي المتكون من لوحات معمارية وإنشائية وكهربائية وصحية وتصميم حديقة وواجهة  ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-10" y="375" width="580" height="20" uuid="9172ddfc-1a4f-484f-a0a9-95d16df2efc4"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ثلاثي الأبعاد (3D) وتصميم داخلي للصالة الرئيسية وغرفة النوم الرئيسية ثلاثي الأبعاد (3D).]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-10" y="415" width="580" height="20" uuid="56a8c1f4-2ef2-4721-b5bc-2412cce59e00"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["3. لا يرغب الطرف الثاني بعمل اختبار لتربة الأرض المراد البناء عليها وتسليم الطرف الثاني نتيجة الاختبار ، ونوه أنه سيتم تصميم ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-5" y="395" width="573" height="20" uuid="ad289dd4-6096-4cd1-b29b-b20f84944526"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["2. يرغب الطرف الثاني باستخراج ترخيص بناء للمبنى المطلوب من أمانة منطقة القصيم لـ  دورين وملاحق علوي وأرضية .".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-10" y="435" width="580" height="20" uuid="f600e810-5c06-4852-be38-0bc82979e715"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[المبنى الإنشائي على أنها أرض معتدلة  التحمل.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-5" y="455" width="575" height="20" uuid="9a7c2244-fb52-4057-babb-a9d7cb1ef511"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["4. يرغب الطرف الثاني بتكوين المبنى حسب البيانات المعبأة خارج هذا العقد (النموذج اليدوي).".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="40" width="90" height="30" uuid="3b56b5cb-2c21-4977-b254-cef39d07486c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" 01/03/ 2020م".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="175" y="3" width="220" height="30" uuid="a5220d91-3d20-4b63-8cc8-b504c897e983"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[عقد اتفاق تصميم مخطط هندسي]]></text>
+			</staticText>
+		</band>
+		<band height="599">
+			<textField>
+				<reportElement x="415" y="0" width="155" height="25" uuid="c41b25fd-57ef-4ec5-a9e3-593d14205166"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة  (4) مضمون العقد".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="25" width="570" height="20" uuid="c7cfb0a3-a7f4-45cb-bcd0-f3f8996a0dc0"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1) يحق للطرف الثاني بالتعديل على الفكرة التصميمية المعمارية الصادرة من قبل الطرف الأول تعديلان غير مدفوعات الأجر.".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="45" width="565" height="30" uuid="f98285e7-023d-4bd6-8972-0c016811f581"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["2) عند رغبة الطرف الثاني بالتعديل على الفكرة التصميمية المعمارية بعد التعديلان المجانية يتم دفع  200 ريال للتعديل الواحد مسبق الدفع قبل  البدء به  .".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="75" width="555" height="20" uuid="6af1f769-a90e-4ea1-8e5c-1a4d9c740b9e"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يتم البدء بالتصميم الداخلي والخارجي  ثلاثي الأبعاد (3D) بعد اعتماد التصميم المعماري النهائي من قبل الطرف الأول والتوقيع عليه.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="95" width="425" height="20" uuid="cece0c87-8ca8-452c-847f-ec84084d3124"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يحق للطرف الثاني بالتعديل على الفكرة التصميمية الثلاثية أبعاد (3D)مرة واحدة غير مدفوعة الأجر. 
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="560" y="75" width="15" height="20" uuid="27294295-9224-4e92-9160-46e2940129d9"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(3".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="95" width="15" height="20" uuid="de704c33-4180-4151-99bf-30db5924c84e"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(4".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="130" width="15" height="20" uuid="0b9e6712-8240-46a2-a402-b740f45e45a2"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(5".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="130" width="415" height="20" uuid="fdd05389-ae50-4cb2-9dc4-b765e1ddb663"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[عند رغبة الطرف الثاني بالتعديل على الفكرة التصميمية الثلاثية أبعاد (3D) بعد التعديل المجاني]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-40" y="130" width="200" height="20" uuid="740dec7a-ebff-47ed-a853-26e6c47ce26d"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["يتم دفع  500 ريال للتعديل الواحد مسبق الدفع . ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="150" width="555" height="30" uuid="2f28ccf5-be16-49d3-8b45-150575e5928d"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[هناك مواعيد استقبال تحدد من قبل الطرف الأول لمقابلة المهندس ومناقشة كافة تفاصيل الخدمة والتصميم وأن لا تزيد مدة المقابلة عن نصف ساعة كحد أقصى ولابد أن يلتزم الطرف الثاني بها ، وخلاف ذلك فسيتم إيقاف العمل بالخدمة المطلوبة وتعليق هذا العقد.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="180" width="555" height="51" uuid="e84cb4b4-43d4-4eb4-bd84-d30f103c4fcd"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يتسلم الطرف الثان ي من الطرف الأول عند انتهاء الخدمة الهندسية نسختين أصل من مخطط أوزان بحجم A3 بكافة لوحاته المذكورة سابقاً ونسختين من أصل ترخيص البناء الصادر من أمانة منطقة القصيم وجميع الأوراق الرسمية الصادرة من جهات حكومية ذات العلاقة بترخيص البناء وتتعلق بالعقد هذا (إن وجد).]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="563" y="180" width="15" height="20" uuid="5da54f1c-29d4-49bd-bed3-9a1bf6453a4c"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(7".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="150" width="15" height="20" uuid="1db5024a-3afa-4ce0-86c7-ba76a3a469af"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(6".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-12" y="230" width="575" height="20" uuid="d8cfdc13-3886-4c7f-bac5-bb9043080d46"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["بحال رغبة الطرف الثاني بطباعة نسخ إضافية من مخطط أوزان ، فلكل نسخة  250 ريال للطرف الأول مسبق الدفع قبل البدء به.".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="563" y="230" width="15" height="20" uuid="6b6453b5-0fd6-445f-bd55-0056ca61c778"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(8".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="260" width="155" height="25" uuid="09533e66-1929-4450-bb9a-615a40a3e762"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة  (5)  الالتزامات الماليــة".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-12" y="290" width="582" height="20" uuid="6c86a233-5705-4dbb-9406-5ad40561858e"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1. يلتزم الطرف الثاني بأن يؤدي للطرف الأول  مقابل خدمات التصميم الواردة والمنصوص عليها بالعقد مبلغ (15000) خمسة عشر ألف ريال ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-11" y="310" width="581" height="20" uuid="cc8064eb-9c64-4c50-b1a1-7dae3697afb0"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["2. يتم دفع  50% للطرف الأول من القيمة المتفق عليها عند توقيع هذا العقد.".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="558" y="330" width="15" height="20" uuid="5d333ebc-957b-4897-8d2f-ff389a4a60a2"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[".3".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-24" y="330" width="582" height="30" uuid="81ffe934-da05-4f74-978b-f8766e87fc2b"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يتم استكمال باقي القيمة للطرف الأول المتفق عليه بالعقد بعد اعتماد المخطط المعماري النهائي والواجهة الثلاثية أبعاد (3D) المراد الترخيص عليهما (إن وجد)وعلى أن لا تتجاوز مدة دفع المبلغ المستحق ثلاث أيام عمل من تاريخ اعتماد المخطط المعماري والواجهة. 
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="558" y="360" width="15" height="20" uuid="b221ae03-48c4-40ec-93cb-0bdcc4573b23"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[".4".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-15" y="360" width="573" height="50" uuid="76576b37-14f0-490f-bf93-e34f070adfc6"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[في حال لم يتم استكمال المبلغ المستحق من قبل الطرف الثاني أو المماطلة بموعد السداد المحدد وتم تنفيذ الخدمة من قبل الطرف الأول فسيتم تعليق الخدمة بعد موعد السداد المستحق بثلاثة أيام عمل اخرى كحد أقصى ومراسلة الطرف الثاني بتعليق الخدمة في حال عدم السداد في المهلة المعطاة.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-15" y="410" width="573" height="30" uuid="2d830868-5653-46b4-bf10-c18f549e43f6"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[في حال رغبة الطرف الثاني بالانسحاب وإلغاء التعاقد فلا يحق له مطالبة الطرف الأول بمبلغ الدفعة الأولى بعد مرور يوم واحد من تاريخ توقيع هذا العقد ، وسوف تكون الدفعة الأولى مستحقة والسبب هو بدء عمل الطرف الأول بالخدمة المطلوبة.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="558" y="410" width="15" height="20" uuid="80925834-d644-45eb-81d1-3918e9bff763"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[".5".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-15" y="440" width="573" height="20" uuid="6e6a0b94-7814-46e3-86ab-9f7acc17fa12"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[آية رسوم مالية تصدر من الجهات ا لحكومية أو الأهلية ذات العلاقة في ترخيص البناء فهي على الطرف الثاني.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="558" y="440" width="15" height="20" uuid="12a39f78-9d96-44ad-b8be-69db4fb9be8e"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[".6".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="470" width="155" height="25" uuid="1a5cc6dc-9cfc-4bd1-96d5-b59f4220fa7d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة ( 6)  مدة العقد".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-9" y="500" width="573" height="80" uuid="a5097402-c681-40dc-9fb4-281b01a238e1"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[اتفق الطرفان على أن موعد التسليم يصعب تحديده بسبب أنه متعلق بالطرف الثاني لاعتماد التصميم والواجهة الثلاثية أبعاد ويتعهد الطرف الأول بعد يوم وتاريخ اعتماد المخطط المعماري والواجهة الثلاثية أبعاد والتوقيع عليهما بأن يتم البدء فوراً بعمل تصميم اللوحات المذكورة سابقاً وتعبئة البيانات المطلوبة للجهات الحكومية والأهلية بغرض طلب إصدار ترخيص بناء من البلدية المعنية (إن وجد) بمدة لا تزيد عن شهر واحد من تاريخ الاعتماد ، واتفقا على أنه بعد تقديم طلب ترخيص بناء جديد للبلدية المعنية والحصول على رقم طلب ترخيص جديد فلا تحسب المدة المنتظرة للحصول على الترخيص.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="100" width="122" height="30" uuid="86902b98-3d0d-43c7-b3fd-be13b53fe4c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الختم]]></text>
+			</staticText>
+		</band>
+		<band height="610">
+			<textField>
+				<reportElement x="390" y="0" width="173" height="25" uuid="140e1713-c3fc-407c-968b-fd94eaedd4cb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة ( 7)  الإنهـاء أو التعليق".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-14" y="30" width="579" height="80" uuid="a8159c59-5832-462b-af13-3277aeec370b"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[• يحق للطرف الأول تعليق هذا العقد أو أنهائه كلياً متى ما أخل الطرف الثاني بالتزاماته المنصوص عليها في العقد وذلك بتسليم الطرف الثاني إشعار يوضح السبب والتاريخ الذي يسري فيه ذلك الإنهاء أو التعليق.
+• للطرف الثاني تعليق هذا العقد أو أنهائه كلياً متى ما أخل الطرف الأول بالتزاماته  المنصوص عليها في العقد وذلك بتسليم الطرف الأول إشعار يوضح السبب والتاريخ الذي يسري فيه ذلك الإنهاء أو التعليق.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="163" width="579" height="67" uuid="9703f3bb-4126-4352-8da8-8f16ebe388a7"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[• لا يكون أي  طرف في هذا العقد  مسئولاً عن أي  تأخير أو فشل في تنفيذ التزاماته إذا  فشل  أو  تأخر بسبب قوة قاهرة .
+• يقوم كل  طرف  بإبلاغ الطرف  الآخر عملي اً بأقرب  وقت  ممكن  عن أي  تأخير  متوقع  بسبب  قوة قاهرة  وسيتم تعليق أداء التزامات  كل  طرف بموجب  هذا العقد لفترة التأجيل  الناتج عن ظرف قاهر.
+• إذا كان التأجيل  المعزو إلى قوة  قاهرة يتجاوز  ثلاثين يوماً ، يجب  أن يلتقي الطرفان معاً لمناقشة كيفية  التخفيف من تأثير القوة  القاهرة.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="413" y="130" width="155" height="25" uuid="e000cae5-1646-4e58-9775-070f64877b59"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة ( 8)  الظروف  القاهرة".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-12" y="270" width="582" height="40" uuid="6744bf0b-9b8d-405c-9e0b-d6ffadf24819"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[أي خلاف ينشأ بين الطرفين نتيجة لتفسي ر أي من بنود هذا العقد ولم يتم التوصل إلى  اتفاق بشأنه ودياً خلال ثلاثين يوماً من نشوئه ، فسيتم  اللجوء إلى  المحكمة التجارية أو العامة بمنطقة القصيم بمدينة بريدة بالمملكة العربية السعودية.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="413" y="240" width="157" height="25" uuid="3cf2c697-c79c-47c9-bfba-d83f461584c9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة ( 9)  حل الخلافات".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-8" y="335" width="578" height="75" uuid="bd52ffd1-1442-4c62-ad1b-b672c42c4a24"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[• يتم توجيه الإخطارات وآية مراسلات لعناوين الطرفين المثبتة في صدارة هذا العقد و يقر الطرفان بأن العناوين الموضحان بعاليه صحيحان وكافة الرسائلعن طريقهما تعتبر صحيحة ومنتجة لكافة أثارها القانونية بين الطرفين ، ويلتزم الأطراف بالإبلاغ في حالة تغيير العنوان المثبت في هذا العقد.
+• لا يكون أي تغيير لهذا العنوان منتجاً لأي أثر إلا من تاريخ تسلم الطرف الآخر إخطاراً بهذا التغيير بموجب كتاب خطي بذلك ، و تكون المراسلات المت علقة بهذا العقد باللغة بالعربية.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="310" width="190" height="25" uuid="57edf3cd-504b-47e9-94cc-10d4e35da439"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة (10) الإخطارات والمراسلات".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="490" width="198" height="25" uuid="d10d15fe-2115-4d41-b3aa-c5bf186b8b09"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة (12) لغة العقد".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-3" y="445" width="572" height="45" uuid="f859dc40-552d-4804-89c2-a3ae3850cadc"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يلتزم الطرف الثاني خلال فترة التعاقد مع الطرف الأول أو فيما بعد بعدم إفشاء أو تقديم أو توفير بشكل مباشر أو غير مباشر إلى أي شخص أو منشأة  أو أي جهة أخرى بمعلومات عن التعاقد مع الطرف الأول ، ويتعهد بالاحتفاظ  بتلك الأمور والمعلومات بشكل سري.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="425" width="198" height="25" uuid="5639b5a0-e8da-4936-a3db-871f9d9a4a77"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة(11)الالتزام  بالمحافظة على سرية المعلومات".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="515" width="571" height="15" uuid="7784034b-fac0-4326-991d-ace9b4448720"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[اللغة العربية هي اللغة المعتمدة في تفسير العقد وتنفيذه.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="540" width="195" height="25" uuid="eabae68e-d55d-460b-ba3a-39f437113541"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة (13) البطلان الجزئي للعقد".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="565" width="568" height="45" uuid="a47cd395-c735-43cc-a07a-4fc7e0970f77"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[إذا أصبح باطلاً مفعول واحد أو أكثر من نصوص هذا العقد أو أي مستند متعلق بها أو أصبح غير قابل للتنفيذ بأي وجه من الوجوه ، بموجب أي قانون أو نظام ساري المفعول أو بخلاف ذلك تبقى فعالية النصوص الأخرى  الواردة في هذا العقد قائمة وقابلة للتنفيذ دون أن تتأثر أو تتعطل ب أي حال من الأحوال .]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="101" width="122" height="30" uuid="a3bc9b7e-b3ad-4e1d-a8e4-52ee4822863c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الختم]]></text>
+			</staticText>
+		</band>
+		<band height="463">
+			<textField>
+				<reportElement x="372" y="10" width="198" height="25" uuid="2daa6790-2c13-46b6-b027-47548d224431"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة(14) النطاق المكاني للعقد".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="35" width="571" height="15" uuid="f9f83069-b9f2-4187-819f-4e48175eb265"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يتحدد النطاق المكاني لسريان هذا العقد ب منطقة القصيم بمدينة بريدة ب المملكة العربية السعودية.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="60" width="195" height="25" uuid="9a0c7fbb-3486-46d0-bb08-4b5e997e8941"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة ( 15)القانون الواجب التطبيق".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="85" width="568" height="15" uuid="80243c4f-0ef3-42c4-9a54-77615aebe39a"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[يخضع هذا العقد للقوانين والأنظمة المعمول بها في المملكة العربية السعودية.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="378" y="110" width="195" height="25" uuid="be454420-bbe4-43b3-af25-a47f7f564271"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["مادة (16) نسخ العقد".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="135" width="568" height="15" uuid="b5fce639-482f-4cba-9ad1-e0ebc4b36fdf"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA["حرر هذا العقد من (16) مادة في ( 4) صفحات من نسختين بيد كل طرف نسخة  للعمل بموجبها.".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="378" y="200" width="122" height="30" uuid="acc702a3-f7c5-409a-8674-045bdfe21146"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الطرف الاول]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="200" width="122" height="30" uuid="8919c0b6-8f55-446a-b059-b4b5dcd6ec4a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الطرف الثانى]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="370" width="280" height="30" uuid="a39a5a3e-62d3-45e3-9b7d-e3adeebc6aba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[وعلى ذلك تم  الاتفاق  والتوقيع والل  خير الشاهدين  ،،،]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="275" width="177" height="45" uuid="9f91c841-5d17-47f6-80d4-74cd73b906de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[مكتب أوزان للاستشارات الهندسية
+سلطان صالح النغيمشي]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="280" width="165" height="30" uuid="9e19d337-d394-49df-a7f7-ea591c479710"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[خالد عبدالعزيز الريس]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="420" width="122" height="30" uuid="7f2461ab-e7ff-435b-826b-f612e0ad5a04"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الختم]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="96" width="122" height="34" uuid="cd79ffbb-1aaa-44a6-bde9-6148924f6d52"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الختم]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="80" splitType="Stretch">
+			<image vAlign="Middle">
+				<reportElement x="30" y="40" width="520" height="40" uuid="8502abee-b73b-4598-9e68-70fc541295f2"/>
+				<imageExpression><![CDATA[$P{footer}]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>

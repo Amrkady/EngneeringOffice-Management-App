@@ -1,14 +1,12 @@
 package com.services;
 
-import java.util.List;
-
 import com.entities.Bills;
-import com.entities.Users;
+import com.entities.Contracts;
 
 public interface SandService {
-	
-   boolean addSand(Bills bill);
-   
-	
+
+	boolean addSand(Bills bill);
+
+	boolean addContract(Contracts contract);
 
 }

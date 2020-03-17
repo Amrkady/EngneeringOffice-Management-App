@@ -608,11 +608,11 @@ public class Utils {
 		try {
 			// get OutputStream
 			stream = response.getOutputStream();
-			// connection = DataBaseConnectionClass.getConnection(); // opens a
+			 connection = DataBaseConnectionClass.getConnection(); // opens a
 			String reportingPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath(reportName);
 			String jrsFile = reportingPath.replace("jasper", "jrxml");
 			JasperReport jasperReport = JasperCompileManager.compileReport(jrsFile);
-			JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters);
+			JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters,connection);
 			JRExporter exporter = new JRPdfExporter();
 			exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
@@ -626,8 +626,7 @@ public class Utils {
 			try {
 				if (stream != null)
 					stream.close();
-				if (connection != null)
-					connection.close();
+
 			} catch (Exception e) {
 			}
 		}

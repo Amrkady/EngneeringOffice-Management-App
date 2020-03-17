@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.common.CommonDao;
 import com.entities.Bills;
+import com.entities.Contracts;
 import com.entities.Users;
 
 public class SandServiceImpl implements SandService {
@@ -21,6 +22,11 @@ public class SandServiceImpl implements SandService {
 	public boolean addSand(Bills bill) {
 		return commonDao.saveObject(bill);
 
+	}
+
+	@Override
+	public boolean addContract(Contracts contract) {
+		return commonDao.saveObject(contract);
 	}
 
 }
