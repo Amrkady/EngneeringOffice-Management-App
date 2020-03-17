@@ -27,6 +27,22 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>bills</from-outcome>
+			<to-view-id>/pages/bill_sand.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>contract</from-outcome>
+			<to-view-id>/pages/contract.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	
 
 </faces-config>

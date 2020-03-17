@@ -9,38 +9,52 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
 </head>
+<ui:composition template="/template1.xhtml">
+		<ui:define name="content">
 <h:form>
+
+
+       
+<p:messages autoUpdate="true" closable="true"></p:messages>
 <div class="card card-w-title" dir="rtl">
 					<h1 style="color: #7CB342; text-align: center;">
 						المعلومات</h1>
-					<p:fieldset id="fieldsetform" legend="المعلومات الشخصية"
+					<p:fieldset rendered="#{customerBean.step eq 1}"  legend="بيانات العميل"
 						toggleable="true" toggleSpeed="500">
 						<!--         <p:ajax event="toggle"   /> -->
 						<div>
-							<div class="ui-g">
-								
-							</div>
+							
 							
 							<div class="ui-g">
 
 
-								<div class="ui-g-2">
-									<p:outputLabel value="تصنيف الموظف"></p:outputLabel>
+								<div class="ui-g-1">
+									<p:outputLabel value="اسم العميل"></p:outputLabel>
 								</div>
-								<div class="ui-g-2">
-									<p:selectOneMenu   requiredMessage="اختر التصنيف" id="empssort"
-										>
-										<f:selectItem itemLabel="اختر التصنيف" itemValue="" />
-										
-										
-									</p:selectOneMenu>
+								<div class="ui-g-5">
+									<p:inputText required="true" requiredMessage="يجب ادخال اسم العميل" value="#{customerBean.customers.customerName}"> </p:inputText>
 								</div>
-								<div class="ui-g-2">
-									<p:outputLabel value=""></p:outputLabel>
+								<div class="ui-g-1">
+									<p:outputLabel  value="رقم الجوال"></p:outputLabel>
 								</div>
-								<div class="ui-g-2">
-									<p:outputLabel value=""></p:outputLabel>
+								<div class="ui-g-5">
+									<p:inputText required="true" requiredMessage="يجب ادخال الجوال" value="#{customerBean.customers.phone}"> </p:inputText>
 								</div>
+								<div class="ui-g-1">
+									<p:outputLabel value="رقم الهوية"></p:outputLabel>
+								</div>
+								<div class="ui-g-5">
+									<p:inputText requiredMessage="يجب ادخال الهوية" required="true" value="#{customerBean.customers.natNo}"> </p:inputText>
+								</div>
+								<div class="ui-g-1">
+									<p:outputLabel value="العنوان"></p:outputLabel>
+								</div>
+								<div class="ui-g-5">
+									<p:inputText required="true"  value="#{customerBean.customers.address}" requiredMessage="يجب ادخال العنوان"> </p:inputText>
+								</div>
+								<p:commandButton update="@form" actionListener="#{customerBean.check}"  style="width:30%;display:block;margin:auto;" value="التالي">
+								
+								</p:commandButton>	
 							</div>
 
 							
@@ -48,7 +62,76 @@
 										</div>				
 
 											</p:fieldset>
+											
+							<p:fieldset  rendered="#{customerBean.step eq 2}" legend="القسم"
+							
+						toggleable="true" toggleSpeed="500">
+						<!--         <p:ajax event="toggle"   /> -->
+						<div>
+							
+							
+							<div class="ui-g">
+
+
+								<div class="ui-g-12">
+								<p:selectOneMenu required="true" requiredMessage="يجب اختيار القسم" style="width:50%;display:block;margin:auto;"   
+										value="#{customerBean.departmentId}" >
+										<f:selectItem itemLabel="اختر القسم" itemValue=""  />
+										<f:selectItems value="#{customerBean.depts}" var="dept" itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"/>
+										
+									</p:selectOneMenu>	
+								</div>
+								
+								<div class="ui-g-12">
+								<p:commandButton update="@form" actionListener="#{customerBean.check}" style="width:30%;display:block;margin:auto;" value="التالي">
+								
+								</p:commandButton>	
+								</div>
+								
+								</div>
+
+							
+
+										</div>				
+
+											</p:fieldset>
+											
+											<p:fieldset rendered="#{customerBean.step eq 3}"  legend="العملية"
+							
+						toggleable="true" toggleSpeed="500">
+						<!--         <p:ajax event="toggle"   /> -->
+						<div>
+							
+							
+							<div class="ui-g">
+
+
+								<div class="ui-g-12">
+								<p:selectOneMenu required="true" requiredMessage="يجب اختيار العملية" style="width:50%;display:block;margin:auto;"   
+										value="#{customerBean.operationId}" >
+										<f:selectItem itemLabel="اختر العملية" itemValue=""  />
+										<f:selectItems value="#{customerBean.operations}" var="op" itemLabel="#{op.name}" itemValue="#{op.id}"/>
+										
+									</p:selectOneMenu>	
+								</div>
+								
+								<div class="ui-g-12">
+								<p:commandButton action="#{customerBean.save}" ajax="false" style="width:30%;display:block;margin:auto;" value="التالي">
+								
+								</p:commandButton>	
+								</div>
+								
+								</div>
+
+							
+
+										</div>				
+
+											</p:fieldset>
+											
 					
 					</div>
 					</h:form>
+					</ui:define>
+					</ui:composition>
 </html>
