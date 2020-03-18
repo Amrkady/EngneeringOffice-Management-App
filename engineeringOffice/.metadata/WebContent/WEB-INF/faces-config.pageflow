@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15838311149220" configfile="/engineeringOffice/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15842964817750" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15842964817751 pf15843936209530 pf15844722539510" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/customers.xhtml" id="pf15842964817752" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15842964817751" path="/pages/customers.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/bill_sand.xhtml" id="pf15843936209531" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf15843936209530" path="/pages/bill_sand.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15842964817750" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15842964817751 pf15843936209530 pf15844722539510 pf15845609384470" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/customers.xhtml" id="pf15842964817752" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15842964817751" path="/pages/customers.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/bill_sand.xhtml" id="pf15843936209531" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf15843936209530" path="/pages/bill_sand.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/contract.xhtml" id="pf15844722539511" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf15844722539510" path="/pages/contract.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/login.xhtml" id="pf15845609384471" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15845609384470" path="/pages/login.xhtml"/>
   <links id="pf15842964817751" target="pf15842964817752" source="pf15842964817750" outcome="customers" redirect="true"/>
   <links id="pf15843936209530" target="pf15843936209531" source="pf15842964817750" outcome="bills" redirect="true"/>
   <links id="pf15844722539510" target="pf15844722539511" source="pf15842964817750" outcome="contract" redirect="true"/>
+  <links id="pf15845609384470" target="pf15845609384471" source="pf15842964817750" outcome="login" redirect="true"/>
 </pageflow:Pageflow>
