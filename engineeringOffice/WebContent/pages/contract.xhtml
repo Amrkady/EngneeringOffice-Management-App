@@ -16,7 +16,7 @@
 	<ui:composition template="/template1.xhtml">
 		<ui:define name="content">
 			<h:form dir="rtl">
-
+				<p:messages autoUpdate="true" closable="true"></p:messages>
 				<h1 style="color: #7CB342; text-align: center;">عقد</h1>
 				<p:fieldset width="50%" legend="بيانات العقد ">
 
@@ -25,9 +25,12 @@
 							<h:outputLabel value=" اليوم" />
 						</div>
 						<div class="ui-g-4">
-							<p:selectOneMenu id="trl"
-								value="#{contractBean.contract.dayLetter}" style="width:50%"
+							<p:selectOneMenu id="trl" required="true"
+								requiredMessage="اختر اليوم"
+								value="#{contractBean.contract.dayLetter}" style="width:50%;"
 								dir="rtl">
+								<f:selectItem itemLabel="اختر" itemValue=""
+									noSelectionOption="true" />
 								<f:selectItem itemLabel="الاحد" itemValue="الاحد" />
 								<f:selectItem itemLabel="الاثنين" itemValue="الاثنين" />
 								<f:selectItem itemLabel="الثلاثاء" itemValue="الثلاثاء" />
@@ -42,6 +45,7 @@
 						</div>
 						<div class="ui-g-4">
 							<p:calendar styleClass="form-control" id="absenceDate"
+								required="true" requiredMessage="ادخل التاريخ"
 								pattern="dd/mm/yyyy" value="#{contractBean.contractDate}">
 
 							</p:calendar>
@@ -53,14 +57,16 @@
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber value="#{contractBean.contract.amount}">
+							<p:inputNumber value="#{contractBean.contract.amount}"
+								required="true" requiredMessage="ادخل المبلغ">
 							</p:inputNumber>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ بالحروف " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{contractBean.contract.amountByLetter}">
+							<p:inputText value="#{contractBean.contract.amountByLetter}"
+								required="true" requiredMessage="ادخل المبلغ بالحروف ">
 							</p:inputText>
 						</div>
 
@@ -70,7 +76,8 @@
 							<h:outputLabel value="رقم الملكية" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{contractBean.contract.ownerNo}">
+							<p:inputText value="#{contractBean.contract.ownerNo}"
+								required="true" requiredMessage="ادخل رقم الملكية ">
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
@@ -79,7 +86,8 @@
 						<div class="ui-g-4">
 							<p:inputText id="hiri1"
 								value="#{contractBean.contract.outHijridate}"
-								onfocus="loadCalendar();"
+								onfocus="loadCalendar();" required="true"
+								requiredMessage="ادخل تاريخ الصادر "
 								styleClass="form-control form-controlCal">
 							</p:inputText>
 
@@ -92,7 +100,8 @@
 							<h:outputLabel value="صادر من جهة " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{contractBean.contract.outFrom}">
+							<p:inputText value="#{contractBean.contract.outFrom}"
+								required="true" requiredMessage="ادخل جهة الصادر ">
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
@@ -100,7 +109,10 @@
 						</div>
 						<div class="ui-g-4">
 							<p:selectOneMenu value="#{contractBean.contract.licenseType}"
-								style="width:50%" dir="rtl">
+								style="width:50%;" dir="rtl" required="true"
+								requiredMessage="اختر خصائص المبنى ">
+								<f:selectItem itemLabel="اختر" itemValue=""
+									noSelectionOption="true" />
 								<f:selectItem itemLabel="دور أرضي فقط" itemValue="دور أرضي فقط" />
 								<f:selectItem itemLabel="دورين وملاحق علوية"
 									itemValue="دورين وملاحق علوية" />

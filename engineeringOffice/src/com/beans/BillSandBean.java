@@ -11,8 +11,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.entities.Bills;
+import com.models.CustomerModel;
 import com.services.SandService;
 
 import common.util.Utils;
@@ -28,6 +31,16 @@ public class BillSandBean {
 	@PostConstruct
 	public void init() {
 		billSnad = new Bills();
+		HttpServletRequest httprequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		HttpSession httpSession = httprequest.getSession(false);
+		CustomerModel cm = (CustomerModel) httpSession.getAttribute("CustomerObject");
+		if (cm != null) {
+			billSnad.setDeptId(cm.getCustomerId());
+			billSnad.setDeptName(cm.getDeptName());
+			billSnad.setDeptId(cm.getDeptId());
+			billSnad.setCustomerName(cm.getCustomerName());
+		}
 	}
 
 	public boolean addBillOrSnad() {
@@ -62,18 +75,18 @@ public class BillSandBean {
 			parameters.put("date", billSnad.getBillDate());
 			parameters.put("costByLet", billSnad.getAmountLetters());
 			parameters.put("halaa", 00);
-			String footerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/footer.png");
+			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
+					.getRealPath("/reports/footer.png");
 			parameters.put("footer", footerPath);
-			String headerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/header.png");
+			String headerPath = FacesContext.getCurrentInstance().getExternalContext()
+					.getRealPath("/reports/header.png");
 			parameters.put("header", headerPath);
 //		//parameters.put("userId", employerId);
 			Utils.printPdfReport(reportName, parameters);
-		}
-		else
-		{
+		} else {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "—ﬁ„ «·”‰œ „ÊÃÊœ «÷› —ﬁ„ ÃœÌœ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
-		
+
 		}
 		return "";
 	}

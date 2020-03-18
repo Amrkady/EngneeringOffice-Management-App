@@ -6,13 +6,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.entities.Bills;
 import com.entities.Contracts;
+import com.models.CustomerModel;
 import com.services.SandService;
 
 import common.util.Utils;
@@ -24,13 +28,24 @@ public class ContractBean {
 	private SandService sandServiceImpl;
 	private Contracts contract;
 	private Date contractDate;
+	private CustomerModel cm = new CustomerModel();
 
 	@PostConstruct
 	public void init() {
 		contract = new Contracts();
+		HttpServletRequest httprequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		HttpSession httpSession = httprequest.getSession(false);
+		cm = (CustomerModel) httpSession.getAttribute("CustomerObject");
+		if (cm != null) {
+			contract.setCustomerId(cm.getCustomerId());
+			contract.setDeptId(cm.getDeptId());
+			contract.setNat_no(cm.getNatNo());
+
+		}
 	}
 
-	public void addContract() {
+	public boolean addContract() {
 		try {
 			String strDate = "";
 			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/mm/yyyy");
@@ -38,40 +53,44 @@ public class ContractBean {
 				strDate = sdfDate.format(contractDate);
 			}
 			contract.setContractDate(strDate);
-			sandServiceImpl.addContract(contract);
+			return sandServiceImpl.addContract(contract);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
+			return false;
 		}
 
 	}
 
 	public String save() {
-//		addContract();
-//		String strDate = "";
-//		SimpleDateFormat sdfDate = new SimpleDateFormat("dd/mm/yyyy");
-//		if (contractDate != null) {
-//			strDate = sdfDate.format(contractDate);
-//		}
-		// billSnad.setBillDate(strDate);
-		String reportName = "/reports/contractReport.jasper";
-		Map<String, Object> parameters = new HashMap<String, Object>();
-//		parameters.put("sndNo", billSnad.getSanadNo());
-//		parameters.put("custName", billSnad.getCustomerName());
-//		parameters.put("reyal", billSnad.getAmountPay());
-//		parameters.put("costRest", billSnad.getAmountRest());
-//		parameters.put("for", billSnad.getBillReason());
-//		parameters.put("payType", billSnad.getBillType());
-//		parameters.put("dept", billSnad.getDeptName());
-//		parameters.put("date", billSnad.getBillDate());
-//		parameters.put("costByLet", "„«∆…");
-//		parameters.put("halaa", 00);
-//		//parameters.put("userId", employerId);
-	
-		String footerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/footer.png");
-		parameters.put("footer", footerPath);
-		String headerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/header.png");
-		parameters.put("header", headerPath);
-		Utils.printPdfReport(reportName, parameters);
+
+		if (addContract()) {
+			String reportName = "/reports/contractReport.jasper";
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("day", contract.getDayLetter());
+			parameters.put("date", contract.getContractDate());
+			parameters.put("recordNo", cm.getNatNo().toString());
+			parameters.put("custName", cm.getCustomerName());
+			parameters.put("address", cm.getAddress());
+			parameters.put("phone", cm.getPhone());
+			parameters.put("onwerNo", contract.getOwnerNo());
+			parameters.put("buildDetails", contract.getLicenseType());
+			parameters.put("from", contract.getOutFrom());
+			parameters.put("outDate", contract.getOutHijridate());
+			parameters.put("costByLet", contract.getAmountByLetter());
+			parameters.put("cost", contract.getAmount().toString());
+
+			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
+					.getRealPath("/reports/footer.png");
+			parameters.put("footer", footerPath);
+			String headerPath = FacesContext.getCurrentInstance().getExternalContext()
+					.getRealPath("/reports/header.png");
+			parameters.put("header", headerPath);
+			Utils.printPdfReport(reportName, parameters);
+		} else {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "—ﬁ„ «·”‰œ „ÊÃÊœ «÷› —ﬁ„ ÃœÌœ", "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+
+		}
 		return "";
 	}
 
@@ -97,6 +116,14 @@ public class ContractBean {
 
 	public void setContract(Contracts contract) {
 		this.contract = contract;
+	}
+
+	public CustomerModel getCm() {
+		return cm;
+	}
+
+	public void setCm(CustomerModel cm) {
+		this.cm = cm;
 	}
 
 }

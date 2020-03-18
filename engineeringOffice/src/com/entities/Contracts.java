@@ -29,7 +29,7 @@ public class Contracts {
 	// ÕÇÏÑ ãä ÌåÉ ¿
 	@Column(name = "out_from")
 	private String outFrom;
-
+   // äæÚ ÇáÊÑÎíÕ
 	@Column(name = "license_type")
 	private String licenseType;
 

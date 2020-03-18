@@ -20,14 +20,14 @@
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="116" splitType="Stretch">
-			<image>
-				<reportElement x="-20" y="-20" width="590" height="80" uuid="69a9a392-fb19-49a5-b2b0-3b275eb0fd59"/>
+	<pageHeader>
+		<band height="104">
+			<image hAlign="Center">
+				<reportElement x="-20" y="-20" width="590" height="110" uuid="b5abcd5a-c848-44a6-8c14-4506dcadaad8"/>
 				<imageExpression><![CDATA[$P{header}]]></imageExpression>
 			</image>
 		</band>
-	</title>
+	</pageHeader>
 	<detail>
 		<band height="438" splitType="Stretch">
 			<staticText>
@@ -333,7 +333,7 @@
 	</detail>
 	<pageFooter>
 		<band height="80" splitType="Stretch">
-			<image vAlign="Middle">
+			<image hAlign="Center" vAlign="Middle">
 				<reportElement x="30" y="40" width="520" height="40" uuid="8502abee-b73b-4598-9e68-70fc541295f2"/>
 				<imageExpression><![CDATA[$P{footer}]]></imageExpression>
 			</image>

@@ -27,14 +27,18 @@
 							<h:outputLabel value="رقم السند" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber value="#{sandBean.billSnad.sanadNo}">
+							<p:inputNumber value="#{sandBean.billSnad.sanadNo}"
+							required="true" requiredMessage="ادخل رقم السند "
+							>
 							</p:inputNumber>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber value="#{sandBean.billSnad.amountPay}">
+							<p:inputNumber value="#{sandBean.billSnad.amountPay}"
+							required="true" requiredMessage="ادخل المبلغ "
+							>
 							</p:inputNumber>
 						</div>
 					</div>
@@ -44,14 +48,18 @@
 							<h:outputLabel value="المبلغ بالحروف " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.amountLetters}">
+							<p:inputText value="#{sandBean.billSnad.amountLetters}"
+							required="true" requiredMessage="ادخل المبلغ بالحروف "
+							>
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المتبقي" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber value="#{sandBean.billSnad.amountRest}">
+							<p:inputNumber value="#{sandBean.billSnad.amountRest}"
+							required="true" requiredMessage="ادخل المتبقى "
+							>
 							</p:inputNumber>
 						</div>
 
@@ -61,33 +69,39 @@
 							<h:outputLabel value="وذلك مقابل" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.billReason}">
+							<p:inputText value="#{sandBean.billSnad.billReason}"
+							required="true" requiredMessage="ادخل السبب "
+							>
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="طريقة الدفع" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.billType}">
+							<p:inputText value="#{sandBean.billSnad.billType}"
+							required="true" requiredMessage="ادخل طريقة الدفع "
+							>
 							</p:inputText>
 						</div>
 
 					</div>
 					
 					<div class="ui-g">
-						<div class="ui-g-1">
-							<h:outputLabel value="القسم" />
-						</div>
-						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.deptName}">
-							</p:inputText>
-						</div>
+<!-- 						<div class="ui-g-1"> -->
+<!-- 							<h:outputLabel value="القسم" /> -->
+<!-- 						</div> -->
+<!-- 						<div class="ui-g-4"> -->
+<!-- 							<p:inputText value="#{sandBean.billSnad.deptName}"> -->
+<!-- 							</p:inputText> -->
+<!-- 						</div> -->
 						<div class="ui-g-1">
 							<h:outputLabel value="التاريخ" />
 						</div>
 						<div class="ui-g-4">
 							<p:calendar styleClass="form-control" id="absenceDate"
-								pattern="dd/mm/yyyy" value="#{sandBean.sandDate}">
+								pattern="dd/mm/yyyy" value="#{sandBean.sandDate}"
+								required="true" requiredMessage="ادخل التاريخ "
+								>
 
 							</p:calendar>
 						</div>
