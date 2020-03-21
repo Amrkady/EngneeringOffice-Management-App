@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 .bb:hover, bb:active, bb:focus {
-  background: red;
+  background: blue;
 }
 .form .message {
   margin: 15px 0 0;

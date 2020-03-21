@@ -13,6 +13,8 @@ public interface UserService {
    boolean deleteUser(Users user);
    
     List<Users> getAllUser();
+    
+    public Users loadUser(String username, String passWord);
 	
 
 }

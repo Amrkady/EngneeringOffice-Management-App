@@ -19,8 +19,12 @@ public class Users {
 	private String password;
 	@Column(name = "name")
 	private String name;
+	
 	@Column(name = "role_id")
 	private Integer roleId;
+	@ManyToOne
+	@JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
+	Roles role;
 	public Integer getUserId() {
 		return userId;
 	}
@@ -50,6 +54,12 @@ public class Users {
 	}
 	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
+	}
+	public Roles getRole() {
+		return role;
+	}
+	public void setRole(Roles role) {
+		this.role = role;
 	}
 	
 }

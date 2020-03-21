@@ -5,7 +5,8 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:secc="http://www.springframework.org/security/tags">
      
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,8 +35,14 @@
 				<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
 				<li><a href="#" accesskey="2" title="">Our Clients</a></li>
 				<li><a href="#"  accesskey="3" title="">About Us</a></li>
+				<secc:authorize ifAnyGranted="ROLE_ADMIN">
 				<h:commandLink action="customers" class="aa" style="font-size: medium;" value="العملاء" ></h:commandLink>
-				<h:commandLink action="login" class="aa" style="font-size: medium;" value="تسجيل الدخول" ></h:commandLink>
+				</secc:authorize>
+				
+				<h:commandLink rendered="#{loginBean.flag}" action="login" class="aa" style="font-size: medium;" value="تسجيل الدخول" ></h:commandLink>
+				<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER">
+				<h:commandLink  action="#{loginBean.logout}" class="aa" style="font-size: medium;" value="تسجيل الخروج" ></h:commandLink>
+				</secc:authorize>
 				<li><a href="#" accesskey="5" title="">Contact Us</a></li>
 			</ul>
 		</div>

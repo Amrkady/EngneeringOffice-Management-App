@@ -37,5 +37,10 @@ public class UserServiceImpl implements UserService {
 		List usrs = commonDao.findAll(Users.class);
 		return usrs;
 	}
+	
+	@Override
+	public Users loadUser(String username, String passWord) {
+		return commonDao.loadUser(username, passWord);
+	}
 
 }

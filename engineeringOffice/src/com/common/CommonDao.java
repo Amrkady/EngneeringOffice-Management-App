@@ -1,3 +1,4 @@
+
 package com.common;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public interface CommonDao {
 
 	boolean updateObject(Object myObject);
 	public Integer saveCustomer(Customers customer);
+	
+	public Users loadUser(final String username, final String password);
 		
 
 }

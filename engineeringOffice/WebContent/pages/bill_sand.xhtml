@@ -22,24 +22,26 @@
 				</h1>
 				<p:fieldset width="50%" legend="بيانات السند ">
 	
-					<div class="ui-g">
+					<div  class="ui-g">
 						<div class="ui-g-1">
 							<h:outputLabel value="رقم السند" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber value="#{sandBean.billSnad.sanadNo}"
+							<p:inputText class="aa" validatorMessage="يجب ان يكون رقم السند ارقام فقط" value="#{sandBean.billSnad.sanadNo}"
 							required="true" requiredMessage="ادخل رقم السند "
 							>
-							</p:inputNumber>
+							
+							</p:inputText>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber value="#{sandBean.billSnad.amountPay}"
+							<p:inputText class="aa" validatorMessage="يجب ان  يحتوي المبلغ علي ارقام فقط" value="#{sandBean.billSnad.amountPay}"
 							required="true" requiredMessage="ادخل المبلغ "
 							>
-							</p:inputNumber>
+							
+							</p:inputText>
 						</div>
 					</div>
 
@@ -48,7 +50,7 @@
 							<h:outputLabel value="المبلغ بالحروف " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.amountLetters}"
+							<p:inputText class="aa" value="#{sandBean.billSnad.amountLetters}"
 							required="true" requiredMessage="ادخل المبلغ بالحروف "
 							>
 							</p:inputText>
@@ -57,10 +59,11 @@
 							<h:outputLabel value="المتبقي" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber value="#{sandBean.billSnad.amountRest}"
+							<p:inputText class="aa" validatorMessage="المتبقي يجب ان يكون ارقام فقط" value="#{sandBean.billSnad.amountRest}"
 							required="true" requiredMessage="ادخل المتبقى "
 							>
-							</p:inputNumber>
+							
+							</p:inputText>
 						</div>
 
 					</div>
@@ -68,8 +71,8 @@
 						<div class="ui-g-1">
 							<h:outputLabel value="وذلك مقابل" />
 						</div>
-						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.billReason}"
+						<div  class="ui-g-4">
+							<p:inputText class="aa" value="#{sandBean.billSnad.billReason}"
 							required="true" requiredMessage="ادخل السبب "
 							>
 							</p:inputText>
@@ -78,7 +81,7 @@
 							<h:outputLabel value="طريقة الدفع" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{sandBean.billSnad.billType}"
+							<p:inputText class="aa" value="#{sandBean.billSnad.billType}"
 							required="true" requiredMessage="ادخل طريقة الدفع "
 							>
 							</p:inputText>
@@ -98,20 +101,22 @@
 							<h:outputLabel value="التاريخ" />
 						</div>
 						<div class="ui-g-4">
-							<p:calendar styleClass="form-control" id="absenceDate"
+							
+							<p:calendar   styleClass="form-control" id="absenceDate"
 								pattern="dd/mm/yyyy" value="#{sandBean.sandDate}"
 								required="true" requiredMessage="ادخل التاريخ "
 								>
 
 							</p:calendar>
+							
 						</div>
 
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<p:commandButton value="حفظ و طباعة " icon="ui-icon ui-icon-print "
+						<p:commandButton  class="bb" value="حفظ و طباعة " icon="ui-icon ui-icon-print "
 							 action="#{sandBean.save}" onclick="this.form.target='_blank'" ajax="false"
-							styleClass="purple-btn">
+							>
 						</p:commandButton>
 <!--   onclick="this.form.target='_blank'" ajax="false" -->
 					</div>

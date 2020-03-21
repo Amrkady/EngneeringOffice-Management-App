@@ -31,7 +31,7 @@
 								<p:outputLabel value="اسم العميل"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText required="true"
+								<p:inputText class="aa" required="true"
 									requiredMessage="يجب ادخال اسم العميل"
 									value="#{customerBean.customers.customerName}">
 								</p:inputText>
@@ -40,29 +40,32 @@
 								<p:outputLabel value="رقم الجوال"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText required="true" requiredMessage="يجب ادخال الجوال"
+								<p:inputText class="aa" required="true" validatorMessage="يجب ان يكون رقم الجوال ارقام فقط" requiredMessage="يجب ادخال الجوال"
 									value="#{customerBean.customers.phone}">
+									<f:validateRegex pattern="[0-9]+" />
 								</p:inputText>
 							</div>
 							<div class="ui-g-1">
 								<p:outputLabel value="رقم السجل"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputNumber requiredMessage="يجب ادخال الهوية"
+								<p:inputText converterMessage="رقم الهوية يجب ان يكون ارقام فقط" class="aa" requiredMessage="يجب ادخال الهوية"
 									required="true" value="#{customerBean.customers.natNo}">
-									<f:validateLength maximum="10" minimum="0"></f:validateLength>
-								</p:inputNumber>
+<!-- 									<f:validateLength maximum="10" minimum="0"></f:validateLength> -->
+<!-- 										<f:validateRegex pattern="[0-9]+" /> -->
+								</p:inputText>
+								
 							</div>
 							<div class="ui-g-1">
 								<p:outputLabel value="العنوان"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText required="true"
+								<p:inputText class="aa"  required="true"
 									value="#{customerBean.customers.address}"
 									requiredMessage="يجب ادخال العنوان">
 								</p:inputText>
 							</div>
-							<p:commandButton update="@form"
+							<p:commandButton class="bb"  update="@form"
 								actionListener="#{customerBean.check}"
 								style="width:30%;display:block;margin:auto;" value="التالي">
 
@@ -97,7 +100,7 @@
 							</div>
 
 							<div class="ui-g-12">
-								<p:commandButton update="@form"
+								<p:commandButton class="bb" update="@form"
 									actionListener="#{customerBean.check}"
 									style="width:30%;display:block;margin:auto;" value="التالي">
 
@@ -134,7 +137,7 @@
 							</div>
 
 							<div class="ui-g-12">
-								<p:commandButton action="#{customerBean.save}" ajax="false"
+								<p:commandButton class="bb" action="#{customerBean.save}" ajax="false"
 									style="width:30%;display:block;margin:auto;" value="التالي">
 
 								</p:commandButton>
