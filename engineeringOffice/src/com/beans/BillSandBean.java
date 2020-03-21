@@ -28,8 +28,11 @@ public class BillSandBean {
 	private Bills billSnad;
 	private Date sandDate;
 
+	boolean status = false;
+
 	@PostConstruct
 	public void init() {
+
 		billSnad = new Bills();
 		HttpServletRequest httprequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
@@ -43,7 +46,7 @@ public class BillSandBean {
 		}
 	}
 
-	public boolean addBillOrSnad() {
+	public String addBillOrSnad() {
 		try {
 			String strDate = "";
 			// System.out.println(sandServiceImpl.addSand(billSnad));
@@ -52,42 +55,43 @@ public class BillSandBean {
 				strDate = sdfDate.format(sandDate);
 			}
 			billSnad.setBillDate(strDate);
-			return sandServiceImpl.addSand(billSnad);
+			status = sandServiceImpl.addSand(billSnad);
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, " „ «·Õ›Ÿ", "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+//			status = true;
+//			Utils.updateUIComponent("form:print");
+			return "";
 		} catch (Exception e) {
-
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "—ﬁ„ «·”‰œ „ÊÃÊœ «÷› —ﬁ„ ÃœÌœ", "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
-			return false;
+			status = false;
+			return "";
 		}
 
 	}
 
 	public String save() {
-		if (addBillOrSnad()) {
-			String reportName = "/reports/Bills_snad.jasper";
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("sndNo", billSnad.getSanadNo());
-			parameters.put("custName", billSnad.getCustomerName());
-			parameters.put("reyal", billSnad.getAmountPay());
-			parameters.put("costRest", billSnad.getAmountRest());
-			parameters.put("for", billSnad.getBillReason());
-			parameters.put("payType", billSnad.getBillType());
-			parameters.put("dept", billSnad.getDeptName());
-			parameters.put("date", billSnad.getBillDate());
-			parameters.put("costByLet", billSnad.getAmountLetters());
-			parameters.put("halaa", 00);
-			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
-					.getRealPath("/reports/footer.png");
-			parameters.put("footer", footerPath);
-			String headerPath = FacesContext.getCurrentInstance().getExternalContext()
-					.getRealPath("/reports/header.png");
-			parameters.put("header", headerPath);
+		addBillOrSnad();
+		String reportName = "/reports/Bills_snad.jasper";
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("sndNo", billSnad.getSanadNo());
+		parameters.put("custName", billSnad.getCustomerName());
+		parameters.put("reyal", billSnad.getAmountPay());
+		parameters.put("costRest", billSnad.getAmountRest());
+		parameters.put("for", billSnad.getBillReason());
+		parameters.put("payType", billSnad.getBillType());
+		parameters.put("dept", billSnad.getDeptName());
+		parameters.put("date", billSnad.getBillDate());
+		parameters.put("costByLet", billSnad.getAmountLetters());
+		parameters.put("halaa", 00);
+		String footerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/footer.png");
+		parameters.put("footer", footerPath);
+		String headerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/header.png");
+		parameters.put("header", headerPath);
 //		//parameters.put("userId", employerId);
-			Utils.printPdfReport(reportName, parameters);
-		} else {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "—ﬁ„ «·”‰œ „ÊÃÊœ «÷› —ﬁ„ ÃœÌœ", "");
-			FacesContext.getCurrentInstance().addMessage(null, msg);
+		Utils.printPdfReport(reportName, parameters);
 
-		}
 		return "";
 	}
 
@@ -113,6 +117,14 @@ public class BillSandBean {
 
 	public void setSandDate(Date sandDate) {
 		this.sandDate = sandDate;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

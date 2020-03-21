@@ -51,7 +51,7 @@ public class LoginBean {
 		try {
 			Authentication result = null;
 			if (this.userName.length() == 0 || this.password.length() == 0) {
-				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "خطأ", "");
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "خطأ", "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 
 				return "";
@@ -74,7 +74,7 @@ public class LoginBean {
 				
 			}
 		} catch (BadCredentialsException e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "خطأ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "خطأ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 		return outcome;

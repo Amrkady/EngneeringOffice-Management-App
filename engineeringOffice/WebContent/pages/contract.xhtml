@@ -57,10 +57,10 @@
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa" validatorMessage="المبلغ يجب ان يكون ارقام فقط" value="#{contractBean.contract.amount}"
+							<p:inputNumber class="aa" validatorMessage="المبلغ يجب ان يكون ارقام فقط" value="#{contractBean.contract.amount}"
 								required="true" requiredMessage="ادخل المبلغ">
 							
-							</p:inputText>
+							</p:inputNumber>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ بالحروف " />
@@ -78,7 +78,7 @@
 							<h:outputLabel value="رقم الملكية" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa" validatorMessage="يجب ان يكون رقم الملكية مكون من ارقام فقط" value="#{contractBean.contract.ownerNo}"
+							<p:inputText class="aa"  value="#{contractBean.contract.ownerNo}"
 								required="true" requiredMessage="ادخل رقم الملكية ">
 							
 							</p:inputText>
@@ -128,10 +128,15 @@
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<p:commandButton class="bb" value="حفظ و طباعة" icon="ui-icon ui-icon-print "
+						<p:commandButton class="bb" value=" حفظ و طباعة" icon="ui-icon ui-icon-print "
 							action="#{contractBean.save}" onclick="this.form.target='_blank'"
+								 id="print"
 							ajax="false" >
 						</p:commandButton>
+<!-- 						<p:commandButton class="bb" value="حفظ " id="save" update="print" -->
+<!-- 							icon="ui-icon ui-icon-plus " rendered="# {!contractBean.status}" -->
+<!-- 							action="# {contractBean.addContract}"> -->
+<!-- 						</p:commandButton> -->
 					</div>
 				</p:fieldset>
 

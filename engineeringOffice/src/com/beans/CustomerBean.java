@@ -53,12 +53,12 @@ public class CustomerBean {
 		if(customers.getNatNo().toString().length()!=10 ||customers.getPhone().length()!=10) {
 		if(customers.getNatNo().toString().length()!=10)
 		{
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "خطأ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "خطأ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			}
 		if(customers.getPhone().length()!=10)
 		{
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "خطأ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "خطأ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);}
 	}else step=2;
 		}else if(step==2) {

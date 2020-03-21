@@ -29,6 +29,7 @@ public class ContractBean {
 	private Contracts contract;
 	private Date contractDate;
 	private CustomerModel cm = new CustomerModel();
+	private boolean status = false;
 
 	@PostConstruct
 	public void init() {
@@ -45,7 +46,7 @@ public class ContractBean {
 		}
 	}
 
-	public boolean addContract() {
+	public String addContract() {
 		try {
 			String strDate = "";
 			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/mm/yyyy");
@@ -53,44 +54,45 @@ public class ContractBean {
 				strDate = sdfDate.format(contractDate);
 			}
 			contract.setContractDate(strDate);
-			return sandServiceImpl.addContract(contract);
+			status = sandServiceImpl.addContract(contract);
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, " „ «·Õ›Ÿ", "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+//			status = true;
+//			Utils.updateUIComponent("form:print");
+			return "";
 		} catch (Exception e) {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ÕœÀ Œÿ√ ›Ï Õ›Ÿ «·⁄„·Ì… «⁄œ «·„Õ«Ê·…", "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
-			return false;
+			status = false;
+			return "";
 		}
 
 	}
 
 	public String save() {
+		addContract();
+		String reportName = "/reports/contractReport.jasper";
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("day", contract.getDayLetter());
+		parameters.put("date", contract.getContractDate());
+		parameters.put("recordNo", cm.getNatNo().toString());
+		parameters.put("custName", cm.getCustomerName());
+		parameters.put("address", cm.getAddress());
+		parameters.put("phone", cm.getPhone());
+		parameters.put("onwerNo", contract.getOwnerNo());
+		parameters.put("buildDetails", contract.getLicenseType());
+		parameters.put("from", contract.getOutFrom());
+		parameters.put("outDate", contract.getOutHijridate());
+		parameters.put("costByLet", contract.getAmountByLetter());
+		parameters.put("cost", contract.getAmount().toString());
 
-		if (addContract()) {
-			String reportName = "/reports/contractReport.jasper";
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("day", contract.getDayLetter());
-			parameters.put("date", contract.getContractDate());
-			parameters.put("recordNo", cm.getNatNo().toString());
-			parameters.put("custName", cm.getCustomerName());
-			parameters.put("address", cm.getAddress());
-			parameters.put("phone", cm.getPhone());
-			parameters.put("onwerNo", contract.getOwnerNo());
-			parameters.put("buildDetails", contract.getLicenseType());
-			parameters.put("from", contract.getOutFrom());
-			parameters.put("outDate", contract.getOutHijridate());
-			parameters.put("costByLet", contract.getAmountByLetter());
-			parameters.put("cost", contract.getAmount().toString());
+		String footerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/footer.png");
+		parameters.put("footer", footerPath);
+		String headerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/header.png");
+		parameters.put("header", headerPath);
+		Utils.printPdfReport(reportName, parameters);
 
-			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
-					.getRealPath("/reports/footer.png");
-			parameters.put("footer", footerPath);
-			String headerPath = FacesContext.getCurrentInstance().getExternalContext()
-					.getRealPath("/reports/header.png");
-			parameters.put("header", headerPath);
-			Utils.printPdfReport(reportName, parameters);
-		} else {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "—ﬁ„ «·”‰œ „ÊÃÊœ «÷› —ﬁ„ ÃœÌœ", "");
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-
-		}
 		return "";
 	}
 
@@ -124,6 +126,14 @@ public class ContractBean {
 
 	public void setCm(CustomerModel cm) {
 		this.cm = cm;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }
