@@ -72,7 +72,7 @@ body .ui-panel .ui-panel-content {
 
 .ui-datatable .ui-datatable-header, .ui-datatable .ui-datatable-footer {
 	text-align: center;
-	padding: 4px 10px; 
+	padding: 4px 10px;
 	background: transparent;
 	height: 50px;
 	color: black;
@@ -180,37 +180,18 @@ body .ui-datatable .ui-datatable-header .ui-inputfield, body .ui-datatable .ui-d
 		<div class="layout-main">
 			<p:idleMonitor timeout="300000" onidle="PF('alertExpire').show();">
 			</p:idleMonitor>
-
+			<ui:include src="topbar.xhtml" />
 
 			<div class="layout-breadcrumb">
 				<ul>
-					<!--                         <li><p:link outcome="/pages/dashboard"><i class="material-icons">&#xE88A;</i></p:link></li> -->
-					<!--                         <li>/</li> -->
-					<!--                         <ui:insert name="breadcrumb" /> -->
 				</ul>
-				<!--                     <h:form> -->
-				<!--                     <div class="layout-breadcrumb-options"> -->
-				<!--                         <a href="#" title="Backup"> -->
-				<!--                             <i class="material-icons">&#xE864;</i> -->
-				<!--                         </a> -->
-				<!--                         <a href="#" title="Bookmark" > -->
-				<!--                             <i class="material-icons">&#xE866;</i> -->
-				<!--                         </a> -->
-
-				<!--                     </div> -->
-				<!--                     </h:form> -->
 			</div>
-
-			<div class="layout-content " style="background-color: #9e9e9e1c;">
+			<div class="layout-content " style="background-color: white;">
 				<ui:insert name="content" />
 			</div>
-
-
-
-			<div class="layout-main-mask"></div>
+			<ui:include src="footer1.xhtml"  />
 		</div>
 	</div>
-
 	<p:ajaxStatus
 		style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
 		<f:facet name="start">
