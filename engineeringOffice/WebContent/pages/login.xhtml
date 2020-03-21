@@ -4,7 +4,9 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>تسجيل الدخول</title>
@@ -19,8 +21,8 @@
 		<div class="form">
 			
 			
-				<h:inputText  class="aa" value="#{loginBean.userName}" />
-				<h:inputText class="aa" value="#{loginBean.password}" />
+				<h:inputText class="aa" value="" a:placeholder="username"/>
+				<h:inputSecret class="aa" value="" a:placeholder="password" />
 
 				<h:commandButton value="login" action="#{loginBean.login}" class="bb"></h:commandButton>
 
