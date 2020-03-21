@@ -44,7 +44,7 @@
 							<h:outputLabel value="التاريخ" />
 						</div>
 						<div class="ui-g-4">
-							<p:calendar styleClass="form-control" id="absenceDate"
+							<p:calendar style="width:100%"  id="absenceDate"
 								required="true" requiredMessage="ادخل التاريخ"
 								pattern="dd/mm/yyyy" value="#{contractBean.contractDate}">
 
@@ -57,16 +57,18 @@
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber value="#{contractBean.contract.amount}"
+							<p:inputText class="aa" validatorMessage="المبلغ يجب ان يكون ارقام فقط" value="#{contractBean.contract.amount}"
 								required="true" requiredMessage="ادخل المبلغ">
-							</p:inputNumber>
+							
+							</p:inputText>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ بالحروف " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{contractBean.contract.amountByLetter}"
+							<p:inputText class="aa" value="#{contractBean.contract.amountByLetter}"
 								required="true" requiredMessage="ادخل المبلغ بالحروف ">
+								
 							</p:inputText>
 						</div>
 
@@ -76,15 +78,16 @@
 							<h:outputLabel value="رقم الملكية" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{contractBean.contract.ownerNo}"
+							<p:inputText class="aa" validatorMessage="يجب ان يكون رقم الملكية مكون من ارقام فقط" value="#{contractBean.contract.ownerNo}"
 								required="true" requiredMessage="ادخل رقم الملكية ">
+							
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="صادر بتاريخ " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText id="hiri1"
+							<p:inputText class="aa" id="hiri1"
 								value="#{contractBean.contract.outHijridate}"
 								onfocus="loadCalendar();" required="true"
 								requiredMessage="ادخل تاريخ الصادر "
@@ -100,7 +103,7 @@
 							<h:outputLabel value="صادر من جهة " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText value="#{contractBean.contract.outFrom}"
+							<p:inputText class="aa" value="#{contractBean.contract.outFrom}"
 								required="true" requiredMessage="ادخل جهة الصادر ">
 							</p:inputText>
 						</div>
@@ -125,9 +128,9 @@
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<p:commandButton value="حفظ و طباعة" icon="ui-icon ui-icon-print "
+						<p:commandButton class="bb" value="حفظ و طباعة" icon="ui-icon ui-icon-print "
 							action="#{contractBean.save}" onclick="this.form.target='_blank'"
-							ajax="false" styleClass="purple-btn">
+							ajax="false" >
 						</p:commandButton>
 					</div>
 				</p:fieldset>

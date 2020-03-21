@@ -7,26 +7,28 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>تسجيل الدخول</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/login.css"></link>
 
 </head>
-
+<body>
+<form class="login-form">
 <h:form>
 
 	<div class="login-page">
 		<div class="form">
 			
-			<form class="login-form">
-				<h:inputText class="aa" value="userName" />
-				<h:inputText class="aa" value="password" />
+			
+				<h:inputText  class="aa" value="#{loginBean.userName}" />
+				<h:inputText class="aa" value="#{loginBean.password}" />
 
-				<h:commandButton value="login" class="bb"></h:commandButton>
+				<h:commandButton value="login" action="#{loginBean.login}" class="bb"></h:commandButton>
 
-			</form>
+			
 		</div>
 	</div>
 
 </h:form>
-
+</form>
+</body>
 </html>

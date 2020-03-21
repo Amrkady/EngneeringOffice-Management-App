@@ -2,11 +2,21 @@ package com.common;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.type.StringType;
+import org.hibernate.type.Type;
 import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+
 
 import com.entities.Customers;
+import com.entities.Users;
 
 public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	private SessionFactory sessionFactory;
@@ -85,6 +95,24 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 			return false;
 		}
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public Users loadUser(final String username, final String password) throws AuthenticationException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Users.class);
+		criteria.add(Restrictions.eq("loginName", username));
+		if( password!=null) {
+			
+			criteria.add(Restrictions.eq("password", password));
+			
+		}
+		Users result = (Users)criteria.uniqueResult();
+		if (result==null)
+			throw new BadCredentialsException("bad credentials");
+		Hibernate.initialize(result.getRole());
+		return result;
 	}
 
 }

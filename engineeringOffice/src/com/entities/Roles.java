@@ -1,8 +1,12 @@
 package com.entities;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
+
+
 
 @Entity
 @Table(name = "roles")
@@ -15,6 +19,9 @@ public class Roles {
 	private Integer roleId;
 	@Column(name = "name", nullable = false)
 	private String roleName;
+
+	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+	private List<Users> users;
 
 	public Integer getRoleId() {
 		return roleId;
