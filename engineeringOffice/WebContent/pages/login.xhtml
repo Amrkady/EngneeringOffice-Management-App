@@ -12,18 +12,23 @@
 <title>تسجيل الدخول</title>
 <link rel="stylesheet" type="text/css" href="../resources/css/login.css"></link>
 
+
 </head>
-<body>
+<body style="background-image: url('../resources/images/login2-bg.jpg');height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;">
 <form class="login-form">
 <h:form>
 
-	<div class="login-page">
+	<div  class="login-page">
 		<div class="form">
 			
 			
-				<h:inputText class="aa" value="" a:placeholder="username"/>
-				<h:inputSecret class="aa" value="" a:placeholder="password" />
-
+				<h:inputText style="margin-bottom:15px" class="aa" value="#{loginBean.userName}" a:placeholder="username"/>
+				
+				<h:inputSecret style="margin-bottom:15px" class="aa" value="#{loginBean.password}" a:placeholder="password" />
+                 
 				<h:commandButton value="login" action="#{loginBean.login}" class="bb"></h:commandButton>
 
 			
@@ -32,5 +37,7 @@
 
 </h:form>
 </form>
+<h:outputStylesheet name="css/layout-moody.css"
+			library="serenity-layout" />
 </body>
 </html>
