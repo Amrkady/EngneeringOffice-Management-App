@@ -28,5 +28,10 @@ public class SandServiceImpl implements SandService {
 	public boolean addContract(Contracts contract) {
 		return commonDao.saveObject(contract);
 	}
+	
+	@Override
+	public Integer getContractNo() {
+		return commonDao.findContractNo();
+	}
 
 }

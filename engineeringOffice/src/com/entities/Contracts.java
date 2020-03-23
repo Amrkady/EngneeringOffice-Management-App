@@ -47,6 +47,9 @@ public class Contracts {
 
 	@Column(name = "dept_id")
 	private Integer deptId;
+	
+	@Column(name = "CONTRACT_NO")
+	private Integer ConNo;
 
 	public Integer getId() {
 		return id;
@@ -142,6 +145,14 @@ public class Contracts {
 
 	public void setDeptId(Integer deptId) {
 		this.deptId = deptId;
+	}
+
+	public Integer getConNo() {
+		return ConNo;
+	}
+
+	public void setConNo(Integer conNo) {
+		ConNo = conNo;
 	}
 
 }

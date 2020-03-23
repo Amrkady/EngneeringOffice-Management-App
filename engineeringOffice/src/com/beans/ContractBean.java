@@ -30,6 +30,7 @@ public class ContractBean {
 	private Date contractDate;
 	private CustomerModel cm = new CustomerModel();
 	private boolean status = false;
+	private Integer conNo = new Integer(0);
 
 	@PostConstruct
 	public void init() {
@@ -44,6 +45,9 @@ public class ContractBean {
 			contract.setNat_no(cm.getNatNo());
 
 		}
+
+		conNo = sandServiceImpl.getContractNo() + 1;
+
 	}
 
 	public String addContract() {
@@ -54,20 +58,22 @@ public class ContractBean {
 				strDate = sdfDate.format(contractDate);
 			}
 			contract.setContractDate(strDate);
+			contract.setConNo(conNo);
 			status = sandServiceImpl.addContract(contract);
+			conNo++;
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, " „ «·Õ›Ÿ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 //			status = true;
 //			Utils.updateUIComponent("form:print");
-			return "";
+
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ÕœÀ Œÿ√ ›Ï Õ›Ÿ «·⁄„·Ì… «⁄œ «·„Õ«Ê·…", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 			status = false;
-			return "";
-		}
 
+		}
+		return "";
 	}
 
 	public String save() {
@@ -134,6 +140,14 @@ public class ContractBean {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public Integer getConNo() {
+		return conNo;
+	}
+
+	public void setConNo(Integer conNo) {
+		this.conNo = conNo;
 	}
 
 }

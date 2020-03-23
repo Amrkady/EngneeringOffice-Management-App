@@ -9,4 +9,6 @@ public interface SandService {
 
 	boolean addContract(Contracts contract);
 
+	Integer getContractNo();
+
 }

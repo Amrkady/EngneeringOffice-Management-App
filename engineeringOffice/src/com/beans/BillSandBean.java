@@ -60,14 +60,15 @@ public class BillSandBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 //			status = true;
 //			Utils.updateUIComponent("form:print");
-			return "";
+
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ÑŞã ÇáÓäÏ ãæÌæÏ ÇÖİ ÑŞã ÌÏíÏ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 			status = false;
-			return "";
+
 		}
+		return "";
 
 	}
 
