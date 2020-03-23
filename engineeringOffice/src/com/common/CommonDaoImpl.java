@@ -1,20 +1,16 @@
 package com.common;
 
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.type.StringType;
-import org.hibernate.type.Type;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-
-
+import com.entities.Contracts;
 import com.entities.Customers;
 import com.entities.Users;
 
@@ -41,11 +37,12 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		}
 
 	}
+
 	@Override
 	@Transactional
 	public Integer saveCustomer(Customers customer) {
 		try {
-			Integer id=(Integer)sessionFactory.getCurrentSession().save(customer);
+			Integer id = (Integer) sessionFactory.getCurrentSession().save(customer);
 			return id;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,23 +93,34 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		}
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
 	public Users loadUser(final String username, final String password) throws AuthenticationException {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Users.class);
 		criteria.add(Restrictions.eq("loginName", username));
-		if( password!=null) {
-			
+		if (password != null) {
+
 			criteria.add(Restrictions.eq("password", password));
-			
+
 		}
-		Users result = (Users)criteria.uniqueResult();
-		if (result==null)
+		Users result = (Users) criteria.uniqueResult();
+		if (result == null)
 			throw new BadCredentialsException("bad credentials");
 		Hibernate.initialize(result.getRole());
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public Integer findContractNo() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
+		criteria.setProjection(Projections.count("id"));
+		Long id = (Long) criteria.uniqueResult();
+		return id.intValue();
+
 	}
 
 }

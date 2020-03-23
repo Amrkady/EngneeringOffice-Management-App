@@ -18,6 +18,15 @@
 			<h:form dir="rtl">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
 				<h1 style="color: #7CB342; text-align: center;">عقد</h1>
+				<div class="ui-g">
+					<div class="ui-g-1">
+						<h:outputLabel value="رقم العقد" />
+					</div>
+					<div class="ui-g-2">
+						<p:outputLabel
+							value="#{contractBean.conNo}" />	
+					</div>
+				</div>
 				<p:fieldset width="50%" legend="بيانات العقد ">
 
 					<div class="ui-g">
@@ -44,9 +53,9 @@
 							<h:outputLabel value="التاريخ" />
 						</div>
 						<div class="ui-g-4">
-							<p:calendar style="width:100%"  id="absenceDate"
-								required="true" requiredMessage="ادخل التاريخ"
-								pattern="dd/mm/yyyy" value="#{contractBean.contractDate}">
+							<p:calendar style="width:100%" id="absenceDate" required="true"
+								requiredMessage="ادخل التاريخ" pattern="dd/mm/yyyy"
+								value="#{contractBean.contractDate}">
 
 							</p:calendar>
 						</div>
@@ -57,18 +66,21 @@
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber class="aa" validatorMessage="المبلغ يجب ان يكون ارقام فقط" value="#{contractBean.contract.amount}"
-								required="true" requiredMessage="ادخل المبلغ">
-							
+							<p:inputNumber class="aa"
+								validatorMessage="المبلغ يجب ان يكون ارقام فقط"
+								value="#{contractBean.contract.amount}" required="true"
+								requiredMessage="ادخل المبلغ">
+
 							</p:inputNumber>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ بالحروف " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa" value="#{contractBean.contract.amountByLetter}"
-								required="true" requiredMessage="ادخل المبلغ بالحروف ">
-								
+							<p:inputText class="aa"
+								value="#{contractBean.contract.amountByLetter}" required="true"
+								requiredMessage="ادخل المبلغ بالحروف ">
+
 							</p:inputText>
 						</div>
 
@@ -78,9 +90,9 @@
 							<h:outputLabel value="رقم الملكية" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa"  value="#{contractBean.contract.ownerNo}"
+							<p:inputText class="aa" value="#{contractBean.contract.ownerNo}"
 								required="true" requiredMessage="ادخل رقم الملكية ">
-							
+
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
@@ -128,15 +140,14 @@
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<p:commandButton class="bb" value=" حفظ و طباعة" icon="ui-icon ui-icon-print "
-							action="#{contractBean.save}" onclick="this.form.target='_blank'"
-								 id="print"
-							ajax="false" >
+						<p:commandButton class="bb" value=" حفظ و طباعة"
+							icon="ui-icon ui-icon-print " action="#{contractBean.save}"
+							onclick="this.form.target='_blank'" id="print" ajax="false">
 						</p:commandButton>
-<!-- 						<p:commandButton class="bb" value="حفظ " id="save" update="print" -->
-<!-- 							icon="ui-icon ui-icon-plus " rendered="# {!contractBean.status}" -->
-<!-- 							action="# {contractBean.addContract}"> -->
-<!-- 						</p:commandButton> -->
+						<!-- 						<p:commandButton class="bb" value="حفظ " id="save" update="print" -->
+						<!-- 							icon="ui-icon ui-icon-plus " rendered="# {!contractBean.status}" -->
+						<!-- 							action="# {contractBean.addContract}"> -->
+						<!-- 						</p:commandButton> -->
 					</div>
 				</p:fieldset>
 
