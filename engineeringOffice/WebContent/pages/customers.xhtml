@@ -40,7 +40,9 @@
 								<p:outputLabel value="رقم الجوال"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText class="aa" required="true" validatorMessage="يجب ان يكون رقم الجوال ارقام فقط" requiredMessage="يجب ادخال الجوال"
+								<p:inputText class="aa" required="true"
+									validatorMessage="يجب ان يكون رقم الجوال ارقام فقط"
+									requiredMessage="يجب ادخال الجوال"
 									value="#{customerBean.customers.phone}">
 									<f:validateRegex pattern="[0-9]+" />
 								</p:inputText>
@@ -49,27 +51,30 @@
 								<p:outputLabel value="رقم السجل"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText converterMessage="رقم الهوية يجب ان يكون ارقام فقط" class="aa" requiredMessage="يجب ادخال الهوية"
-									required="true" value="#{customerBean.customers.natNo}">
-<!-- 									<f:validateLength maximum="10" minimum="0"></f:validateLength> -->
-<!-- 										<f:validateRegex pattern="[0-9]+" /> -->
+								<p:inputText converterMessage="رقم الهوية يجب ان يكون ارقام فقط"
+									class="aa" requiredMessage="يجب ادخال الهوية" required="true"
+									value="#{customerBean.customers.natNo}">
+									<!-- 									<f:validateLength maximum="10" minimum="0"></f:validateLength> -->
+									<!-- 										<f:validateRegex pattern="[0-9]+" /> -->
 								</p:inputText>
-								
+
 							</div>
 							<div class="ui-g-1">
 								<p:outputLabel value="العنوان"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText class="aa"  required="true"
+								<p:inputText class="aa" required="true"
 									value="#{customerBean.customers.address}"
 									requiredMessage="يجب ادخال العنوان">
 								</p:inputText>
 							</div>
-							<p:commandButton class="bb"  update="@form"
-								actionListener="#{customerBean.check}" onmouseover="this.style.background:#4CAF50 ;"
-								style="width:30%;display:block;margin:auto; background:#99ccff" value="التالي">
+							<h:commandButton class="bb" update="@form"
+								actionListener="#{customerBean.check}"
+								
+								style="width:30%;display:block;margin:auto; "
+								value="التالي">
 
-							</p:commandButton>
+							</h:commandButton>
 						</div>
 
 
@@ -92,7 +97,8 @@
 									requiredMessage="يجب اختيار القسم"
 									style="width:50%;display:block;margin:auto;"
 									value="#{customerBean.departmentId}">
-									<f:selectItem itemLabel="اختر القسم" itemValue="" noSelectionOption="true"  />
+									<f:selectItem itemLabel="اختر القسم" itemValue=""
+										noSelectionOption="true" />
 									<f:selectItems value="#{customerBean.depts}" var="dept"
 										itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}" />
 
@@ -100,11 +106,11 @@
 							</div>
 
 							<div class="ui-g-12">
-								<p:commandButton class="bb" update="@form"
+								<h:commandButton class="bb" update="@form"
 									actionListener="#{customerBean.check}"
 									style="width:30%;display:block;margin:auto;" value="التالي">
 
-								</p:commandButton>
+								</h:commandButton>
 							</div>
 
 						</div>
@@ -129,7 +135,8 @@
 									requiredMessage="يجب اختيار العملية"
 									style="width:50%;display:block;margin:auto;"
 									value="#{customerBean.operationId}">
-									<f:selectItem itemLabel="اختر العملية" itemValue="" noSelectionOption="true"/>
+									<f:selectItem itemLabel="اختر العملية" itemValue=""
+										noSelectionOption="true" />
 									<f:selectItems value="#{customerBean.operations}" var="op"
 										itemLabel="#{op.name}" itemValue="#{op.id}" />
 
@@ -137,10 +144,11 @@
 							</div>
 
 							<div class="ui-g-12">
-								<p:commandButton class="bb" action="#{customerBean.save}" ajax="false"
-									style="width:30%;display:block;margin:auto;" value="التالي">
+								<h:commandButton class="bb" action="#{customerBean.save}"
+									ajax="false" style="width:30%;display:block;margin:auto;"
+									value="التالي">
 
-								</p:commandButton>
+								</h:commandButton>
 							</div>
 
 						</div>

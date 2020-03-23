@@ -34,7 +34,7 @@
 	<h:outputScript name="js/ripple.js" library="serenity-layout" />
 
 
-<link rel="stylesheet" type="text/css"
+	<link rel="stylesheet" type="text/css"
 		href="#{facesContext.externalContext.requestContextPath}/resources/css/mycss.css" />
 
 	<link rel="stylesheet" type="text/css"
@@ -96,7 +96,13 @@ body .ui-datatable .ui-datatable-header .ui-inputfield, body .ui-datatable .ui-d
 		<h:outputText value=" ثواني" />
 		<br />
 		<h:outputText value="هل ترغب في الاستمرار في جلسة العمل الخاصة بك؟" />
-
+		<h:form>
+			<p:commandButton value="نعم" process="@this" update="inputHiden"
+				onclick="stopCount()" />
+			<br />
+			<p:remoteCommand name="logout" action="#{loginBean.logout}"
+				immediate="true" />
+		</h:form>
 		<script>
 			PrimeFaces.locales['ar'] = {
 				closeText : 'إغلق',
@@ -192,7 +198,7 @@ body .ui-datatable .ui-datatable-header .ui-inputfield, body .ui-datatable .ui-d
 			<div class="layout-content " style="background-color: white;">
 				<ui:insert name="content" />
 			</div>
-			<ui:include src="footer1.xhtml"  />
+			<ui:include src="footer1.xhtml" />
 		</div>
 	</div>
 	<p:ajaxStatus

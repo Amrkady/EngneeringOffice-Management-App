@@ -23,8 +23,7 @@
 						<h:outputLabel value="رقم العقد" />
 					</div>
 					<div class="ui-g-2">
-						<p:outputLabel
-							value="#{contractBean.conNo}" />	
+						<p:outputLabel value="#{contractBean.conNo}" />
 					</div>
 				</div>
 				<p:fieldset width="50%" legend="بيانات العقد ">
@@ -140,10 +139,11 @@
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<p:commandButton class="bb" value=" حفظ و طباعة"
-							icon="ui-icon ui-icon-print " action="#{contractBean.save}"
-							onclick="this.form.target='_blank'" id="print" ajax="false">
-						</p:commandButton>
+						<h:commandButton class="bb" value=" حفظ و طباعة"
+							style="width:10%; align:left" icon="ui-icon ui-icon-print "
+							action="#{contractBean.save}" onclick="this.form.target='_blank'"
+							id="print" ajax="false">
+						</h:commandButton>
 						<!-- 						<p:commandButton class="bb" value="حفظ " id="save" update="print" -->
 						<!-- 							icon="ui-icon ui-icon-plus " rendered="# {!contractBean.status}" -->
 						<!-- 							action="# {contractBean.addContract}"> -->
