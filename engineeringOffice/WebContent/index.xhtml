@@ -2,310 +2,298 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:secc="http://www.springframework.org/security/tags">
-     
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 
- <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
- <h:outputStylesheet library="css" name="bootstrap.min.css" />
+<meta charset="utf-8" name="viewport"
+	content="width=device-width, initial-scale=1"
+	http-equiv="X-UA-Conpatible" />
+<h:outputStylesheet library="css" name="bootstrap.min.css" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
-<link href="resources/css/default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="resources/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+<link href="http://fonts.googleapis.com/css?family=Didact+Gothic"
+	rel="stylesheet" />
+<link href="resources/css/default.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link href="resources/css/fonts.css" rel="stylesheet" type="text/css"
+	media="all" />
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 
 </head>
 <body>
-<h:form>
-<div  id="header-wrapper" >
-	<div  id="header" class="container">
-		<div id="logo" >
-			<h1><a href="#">AssemblyUpdate</a></h1>
-		</div>
-		<div id="menu">
-			<ul>
-				<li class="active"><a style="font-size: medium;" href="#" accesskey="1" title="">الرئيسية</a></li>
-<!-- 				<li><a href="#" accesskey="2" title="">Our Clients</a></li> -->
-				<li><a id="about_us" style="font-size: medium;" href="#abtus"  accesskey="3" title="">معلومات عنا</a></li>
-				<secc:authorize ifAnyGranted="ROLE_ADMIN">
-				<h:commandLink action="customers" class="aa" style="font-size: medium;" value="العملاء" ></h:commandLink>
-				</secc:authorize>
+	<h:form>
+		<div id="header-wrapper">
+			<div id="header" class="container">
+				<div id="logo">
+					<h1>
+						<a href="#">AssemblyUpdate</a>
+					</h1>
+				</div>
+				<div id="menu">
+					<ul>
+						<li class="active"><a style="font-size: medium;" href="#"
+							accesskey="1" title="">الرئيسية</a></li>
+						<!-- 				<li><a href="#" accesskey="2" title="">Our Clients</a></li> -->
+						<li><a id="about_us" style="font-size: medium;" href="#abtus"
+							accesskey="3" title="">معلومات عنا</a></li>
+						<secc:authorize ifAnyGranted="ROLE_ADMIN">
+							<h:commandLink action="customers" class="aa"
+								style="font-size: medium;" value="العملاء"></h:commandLink>
+						</secc:authorize>
+
+						<h:commandLink rendered="#{loginBean.flag}" action="login"
+							class="aa" style="font-size: medium;" value="تسجيل الدخول"></h:commandLink>
+						<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER">
+							<h:commandLink action="#{loginBean.logout}" class="aa"
+								style="font-size: medium;" value="تسجيل الخروج"></h:commandLink>
+						</secc:authorize>
+						<li><a id="contact_us" href="#cntus" accesskey="5" title="">اتصل
+								بنا</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="banner" class="container2">
+				<!-- 	<img src="resources/images/login2-bg.jpg" style="height: 550px;width: 100%" alt="" /> -->
+
+				<!-- 		style="background-image: url('resources/images/login2-bg.jpg');height: 100%; -->
+				<!--   background-position: center; -->
+				<!--   background-repeat: no-repeat; -->
+				<!--   background-size: cover;" -->
+
+
+
+
+				<div style="width: 100%; height: 500px;" class="slideshow-container">
+
+					<!-- Full-width images with number and caption text -->
+					<div class="mySlides fade"
+						style="background-image: url('resources/images/login2-bg.jpg'); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;">
+						<div class="numbertext">1 / 3</div>
+						<!--     <img src="resources/images/login2-bg.jpg" style="width:100%;"/> -->
+						<div class="text">Caption Text</div>
+					</div>
+
+					<div class="mySlides fade"
+						style="background-image: url('resources/images/asdasd.jpg'); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;">
+						<div class="numbertext">2 / 3</div>
+						<!--     <img src="resources/images/asdasd.jpg"  style="width:100%;object-fit: contain;overflow: hidden;background-size: cover;"/> -->
+						<div class="text">Caption Two</div>
+					</div>
+
+					<div class="mySlides fade"
+						style="background-image: url('resources/images/login2-bg.jpg'); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;">
+						<div class="numbertext">3 / 3</div>
+						<!--     <img src="resources/images/login2-bg.jpg" style="width:100%"/> -->
+						<div class="text">Caption Three</div>
+					</div>
+
+					<!-- Next and previous buttons -->
+					<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
+						class="next" onclick="plusSlides(1)">&#10095;</a>
+				</div>
+				<br />
+
+				<!-- The dots/circles -->
+				<div style="text-align: center">
+					<span class="dot" onclick="currentSlide(1)"></span> <span
+						class="dot" onclick="currentSlide(2)"></span> <span class="dot"
+						onclick="currentSlide(3)"></span>
+				</div>
+
+
+
+
+
+			</div>
+
+			<div id="wrapper">
+
+
+				<div id="three-column" style="border: 1px solid black;border-radius: 5px;box-shadow: 2px 2px 3px 3px grey;" class="container">
+					<div
+						style="display: block; width: 50%; margin: auto; margin-bottom: 50px">
+						<h1 style="color: #7CB342; text-align: center;">خدماتنا</h1>
+					</div>
+					<!-- 		<div class="title"> -->
+					<!-- 			<h2>Feugiat lorem ipsum dolor sed veroeros</h2> -->
+					<!-- 			<span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span> -->
+					<!-- 		</div> -->
+					<div id="abtus"
+						style="display: inline-block; width: 50%; float: left;">
+
+
+						<ul>
+							<!-- <li> -->
+							<!-- متواجدون في مدينة بريدة عاصمة القصيم ونقدم خدمات هندسية وفنية ونوضح لكم تفاصيل الخدمات كالتالي: -->
+							<!-- </li> -->
+
+							<h2>خدمات الهندسة المعمارية</h2>
+
+							<br />
+							<span style="font-size: 100%;">
+								<li>تصميم المخططات السكنية والتجارية</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>(3D) تصميم الواجهات ثلاثي الأبعاد</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>(3D) تصميم داخلي ثلاثي الأبعاد</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>(Land scape) ‏3D تصميم الحدائق وتنسيق الموقع العام .</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>الإشراف المعماري وتطبيق جميع تفاصيله أثناء التنفيذ.</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>مراجعة المخططات المعمارية هندسياً وتحرير التقارير
+									الفنية للمخططات.</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>استخراج كافة تراخيص البناء من أمانة منطقة القصيم وما
+									يتبعها من بلديات في كافة المحافظات.</li>
+							</span>
+							<br />
+						</ul>
+
+					</div>
+					<!-- 		<div class="boxB"> -->
+					<!-- 			<p>Etiam neque. Vivamus consequat lorem at nisl. Nullam  wisi a sem semper eleifend. Donec mattis. Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc.</p> -->
+					<!-- 			<a href="#" class="button button-alt">More Info</a> -->
+					<!-- 		</div> -->
+					<div id="cntus"
+						style="display: inline-block; width: 50%; float: right;">
+
+						<ul>
+							<!-- <li> -->
+							<!-- متواجدون في مدينة بريدة عاصمة القصيم ونقدم خدمات هندسية وفنية ونوضح لكم تفاصيل الخدمات كالتالي: -->
+							<!-- </li> -->
+
+							<h2>خدمات الهندسة المساحية</h2>
+
+							<br />
+							<span style="font-size: 100%;">
+								<li>(GPS) نقدم خدمة أعمال الرفوعات المساحية بأحدث الأجهزة
+									الجغرافية</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>أعمال رفع وتوقيع الحدود على الطبيعة</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>أعمال الشبكات الميزانية والميول والمناسيب</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>استخراج قرار مساحي من أمانة القصيم</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>فرز صكوك ملكية الأراضي من محاكم القصيم</li>
+							</span>
+							<br />
+							<span style="font-size: 100%;">
+								<li>فرز ودمج الوحدات العقارية من وزارة الإسكان</li>
+							</span>
+							<br />
+						</ul>
+
+
+
+					</div>
+					
+				</div>
+				<div  style="border: 1px solid black;border-radius: 5px;box-shadow: 2px 2px 3px 3px grey;width: 50%;margin: auto;display: block;margin-top: 50px" >
+				  <h1 style="padding-bottom:10px;color: #7CB342; text-align: center;">اتصل بنا</h1>
+				  <h2 style="padding-bottom:10px;color: black;text-align: center;" >Tel : 0549854101</h2>
+				  <h2 style="color: black;text-align: center;">
+				  	mail : Awzan.2030@gmail.com
+				  </h2>
+				  
 				
-				<h:commandLink rendered="#{loginBean.flag}" action="login" class="aa" style="font-size: medium;" value="تسجيل الدخول" ></h:commandLink>
-				<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER">
-				<h:commandLink  action="#{loginBean.logout}" class="aa" style="font-size: medium;" value="تسجيل الخروج" ></h:commandLink>
-				</secc:authorize>
-				<li><a id="contact_us" href="#cntus" accesskey="5" title="">اتصل بنا</a></li>
-			</ul>
+				
+				</div>
+				<!-- 	<div style="margin-top: 50px;" id="three-column" class="container"> -->
+
+				<!-- 		<div id="abtus" class="boxA"> -->
+				<!-- 			<p>Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc. Praesent pellentesque facilisis elit. Class aptent taciti sociosqu ad  torquent per conubia nostra.</p> -->
+				<!-- 			<a href="#" class="button button-alt">More Info</a> -->
+				<!-- 		</div> -->
+				<!-- 		<div  style="display: block;margin: auto;"> -->
+				<!-- 			<p>Etiam neque. Vivamus consequat lorem at nisl. Nullam  wisi a sem semper eleifend. Donec mattis. Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc.</p> -->
+				<!-- 			<a href="#" class="button button-alt">More Info</a> -->
+				<!-- 		</div> -->
+				<!-- 		<div id="cntus" class="boxC"> -->
+				<!-- 			<p> Aenean lectus lorem, imperdiet at, ultrices eget, ornare et, wisi. Pellentesque adipiscing purus. Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc.</p> -->
+				<!-- 			<a href="#" class="button button-alt">More Info</a> -->
+				<!-- 		</div> -->
+				<!-- 	</div> -->
+			</div>
+<!-- 			<div id="welcome"> -->
+<!-- 				<div class="container"> -->
+<!-- 					<div class="title"> -->
+<!-- 						<h2>Fusce ultrices fringilla metus</h2> -->
+<!-- 						<span class="byline">Donec leo, vivamus fermentum nibh in -->
+<!-- 							augue praesent a lacus at urna congue</span> -->
+<!-- 					</div> -->
+<!-- 					<p> -->
+<!-- 						This is <strong>Assembly</strong>, a free, fully -->
+<!-- 						standards-compliant CSS template designed by <a -->
+<!-- 							href="http://templated.co" rel="nofollow">TEMPLATED</a>. The -->
+<!-- 						photos in this template are from <a href="http://fotogrph.com/"> -->
+<!-- 							Fotogrph</a>. This free template is released under the <a -->
+<!-- 							href="http://templated.co/license">Creative Commons -->
+<!-- 							Attribution</a> license, so you're pretty much free to do whatever -->
+<!-- 						you want with it (even use it commercially) provided you give us -->
+<!-- 						credit for it. Have fun :) -->
+<!-- 					</p> -->
+<!-- 					<ul class="actions"> -->
+<!-- 						<li><a href="#" class="button">Etiam posuere</a></li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<div id="copyright" class="container">
+				<p>
+					&copy; Untitled. All rights reserved.
+				</p>
+			</div>
 		</div>
-	</div>
-	<div  id="banner" class="container2">
-<!-- 	<img src="resources/images/login2-bg.jpg" style="height: 550px;width: 100%" alt="" /> -->
-		  
-<!-- 		style="background-image: url('resources/images/login2-bg.jpg');height: 100%; -->
-<!--   background-position: center; -->
-<!--   background-repeat: no-repeat; -->
-<!--   background-size: cover;" -->
-
-
-
-
-<div  style="width: 100%;height: 500px;" class="slideshow-container">
-
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade" style="background-image: url('resources/images/login2-bg.jpg');height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;">
-    <div class="numbertext">1 / 3</div>
-<!--     <img src="resources/images/login2-bg.jpg" style="width:100%;"/> -->
-    <div class="text">Caption Text</div>
-  </div>
-
-  <div class="mySlides fade" style="background-image: url('resources/images/asdasd.jpg');height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;">
-    <div class="numbertext">2 / 3</div>
-<!--     <img src="resources/images/asdasd.jpg"  style="width:100%;object-fit: contain;overflow: hidden;background-size: cover;"/> -->
-    <div class="text">Caption Two</div>
-  </div>
-
-  <div class="mySlides fade" style="background-image: url('resources/images/login2-bg.jpg');height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;">
-    <div class="numbertext">3 / 3</div>
-<!--     <img src="resources/images/login2-bg.jpg" style="width:100%"/> -->
-    <div class="text">Caption Three</div>
-  </div>
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br/>
-
-<!-- The dots/circles -->
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-</div>
-
-
-
-
-
-	</div>
-
-<div id="wrapper">
-		
-
-	<div id="three-column" class="container">
-	<div  style="display: block;width: 50%;margin: auto;margin-bottom: 50px"><h1>خدماتنا</h1></div>
-<!-- 		<div class="title"> -->
-<!-- 			<h2>Feugiat lorem ipsum dolor sed veroeros</h2> -->
-<!-- 			<span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span> -->
-<!-- 		</div> -->
-		<div id="abtus" style="display: inline-block;width: 50%;float: left;">
-			
-
-<ul>
-<!-- <li> -->
-<!-- متواجدون في مدينة بريدة عاصمة القصيم ونقدم خدمات هندسية وفنية ونوضح لكم تفاصيل الخدمات كالتالي: -->
-<!-- </li> -->
-
-<h2>
-خدمات الهندسة المعمارية
-</h2>
-
-<br/>
-<span style="font-size: 100%;">
-<li>
-
- تصميم المخططات السكنية والتجارية
-
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">
-<li>
-
-(3D) تصميم الواجهات ثلاثي الأبعاد 
- 
- </li>
- </span>
- <br/>
- <span style="font-size: 100%;">
- <li>
- 
-(3D) تصميم داخلي ثلاثي الأبعاد 
- 
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">                       
-<li>
-
- (Land scape) ‏3D تصميم الحدائق وتنسيق الموقع العام .
-
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">
-<li>
-
- الإشراف المعماري وتطبيق جميع تفاصيله أثناء التنفيذ.
-
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">
-<li>
-
- مراجعة المخططات المعمارية هندسياً وتحرير التقارير الفنية للمخططات.
-
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">
-<li>
-
- استخراج كافة تراخيص البناء من أمانة منطقة القصيم وما يتبعها من بلديات في كافة المحافظات.
-
-</li>
-</span>
-<br/>
-</ul> 
-			
-		</div>
-<!-- 		<div class="boxB"> -->
-<!-- 			<p>Etiam neque. Vivamus consequat lorem at nisl. Nullam  wisi a sem semper eleifend. Donec mattis. Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc.</p> -->
-<!-- 			<a href="#" class="button button-alt">More Info</a> -->
-<!-- 		</div> -->
-		<div id="cntus" style="display: inline-block;width: 50%;float: right;">
-			
-<ul>
-<!-- <li> -->
-<!-- متواجدون في مدينة بريدة عاصمة القصيم ونقدم خدمات هندسية وفنية ونوضح لكم تفاصيل الخدمات كالتالي: -->
-<!-- </li> -->
-
-<h2>
-خدمات الهندسة المساحية
-</h2>
-
-<br/>
-<span style="font-size: 100%;">
-<li>
-
-(GPS) نقدم خدمة أعمال الرفوعات المساحية بأحدث الأجهزة الجغرافية 
-
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">
-<li>
-
-أعمال رفع وتوقيع الحدود على الطبيعة 
- 
- </li>
- </span>
- <br/>
- <span style="font-size: 100%;">
- <li>
- 
- أعمال الشبكات الميزانية والميول والمناسيب
- 
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">                       
-<li>
-
- استخراج قرار مساحي من أمانة القصيم
-
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">
-<li>
-
- فرز صكوك ملكية الأراضي من محاكم القصيم
-
-</li>
-</span>
-<br/>
-<span style="font-size: 100%;">
-<li>
-
- فرز ودمج الوحدات العقارية من وزارة الإسكان
-
-</li>
-</span>
-<br/>
-</ul>
-
- 
-			
-		</div>
-	</div>
-<!-- 	<div style="margin-top: 50px;" id="three-column" class="container"> -->
-		
-<!-- 		<div id="abtus" class="boxA"> -->
-<!-- 			<p>Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc. Praesent pellentesque facilisis elit. Class aptent taciti sociosqu ad  torquent per conubia nostra.</p> -->
-<!-- 			<a href="#" class="button button-alt">More Info</a> -->
-<!-- 		</div> -->
-<!-- 		<div  style="display: block;margin: auto;"> -->
-<!-- 			<p>Etiam neque. Vivamus consequat lorem at nisl. Nullam  wisi a sem semper eleifend. Donec mattis. Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc.</p> -->
-<!-- 			<a href="#" class="button button-alt">More Info</a> -->
-<!-- 		</div> -->
-<!-- 		<div id="cntus" class="boxC"> -->
-<!-- 			<p> Aenean lectus lorem, imperdiet at, ultrices eget, ornare et, wisi. Pellentesque adipiscing purus. Phasellus pellentesque, ante nec iaculis dapibus, eros justo auctor lectus, a lobortis lorem mauris quis nunc.</p> -->
-<!-- 			<a href="#" class="button button-alt">More Info</a> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-</div>
-<div id="welcome">
-	<div class="container">
-		<div class="title">
-			<h2>Fusce ultrices fringilla metus</h2>
-			<span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span>
-		</div>
-		<p>This is <strong>Assembly</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
-		<ul class="actions">
-			<li><a href="#" class="button">Etiam posuere</a></li>
-		</ul>
-	</div>
-</div>
-<div id="copyright" class="container">
-	<p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
-</div>
-</div>
-</h:form>
-<script src="resources/js/animate.js"></script>
-<style>
-ul span li:after ,ul span li:before {
-   content: "•";
-   font-size: 170%; /* or whatever */
-   padding-right: 5px;
+	</h:form>
+	<script src="resources/js/animate.js"></script>
+	<style>
+ul span li:after, ul span li:before {
+	content: "•";
+	font-size: 170%; /* or whatever */
+	padding-right: 5px;
 }
 /* span:before { */
 /*    content: "•"; */
-/*    font-size: 170%; /* or whatever */ */
-/* /*    padding-right: 5px; */ */
+/*    font-size: 170%; /* or whatever */
+*
+/
+/* /*    padding-right: 5px; */
+ 
+*
+/
 /* } */
 </style>
 
-        
+
 
 
 </body>

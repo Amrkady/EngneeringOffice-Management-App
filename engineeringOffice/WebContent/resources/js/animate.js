@@ -1,12 +1,12 @@
-    alert("1");
+    
 document.getElementById("about_us").addEventListener("click",()=>{
-	
-	document.getElementById("three_column").style.backgroundColor="yellow";
+	alert("1");
+	document.getElementById("three-column").style.backgroundColor="yellow";
 //	document.getElementById("cntus").style.backgroundColor="white";
 })
 document.getElementById("contact_us").addEventListener("click",()=>{
 //	document.getElementById("cntus").style.backgroundColor="yellow";
-	document.getElementById("three_column").style.backgroundColor="white";
+	document.getElementById("three-column").style.backgroundColor="white";
 })
 
 
