@@ -255,3 +255,85 @@ ADD COLUMN `CONTRACT_NO` `CONTRACT_NO` INT NOT NULL ,
 ADD UNIQUE INDEX `CONTRACT_NO_UNIQUE` (`CONTRACT_NO` ASC) VISIBLE;
 ;
 
+
+
+
+CREATE TABLE `transactions` (
+  `trans_id` int(11) NOT NULL,
+  `tr_from` int(11) NOT NULL,
+  `tr_to` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `attach_id` int(11) NOT NULL,
+  `contract_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`trans_id`),
+  ADD KEY `tr_from` (`tr_from`),
+  ADD KEY `tr_to` (`tr_to`),
+  ADD KEY `contract_id` (`contract_id`),
+  ADD KEY `attach_id` (`attach_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`tr_from`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`tr_to`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `transactions_ibfk_3` FOREIGN KEY (`contract_id`) REFERENCES `contract` (`id`),
+  ADD CONSTRAINT `transactions_ibfk_4` FOREIGN KEY (`attach_id`) REFERENCES `attachments` (`id`);
+COMMIT;
+
+
+
+
+
+
+CREATE TABLE `attachments` (
+  `id` int(11) NOT NULL,
+  `att_path` varchar(128) NOT NULL,
+  `att_name` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `attachments`
+--
+ALTER TABLE `attachments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `attachments`
+--
+ALTER TABLE `attachments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
