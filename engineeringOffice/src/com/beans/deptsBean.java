@@ -17,54 +17,43 @@ import com.entities.Users;
 import com.services.DepartmentService;
 import com.services.UserService;
 
-@ManagedBean(name = "userBean")
+@ManagedBean(name = "deptBean")
 @ViewScoped
-public class UserBean {
+public class deptsBean {
 	@ManagedProperty(value = "#{userServiceImpl}")
 	private UserService userServiceImpl;
 	@ManagedProperty(value = "#{departmentServiceImpl}")
 	private DepartmentService departmentServiceImpl;
 	private List<Departments> depts;
 	private List<Users> users;
-	private Users user;
-	private String address;
-	private String name;
-	private String loginName;
-	private String password;
-	private String phone;
-	private Integer deptId;
-	
-	private boolean MNG = false;
+	private Departments dept;
 
 	@PostConstruct
 	public void init() {
-		user = new Users();
+		dept = new Departments();
 		depts = departmentServiceImpl.loadDepartments();
 		users = userServiceImpl.getAllUser();
 	}
-	
-	public String getDeptById(Integer deptId) {
-		if(deptId != null)
-		{
-		   Departments dept= departmentServiceImpl.findDeptById(deptId);
-		   return dept.getDeptName();
+
+	public String getUserById(Integer usrId) {
+		if (usrId != null) {
+			Users us = userServiceImpl.findUserById(usrId);
+			return us.getName();
 		}
 		return "";
 	}
 
-	public String addUser() {
+	public String addDept() {
 		try {
-			if(MNG) {
-				user.setRoleId(1);
-			}else {
-				user.setRoleId(2);
-			}
-			user.setLoginName(user.getLoginName().toUpperCase());
-			userServiceImpl.addUser(user);
+			departmentServiceImpl.addDepartment(dept);
 			FacesMessage msg = new FacesMessage(" „  «·«÷«›…", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
-			users = userServiceImpl.getAllUser();
-			Utils.closeDialog("whsdlAdd");
+			depts = departmentServiceImpl.loadDepartments();
+			// update manager user = 1
+			Users us = userServiceImpl.findUserById(dept.getDeptManager());
+			us.setManager(1);
+			userServiceImpl.updateUser(us);
+
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage("·„   „ «·«÷«›…", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -73,14 +62,17 @@ public class UserBean {
 		return "";
 	}
 
-	public String deleteUser(Users userD) {
-		if (user != null) {
+	public String deleteDepartment(Departments deptD) {
+		if (deptD != null) {
 			try {
-				userServiceImpl.deleteUser(userD);
+				departmentServiceImpl.deleteDepartment(deptD);
 				FacesMessage msg = new FacesMessage(" „ «·Õ–›", "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-				users = userServiceImpl.getAllUser();
-			
+				depts = departmentServiceImpl.loadDepartments();
+				// update manager user = 0
+				Users us = userServiceImpl.findUserById(dept.getDeptManager());
+				us.setManager(0);
+				userServiceImpl.updateUser(us);
 			} catch (Exception e) {
 				FacesMessage msg = new FacesMessage("·„ Ì „ «·Õ–›", "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -92,12 +84,15 @@ public class UserBean {
 
 	public void onRowEdit(RowEditEvent event) {
 		try {
-			user = (Users) event.getObject();
-			user.setLoginName(user.getLoginName().toUpperCase());
-			userServiceImpl.updateUser(user);
+			dept = (Departments) event.getObject();
+
+			departmentServiceImpl.updateDepartment(dept);
 			FacesMessage msg = new FacesMessage(" „ Õ›Ÿ «· ⁄œÌ·", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
-			// users = userServiceImpl.getAllUser();
+			// update manager user = 1
+			Users us = userServiceImpl.findUserById(dept.getDeptManager());
+			us.setManager(1);
+			userServiceImpl.updateUser(us);
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage("·„ Ì „ Õ›Ÿ «· ⁄œÌ·", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -125,14 +120,6 @@ public class UserBean {
 		this.users = users;
 	}
 
-	public Users getUser() {
-		return user;
-	}
-
-	public void setUser(Users user) {
-		this.user = user;
-	}
-
 	public UserService getUserServiceImpl() {
 		return userServiceImpl;
 	}
@@ -157,61 +144,12 @@ public class UserBean {
 		this.depts = depts;
 	}
 
-	public boolean isMNG() {
-		return MNG;
+	public Departments getDept() {
+		return dept;
 	}
 
-	public void setMNG(boolean mNG) {
-		MNG = mNG;
+	public void setDept(Departments dept) {
+		this.dept = dept;
 	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLoginName() {
-		return loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Integer getDeptId() {
-		return deptId;
-	}
-
-	public void setDeptId(Integer deptId) {
-		this.deptId = deptId;
-	}
-
 
 }

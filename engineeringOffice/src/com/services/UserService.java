@@ -15,6 +15,8 @@ public interface UserService {
     List<Users> getAllUser();
     
     public Users loadUser(String username, String passWord);
+
+    Users findUserById(Integer usrId);
 	
 
 }

@@ -2,6 +2,8 @@ package com.services;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.User;
+
 import com.common.CommonDao;
 import com.entities.Users;
 
@@ -43,4 +45,9 @@ public class UserServiceImpl implements UserService {
 		return commonDao.loadUser(username, passWord);
 	}
 
+	@Override
+	public Users findUserById(Integer usrId) {
+		return (Users)commonDao.findEntityById(Users.class, usrId);
+
+	}
 }

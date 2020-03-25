@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+</head>
+<h:body>
+	<ui:composition template="/template1.xhtml">
+		<ui:define name="content">
+			<h:form dir="rtl" id="form">
+				<p:messages id="msg" autoUpdate="true" closable="true"></p:messages>
+				<h1 style="color: #7CB342; text-align: center;">الاقسام</h1>
+
+				<div class="image-box-footer" align="left">
+
+					<p:commandButton id="cBadd" value="اضافة قسم"
+						icon="ui-icon ui-icon-plus" action="#{deptBean.showdlAdd}">
+					</p:commandButton>
+				</div>
+				<br />
+				<br />
+				<p:dataTable id="myTable" var="tDept" value="#{deptBean.depts}"
+					emptyMessage="لايوجد بيانات" rowIndexVar="rowIndex"
+					widgetVar="cellemp" paginatorPosition="bottom" editable="true"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					paginator="true" rows="12">
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="ابحث فى كل الحقول:" />
+							<p:inputText id="globalFilter" onkeyup="PF('cellemp').filter()"
+								style="width:150px" placeholder="كلمة البحث">
+							</p:inputText>
+						</p:outputPanel>
+					</f:facet>
+
+					<p:ajax event="rowEdit" listener="#{deptBean.onRowEdit}"
+						update=":form:msg  :form:myTable" />
+					<p:ajax event="rowEditCancel" listener="#{deptBean.onRowCancel}"
+						update=":form:msg" />
+
+					<p:column headerText="الرقم" style="width: 5%">
+						<h:outputText value="#{rowIndex+1}" />
+					</p:column>
+					<p:column headerText="الأسم" style="width: 20%"
+						filterBy="#{tDept.deptName}" filterMatchMode="contains">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{tDept.deptName}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="nameInput" value="#{tDept.deptName}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="المدير"
+						filterBy="#{deptBean.getUserById(tDept.deptManager)}"
+						filterMatchMode="contains" style="width: 20%">
+						<p:cellEditor>
+							<f:facet name="output">
+								#{deptBean.getUserById(tDept.deptManager)}
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu id="deptList" class="form-control"
+									required="true" requiredMessage="اخترالمدير" style="width:100%"
+									value="#{tDept.deptManager}">
+									<f:selectItem itemLabel="اخترالمدير" itemValue=""
+										noSelectionOption="true" />
+									<f:selectItems value="#{deptBean.users}" var="usr"
+										itemLabel="#{usr.name}" itemValue="#{usr.userId}"></f:selectItems>
+								</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="تعديل" style="width:5%">
+						<p:rowEditor />
+					</p:column>
+					<p:column headerText="حذف" style="width:5%">
+						<p:commandButton update=":form:myTable" icon="pi pi-times-circle"
+							title="حذف" action="#{deptBean.deleteDepartment(tDept)}">
+
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<p:dialog position="center" widgetVar="whsdlAdd" responsive="true"
+				hideEffect="explode" showEffect="fade" width="70%" closable="true"
+				dir="rtl" resizable="true" modal="true">
+				<h:panelGroup id="panelGroupAdd" width="70%">
+					<p:fieldset legend="بيانات القسم" width="70%">
+						<div class="ui-g">
+							<div class="ui-g-1">
+								<h:outputLabel value=" الاسم" />
+							</div>
+							<div class="ui-g-4">
+								<p:inputText value="#{deptBean.dept.deptName}" required="true"
+									requiredMessage="اسم القسم مطلوب" />
+							</div>
+							<div class="ui-g-1">
+								<h:outputLabel value="المدير" />
+							</div>
+							<div class="ui-g-4">
+								<p:selectOneMenu id="deptList" class="form-control"
+									style="width:100%" value="#{deptBean.dept.deptManager}">
+									<f:selectItem itemLabel="اخترالمدير" itemValue=""
+										noSelectionOption="true" />
+									<f:selectItems value="#{deptBean.users}" var="usr"
+										itemLabel="#{usr.name}" itemValue="#{usr.userId}"></f:selectItems>
+								</p:selectOneMenu>
+							</div>
+						</div>
+
+						<div class="iamge-box-footer" align="left">
+							<p:commandButton value="حفظ" icon="ui-icon ui-icon-save"
+								process="@all" action="#{deptBean.addDept}">
+							</p:commandButton>
+							<p:spacer height="4"></p:spacer>
+							<p:commandButton styleClass="orange-btn" value="عودة"
+								icon="ui-icon ui-icon-back" immediate="true"
+								onclick="PF('whsdlAdd').hide();" />
+						</div>
+					</p:fieldset>
+				</h:panelGroup>
+			</p:dialog>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

@@ -14,6 +14,12 @@ public interface DepartmentService {
 	public List<Departments> loadDepartments();
 	
 	public List<OperationType> loadOperation();
+
+	boolean updateDepartment(Departments dept);
+
+	boolean deleteDepartment(Departments dept);
+
+	Departments findDeptById(Integer deptId);
 		
 	
 }

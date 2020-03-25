@@ -70,6 +70,7 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	}
 
 	@Override
+	@Transactional
 	public boolean deleteObject(Object object) {
 		try {
 			sessionFactory.getCurrentSession().delete(object);
