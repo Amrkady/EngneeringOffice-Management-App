@@ -17,7 +17,7 @@ public class Departments {
 	private String deptName;
 
 	@Column(name = "dept_mgr", nullable = false)
-	private String deptManager;
+	private Integer deptManager;
 
 	public Integer getDeptId() {
 		return deptId;
@@ -35,11 +35,11 @@ public class Departments {
 		this.deptName = deptName;
 	}
 
-	public String getDeptManager() {
+	public Integer getDeptManager() {
 		return deptManager;
 	}
 
-	public void setDeptManager(String deptManager) {
+	public void setDeptManager(Integer deptManager) {
 		this.deptManager = deptManager;
 	}
 

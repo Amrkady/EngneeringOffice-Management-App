@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.entities.Bills;
 import com.entities.Contracts;
 import com.models.CustomerModel;
 import com.services.SandService;
@@ -60,7 +59,7 @@ public class ContractBean {
 			contract.setContractDate(strDate);
 			contract.setConNo(conNo);
 			status = sandServiceImpl.addContract(contract);
-			conNo++;
+			//conNo++;
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, " „ «·Õ›Ÿ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 //			status = true;
