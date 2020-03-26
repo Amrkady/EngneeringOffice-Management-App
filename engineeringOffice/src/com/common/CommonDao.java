@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.entities.Contracts;
 import com.entities.Customers;
+import com.entities.Transaction;
 import com.entities.Users;
 
 public interface CommonDao {
@@ -24,5 +25,9 @@ public interface CommonDao {
 	public Users loadUser(final String username, final String password);
 
 	Integer findContractNo();
+
+	List<Transaction> findMailsIN(Integer userId);
+
+	List<Transaction> findMailsOut(Integer userId);
 
 }
