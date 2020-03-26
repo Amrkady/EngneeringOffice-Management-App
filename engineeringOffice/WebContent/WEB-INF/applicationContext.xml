@@ -80,7 +80,9 @@
 				 <value>com.entities.Contracts</value>
 				 <value>com.entities.Customers</value>
 				 <value>com.entities.Departments</value>  
-				 <value>com.entities.OperationType</value>  
+				 <value>com.entities.OperationType</value>
+				 <value>com.entities.Transaction</value>
+				 <value>com.entities.Attachment</value>  
 
 			</list>
 		</property>
