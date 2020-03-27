@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Insert title here</title>
+</h:head>
+<body>
+<ui:composition template="/template1.xhtml">
+	<ui:define name="content">
+<h:form>
+			<p:messages autoUpdate="true" closable="true"></p:messages>
+			<div class="card card-w-title" dir="rtl">
+				<h1 style="color: #7CB342; text-align: center;">المعلومات</h1>
+
+
+	<p:fieldset  legend="القسم"
+		toggleable="true" toggleSpeed="500">
+		<!--         <p:ajax event="toggle"   /> -->
+		<div>
+
+
+			<div class="ui-g">
+
+
+				<div class="ui-g-12">
+<!-- 				<p:inputText value="hello"></p:inputText> -->
+					<p:selectOneMenu required="true" requiredMessage="يجب اختيار الموظف"
+						style="width:50%;display:block;margin:auto;"
+						
+						>
+						<f:selectItem itemLabel="اخترالموظف" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{customerBean.depts}" var="dept"
+							itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}" />
+
+</p:selectOneMenu>					
+
+				</div>
+				<div style="margin-top: 50px" class="ui-g-12">
+				<p:fileUpload  skinSimple="true" mode="simple" 
+					style="width:50%;margin:auto;display:block" 
+					uploadLabel="اختار المرفق" cancelLabel="sss" label="اختار المرفق"
+					previewWidth="0" sizeLimit="300000000">
+				</p:fileUpload>
+				</div>
+				<div style="margin-top: 20px" class="ui-g-12">
+					<h:commandButton class="bb"  update="@form"
+						
+						style="width:30%;display:block;margin:auto;" value="ارسال المعاملة">
+
+					</h:commandButton>
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+	</p:fieldset>
+
+
+</div>
+</h:form>
+</ui:define>
+</ui:composition>
+</body>
+</html>

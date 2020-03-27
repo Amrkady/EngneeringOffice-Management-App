@@ -31,6 +31,7 @@ import java.util.Properties;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -45,6 +46,9 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.primefaces.context.RequestContext;
 import org.springframework.security.core.userdetails.User;
+
+
+import com.entities.Users;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRExporter;
@@ -909,6 +913,24 @@ public class Utils {
 	public static void updateUIComponent(String ComponentName) {
 		RequestContext context = RequestContext.getCurrentInstance();
 		context.update(ComponentName);
+
+	}
+	
+	public static Users findCurrentUser() {
+		try {
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+			if (request == null)
+				return null;
+			HttpSession appsession = request.getSession(true);
+			Users user = (Users) appsession.getAttribute("user");
+			return user;
+		} catch (Exception e) {
+//			Users user = new Users();
+//			user.setUserId(118);
+//			return user;
+		}
+		return null;
 
 	}
 }
