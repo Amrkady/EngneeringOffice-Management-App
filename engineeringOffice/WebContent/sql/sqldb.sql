@@ -337,3 +337,13 @@ ALTER TABLE `attachments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
+
+
+ALTER TABLE `sqldb`.`transactions` 
+ADD COLUMN `mark_read` INT NOT NULL DEFAULT '0' COMMENT '0 means unread 1 read' ;
+
+ALTER TABLE `sqldb`.`transactions` 
+ADD COLUMN `Hdate` VARCHAR(45) NULL;
+
+ALTER TABLE `sqldb`.`transactions` 
+ADD COLUMN `subject` VARCHAR(45) NOT NULL;

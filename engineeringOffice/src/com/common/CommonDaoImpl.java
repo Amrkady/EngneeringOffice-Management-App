@@ -1,6 +1,9 @@
 package com.common;
 
 import java.util.List;
+
+import org.hibernate.criterion.Order;
+
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
@@ -12,6 +15,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.transaction.annotation.Transactional;
 import com.entities.Contracts;
 import com.entities.Customers;
+import com.entities.Transaction;
 import com.entities.Users;
 
 public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
@@ -124,4 +128,25 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Transaction> findMailsIN(Integer userId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Transaction.class);
+		criteria.add(Restrictions.eq("trTo", userId));
+		criteria.addOrder(Order.desc("date"));
+		return criteria.list();
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Transaction> findMailsOut(Integer userId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Transaction.class);
+		criteria.add(Restrictions.eq("trFrom", userId));
+		criteria.addOrder(Order.desc("date"));
+		return criteria.list();
+
+	}
 }

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+</head>
+<h:body>
+	<ui:composition template="/template1.xhtml">
+		<ui:define name="content">
+			<h:form dir="rtl" id="form">
+				<p:messages id="msg" autoUpdate="true" closable="true"></p:messages>
+				<h1 style="color: #7CB342; text-align: center;">المراسلات</h1>
+				<br />
+				
+				<p:tabView id="mailBox" activeIndex="0">
+					<p:tab title="البريد الوارد">
+						<h:panelGroup id="inboxTable">
+							<br />
+							<div class="row">
+								<p:dataTable id="myTable" var="mailIn"
+									value="#{mailBean.mailsIn}" emptyMessage="لايوجد بيانات"
+									rowIndexVar="rowIndex" rowKey="#{mailIn.transId}"
+									selectionMode="single" selection="#{mailBean.selectedMail}"
+									widgetVar="cellemp" paginatorPosition="bottom"
+									paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+									paginator="true" rows="9">
+									<p:ajax event="rowSelect" listener="#{mailBean.viewInboxRow}" />
+									<f:facet name="header">
+										<p:outputPanel>
+											<h:outputText value="ابحث فى كل الحقول:" />
+											<p:inputText id="globalFilter"
+												onkeyup="PF('cellemp').filter()" style="width:150px"
+												placeholder="كلمة البحث">
+											</p:inputText>
+										</p:outputPanel>
+									</f:facet>
+									<p:column headerText="رقم" width="5%">
+										<h:outputText value="#{rowIndex+1}" />
+									</p:column>
+									<p:column headerText="المرسل"
+										filterBy="#{mailBean.getUserById(mailIn.trFrom)}"
+										filterMatchMode="contains" width="30%">
+									#{mailBean.getUserById(mailIn.trFrom)} <br />
+									#{mailIn.hDate} | #{mailIn.date}
+									</p:column>
+									<p:column headerText="الموضوع" width="60%"
+										style="FONT-WEIGHT: #{mailIn.markRead== 1? '':'bold'};"
+										filterBy="#{mailIn.subject}" filterMatchMode="contains">
+										<h:outputText value="#{mailIn.subject}"
+											style="color: #{mailIn.markRead== 1? '':'black'};" />
+									</p:column>
+									<p:column headerText="الحالة" width="10%" style="FONT-WEIGHT: #{mailIn.markRead== 1? '':'bold'};"
+										filterBy="#{mailIn.markRead == 0 ? 'غير مقروء':'مقروء'}"
+										filterMatchMode="contains">
+										<h:outputText
+											value="#{mailIn.markRead == 0  ? 'غير مقروء':'مقروء'}" style="color: #{mailOut.markRead== 1? '':'black'};" />
+									</p:column>
+								</p:dataTable>
+							</div>
+						</h:panelGroup>
+					</p:tab>
+					<p:tab title="البريد الصادر">
+						<h:panelGroup id="outboxTable">
+							<br />
+							<div class="row">
+								<p:dataTable id="myTable2" var="mailOut"
+									value="#{mailBean.mailsOut}" emptyMessage="لايوجد بيانات"
+									rowIndexVar="rowIndex" rowKey="#{mailOut.transId}"
+									selectionMode="single" selection="#{mailBean.selectedMail}"
+									widgetVar="cellemp" paginatorPosition="bottom"
+									paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+									paginator="true" rows="9">
+									<p:ajax event="rowSelect" listener="#{mailBean.viewOutBoxRow}" />
+									<f:facet name="header">
+										<p:outputPanel>
+											<h:outputText value="ابحث فى كل الحقول:" />
+											<p:inputText id="globalFilter"
+												onkeyup="PF('cellemp').filter()" style="width:150px"
+												placeholder="كلمة البحث">
+											</p:inputText>
+										</p:outputPanel>
+									</f:facet>
+									<p:column headerText="رقم" width="5%">
+										<h:outputText value="#{rowIndex+1}" />
+									</p:column>
+									<p:column headerText="المرسل اليه"
+										filterBy="#{mailBean.getUserById(mailOut.trTo)}"
+										filterStyle="display:block;" filterMatchMode="contains"
+										width="30%">
+										  #{mailBean.getUserById(mailOut.trTo)} <br />
+										  #{mailOut.hDate} | #{mailOut.date}
+									</p:column>
+									<p:column headerText="الموضوع" width="60%"
+										style="text-align:right;FONT-WEIGHT: #{mailOut.markRead== 1? '':'bold'};"
+										filterBy="#{mailOut.subject}" filterMatchMode="contains">
+										<h:outputText value="#{mailOut.subject}"
+											style="color: #{mailOut.markRead== 1? '':'black'};" />
+									</p:column>
+									<p:column headerText="الحالة" width="10%" style="FONT-WEIGHT: #{mailIn.markRead== 1? '':'bold'};"
+										filterBy="#{mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
+										filterMatchMode="contains">
+										<h:outputText
+											value="#{mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}" style="color: #{mailOut.markRead== 1? '':'black'};"/>
+									</p:column>
+								</p:dataTable>
+							</div>
+						</h:panelGroup>
+					</p:tab>
+				</p:tabView>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

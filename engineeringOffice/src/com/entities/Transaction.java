@@ -20,7 +20,7 @@ public class Transaction {
 	@Column(name="trans_id")
 	private Integer transId;
 	
-	@Column(name="date")
+	@Column(name="mdate")
 	private Date date;
 	
 	@Column(name="contract_id")
@@ -35,6 +35,16 @@ public class Transaction {
 	@Column(name="tr_to")
 	private Integer trTo;
 
+	@Column(name="mark_read")
+	private Integer markRead;
+	
+	@Column(name="Hdate")
+	private String hDate;
+	
+	@Column(name="subject")
+	private String subject;
+	
+	
 	public Integer getTransId() {
 		return transId;
 	}
@@ -81,5 +91,31 @@ public class Transaction {
 
 	public void setTrTo(Integer trTo) {
 		this.trTo = trTo;
+	}
+
+	public Integer getMarkRead() {
+		return markRead;
+	}
+
+	public void setMarkRead(Integer markRead) {
+		this.markRead = markRead;
+	}
+
+	
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public String gethDate() {
+		return hDate;
+	}
+
+	public void sethDate(String hDate) {
+		this.hDate = hDate;
 	}
 }
