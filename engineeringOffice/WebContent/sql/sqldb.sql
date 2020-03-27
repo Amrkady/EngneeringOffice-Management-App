@@ -347,3 +347,7 @@ ADD COLUMN `Hdate` VARCHAR(45) NULL;
 
 ALTER TABLE `sqldb`.`transactions` 
 ADD COLUMN `subject` VARCHAR(45) NOT NULL;
+
+ALTER TABLE `sqldb`.`transactions` 
+CHANGE COLUMN `date` `mdate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
