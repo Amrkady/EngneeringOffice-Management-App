@@ -33,5 +33,16 @@ public class SandServiceImpl implements SandService {
 	public Integer getContractNo() {
 		return commonDao.findContractNo();
 	}
+	
+	@Override
+	public List<Contracts> getContractsByDept(Integer deptId){
+		 
+		return commonDao.findContractsByDept(deptId); 
+	}
+	@Override
+	public Contracts loadContractByContNo(Integer contractNo)
+	{
+		return commonDao.loadContractByContNo(contractNo);
+	}
 
 }

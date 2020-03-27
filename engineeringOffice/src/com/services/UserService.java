@@ -17,6 +17,7 @@ public interface UserService {
     public Users loadUser(String username, String passWord);
 
     Users findUserById(Integer usrId);
+    
 	
 
 }
