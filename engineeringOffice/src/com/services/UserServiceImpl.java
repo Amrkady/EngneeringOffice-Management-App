@@ -50,4 +50,8 @@ public class UserServiceImpl implements UserService {
 		return (Users)commonDao.findEntityById(Users.class, usrId);
 
 	}
+	@Override
+	public List<Users> findUsersByDept(Integer depId){
+		return commonDao.findUsersByDept(depId);
+	}
 }

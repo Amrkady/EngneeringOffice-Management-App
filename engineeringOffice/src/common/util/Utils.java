@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import com.entities.*;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,7 @@ import org.springframework.security.core.userdetails.User;
 
 
 import com.entities.Users;
+import com.models.AttachmentModel;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRExporter;
@@ -933,4 +935,46 @@ public class Utils {
 		return null;
 
 	}
+	public static Attachment SaveAttachementsToFtpServer(AttachmentModel attachment) {
+		//Attachment myAttachs = new Attachment();
+
+		boolean resultUpload = uploadAttachedFiles(attachment);
+		Attachment attach=null;
+		if (resultUpload) {
+			
+				 attach = new Attachment();
+
+				attach.setAttName(attachment.getRealName());
+				try {
+					
+					
+
+					attach.setAttSize((double) attachment.getAttachSize());
+					
+
+					
+					
+				} catch (Exception e) {
+
+					e.printStackTrace();
+					
+				}
+			
+		}
+		return attach;
+
+	}
+	public static boolean uploadAttachedFiles(AttachmentModel attachment) {
+		try {
+			
+				FtpTransferFile.uploadFile(attachment.getAttachStream(), attachment.getRealName());
+			
+			return true;
+		} catch (Exception e) {
+			logger.error("uploadAttachedFiles  :" + e.getMessage());
+		}
+		return false;
+	}
+
+
 }

@@ -17,11 +17,35 @@ public class Attachment {
 	@Column(name="id")
 	private Integer id;
 	
-	@Column(name="att_path")
-	private Integer attPath;
+	@Column(name="att_size")
+	private Double attSize;
 	
 	@Column(name="att_name")
-	private Integer attName;
+	private String attName;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Double getAttSize() {
+		return attSize;
+	}
+
+	public void setAttSize(Double attSize) {
+		this.attSize = attSize;
+	}
+
+	public String getAttName() {
+		return attName;
+	}
+
+	public void setAttName(String attName) {
+		this.attName = attName;
+	}
 	
 
 }

@@ -3,6 +3,7 @@ package com.common;
 
 import java.util.List;
 
+import com.entities.Attachment;
 import com.entities.Contracts;
 import com.entities.Customers;
 import com.entities.Transaction;
@@ -21,6 +22,7 @@ public interface CommonDao {
 	boolean updateObject(Object myObject);
 
 	public Integer saveCustomer(Customers customer);
+	public Integer saveAttachment(Attachment attachment);
 
 	public Users loadUser(final String username, final String password);
 
@@ -29,5 +31,9 @@ public interface CommonDao {
 	List<Transaction> findMailsIN(Integer userId);
 
 	List<Transaction> findMailsOut(Integer userId);
+public List<Contracts> findContractsByDept(Integer depId);
+	public Contracts loadContractByContNo(Integer contractNo);
+	List<Users> findUsersByDept(Integer depId);
+
 
 }

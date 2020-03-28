@@ -13,6 +13,8 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.entities.Attachment;
 import com.entities.Contracts;
 import com.entities.Customers;
 import com.entities.Transaction;
@@ -149,4 +151,52 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		return criteria.list();
 
 	}
+	
+	@SuppressWarnings("unchecked")
+		@Override
+		@Transactional
+		public List<Contracts> findContractsByDept(Integer depId){
+			
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
+			criteria.add(Restrictions.eq("deptId", depId));
+			List<Contracts> contracts=criteria.list();
+			return contracts;
+	
+		}
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+		public Contracts loadContractByContNo(Integer contractNo)
+		{
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
+			criteria.add(Restrictions.eq("ConNo", contractNo));
+			Contracts contract=(Contracts) criteria.uniqueResult();
+			return contract;
+			
+		}
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Users> findUsersByDept(Integer depId)
+	{
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Users.class);
+		criteria.add(Restrictions.eq("deptId", depId));
+		criteria.add(Restrictions.eq("manager", 0));
+		List<Users> users= criteria.list();
+		return users;
+	}
+	
+	@Override
+	@Transactional
+	public Integer saveAttachment(Attachment attach) {
+		try {
+			Integer id = (Integer) sessionFactory.getCurrentSession().save(attach);
+			return id;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
 }

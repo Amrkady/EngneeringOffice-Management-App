@@ -65,7 +65,7 @@
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber class="aa"
+							<p:inputNumber 
 								validatorMessage="المبلغ يجب ان يكون ارقام فقط"
 								value="#{contractBean.contract.amount}" required="true"
 								requiredMessage="ادخل المبلغ">
@@ -76,7 +76,7 @@
 							<h:outputLabel value="المبلغ بالحروف " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa"
+							<p:inputText 
 								value="#{contractBean.contract.amountByLetter}" required="true"
 								requiredMessage="ادخل المبلغ بالحروف ">
 
@@ -89,7 +89,7 @@
 							<h:outputLabel value="رقم الملكية" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa" value="#{contractBean.contract.ownerNo}"
+							<p:inputText  value="#{contractBean.contract.ownerNo}"
 								required="true" requiredMessage="ادخل رقم الملكية ">
 
 							</p:inputText>
@@ -98,7 +98,7 @@
 							<h:outputLabel value="صادر بتاريخ " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa" id="hiri1"
+							<p:inputText  id="hiri1"
 								value="#{contractBean.contract.outHijridate}"
 								onfocus="loadCalendar();" required="true"
 								requiredMessage="ادخل تاريخ الصادر "
@@ -114,7 +114,7 @@
 							<h:outputLabel value="صادر من جهة " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa" value="#{contractBean.contract.outFrom}"
+							<p:inputText  value="#{contractBean.contract.outFrom}"
 								required="true" requiredMessage="ادخل جهة الصادر ">
 							</p:inputText>
 						</div>
