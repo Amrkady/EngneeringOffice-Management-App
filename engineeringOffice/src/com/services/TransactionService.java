@@ -9,4 +9,8 @@ public interface TransactionService {
 	
 	boolean addTransaction(Transaction transaction);
 
+	boolean updateTransaction(Transaction transaction);
+
+	Attachment findAttachmentById(Integer attachId);
+
 }

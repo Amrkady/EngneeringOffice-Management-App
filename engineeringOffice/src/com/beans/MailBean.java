@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
@@ -16,6 +15,7 @@ import org.primefaces.event.SelectEvent;
 import com.entities.Transaction;
 import com.entities.Users;
 import com.services.MailsService;
+import com.services.TransactionService;
 import com.services.UserService;
 
 @ManagedBean(name = "mailBean")
@@ -27,23 +27,27 @@ public class MailBean {
 	@ManagedProperty(value = "#{mailsServiceImpl}")
 	private MailsService mailsServiceImpl;
 
+	@ManagedProperty(value = "#{transactionServiceImpl}")
+	private TransactionService transactionServiceImpl;
+
 	private List<Transaction> mailsIn;
 	private List<Transaction> mailsOut;
-	private Transaction selectedMail = new Transaction();
+	private Transaction selectedMail;
 
 	@PostConstruct
 	public void init() {
+		selectedMail = new Transaction();
 		mailsIn = new ArrayList<Transaction>();
 		mailsOut = new ArrayList<Transaction>();
 		FacesContext context = FacesContext.getCurrentInstance();
 		Users uss = (Users) context.getExternalContext().getSessionMap().get("user");
-		//uss.getUserId();
-		//if (uss != null) {
+		// uss.getUserId();
+		if (uss != null) {
 			// get in mails
-			mailsIn = mailsServiceImpl.getAllMailsIn(1);
+			mailsIn = mailsServiceImpl.getAllMailsIn(uss.getUserId());
 			// get out mails
-			mailsOut = mailsServiceImpl.getAllMailsOut(1);
-		//}
+			mailsOut = mailsServiceImpl.getAllMailsOut(uss.getUserId());
+		}
 	}
 
 	public String getUserById(Integer usrId) {
@@ -54,29 +58,17 @@ public class MailBean {
 		return "";
 	}
 
-	public void viewInboxRow(SelectEvent event) {
-//		FacesContext facesContext = FacesContext.getCurrentInstance();
-//		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-//		session.setAttribute("arcRecord", selectedInbox.AppId);
-//		session.setAttribute("type", selectedInbox.getWrkType());
-//		session.setAttribute("selectedMail", selectedInbox);
-//		String page = mainManagedBean.editMail(selectedInbox);
-//		dataAccessService.MakeItRead(String.valueOf(selectedInbox.StepId), selectedInbox.WrkId);
-//		flash.put("selectedMail", selectedInbox);
-//		try {
-//			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+	public String viewRowSelected(Transaction mail) {
+		selectedMail = mail;
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+		session.setAttribute("selectedMail", selectedMail);
+		selectedMail.setMarkRead(1);
+		transactionServiceImpl.updateTransaction(selectedMail);
+		return "mailView";
 	}
 
-	public void viewOutBoxRow(SelectEvent event) {
-//		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("selectedOutBoxMail", selectedInbox);
-//		try {
-//			FacesContext.getCurrentInstance().getExternalContext().redirect("models/outBox_definition.xhtml");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+	public void onRowUnselect(SelectEvent event) {
 	}
 
 	public UserService getUserServiceImpl() {
@@ -117,6 +109,14 @@ public class MailBean {
 
 	public void setMailsServiceImpl(MailsService mailsServiceImpl) {
 		this.mailsServiceImpl = mailsServiceImpl;
+	}
+
+	public TransactionService getTransactionServiceImpl() {
+		return transactionServiceImpl;
+	}
+
+	public void setTransactionServiceImpl(TransactionService transactionServiceImpl) {
+		this.transactionServiceImpl = transactionServiceImpl;
 	}
 
 }

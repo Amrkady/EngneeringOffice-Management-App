@@ -19,7 +19,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +26,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import com.entities.*;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -48,15 +46,13 @@ import org.joda.time.Days;
 import org.primefaces.context.RequestContext;
 import org.springframework.security.core.userdetails.User;
 
-
+import com.entities.Attachment;
 import com.entities.Users;
 import com.models.AttachmentModel;
 
-import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -79,8 +75,9 @@ public class Utils {
 	}
 
 	public static String convertDateToArabic(String hijriDate) {
-		if (hijriDate == null)
+		if (hijriDate == null) {
 			return "";
+		}
 		String ret = hijriDate;
 		if (hijriDate.length() != 10) {
 			ret = convertTextWithArNumric(hijriDate) + "*";
@@ -95,11 +92,12 @@ public class Utils {
 
 	public static String convertTextWithArNumric(String txt) {
 		String returnText = txt;
-		if (returnText != null)
+		if (returnText != null) {
 			returnText = returnText.replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661").replaceAll("2", "\\\u0662")
 					.replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
 					.replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668")
 					.replaceAll("9", "\\\u0669");
+		}
 		return returnText;
 	}
 
@@ -164,20 +162,23 @@ public class Utils {
 	}
 
 	public static Map<String, String> getDaysMap() {
-		if ((daysMap == null) || (daysMap.isEmpty()))
+		if ((daysMap == null) || (daysMap.isEmpty())) {
 			daysMap = findDaysMap();
+		}
 		return daysMap;
 	}
 
 	public static Map<String, String> getHoursMap() {
-		if ((hoursMap == null) || (hoursMap.isEmpty()))
+		if ((hoursMap == null) || (hoursMap.isEmpty())) {
 			hoursMap = findHoursMap();
+		}
 		return hoursMap;
 	}
 
 	public static Map<String, String> getMinutesMap() {
-		if ((minutesMap == null) || (minutesMap.isEmpty()))
+		if ((minutesMap == null) || (minutesMap.isEmpty())) {
 			minutesMap = findMinutesMap();
+		}
 		return minutesMap;
 	}
 
@@ -216,8 +217,9 @@ public class Utils {
 				}
 			}
 			return "";
-		} else
+		} else {
 			return prop.getProperty(key);
+		}
 
 	}
 
@@ -233,8 +235,9 @@ public class Utils {
 		String name = generateRandomName();
 		String destination = "C:\\tempUploadedFile\\";
 		File temp = new File(destination);
-		if (!temp.exists())
+		if (!temp.exists()) {
 			temp.mkdirs();
+		}
 		String completeName = destination + name;
 
 		try {
@@ -338,8 +341,9 @@ public class Utils {
 	public static synchronized void saveAttachments(InputStream inputStream, String att_name) throws Exception {
 		String destination = "C:\\temp\\";
 		File temp = new File(destination);
-		if (!temp.exists())
+		if (!temp.exists()) {
 			temp.mkdirs();
+		}
 		String CompleteName = "";
 		try {
 			OutputStream out = new FileOutputStream(new File(destination + att_name));
@@ -537,8 +541,9 @@ public class Utils {
 			DateTime dt1 = new DateTime(d1);
 			DateTime dt2 = new DateTime(d2);
 			int result = Days.daysBetween(dt1, dt2).getDays();
-			if (d2.before(d1))
+			if (d2.before(d1)) {
 				result = result * (-1);
+			}
 			return result;
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -597,8 +602,9 @@ public class Utils {
 	}
 
 	public static boolean IsEmpty(String MyString) {
-		if (MyString == null || MyString.isEmpty())
+		if (MyString == null || MyString.isEmpty()) {
 			return true;
+		}
 		return false;
 	}
 
@@ -614,11 +620,11 @@ public class Utils {
 		try {
 			// get OutputStream
 			stream = response.getOutputStream();
-			 connection = DataBaseConnectionClass.getConnection(); // opens a
+			connection = DataBaseConnectionClass.getConnection(); // opens a
 			String reportingPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath(reportName);
 			String jrsFile = reportingPath.replace("jasper", "jrxml");
 			JasperReport jasperReport = JasperCompileManager.compileReport(jrsFile);
-			JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters,connection);
+			JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, connection);
 			JRExporter exporter = new JRPdfExporter();
 			exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, stream);
@@ -630,8 +636,9 @@ public class Utils {
 			// it's your responsibility to close the connection, don't forget
 			// it!
 			try {
-				if (stream != null)
+				if (stream != null) {
 					stream.close();
+				}
 
 			} catch (Exception e) {
 			}
@@ -670,8 +677,9 @@ public class Utils {
 			// it's your responsibility to close the connection, don't forget
 			// it!
 			try {
-				if (stream != null)
+				if (stream != null) {
 					stream.close();
+				}
 			} catch (Exception e) {
 			}
 		}
@@ -718,8 +726,9 @@ public class Utils {
 		} else {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			buf = new byte[size];
-			while ((len = is.read(buf, 0, size)) != -1)
+			while ((len = is.read(buf, 0, size)) != -1) {
 				bos.write(buf, 0, len);
+			}
 			buf = bos.toByteArray();
 		}
 		return buf;
@@ -784,13 +793,15 @@ public class Utils {
 					sqlRequests.put(key, value);
 				}
 				return sqlRequests.get(reqName);
-			} else
+			} else {
 				return sqlRequests.get(reqName);
+			}
 		} catch (Exception e) {
 			logger.error("readSqlRequest :" + reqName);
 		} finally {
-			if (input != null)
+			if (input != null) {
 				input.close();
+			}
 		}
 		return sqlLine;
 	}
@@ -917,13 +928,14 @@ public class Utils {
 		context.update(ComponentName);
 
 	}
-	
+
 	public static Users findCurrentUser() {
 		try {
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-			if (request == null)
+			if (request == null) {
 				return null;
+			}
 			HttpSession appsession = request.getSession(true);
 			Users user = (Users) appsession.getAttribute("user");
 			return user;
@@ -935,46 +947,31 @@ public class Utils {
 		return null;
 
 	}
+
 	public static Attachment SaveAttachementsToFtpServer(AttachmentModel attachment) {
-		//Attachment myAttachs = new Attachment();
-
-		boolean resultUpload = uploadAttachedFiles(attachment);
-		Attachment attach=null;
-		if (resultUpload) {
-			
-				 attach = new Attachment();
-
+		Attachment attach = new Attachment();
+		try {
+			boolean resultUpload = uploadAttachedFiles(attachment);
+			if (resultUpload) {
 				attach.setAttName(attachment.getRealName());
-				try {
-					
-					
+				attach.setAttSize(attachment.getAttachSize());
+				attach.setRealName(attachment.getAttachRealName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 
-					attach.setAttSize((double) attachment.getAttachSize());
-					
-
-					
-					
-				} catch (Exception e) {
-
-					e.printStackTrace();
-					
-				}
-			
 		}
 		return attach;
-
 	}
+
 	public static boolean uploadAttachedFiles(AttachmentModel attachment) {
 		try {
-			
-				FtpTransferFile.uploadFile(attachment.getAttachStream(), attachment.getRealName());
-			
+			FtpTransferFile.uploadFile(attachment.getAttachStream(), attachment.getRealName());
 			return true;
 		} catch (Exception e) {
 			logger.error("uploadAttachedFiles  :" + e.getMessage());
 		}
 		return false;
 	}
-
 
 }

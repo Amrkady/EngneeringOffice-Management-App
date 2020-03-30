@@ -23,6 +23,9 @@ public class Attachment {
 	@Column(name="att_name")
 	private String attName;
 
+	@Column(name = "att_real_Name")
+	private String realName;
+
 	public Integer getId() {
 		return id;
 	}
@@ -45,6 +48,14 @@ public class Attachment {
 
 	public void setAttName(String attName) {
 		this.attName = attName;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 	
 

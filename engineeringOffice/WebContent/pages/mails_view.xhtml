@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>البريد</title>
+</h:head>
+<body>
+	<ui:composition template="/template1.xhtml">
+		<ui:define name="content">
+			<h:form dir="rtl" id="form" prependId="false">
+				<p:messages autoUpdate="true" closable="true"></p:messages>
+
+				<div class="card card-w-title" dir="rtl">
+					<h1 style="color: #7CB342; text-align: center;">
+						محتويات البريد<span class="fa fa-fw fa-clock-o"></span>
+					</h1>
+					<br /> <br />
+					<p:fieldset width="50%" legend="بيانات البريد ">
+
+						<div class="ui-g">
+							<div class="ui-g-1">
+								<h:outputLabel value="الموضوع" />
+							</div>
+							<div class="ui-g-4">
+								<h:outputLabel value="HD" />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-1">
+								<h:outputLabel value="اسم المرفق" />
+							</div>
+							<div class="ui-g-4">
+								<h:outputLabel value="#{mailsViewBean.attach.realName}" />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-1">
+								<h:outputLabel value="تحميل المرفق" />
+							</div>
+							<div class="ui-g-4">
+								<p:commandButton value="تحميل المرفق" ajax="false"
+									immediate="true" class="panel-footer"
+									icon="ui-icon-arrowthick-1-s">
+									<p:fileDownload value="#{mailsViewBean.file}" />
+								</p:commandButton>
+								
+							</div>
+						</div>
+					</p:fieldset>
+
+				</div>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>
