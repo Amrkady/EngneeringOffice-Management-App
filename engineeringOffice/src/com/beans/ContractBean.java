@@ -58,15 +58,16 @@ public class ContractBean {
 			}
 			contract.setContractDate(strDate);
 			contract.setConNo(conNo);
+			contract.setSent(0);
 			status = sandServiceImpl.addContract(contract);
 			//conNo++;
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Êã ÇáÍÝÙ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 //			status = true;
 //			Utils.updateUIComponent("form:print");
 
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ÍÏË ÎØÃ Ýì ÍÝÙ ÇáÚãáíÉ ÇÚÏ ÇáãÍÇæáÉ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 			status = false;

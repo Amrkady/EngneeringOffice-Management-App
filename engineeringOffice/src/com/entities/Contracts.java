@@ -2,6 +2,7 @@ package com.entities;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -23,22 +24,22 @@ public class Contracts {
 	@Column(name = "owner_no")
 	private String ownerNo;
 
-	// ÊÇÑíÎ ÇÕÏÇÑ ÇáÚŞÏ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Column(name = "out_hijri_date")
 	private String outHijridate;
-	// ÕÇÏÑ ãä ÌåÉ ¿
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½
 	@Column(name = "out_from")
 	private String outFrom;
-   // äæÚ ÇáÊÑÎíÕ
+   // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Column(name = "license_type")
 	private String licenseType;
 
 	@Column(name = "amount_letter")
 	private String amountByLetter;
-	// ÑŞã ÇáÓÌá ÇáãÏäí ááÚãíá
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Column(name = "nat_no")
 	private Integer nat_no;
-	// ÇáãÈáÛ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Column(name = "amount")
 	private Integer amount;
 
@@ -50,7 +51,11 @@ public class Contracts {
 	
 	@Column(name = "CONTRACT_NO")
 	private Integer ConNo;
-
+	@Column(name = "sent")
+	private Integer sent;
+	
+	@Formula("(select c.customer_name from customers c where c.id = customer_id)")
+	private String customerName;
 	public Integer getId() {
 		return id;
 	}
@@ -153,6 +158,22 @@ public class Contracts {
 
 	public void setConNo(Integer conNo) {
 		ConNo = conNo;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public Integer getSent() {
+		return sent;
+	}
+
+	public void setSent(Integer sent) {
+		this.sent = sent;
 	}
 
 }

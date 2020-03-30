@@ -44,5 +44,9 @@ public class SandServiceImpl implements SandService {
 	{
 		return commonDao.loadContractByContNo(contractNo);
 	}
+	@Override
+	public boolean updateContract(Contracts contract) {
+		return commonDao.updateObject(contract);
+	}
 
 }

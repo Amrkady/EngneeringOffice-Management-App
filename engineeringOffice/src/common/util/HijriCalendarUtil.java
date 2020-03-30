@@ -142,7 +142,7 @@ public class HijriCalendarUtil {
 		YearClass CurrentYear = new YearClass();
 		YearClass NextYear = new YearClass();
 		List<YearClass> YList = loadYearsData();
-		SimpleDateFormat sdfinput = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdfinput = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = sdfinput.parse(inputDate);
 		for (YearClass item : loadYearsData()) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");

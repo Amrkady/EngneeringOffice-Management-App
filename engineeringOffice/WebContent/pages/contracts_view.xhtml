@@ -9,20 +9,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
 </h:head>
+<ui:composition template="/template1.xhtml">
+	<ui:define name="content">
 
-<body>
 
 	<h:form id="vcs">
 		<p:messages autoUpdate="true" closable="true"></p:messages>
-		<div class="image-box-footer">
-			<p:commandButton value="إضافة" icon="ui-icon ui-icon-add"
-				styleClass="cyan-btn"
-				>
-			</p:commandButton>
-		</div>
+		
 		<div class="card card-w-title" dir="rtl">
 			<h1 style="color: #7CB342; text-align: center;">
-				الموظفين<span class="fa fa-fw fa-clock-o"></span>
+				العقود<span class="fa fa-fw fa-clock-o"></span>
 			</h1>
 			<br /> <br /> <br />
 			<!-- 			<div class="ui-g"> -->
@@ -36,21 +32,30 @@
 				value="#{contractsViewBean.contracts}" 
 				widgetVar="cellcnt" paginatorPosition="bottom"
 				filteredValue="#{contractsViewBean.filtredContracts}"
-				sortBy="#{contract.ConNo}" sortOrder="descending" rows="13"
+				sortBy="#{contract.conNo}" sortOrder="descending" rows="13"
 				paginator="true"
 				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 				
 				
-				<p:column headerText="رقم العقد">
+				<p:column style="text-align:center"  headerText="رقم العقد">
 				
 					
 						
-							<h:outputText value="#{contract.conNo}" />
+							<h:outputText  value="#{contract.conNo}" />
 						
 					
 				</p:column>
 
-				<p:column headerText="نوع الرخصة">
+				<p:column style="text-align:center" headerText="اسم صاحب العقد">
+				
+					
+						
+							<h:outputText value="#{contract.customerName}" />
+						
+					
+				</p:column>
+				
+				<p:column style="text-align:center" headerText="نوع الرخصة">
 					
 						
 							<h:outputText
@@ -60,17 +65,24 @@
 						
 					
 				</p:column>
-				<p:column headerText="تاريخ العقد"
-					>
+				<p:column style="text-align:center" headerText="تاريخ العقد">
 					
 						
-							<h:outputText value="#{contract.outHijridate}" />
+							<h:outputText value="#{contract.contractDate}" />
+						
+						
+					
+				</p:column>
+				<p:column style="text-align:center" headerText="الحالة">
+					
+						
+							<h:outputText value="#{contract.sent==1 ? 'مرسلة':'غير مرسلة'}"/>
 						
 						
 					
 				</p:column>
 				
-				<p:column style="width:5%">
+				<p:column  style="width:5%">
 					<p:commandButton icon="ui-icon ui-icon-search"
 						action="#{contractsViewBean.transferContract(contract.conNo)}">
 
@@ -85,5 +97,6 @@
 	</h:form>
 
 
-</body>
+</ui:define>
+</ui:composition>
 </html>

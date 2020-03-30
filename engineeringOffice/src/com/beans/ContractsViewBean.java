@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.services.SandService;
 
@@ -31,8 +33,12 @@ public class ContractsViewBean {
 	
 	public String transferContract(Integer contractNo)
 	{
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("contractNo", contractNo);
+//		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+//		flash.put("contractNo", contractNo);
+//		
+		HttpServletRequest httprequest=(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpSession httpSession=httprequest.getSession(false);
+		httpSession.setAttribute("contractNo", contractNo);
 		return "trans";
 
 	}

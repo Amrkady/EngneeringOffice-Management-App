@@ -12,25 +12,27 @@
 <body>
 	<ui:composition template="/template1.xhtml">
 		<ui:define name="content">
-			<h:form>
+			<h:form id="frm">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
 				<div class="card card-w-title" dir="rtl">
-					<h1 style="color: #7CB342; text-align: center;">المعلومات</h1>
+					<h1 style="color: #7CB342; text-align: center;">ارسال المعاملة</h1>
 
 
-					<p:fieldset legend="القسم" toggleable="true" toggleSpeed="500">
+					<p:fieldset  toggleable="true" toggleSpeed="500">
 						<!--         <p:ajax event="toggle"   /> -->
 						<div>
 
 
 							<div class="ui-g">
 
-
-								<div class="ui-g-12">
+							<div class="ui-g-2">
+							<h:outputLabel value="ارسال الي"></h:outputLabel>
+							</div>
+								<div class="ui-g-10">
 									<!-- 				<p:inputText value="hello"></p:inputText> -->
 									<p:selectOneMenu required="true"
 										requiredMessage="يجب اختيار الموظف"
-										style="width:50%;display:block;margin:auto;"
+										style="width:40%;"
 										value="#{transactionBean.trans.trTo}">
 										<f:selectItem itemLabel="اخترالموظف" itemValue=""
 											noSelectionOption="true" />
@@ -42,19 +44,25 @@
 
 
 								</div>
-								<div class="ui-g-3">
+								<div style="margin-top: 50px;" class="ui-g-2">
 								<p:outputLabel value="بشأن"></p:outputLabel>
 								</div>
-								<div class="ui-g-9">
-								<p:inputText value="#{transactionBean.trans.subject}"></p:inputText>
+								<div style="margin-top: 50px;" class="ui-g-10">
+								<p:inputTextarea style="width:50%" value="#{transactionBean.trans.subject}"></p:inputTextarea>
 								</div>
 								<div style="margin-top: 50px" class="ui-g-12">
-									<p:fileUpload id="NewRecordUpload" widgetVar="NewRecordUploader"
-							multiple="true" auto="true" 
+									<p:fileUpload  id="NewRecordUpload" widgetVar="NewRecordUploader"
+							multiple="true" auto="true"  update="@this"
 							fileUploadListener="#{transactionBean.NewRecordupload}"
 							uploadLabel="ارفاق" cancelLabel="إلغاء" label="تحديد المرفق"
 							previewWidth="0" process="@this" sizeLimit="300000000">
+							<div id="attachmnt" class="ui-g-12">
+							<p:outputLabel value="#{transactionBean.attach.realName}"></p:outputLabel>
+						</div>
 						</p:fileUpload>
+<!-- 						<div id="attachmnt" class="ui-g-12"> -->
+<!-- 							<p:outputLabel value="#{transactionBean.attach.realName}"></p:outputLabel> -->
+<!-- 						</div> -->
 								</div>
 								<div style="margin-top: 20px" class="ui-g-12">
 									<h:commandButton action="#{transactionBean.save}" class="bb" update="@form"
