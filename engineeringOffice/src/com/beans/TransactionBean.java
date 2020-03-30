@@ -1,14 +1,22 @@
 package com.beans;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -22,6 +30,7 @@ import com.services.Scanner;
 import com.services.TransactionService;
 import com.services.UserService;
 
+import common.util.HijriCalendarUtil;
 import common.util.Utils;
 
 @ManagedBean
@@ -45,8 +54,15 @@ public class TransactionBean extends Scanner {
 	@PostConstruct
 	public void init() {
 		
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		Integer contractNo= Integer.parseInt(flash.get("contractNo").toString());
+		
+		
+//		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+//		Integer contractNo= Integer.parseInt(flash.get("contractNo").toString());
+		
+		HttpServletRequest httprequest=(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpSession httpSession=httprequest.getSession(false);
+		Integer contractNo=Integer.parseInt(httpSession.getAttribute("contractNo").toString());
+		
 		contract=sandServiceImpl.loadContractByContNo(contractNo);
 		users=userServiceImpl.findUsersByDept(Utils.findCurrentUser().getDeptId());
 	}
@@ -58,8 +74,9 @@ public class TransactionBean extends Scanner {
 			attach.setAttachRealName(event.getFile().getFileName());
 			attach.setAttachSize(event.getFile().getSize());
 			attach.setAttachStream(event.getFile().getInputstream());
-	
+			attach.setAttachExt(FilenameUtils.getExtension(event.getFile().getFileName()));
 			attach.setRealName(Utils.generateRandomName()+"."+attach.getAttachExt());
+			
 			
 
 		} catch (Exception e) {
@@ -67,6 +84,16 @@ public class TransactionBean extends Scanner {
 		}
 	}
 	public void save() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar cal = Calendar.getInstance();
+		
+		try {
+			trans.sethDate(HijriCalendarUtil.ConvertgeorgianDatetoHijriDate(dateFormat.format(cal.getTime()).toString()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		attachment = Utils.SaveAttachementsToFtpServer(attach);
 		Integer attachId=transactionServiceImpl.addAttachment(attachment);
@@ -76,7 +103,11 @@ public class TransactionBean extends Scanner {
 		trans.setMarkRead(0);
 		
 		transactionServiceImpl.addTransaction(trans);
+		contract.setSent(1);
+		sandServiceImpl.updateContract(contract);
 		
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "تم الارسال بنجاح", "");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 	}
 
