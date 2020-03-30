@@ -50,7 +50,7 @@ public class Contracts {
 	private Integer deptId;
 	
 	@Column(name = "CONTRACT_NO")
-	private Integer ConNo;
+	private Integer conNo;
 	@Column(name = "sent")
 	private Integer sent;
 	
@@ -153,11 +153,11 @@ public class Contracts {
 	}
 
 	public Integer getConNo() {
-		return ConNo;
+		return this.conNo;
 	}
 
 	public void setConNo(Integer conNo) {
-		ConNo = conNo;
+		this.conNo = conNo;
 	}
 
 	public String getCustomerName() {
