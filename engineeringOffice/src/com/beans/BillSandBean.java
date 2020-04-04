@@ -39,10 +39,11 @@ public class BillSandBean {
 		HttpSession httpSession = httprequest.getSession(false);
 		CustomerModel cm = (CustomerModel) httpSession.getAttribute("CustomerObject");
 		if (cm != null) {
-			billSnad.setDeptId(cm.getCustomerId());
+			billSnad.setCustomerId(cm.getCustomerId());
 			billSnad.setDeptName(cm.getDeptName());
 			billSnad.setDeptId(cm.getDeptId());
 			billSnad.setCustomerName(cm.getCustomerName());
+			billSnad.setSanadNo(sandServiceImpl.getSandNo() + 1);
 		}
 	}
 
@@ -56,13 +57,13 @@ public class BillSandBean {
 			}
 			billSnad.setBillDate(strDate);
 			status = sandServiceImpl.addSand(billSnad);
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Êã ÇáÍÝÙ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 //			status = true;
 //			Utils.updateUIComponent("form:print");
 
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ÑÞã ÇáÓäÏ ãæÌæÏ ÇÖÝ ÑÞã ÌÏíÏ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 			status = false;
@@ -73,6 +74,7 @@ public class BillSandBean {
 	}
 
 	public String save() {
+		try {
 		addBillOrSnad();
 		String reportName = "/reports/Bills_snad.jasper";
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -93,8 +95,13 @@ public class BillSandBean {
 //		//parameters.put("userId", employerId);
 		Utils.printPdfReport(reportName, parameters);
 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return "";
 	}
+
+
 
 	public SandService getSandServiceImpl() {
 		return sandServiceImpl;

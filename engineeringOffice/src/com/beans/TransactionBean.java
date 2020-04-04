@@ -3,7 +3,9 @@ package com.beans;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,13 +14,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 
 import com.entities.Attachment;
 import com.entities.Contracts;
@@ -46,7 +46,7 @@ public class TransactionBean extends Scanner {
 	private Contracts contract=new Contracts();
 	
 	private List<Users> users;
-	private AttachmentModel attach=new AttachmentModel();
+	private List<AttachmentModel> attachs = new ArrayList<AttachmentModel>();
 	Attachment attachment=new Attachment();
 	
 	private Transaction trans=new Transaction();
@@ -70,13 +70,13 @@ public class TransactionBean extends Scanner {
 	public void NewRecordupload(FileUploadEvent event) {
 
 		try {
-//			AttachmentModel attach = new AttachmentModel();
+			AttachmentModel attach = new AttachmentModel();
 			attach.setAttachRealName(event.getFile().getFileName());
 			attach.setAttachSize(event.getFile().getSize());
 			attach.setAttachStream(event.getFile().getInputstream());
 			attach.setAttachExt(FilenameUtils.getExtension(event.getFile().getFileName()));
 			attach.setRealName(Utils.generateRandomName()+"."+attach.getAttachExt());
-			
+			attachs.add(attach);
 			
 
 		} catch (Exception e) {
@@ -90,25 +90,30 @@ public class TransactionBean extends Scanner {
 		try {
 			trans.sethDate(HijriCalendarUtil.ConvertgeorgianDatetoHijriDate(dateFormat.format(cal.getTime()).toString()));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
-		attachment = Utils.SaveAttachementsToFtpServer(attach);
-		Integer attachId=transactionServiceImpl.addAttachment(attachment);
-		trans.setAttachId(attachId);
+
 		trans.setContractId(contract.getId());
 		trans.setTrFrom(Utils.findCurrentUser().getUserId());
 		trans.setMarkRead(0);
-		
-		transactionServiceImpl.addTransaction(trans);
+		trans.setDate(new Date());
+		Integer transId = transactionServiceImpl.addTransaction(trans);
 		contract.setSent(1);
 		sandServiceImpl.updateContract(contract);
+
+		List<Attachment> atts = Utils.SaveAttachementsToFtpServer(attachs);
+		for (Attachment attachment : atts) {
+			attachment.setTransId(transId);
+			transactionServiceImpl.addAttachment(attachment);
+		}
 		
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "تم الارسال بنجاح", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-
+		trans.setSubject(null);
+		trans.setTrTo(null);
+		attachs.clear();
 	}
 
 	public SandService getSandServiceImpl() {
@@ -145,12 +150,7 @@ public class TransactionBean extends Scanner {
 	public void setUsers(List<Users> users) {
 		this.users = users;
 	}
-	public AttachmentModel getAttach() {
-		return attach;
-	}
-	public void setAttach(AttachmentModel attach) {
-		this.attach = attach;
-	}
+
 	public Attachment getAttachment() {
 		return attachment;
 	}
@@ -168,6 +168,14 @@ public class TransactionBean extends Scanner {
 	}
 	public void setTrans(Transaction trans) {
 		this.trans = trans;
+	}
+
+	public List<AttachmentModel> getAttachs() {
+		return attachs;
+	}
+
+	public void setAttachs(List<AttachmentModel> attachs) {
+		this.attachs = attachs;
 	}
 	
 

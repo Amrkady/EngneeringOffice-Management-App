@@ -7,7 +7,7 @@ public interface TransactionService {
 	
 	Integer addAttachment(Attachment attach);
 	
-	boolean addTransaction(Transaction transaction);
+	Integer addTransaction(Transaction transaction);
 
 	boolean updateTransaction(Transaction transaction);
 

@@ -19,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -948,25 +949,33 @@ public class Utils {
 
 	}
 
-	public static Attachment SaveAttachementsToFtpServer(AttachmentModel attachment) {
-		Attachment attach = new Attachment();
+	public static List<Attachment> SaveAttachementsToFtpServer(List<AttachmentModel> attachments) {
+		List<Attachment> myAttachs = new ArrayList<Attachment>();
 		try {
-			boolean resultUpload = uploadAttachedFiles(attachment);
+			boolean resultUpload = uploadAttachedFiles(attachments);
 			if (resultUpload) {
-				attach.setAttName(attachment.getRealName());
-				attach.setAttSize(attachment.getAttachSize());
-				attach.setRealName(attachment.getAttachRealName());
+				for (AttachmentModel attachment : attachments) {
+					Attachment attach = new Attachment();
+					attach.setAttName(attachment.getRealName());
+					attach.setAttSize(attachment.getAttachSize());
+					attach.setRealName(attachment.getAttachRealName());
+					myAttachs.add(attach);
+				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
-		return attach;
+		return myAttachs;
 	}
 
-	public static boolean uploadAttachedFiles(AttachmentModel attachment) {
+	public static boolean uploadAttachedFiles(List<AttachmentModel> attachments) {
 		try {
+			for (AttachmentModel attachment : attachments) {
+
 			FtpTransferFile.uploadFile(attachment.getAttachStream(), attachment.getRealName());
+			}
 			return true;
 		} catch (Exception e) {
 			logger.error("uploadAttachedFiles  :" + e.getMessage());

@@ -56,19 +56,25 @@
 							fileUploadListener="#{transactionBean.NewRecordupload}"
 							uploadLabel="ارفاق" cancelLabel="إلغاء" label="تحديد المرفق"
 							previewWidth="0" process="@this" sizeLimit="300000000">
-							<div id="attachmnt" class="ui-g-12">
-							<p:outputLabel value="#{transactionBean.attach.realName}"></p:outputLabel>
-						</div>
+															
+<!-- 							<div id="attachmnt" class="ui-g-12"> -->
+<!-- 							<p:outputLabel value="#{transactionBean.attach.realName}"></p:outputLabel> -->
+							<ui:repeat var="attach" value="#{transactionBean.attachs}">
+								<div>
+								<p:outputLabel value="#{attach.attachRealName}"></p:outputLabel>
+								 </div>
+							</ui:repeat>
+<!-- 						</div> -->
 						</p:fileUpload>
 <!-- 						<div id="attachmnt" class="ui-g-12"> -->
 <!-- 							<p:outputLabel value="#{transactionBean.attach.realName}"></p:outputLabel> -->
 <!-- 						</div> -->
 								</div>
 								<div style="margin-top: 20px" class="ui-g-12">
-									<h:commandButton action="#{transactionBean.save}" class="bb" update="@form"
+									<h:commandButton   class="bb" update="@form"
 										style="width:30%;display:block;margin:auto;"
 										value="ارسال المعاملة">
-
+										<f:ajax execute="@form" listener="#{transactionBean.save}" event="click" render="@form"></f:ajax>
 									</h:commandButton>
 								</div>
 
