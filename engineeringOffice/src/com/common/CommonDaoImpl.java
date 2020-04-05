@@ -2,11 +2,10 @@ package com.common;
 
 import java.util.List;
 
-import org.hibernate.criterion.Order;
-
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -15,6 +14,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.entities.Attachment;
+import com.entities.Bills;
 import com.entities.Contracts;
 import com.entities.Customers;
 import com.entities.Transaction;
@@ -23,10 +23,12 @@ import com.entities.Users;
 public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	private SessionFactory sessionFactory;
 
+	@Override
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
+	@Override
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -113,8 +115,9 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 
 		}
 		Users result = (Users) criteria.uniqueResult();
-		if (result == null)
+		if (result == null) {
 			throw new BadCredentialsException("bad credentials");
+		}
 		Hibernate.initialize(result.getRole());
 		return result;
 	}
@@ -169,7 +172,7 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		public Contracts loadContractByContNo(Integer contractNo)
 		{
 			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
-			criteria.add(Restrictions.eq("ConNo", contractNo));
+		criteria.add(Restrictions.eq("conNo", contractNo));
 			Contracts contract=(Contracts) criteria.uniqueResult();
 			return contract;
 			
@@ -196,6 +199,30 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 			e.printStackTrace();
 			return null;
 		}
+
+	}
+
+	@Override
+	@Transactional
+	public Integer saveTransaction(Transaction transaction) {
+		try {
+			Integer id = (Integer) sessionFactory.getCurrentSession().save(transaction);
+			return id;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public Integer findSandNo() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Bills.class);
+		criteria.setProjection(Projections.count("id"));
+		Long id = (Long) criteria.uniqueResult();
+		return id.intValue();
 
 	}
 

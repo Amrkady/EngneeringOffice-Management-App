@@ -5,7 +5,6 @@ import java.util.List;
 import com.common.CommonDao;
 import com.entities.Bills;
 import com.entities.Contracts;
-import com.entities.Users;
 
 public class SandServiceImpl implements SandService {
 	private CommonDao commonDao;
@@ -47,6 +46,11 @@ public class SandServiceImpl implements SandService {
 	@Override
 	public boolean updateContract(Contracts contract) {
 		return commonDao.updateObject(contract);
+	}
+
+	@Override
+	public Integer getSandNo() {
+		return commonDao.findSandNo();
 	}
 
 }

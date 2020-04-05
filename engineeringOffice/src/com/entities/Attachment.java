@@ -25,6 +25,8 @@ public class Attachment {
 
 	@Column(name = "att_real_Name")
 	private String realName;
+	@Column(name = "trans_id")
+	private Integer transId;
 
 	public Integer getId() {
 		return id;
@@ -56,6 +58,14 @@ public class Attachment {
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public Integer getTransId() {
+		return transId;
+	}
+
+	public void setTransId(Integer transId) {
+		this.transId = transId;
 	}
 	
 

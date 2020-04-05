@@ -17,6 +17,8 @@ public interface SandService {
 //	public Contracts getContractById(Integer id);
 	public Contracts loadContractByContNo(Integer contractNo);
 	public boolean updateContract(Contracts contract);
+
+	public Integer getSandNo();
 	
 
 }

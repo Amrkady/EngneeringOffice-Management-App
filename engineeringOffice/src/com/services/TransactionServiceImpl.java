@@ -21,8 +21,8 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public boolean addTransaction(Transaction transaction) {
-		return commonDao.saveObject(transaction);
+	public Integer addTransaction(Transaction transaction) {
+		return commonDao.saveTransaction(transaction);
 	}
 
 	@Override

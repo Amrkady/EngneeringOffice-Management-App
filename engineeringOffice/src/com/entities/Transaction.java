@@ -26,8 +26,7 @@ public class Transaction {
 	@Column(name="contract_id")
 	private Integer contractId;
 	
-	@Column(name="attach_id")
-	private Integer attachId;
+	
 	
 	@Column(name="tr_from")
 	private Integer trFrom;
@@ -67,14 +66,6 @@ public class Transaction {
 
 	public void setContractId(Integer contractId) {
 		this.contractId = contractId;
-	}
-
-	public Integer getAttachId() {
-		return attachId;
-	}
-
-	public void setAttachId(Integer attachId) {
-		this.attachId = attachId;
 	}
 
 	public Integer getTrFrom() {

@@ -24,13 +24,8 @@
 						<div class="ui-g-1">
 							<h:outputLabel value="رقم السند" />
 						</div>
-						<div class="ui-g-4">
-							<p:inputNumber 
-								validatorMessage="يجب ان يكون رقم السند ارقام فقط"
-								value="#{sandBean.billSnad.sanadNo}" required="true"
-								requiredMessage="ادخل رقم السند ">
-
-							</p:inputNumber>
+						<div id="sand" class="ui-g-4">
+						<p:outputLabel value="#{sandBean.billSnad.sanadNo}"></p:outputLabel>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ" />
@@ -81,9 +76,13 @@
 							<h:outputLabel value="طريقة الدفع" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa" value="#{sandBean.billSnad.billType}"
-								required="true" requiredMessage="ادخل طريقة الدفع ">
-							</p:inputText>
+							
+							<p:selectOneMenu style="width:50%;" required="true" requiredMessage="ادخل طريقة الدفع " value="#{sandBean.billSnad.billType}" >
+							<f:selectItem itemLabel="اختر طريقة الدفع"></f:selectItem>
+							<f:selectItem itemLabel="نقدا" itemValue="نقدا"></f:selectItem>
+							<f:selectItem itemLabel="شبكة" itemValue="شبكة"></f:selectItem>
+							<f:selectItem itemLabel="شيك" itemValue="شيك"></f:selectItem>
+							</p:selectOneMenu>
 						</div>
 
 					</div>
@@ -116,6 +115,7 @@
 							icon="ui-icon ui-icon-print " style="width:10%; align:left"
 							action="#{sandBean.save}" onclick="this.form.target='_blank'"
 							ajax="false"    id="print" >
+							
 						</h:commandButton>
 <!-- 						<p:commandButton class="bb" value="حفظ "  id="save" update="print" -->
 <!-- 							icon="ui-icon ui-icon-plus " rendered="#{!sandBean.status}" -->

@@ -35,5 +35,7 @@ public List<Contracts> findContractsByDept(Integer depId);
 	public Contracts loadContractByContNo(Integer contractNo);
 	List<Users> findUsersByDept(Integer depId);
 
+	public Integer saveTransaction(Transaction transaction);
 
+	Integer findSandNo();
 }
