@@ -17,9 +17,9 @@
 
 				<div class="card card-w-title" dir="rtl">
 					<h1 style="color: #7CB342; text-align: center;">
-						محتويات البريد<span class="fa fa-fw fa-clock-o"></span>
+						محتويات البريد
 					</h1>
-					<br /> <br />
+				
 					<p:fieldset width="50%" legend="بيانات البريد ">
 
 						<div class="ui-g">
@@ -27,7 +27,7 @@
 								<h:outputLabel value="الموضوع" />
 							</div>
 							<div class="ui-g-4">
-								<h:outputLabel value="HD" />
+								<h:outputLabel value="#{mailsViewBean.selectedMail.subject}" />
 							</div>
 						</div>
 						<div class="ui-g">

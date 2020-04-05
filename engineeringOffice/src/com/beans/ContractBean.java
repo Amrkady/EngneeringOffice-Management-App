@@ -33,6 +33,7 @@ public class ContractBean {
 
 	@PostConstruct
 	public void init() {
+		contractDate = new Date();
 		contract = new Contracts();
 		HttpServletRequest httprequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
@@ -57,10 +58,11 @@ public class ContractBean {
 				strDate = sdfDate.format(contractDate);
 			}
 			contract.setContractDate(strDate);
+			contract.setDayLetter(Utils.getDayDate(strDate));
 			contract.setConNo(conNo);
 			contract.setSent(0);
 			status = sandServiceImpl.addContract(contract);
-			//conNo++;
+			conNo++;
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "�� �����", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 //			status = true;
