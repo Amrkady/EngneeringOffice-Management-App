@@ -11,11 +11,12 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
-import common.util.Utils;
 import com.entities.Departments;
 import com.entities.Users;
 import com.services.DepartmentService;
 import com.services.UserService;
+
+import common.util.Utils;
 
 @ManagedBean(name = "userBean")
 @ViewScoped
@@ -97,6 +98,7 @@ public class UserBean {
 			userServiceImpl.updateUser(user);
 			FacesMessage msg = new FacesMessage(" „ Õ›Ÿ «· ⁄œÌ·", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
+			user = new Users();
 			// users = userServiceImpl.getAllUser();
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage("·„ Ì „ Õ›Ÿ «· ⁄œÌ·", "");

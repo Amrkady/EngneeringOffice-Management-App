@@ -144,10 +144,10 @@
 							action="#{contractBean.save}" onclick="this.form.target='_blank'"
 							id="print" ajax="false">
 						</h:commandButton>
-						<!-- 						<p:commandButton class="bb" value="حفظ " id="save" update="print" -->
-						<!-- 							icon="ui-icon ui-icon-plus " rendered="# {!contractBean.status}" -->
-						<!-- 							action="# {contractBean.addContract}"> -->
-						<!-- 						</p:commandButton> -->
+						<p:spacer width="10"></p:spacer>
+						<h:commandButton class="bb" value="انشاء سند قبض " immediate="true"
+							action="bills"    style="width:10%; align:left">
+						</h:commandButton>
 					</div>
 				</p:fieldset>
 
