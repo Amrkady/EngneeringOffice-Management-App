@@ -27,7 +27,6 @@ public class Transaction {
 	private Integer contractId;
 	
 	
-	
 	@Column(name="tr_from")
 	private Integer trFrom;
 	

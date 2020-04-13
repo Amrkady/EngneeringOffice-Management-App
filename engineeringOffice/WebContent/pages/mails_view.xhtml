@@ -16,10 +16,9 @@
 				<p:messages autoUpdate="true" closable="true"></p:messages>
 
 				<div class="card card-w-title" dir="rtl">
-					<h1 style="color: #7CB342; text-align: center;">
-						محتويات البريد
+					<h1 style="color: #7CB342; text-align: center;">محتويات البريد
 					</h1>
-				
+
 					<p:fieldset width="50%" legend="بيانات البريد ">
 
 						<div class="ui-g">
@@ -30,27 +29,59 @@
 								<h:outputLabel value="#{mailsViewBean.selectedMail.subject}" />
 							</div>
 						</div>
-						<div class="ui-g">
-							<div class="ui-g-1">
-								<h:outputLabel value="اسم المرفق" />
+						<!-- 						<div class="ui-g"> -->
+						<!-- 							<div class="ui-g-1"> -->
+						<!-- 								<h:outputLabel value="اسم المرفق" /> -->
+						<!-- 							</div> -->
+						<!-- 							<div class="ui-g-4"> -->
+						<!-- 								<h:outputLabel value="#{mailsViewBean.attach.realName}" /> -->
+						<!-- 							</div> -->
+						<!-- 						</div> -->
+						<!-- 						<div class="ui-g"> -->
+						<!-- 							<div class="ui-g-1"> -->
+						<!-- 								<h:outputLabel value="تحميل المرفق" /> -->
+						<!-- 							</div> -->
+						<!-- 							<div class="ui-g-4"> -->
+						<!-- 								<p:commandButton value="تحميل المرفق" ajax="false" -->
+						<!-- 									immediate="true" class="panel-footer" -->
+						<!-- 									icon="ui-icon-arrowthick-1-s"> -->
+						<!-- 									<p:fileDownload value="#{mailsViewBean.file}" /> -->
+						<!-- 								</p:commandButton> -->
+
+						<!-- 							</div> -->
+						<!-- 						</div> -->
+						<h:panelGroup id="table">
+							<div class="col-md-12 ">
+								<div class="table-responsive">
+									<hr></hr>
+									<table id="tabStore" class="table table-striped table-hover">
+										<thead>
+											<tr>
+												<th>الرقم</th>
+												<th>اسم المرفق</th>
+												<th>تحميل المرفق</th>
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat var="att" varStatus="x"
+												value="#{mailsViewBean.attachs}">
+												<tr >
+													<td align="center">#{x.index+1}</td>
+													<td align="center">#{att.realName}</td>
+													<td align="center"><p:commandButton value="تحميل المرفق" ajax="false"
+															immediate="true" class="panel-footer"
+															icon="ui-icon-arrowthick-1-s">
+															<p:fileDownload value="#{mailsViewBean.getFile(att)}" />
+														</p:commandButton></td>
+												</tr>
+											</ui:repeat>
+										</tbody>
+									</table>
+								</div>
+
+
 							</div>
-							<div class="ui-g-4">
-								<h:outputLabel value="#{mailsViewBean.attach.realName}" />
-							</div>
-						</div>
-						<div class="ui-g">
-							<div class="ui-g-1">
-								<h:outputLabel value="تحميل المرفق" />
-							</div>
-							<div class="ui-g-4">
-								<p:commandButton value="تحميل المرفق" ajax="false"
-									immediate="true" class="panel-footer"
-									icon="ui-icon-arrowthick-1-s">
-									<p:fileDownload value="#{mailsViewBean.file}" />
-								</p:commandButton>
-								
-							</div>
-						</div>
+						</h:panelGroup>
 					</p:fieldset>
 
 				</div>

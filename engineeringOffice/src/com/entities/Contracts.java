@@ -1,6 +1,11 @@
 package com.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
@@ -30,7 +35,7 @@ public class Contracts {
 	// ���� �� ��� �
 	@Column(name = "out_from")
 	private String outFrom;
-   // ��� �������
+	// ��� �������
 	@Column(name = "license_type")
 	private String licenseType;
 
@@ -48,14 +53,25 @@ public class Contracts {
 
 	@Column(name = "dept_id")
 	private Integer deptId;
-	
+
 	@Column(name = "CONTRACT_NO")
 	private Integer conNo;
+
 	@Column(name = "sent")
 	private Integer sent;
-	
+
 	@Formula("(select c.customer_name from customers c where c.id = customer_id)")
 	private String customerName;
+
+	@Transient
+	private boolean licence;
+
+	@Transient
+	private boolean torba;
+
+	@Transient
+	private boolean airCon;
+
 	public Integer getId() {
 		return id;
 	}
@@ -174,6 +190,30 @@ public class Contracts {
 
 	public void setSent(Integer sent) {
 		this.sent = sent;
+	}
+
+	public boolean isLicence() {
+		return licence;
+	}
+
+	public void setLicence(boolean licence) {
+		this.licence = licence;
+	}
+
+	public boolean isTorba() {
+		return torba;
+	}
+
+	public void setTorba(boolean torba) {
+		this.torba = torba;
+	}
+
+	public boolean isAirCon() {
+		return airCon;
+	}
+
+	public void setAirCon(boolean airCon) {
+		this.airCon = airCon;
 	}
 
 }

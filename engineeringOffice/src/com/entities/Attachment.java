@@ -9,22 +9,23 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="attachments")
+@Table(name = "attachments")
 public class Attachment {
 	@Id
 	@GenericGenerator(name = "generator", strategy = "increment")
 	@GeneratedValue(generator = "generator")
-	@Column(name="id")
+	@Column(name = "id")
 	private Integer id;
-	
-	@Column(name="att_size")
+
+	@Column(name = "att_size")
 	private Double attSize;
-	
-	@Column(name="att_name")
+
+	@Column(name = "att_name")
 	private String attName;
 
 	@Column(name = "att_real_Name")
 	private String realName;
+
 	@Column(name = "trans_id")
 	private Integer transId;
 
@@ -67,6 +68,5 @@ public class Attachment {
 	public void setTransId(Integer transId) {
 		this.transId = transId;
 	}
-	
 
 }

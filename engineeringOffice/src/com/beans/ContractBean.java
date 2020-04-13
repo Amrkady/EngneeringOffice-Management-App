@@ -1,7 +1,10 @@
 package com.beans;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,12 +31,17 @@ public class ContractBean {
 	private Contracts contract;
 	private Date contractDate;
 	private CustomerModel cm = new CustomerModel();
-	private boolean status = false;
+	private boolean enablePrint = false;
 	private Integer conNo = new Integer(0);
 
 	@PostConstruct
 	public void init() {
-		contractDate = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar cal = Calendar.getInstance();
+		GregorianCalendar.getInstance().getTime();
+		contractDate = cal.getTime();
+
+		System.out.println(">>>>>>" + contractDate);
 		contract = new Contracts();
 		HttpServletRequest httprequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
@@ -61,25 +69,23 @@ public class ContractBean {
 			contract.setDayLetter(Utils.getDayDate(strDate));
 			contract.setConNo(conNo);
 			contract.setSent(0);
-			status = sandServiceImpl.addContract(contract);
+			sandServiceImpl.addContract(contract);
 			conNo++;
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Êã ÇáÇÖÇÝÉ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
-//			status = true;
-//			Utils.updateUIComponent("form:print");
+			enablePrint = true;
+			Utils.updateUIComponent("form:print");
 
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "áã ÊÊã ÇáÇÖÇÝÉ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
-			status = false;
 
 		}
 		return "";
 	}
 
 	public String save() {
-		addContract();
 		String reportName = "/reports/contractReport.jasper";
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("day", contract.getDayLetter());
@@ -94,6 +100,9 @@ public class ContractBean {
 		parameters.put("outDate", contract.getOutHijridate());
 		parameters.put("costByLet", contract.getAmountByLetter());
 		parameters.put("cost", contract.getAmount().toString());
+		parameters.put("licence", contract.isLicence() == true ? 1 : 0); // 0 for no or 1 for yes
+		parameters.put("torba", contract.isTorba() == true ? 1 : 0); // 0 for no or 1 for yes
+		parameters.put("airCon", contract.isAirCon() == true ? 1 : 0); // 0 for no or 1 for yes
 
 		String footerPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/reports/footer.png");
 		parameters.put("footer", footerPath);
@@ -136,20 +145,20 @@ public class ContractBean {
 		this.cm = cm;
 	}
 
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
 	public Integer getConNo() {
 		return conNo;
 	}
 
 	public void setConNo(Integer conNo) {
 		this.conNo = conNo;
+	}
+
+	public boolean isEnablePrint() {
+		return enablePrint;
+	}
+
+	public void setEnablePrint(boolean enablePrint) {
+		this.enablePrint = enablePrint;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.services;
 
+import java.util.List;
+
 import com.common.CommonDao;
 import com.entities.Attachment;
 import com.entities.Transaction;
@@ -31,8 +33,8 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public Attachment findAttachmentById(Integer attachId) {
-		Attachment att = (Attachment) commonDao.findEntityById(Attachment.class, attachId);
+	public List<Attachment> findAttachmentByTransId(Integer transId) {
+		List<Attachment> att = commonDao.findAttachmentsByTransId(transId);
 		return att;
 	}
 

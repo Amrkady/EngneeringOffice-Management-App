@@ -18,6 +18,17 @@
 			<h:form dir="rtl">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
 				<h1 style="color: #7CB342; text-align: center;">عقد</h1>
+				<div class="image-box-footer" align="left">
+					<h:panelGroup id="print" rendered="#{contractBean.enablePrint}">
+						<h:commandButton class="bb" value="طباعة"
+							disabled="#{!contractBean.enablePrint}"
+							style="width:10%; align:left" icon="ui-icon ui-icon-print "
+							action="#{contractBean.save}" onclick="this.form.target='_blank'"
+							 ajax="false">
+						</h:commandButton>
+					</h:panelGroup>
+				</div>
+
 				<div class="ui-g">
 					<div class="ui-g-1">
 						<h:outputLabel value="رقم العقد" />
@@ -26,70 +37,34 @@
 						<p:outputLabel value="#{contractBean.conNo}" />
 					</div>
 				</div>
-				<p:fieldset width="50%" legend="بيانات العقد ">
 
+				<p:fieldset width="50%" legend="بيانات العقد ">
 					<div class="ui-g">
-						<div class="ui-g-1">
-							<h:outputLabel value=" اليوم" />
-						</div>
-						<div class="ui-g-4">
-							<p:selectOneMenu id="trl" required="true"
-								requiredMessage="اختر اليوم"
-								value="#{contractBean.contract.dayLetter}" style="width:50%;"
-								dir="rtl">
-								<f:selectItem itemLabel="اختر" itemValue=""
-									noSelectionOption="true" />
-								<f:selectItem itemLabel="الاحد" itemValue="الاحد" />
-								<f:selectItem itemLabel="الاثنين" itemValue="الاثنين" />
-								<f:selectItem itemLabel="الثلاثاء" itemValue="الثلاثاء" />
-								<f:selectItem itemLabel="الاربعاء" itemValue="الاربعاء" />
-								<f:selectItem itemLabel="الخميس" itemValue="الخميس" />
-								<f:selectItem itemLabel="الجمعة" itemValue="الجمعة" />
-								<f:selectItem itemLabel="السبت" itemValue="السبت" />
-							</p:selectOneMenu>
-						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="التاريخ" />
 						</div>
 						<div class="ui-g-4">
-							<p:calendar style="width:100%" id="absenceDate" required="true"
+							<p:calendar style="width:100%" id="absenceDate" required="true" 
 								requiredMessage="ادخل التاريخ" pattern="dd/mm/yyyy"
 								value="#{contractBean.contractDate}">
-
 							</p:calendar>
 						</div>
-					</div>
-
-					<div class="ui-g">
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber 
-								validatorMessage="المبلغ يجب ان يكون ارقام فقط"
+							<p:inputNumber validatorMessage="المبلغ يجب ان يكون ارقام فقط"
 								value="#{contractBean.contract.amount}" required="true"
 								requiredMessage="ادخل المبلغ">
-
 							</p:inputNumber>
 						</div>
-						<div class="ui-g-1">
-							<h:outputLabel value="المبلغ بالحروف " />
-						</div>
-						<div class="ui-g-4">
-							<p:inputText 
-								value="#{contractBean.contract.amountByLetter}" required="true"
-								requiredMessage="ادخل المبلغ بالحروف ">
-
-							</p:inputText>
-						</div>
-
 					</div>
 					<div class="ui-g">
 						<div class="ui-g-1">
 							<h:outputLabel value="رقم الملكية" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText  value="#{contractBean.contract.ownerNo}"
+							<p:inputText value="#{contractBean.contract.ownerNo}"
 								required="true" requiredMessage="ادخل رقم الملكية ">
 
 							</p:inputText>
@@ -98,7 +73,7 @@
 							<h:outputLabel value="صادر بتاريخ " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText  id="hiri1"
+							<p:inputText id="hiri1"
 								value="#{contractBean.contract.outHijridate}"
 								onfocus="loadCalendar();" required="true"
 								requiredMessage="ادخل تاريخ الصادر "
@@ -114,16 +89,28 @@
 							<h:outputLabel value="صادر من جهة " />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText  value="#{contractBean.contract.outFrom}"
+							<p:inputText value="#{contractBean.contract.outFrom}"
 								required="true" requiredMessage="ادخل جهة الصادر ">
 							</p:inputText>
 						</div>
+
+						<div class="ui-g-2">
+							<h:outputLabel value="استخراج ترخيص" />
+						</div>
+						<div class="ui-g-1">
+							<p:selectBooleanCheckbox value="#{contractBean.contract.licence}">
+								<p:ajax update="build" />
+							</p:selectBooleanCheckbox>
+						</div>
+
 						<div class="ui-g-1">
 							<h:outputLabel value="خصائص المبنى " />
 						</div>
-						<div class="ui-g-4">
-							<p:selectOneMenu value="#{contractBean.contract.licenseType}"
-								style="width:50%;" dir="rtl" required="true"
+						<div class="ui-g-3">
+							<p:selectOneMenu id="build"
+								value="#{contractBean.contract.licenseType}" style="width:50%;"
+								dir="rtl" required="true"
+								disabled="#{!contractBean.contract.licence}"
 								requiredMessage="اختر خصائص المبنى ">
 								<f:selectItem itemLabel="اختر" itemValue=""
 									noSelectionOption="true" />
@@ -133,20 +120,32 @@
 								<f:selectItem itemLabel="دورين وملاحق علوية وأرضية"
 									itemValue="دورين وملاحق علوية وأرضية" />
 							</p:selectOneMenu>
-
+						</div>
+					</div>
+					<div class="ui-g">
+						<div class="ui-g-1">
+							<h:outputLabel value="اختبار التربة" />
+						</div>
+						<div class="ui-g-4">
+							<p:selectBooleanCheckbox value="#{contractBean.contract.torba}" />
+						</div>
+						<div class="ui-g-2">
+							<h:outputLabel value="مخطط تكييف" />
+						</div>
+						<div class="ui-g-4">
+							<p:selectBooleanCheckbox value="#{contractBean.contract.airCon}" />
 						</div>
 
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<h:commandButton class="bb" value=" حفظ و طباعة"
-							style="width:10%; align:left" icon="ui-icon ui-icon-print "
-							action="#{contractBean.save}" onclick="this.form.target='_blank'"
-							id="print" ajax="false">
+						<h:commandButton class="bb" value="حفظ"
+							style="width:10%; align:left"
+							action="#{contractBean.addContract}">
 						</h:commandButton>
 						<p:spacer width="10"></p:spacer>
-						<h:commandButton class="bb" value="انشاء سند قبض " immediate="true"
-							action="bills"    style="width:10%; align:left">
+						<h:commandButton class="bb" value="انشاء سند قبض "
+							immediate="true" action="bills" style="width:10%; align:left">
 						</h:commandButton>
 					</div>
 				</p:fieldset>

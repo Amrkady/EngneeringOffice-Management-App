@@ -9,14 +9,14 @@ import java.net.URLConnection;
 public class FtpTransferFile {
 	static String user = "";
 	static String pass = "";
-	static String host = "192.168.100.9";
+	static String host = "ftp://192.168.100.9:21/";
 
 	public static String uploadFile(InputStream inputStream, String uploadPath) {
 //		String ftpUrl = "ftp://%s:%s@%s/%s";
 //		ftpUrl = String.format(ftpUrl, user, pass, host, uploadPath);
 		OutputStream outputStream = null;
 		try {
-			URL url = new URL("ftp://192.168.1.2:21/" + uploadPath + ";type=i");
+			URL url = new URL(host + uploadPath + ";type=i");
 			URLConnection conn = url.openConnection();
 			outputStream = conn.getOutputStream();
 			byte[] buffer = new byte[99999999];
@@ -36,7 +36,7 @@ public class FtpTransferFile {
 	public static InputStream getFileStream(String fileName) throws IOException {
 		InputStream inputStream = null;
 		URLConnection conn;
-		URL url = new URL("ftp://192.168.1.3:21/" + fileName + ";type=i");
+		URL url = new URL(host + fileName + ";type=i");
 		// ftpUrl = String.format(ftpUrl, user, pass, host, fileName);
 		try {
 			conn = url.openConnection();
@@ -47,6 +47,7 @@ public class FtpTransferFile {
 			return null;
 
 		}
+
 	}
 
 }

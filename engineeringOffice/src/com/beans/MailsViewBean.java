@@ -2,6 +2,8 @@ package com.beans;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -31,7 +33,7 @@ public class MailsViewBean {
 
 	private Transaction selectedMail = new Transaction();
 	Attachment attach = new Attachment();
-
+	List<Attachment> attachs = new ArrayList<Attachment>();
 	private StreamedContent file;
 
 	@PostConstruct
@@ -40,11 +42,11 @@ public class MailsViewBean {
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 		selectedMail = (Transaction) session.getAttribute("selectedMail");
 		if (selectedMail != null) {
-			attach = transactionServiceImpl.findAttachmentById(selectedMail.getAttachId());
+			attachs = transactionServiceImpl.findAttachmentByTransId(selectedMail.getTransId());
 		}
 	}
 
-	public StreamedContent findFile() {
+	public StreamedContent getFile(Attachment attach) {
 		InputStream stream = null;
 		StreamedContent file = null;
 		try {
@@ -89,12 +91,20 @@ public class MailsViewBean {
 	}
 
 	public StreamedContent getFile() {
-		file = findFile();
+		// file = findFile();
 		return file;
 	}
 
 	public void setFile(StreamedContent file) {
 		this.file = file;
+	}
+
+	public List<Attachment> getAttachs() {
+		return attachs;
+	}
+
+	public void setAttachs(List<Attachment> attachs) {
+		this.attachs = attachs;
 	}
 
 }

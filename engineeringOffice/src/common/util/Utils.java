@@ -974,7 +974,7 @@ public class Utils {
 		try {
 			for (AttachmentModel attachment : attachments) {
 
-			FtpTransferFile.uploadFile(attachment.getAttachStream(), attachment.getRealName());
+				FtpTransferFile.uploadFile(attachment.getAttachStream(), attachment.getRealName());
 			}
 			return true;
 		} catch (Exception e) {
@@ -983,4 +983,51 @@ public class Utils {
 		return false;
 	}
 
+	public static String getDayDate(String dateCalendar) {
+		try {
+			String day = new String();
+			// String myDate = HijriCalendarUtil.ConvertHijriTogeorgianDate(hijriCalendar);
+			Calendar cal = Calendar.getInstance();
+			DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+			Date date = format.parse(dateCalendar);
+			cal.setTime(date);
+			int x = cal.get(Calendar.DAY_OF_WEEK);
+			switch (x) {
+
+			case 1:
+				day = "«·«Õœ";
+				break;
+			case 2:
+				day = "«·« ‰Ì‰";
+
+				break;
+			case 3:
+				day = "«·À·«À«¡";
+				break;
+			case 4:
+				day = "«·«—»⁄«¡";
+				break;
+			case 5:
+				day = "«·Œ„Ì”";
+				break;
+
+			case 6:
+				day = "«·Ã„⁄…";
+				break;
+			case 7:
+				day = "«·”» ";
+				break;
+
+			default:
+				break;
+			}
+
+			return day;
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			return null;
+		}
+
+	}
 }
