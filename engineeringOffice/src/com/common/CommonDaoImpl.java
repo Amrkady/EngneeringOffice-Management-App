@@ -251,4 +251,14 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Attachment> findAttachmentsByTransId(Integer transId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Attachment.class);
+		criteria.add(Restrictions.eq("transId", transId));
+		List<Attachment> attachments = criteria.list();
+		return attachments;
+
+	}
 }

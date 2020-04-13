@@ -44,4 +44,6 @@ public List<Contracts> findContractsByDept(Integer depId);
 	public List<Bills> findBillsReceiveByDept(Integer depId);
 
 	public List<BillsPay> findBillsPayByDept(Integer depId);
+
+	List<Attachment> findAttachmentsByTransId(Integer transId);
 }
