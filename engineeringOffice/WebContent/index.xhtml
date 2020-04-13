@@ -54,7 +54,7 @@
 
 						<h:commandLink rendered="#{loginBean.flag}" action="login"
 							class="aa" style="font-size: medium;" value="تسجيل الدخول"></h:commandLink>
-						<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER">
+						<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER,ROLE_MANAGER">
 							<h:commandLink action="#{loginBean.logout}" class="aa"
 								style="font-size: medium;" value="تسجيل الخروج"></h:commandLink>
 						</secc:authorize>

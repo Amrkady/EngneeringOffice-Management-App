@@ -11,11 +11,12 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
-import common.util.Utils;
 import com.entities.Departments;
 import com.entities.Users;
 import com.services.DepartmentService;
 import com.services.UserService;
+
+import common.util.Utils;
 
 @ManagedBean(name = "deptBean")
 @ViewScoped
@@ -38,7 +39,7 @@ public class deptsBean {
 	public String getUserById(Integer usrId) {
 		if (usrId != null) {
 			Users us = userServiceImpl.findUserById(usrId);
-			return us.getName();
+			return us != null ? us.getName() : null;
 		}
 		return "";
 	}
@@ -46,7 +47,7 @@ public class deptsBean {
 	public String addDept() {
 		try {
 			departmentServiceImpl.addDepartment(dept);
-			FacesMessage msg = new FacesMessage("ÊãÊ ÇáÇÖÇÝÉ", "");
+			FacesMessage msg = new FacesMessage("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			depts = departmentServiceImpl.loadDepartments();
 			// update manager user = 1
@@ -55,7 +56,7 @@ public class deptsBean {
 			userServiceImpl.updateUser(us);
 
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("áã ÊÊã ÇáÇÖÇÝÉ", "");
+			FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -66,7 +67,7 @@ public class deptsBean {
 		if (deptD != null) {
 			try {
 				departmentServiceImpl.deleteDepartment(deptD);
-				FacesMessage msg = new FacesMessage("Êã ÇáÍÐÝ", "");
+				FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				depts = departmentServiceImpl.loadDepartments();
 				// update manager user = 0
@@ -74,7 +75,7 @@ public class deptsBean {
 				us.setManager(0);
 				userServiceImpl.updateUser(us);
 			} catch (Exception e) {
-				FacesMessage msg = new FacesMessage("áã íÊã ÇáÍÐÝ", "");
+				FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				e.printStackTrace();
 			}
@@ -87,14 +88,14 @@ public class deptsBean {
 			dept = (Departments) event.getObject();
 
 			departmentServiceImpl.updateDepartment(dept);
-			FacesMessage msg = new FacesMessage("Êã ÍÝÙ ÇáÊÚÏíá", "");
+			FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			// update manager user = 1
 			Users us = userServiceImpl.findUserById(dept.getDeptManager());
 			us.setManager(1);
 			userServiceImpl.updateUser(us);
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("áã íÊã ÍÝÙ ÇáÊÚÏíá", "");
+			FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -102,7 +103,7 @@ public class deptsBean {
 	}
 
 	public void onRowCancel(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Êã ÇáÛÇÁ ÇáÊÚÏíá", "");
+		FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 	}

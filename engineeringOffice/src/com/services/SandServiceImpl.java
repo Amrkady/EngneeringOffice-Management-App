@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.common.CommonDao;
 import com.entities.Bills;
+import com.entities.BillsPay;
 import com.entities.Contracts;
 
 public class SandServiceImpl implements SandService {
@@ -39,6 +40,19 @@ public class SandServiceImpl implements SandService {
 		return commonDao.findContractsByDept(deptId); 
 	}
 	@Override
+	public List<Bills> getBillsReceiveByDept(Integer deptId) {
+
+		return commonDao.findBillsReceiveByDept(deptId);
+	}
+
+	@Override
+	public List<Bills> getAllBillsReceive() {
+
+		List billsRecieve = commonDao.findAll(Bills.class);
+		return billsRecieve;
+	}
+
+	@Override
 	public Contracts loadContractByContNo(Integer contractNo)
 	{
 		return commonDao.loadContractByContNo(contractNo);
@@ -51,6 +65,19 @@ public class SandServiceImpl implements SandService {
 	@Override
 	public Integer getSandNo() {
 		return commonDao.findSandNo();
+	}
+
+	@Override
+	public List<BillsPay> getBillsPayByDept(Integer deptId) {
+
+		return commonDao.findBillsPayByDept(deptId);
+	}
+
+	@Override
+	public List<BillsPay> getAllBillsPay() {
+
+		List billsPay = commonDao.findAll(BillsPay.class);
+		return billsPay;
 	}
 
 }

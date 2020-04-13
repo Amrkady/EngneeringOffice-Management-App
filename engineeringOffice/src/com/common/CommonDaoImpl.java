@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.entities.Attachment;
 import com.entities.Bills;
+import com.entities.BillsPay;
 import com.entities.Contracts;
 import com.entities.Customers;
 import com.entities.Transaction;
@@ -169,6 +170,18 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
+	public List<Bills> findBillsReceiveByDept(Integer depId) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Bills.class);
+		criteria.add(Restrictions.eq("deptId", depId));
+		List<Bills> billsReceive = criteria.list();
+		return billsReceive;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
 		public Contracts loadContractByContNo(Integer contractNo)
 		{
 			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
@@ -223,6 +236,18 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		criteria.setProjection(Projections.count("id"));
 		Long id = (Long) criteria.uniqueResult();
 		return id.intValue();
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<BillsPay> findBillsPayByDept(Integer depId) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BillsPay.class);
+		criteria.add(Restrictions.eq("deptId", depId));
+		List<BillsPay> billsPay = criteria.list();
+		return billsPay;
 
 	}
 

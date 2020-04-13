@@ -125,24 +125,25 @@
 					</p:column>
 				</p:dataTable>
 			</h:form>
+			<h:form>
 			<p:dialog position="center" widgetVar="whsdlAdd" responsive="true"
 				hideEffect="explode" showEffect="explode" width="70%"
 				closable="true" dir="rtl" resizable="true" modal="true">
 				<h:panelGroup id="panelGroupAdd" width="70%">
-					<p:fieldset legend="بيانات المستخدم" width="70%">
+					
 						<div class="ui-g">
 							<div class="ui-g-2">
 								<h:outputLabel value=" الاسم" />
 							</div>
 							<div class="ui-g-4">
-								<p:inputText value="#{userBean.name}" />
+								<p:inputText value="#{userBean.usr.name}" />
 							</div>
 							<div class="ui-g-2">
 								<h:outputLabel value="القسم" />
 							</div>
 							<div class="ui-g-4">
-								<p:selectOneMenu id="deptList" class="form-control"
-									style="width:70%;" value="#{userBean.deptId}">
+								<p:selectOneMenu  class="form-control"
+									style="width:70%;" value="#{userBean.usr.deptId}">
 									<f:selectItem itemLabel="اخترالقسم" itemValue=""
 										noSelectionOption="true" />
 									<f:selectItems value="#{userBean.depts}" var="dept"
@@ -156,7 +157,7 @@
 								<h:outputLabel value="رمز الدخول" />
 							</div>
 							<div class="ui-g-4">
-								<p:inputText value="#{userBean.loginName}" required="true"
+								<p:inputText value="#{userBean.usr.loginName}" required="true"
 									requiredMessage="ادخل رمز الدخول">
 								</p:inputText>
 							</div>
@@ -164,7 +165,7 @@
 								<h:outputLabel value="الرقم السري " />
 							</div>
 							<div class="ui-g-4">
-								<p:password value="#{userBean.password}" required="true"
+								<p:password value="#{userBean.usr.password}" required="true"
 									requiredMessage="ادخل الرقم السري ">
 								</p:password>
 							</div>
@@ -175,13 +176,13 @@
 								<h:outputLabel value="رقم الجوال " />
 							</div>
 							<div class="ui-g-4">
-								<h:inputText value="#{userBean.phone}" />
+								<h:inputText value="#{userBean.usr.phone}" />
 							</div>
 							<div class="ui-g-2">
 								<h:outputLabel value="العنوان" />
 							</div>
 							<div class="ui-g-4">
-								<p:inputText value="#{userBean.address}" />
+								<p:inputText value="#{userBean.usr.address}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -194,17 +195,18 @@
 						</div>
 
 						<div class="iamge-box-footer" align="left">
-							<p:commandButton value="حفظ" icon="ui-icon ui-icon-save"
+							<p:commandButton  update="@form,form" value="حفظ" icon="ui-icon ui-icon-save"
 								process="@all" action="#{userBean.addUser}">
 							</p:commandButton>
 							<p:spacer height="4"></p:spacer>
-							<p:commandButton styleClass="orange-btn" value="عودة"
+							<p:commandButton   styleClass="orange-btn" value="عودة"
 								icon="ui-icon ui-icon-back" immediate="true"
 								onclick="PF('whsdlAdd').hide();" />
 						</div>
-					</p:fieldset>
+					
 				</h:panelGroup>
 			</p:dialog>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>
