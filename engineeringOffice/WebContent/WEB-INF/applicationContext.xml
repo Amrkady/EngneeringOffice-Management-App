@@ -90,7 +90,8 @@
 				 <value>com.entities.Departments</value>  
 				 <value>com.entities.OperationType</value>
 				 <value>com.entities.Transaction</value>
-				 <value>com.entities.Attachment</value>  
+				 <value>com.entities.Attachment</value>
+				 <value>com.entities.BillsPay</value>  
 
 			</list>
 		</property>

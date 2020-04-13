@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "bills")
-public class Bills {
+@Table(name = "bill_pay")
+public class BillsPay {
 
 	@Id
 	@GenericGenerator(name = "generator", strategy = "increment")
@@ -35,11 +35,10 @@ public class Bills {
 
 	@Column(name = "bill_reason")
 	private String billReason;
-	
+
 	@Column(name = "bill_type")
 	private String billType;
-	
-	
+
 	@Column(name = "dept_name")
 	private String deptName;
 
@@ -52,6 +51,8 @@ public class Bills {
 	@Column(name = "dept_id")
 	private Integer deptId;
 
+	@Column(name = "tax")
+	private Integer tax;
 
 	public Integer getId() {
 		return id;
@@ -149,5 +150,12 @@ public class Bills {
 		this.deptId = deptId;
 	}
 
-	
+	public Integer getTax() {
+		return tax;
+	}
+
+	public void setTax(Integer tax) {
+		this.tax = tax;
+	}
+
 }

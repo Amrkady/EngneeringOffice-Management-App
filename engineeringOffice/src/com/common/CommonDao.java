@@ -4,6 +4,8 @@ package com.common;
 import java.util.List;
 
 import com.entities.Attachment;
+import com.entities.Bills;
+import com.entities.BillsPay;
 import com.entities.Contracts;
 import com.entities.Customers;
 import com.entities.Transaction;
@@ -38,4 +40,8 @@ public List<Contracts> findContractsByDept(Integer depId);
 	public Integer saveTransaction(Transaction transaction);
 
 	Integer findSandNo();
+
+	public List<Bills> findBillsReceiveByDept(Integer depId);
+
+	public List<BillsPay> findBillsPayByDept(Integer depId);
 }
