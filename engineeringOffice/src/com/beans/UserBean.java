@@ -28,12 +28,7 @@ public class UserBean {
 	private List<Departments> depts;
 	private List<Users> users;
 	private Users user;
-	private String address;
-	private String name;
-	private String loginName;
-	private String password;
-	private String phone;
-	private Integer deptId;
+	private Users usr = new Users();
 	
 	private boolean MNG = false;
 
@@ -56,18 +51,22 @@ public class UserBean {
 	public String addUser() {
 		try {
 			if(MNG) {
-				user.setRoleId(1);
-			}else {
-				user.setRoleId(2);
+				usr.setManager(1);
+				usr.setRoleId(3);
+			} else {
+				usr.setManager(0);
+				usr.setRoleId(1);
 			}
-			user.setLoginName(user.getLoginName().toUpperCase());
-			userServiceImpl.addUser(user);
-			FacesMessage msg = new FacesMessage("ÊãÊ ÇáÇÖÇÝÉ", "");
+			usr.setLoginName(usr.getLoginName().toUpperCase());
+			userServiceImpl.addUser(usr);
+			FacesMessage msg = new FacesMessage("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			users = userServiceImpl.getAllUser();
 			Utils.closeDialog("whsdlAdd");
+			usr = new Users();
+			init();
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("áã ÊÊã ÇáÇÖÇÝÉ", "");
+			FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -75,15 +74,15 @@ public class UserBean {
 	}
 
 	public String deleteUser(Users userD) {
-		if (user != null) {
+		if (userD != null) {
 			try {
 				userServiceImpl.deleteUser(userD);
-				FacesMessage msg = new FacesMessage("Êã ÇáÍÐÝ", "");
+				FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				users = userServiceImpl.getAllUser();
 			
 			} catch (Exception e) {
-				FacesMessage msg = new FacesMessage("áã íÊã ÇáÍÐÝ", "");
+				FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				e.printStackTrace();
 			}
@@ -96,12 +95,11 @@ public class UserBean {
 			user = (Users) event.getObject();
 			user.setLoginName(user.getLoginName().toUpperCase());
 			userServiceImpl.updateUser(user);
-			FacesMessage msg = new FacesMessage("Êã ÍÝÙ ÇáÊÚÏíá", "");
+			FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
-			user = new Users();
 			// users = userServiceImpl.getAllUser();
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("áã íÊã ÍÝÙ ÇáÊÚÏíá", "");
+			FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -109,7 +107,7 @@ public class UserBean {
 	}
 
 	public void onRowCancel(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Êã ÇáÛÇÁ ÇáÊÚÏíá", "");
+		FacesMessage msg = new FacesMessage("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 	}
@@ -117,6 +115,11 @@ public class UserBean {
 	public void showdlAdd() {
 		Utils.openDialog("whsdlAdd");
 
+	}
+
+	public void update() {
+		init();
+		usr = new Users();
 	}
 
 	public List<Users> getUsers() {
@@ -167,53 +170,16 @@ public class UserBean {
 		MNG = mNG;
 	}
 
-	public String getAddress() {
-		return address;
+	public Users getUsr() {
+		return usr;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setUsr(Users usr) {
+		this.usr = usr;
 	}
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	public String getLoginName() {
-		return loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public Integer getDeptId() {
-		return deptId;
-	}
-
-	public void setDeptId(Integer deptId) {
-		this.deptId = deptId;
-	}
 
 
 }
