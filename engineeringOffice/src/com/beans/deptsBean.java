@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
+import com.common.Constant;
 import com.entities.Departments;
 import com.entities.Users;
 import com.services.DepartmentService;
@@ -52,6 +53,7 @@ public class deptsBean {
 			depts = departmentServiceImpl.loadDepartments();
 			// update manager user = 1
 			Users us = userServiceImpl.findUserById(dept.getDeptManager());
+			us.setRoleId(Constant.ROLE_MANAGER);
 			us.setManager(1);
 			userServiceImpl.updateUser(us);
 
@@ -93,6 +95,7 @@ public class deptsBean {
 			// update manager user = 1
 			Users us = userServiceImpl.findUserById(dept.getDeptManager());
 			us.setManager(1);
+			us.setRoleId(Constant.ROLE_MANAGER);
 			userServiceImpl.updateUser(us);
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage("�� ��� ��� �������", "");

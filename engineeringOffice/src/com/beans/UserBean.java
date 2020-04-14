@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
+import com.common.Constant;
 import com.entities.Departments;
 import com.entities.Users;
 import com.services.DepartmentService;
@@ -52,10 +53,10 @@ public class UserBean {
 		try {
 			if(MNG) {
 				usr.setManager(1);
-				usr.setRoleId(3);
+				usr.setRoleId(Constant.ROLE_ADMIN);
 			} else {
 				usr.setManager(0);
-				usr.setRoleId(1);
+				usr.setRoleId(Constant.ROLE_USER);
 			}
 			usr.setLoginName(usr.getLoginName().toUpperCase());
 			userServiceImpl.addUser(usr);

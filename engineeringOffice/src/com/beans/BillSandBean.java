@@ -59,6 +59,7 @@ public class BillSandBean {
 			status = sandServiceImpl.addSand(billSnad);
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "�� �����", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
+			billSnad.setSanadNo(sandServiceImpl.getSandNo() + 1);
 //			status = true;
 //			Utils.updateUIComponent("form:print");
 
