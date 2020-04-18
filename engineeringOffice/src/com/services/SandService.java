@@ -1,5 +1,6 @@
 package com.services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.entities.Bills;
@@ -21,12 +22,12 @@ public interface SandService {
 
 	public Integer getSandNo();
 
-	public List<Bills> getBillsReceiveByDept(Integer deptId);
+	public List<Bills> getBillsReceiveByDeptDate(Integer deptId, Date dateFrom, Date dateTo);
 
 	public List<Bills> getAllBillsReceive();
 	
 
-	public List<BillsPay> getBillsPayByDept(Integer deptId);
+	public List<BillsPay> getBillsPayByDeptDate(Integer deptId, Date dateFrom, Date dateTo);
 
 	public List<BillsPay> getAllBillsPay();
 

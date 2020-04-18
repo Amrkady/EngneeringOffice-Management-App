@@ -1,5 +1,6 @@
 package com.common;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -170,10 +171,12 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<Bills> findBillsReceiveByDept(Integer depId) {
+	public List<Bills> findBillsReceiveByDeptDate(Integer depId, Date dateFrom, Date dateTo) {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Bills.class);
 		criteria.add(Restrictions.eq("deptId", depId));
+		criteria.add(Restrictions.ge("date", dateFrom));
+		criteria.add(Restrictions.le("date", dateTo));
 		List<Bills> billsReceive = criteria.list();
 		return billsReceive;
 
@@ -242,10 +245,12 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<BillsPay> findBillsPayByDept(Integer depId) {
+	public List<BillsPay> findBillsPayByDeptDate(Integer depId, Date dateFrom, Date dateTo) {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BillsPay.class);
 		criteria.add(Restrictions.eq("deptId", depId));
+		criteria.add(Restrictions.ge("date", dateFrom));
+		criteria.add(Restrictions.le("date", dateTo));
 		List<BillsPay> billsPay = criteria.list();
 		return billsPay;
 

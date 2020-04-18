@@ -1,5 +1,6 @@
 package com.services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.common.CommonDao;
@@ -40,9 +41,9 @@ public class SandServiceImpl implements SandService {
 		return commonDao.findContractsByDept(deptId); 
 	}
 	@Override
-	public List<Bills> getBillsReceiveByDept(Integer deptId) {
+	public List<Bills> getBillsReceiveByDeptDate(Integer deptId, Date dateFrom, Date dateTo) {
 
-		return commonDao.findBillsReceiveByDept(deptId);
+		return commonDao.findBillsReceiveByDeptDate(deptId, dateFrom, dateTo);
 	}
 
 	@Override
@@ -68,9 +69,9 @@ public class SandServiceImpl implements SandService {
 	}
 
 	@Override
-	public List<BillsPay> getBillsPayByDept(Integer deptId) {
+	public List<BillsPay> getBillsPayByDeptDate(Integer deptId, Date dateFrom, Date dateTo) {
 
-		return commonDao.findBillsPayByDept(deptId);
+		return commonDao.findBillsPayByDeptDate(deptId, dateFrom, dateTo);
 	}
 
 	@Override
