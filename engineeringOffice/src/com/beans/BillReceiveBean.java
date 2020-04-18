@@ -70,7 +70,7 @@ public class BillReceiveBean {
 				billsPay = sandServiceImpl.getBillsPayByDeptDate(departmentId, dateFrom, dateTo);
 
 				for (int i = 0; i < billsRecieve.size(); i++) {
-					totalWithoutTax += billsRecieve.get(i).getAmountPay();
+					totalWithoutTax += billsRecieve.get(i).getAmountPay().doubleValue();
 				}
 				commision = totalWithoutTax * 5 / 100.0;
 
@@ -100,9 +100,10 @@ public class BillReceiveBean {
 
 			billPay = billsPay.get(i);
 			if (billPay.getTax() == 0) {
-				totalBillsPay += billPay.getAmountPay();
+				totalBillsPay += billPay.getAmountPay().doubleValue();
 			} else if (billPay.getTax() == 1) {
-				totalBillsPay += (billPay.getAmountPay()) - ((billPay.getAmountPay() / 1.05) * 0.05);
+				totalBillsPay += (billPay.getAmountPay()).doubleValue()
+						- ((billPay.getAmountPay().doubleValue() / 1.05) * 0.05);
 			}
 		}
 
@@ -114,12 +115,12 @@ public class BillReceiveBean {
 		for (int i = 0; i < billsRecieve.size(); i++) {
 			bill = billsRecieve.get(i);
 			if (bill.getTax() == 0) {
-				total += bill.getAmountPay();
+				total += bill.getAmountPay().doubleValue();
 			} else if (bill.getTax() == 1) {
-				total += (bill.getAmountPay()) - ((bill.getAmountPay() * 0.05) / 1.05);
+				total += (bill.getAmountPay().doubleValue()) - ((bill.getAmountPay().doubleValue() * 0.05) / 1.05);
 			}
 
-			totalRest += billsRecieve.get(i).getAmountRest();
+			totalRest += billsRecieve.get(i).getAmountRest().doubleValue();
 		}
 
 	}
