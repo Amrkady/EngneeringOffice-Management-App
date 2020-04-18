@@ -1,5 +1,7 @@
 package com.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,6 +55,9 @@ public class BillsPay {
 
 	@Column(name = "tax")
 	private Integer tax;
+
+	@Column(name = "sysdate")
+	private Date date;
 
 	public Integer getId() {
 		return id;
@@ -156,6 +161,14 @@ public class BillsPay {
 
 	public void setTax(Integer tax) {
 		this.tax = tax;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

@@ -1,6 +1,7 @@
 
 package com.common;
 
+import java.util.Date;
 import java.util.List;
 
 import com.entities.Attachment;
@@ -41,9 +42,9 @@ public List<Contracts> findContractsByDept(Integer depId);
 
 	Integer findSandNo();
 
-	public List<Bills> findBillsReceiveByDept(Integer depId);
+	public List<Bills> findBillsReceiveByDeptDate(Integer depId, Date dateFrom, Date dateTo);
 
-	public List<BillsPay> findBillsPayByDept(Integer depId);
+	public List<BillsPay> findBillsPayByDeptDate(Integer depId, Date dateFrom, Date dateTo);
 
 	List<Attachment> findAttachmentsByTransId(Integer transId);
 }

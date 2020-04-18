@@ -7,109 +7,226 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:secc="http://www.springframework.org/security/tags">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
 </h:head>
 <ui:composition template="/template1.xhtml">
 	<ui:define name="content">
 
 
-	<h:form id="vcs">
-		<p:messages autoUpdate="true" closable="true"></p:messages>
-		
-		<div class="card card-w-title" dir="rtl">
-			<h1 style="color: #7CB342; text-align: center;">
-				سندات القبض<span class="fa fa-fw fa-clock-o"></span>
-			</h1>
-			<br /> 
-			<!-- 			<div class="ui-g"> -->
-			<!-- 								<div class="ui-g-2"> -->
-			<!-- 			<p:commandButton icon="ui-icon ui-icon-search" -->
-			<!-- 						action="#{employersBean.goToEmployeeDetails()}"> -->
+		<h:form id="vcs">
+			<p:messages autoUpdate="true" closable="true"></p:messages>
 
-			<!-- 					</p:commandButton> -->
-			<!-- 					</div></div> -->
-			<secc:authorize ifAnyGranted="ROLE_ADMIN">
-			<div class="ui-g">
-			<div class="ui-g-1">
-			<p:outputLabel value="اختر القسم"></p:outputLabel>
+			<div class="card card-w-title" dir="rtl">
+				<h1 style="color: #7CB342; text-align: center;">
+					سندات القبض<span class="fa fa-fw fa-clock-o"></span>
+				</h1>
+				<br />
+				<!-- 			<div class="ui-g"> -->
+				<!-- 								<div class="ui-g-2"> -->
+				<!-- 			<p:commandButton icon="ui-icon ui-icon-search" -->
+				<!-- 						action="#{employersBean.goToEmployeeDetails()}"> -->
+
+				<!-- 					</p:commandButton> -->
+				<!-- 					</div></div> -->
+
+				<div class="ui-g" style="margin-bottom: 70px;">
+					<secc:authorize ifAnyGranted="ROLE_ADMIN">
+						<div class="ui-g-1">
+							<p:outputLabel value="اختر القسم"></p:outputLabel>
+						</div>
+						<div class="ui-g-3">
+
+							<p:selectOneMenu style="margin-bottom:70px;width:100%"
+								value="#{billReceiveBean.departmentId}">
+								<f:selectItem itemLabel="اختر القسم"></f:selectItem>
+
+								<f:selectItems value="#{billReceiveBean.depts}" var="dept"
+									itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"
+									noSelectionValue="true"></f:selectItems>
+								<!-- 		<p:ajax process="@form" update="@form" immediate="true" listener="#{billReceiveBean.update}"></p:ajax> -->
+							</p:selectOneMenu>
+
+						</div>
+					</secc:authorize>
+					<div class="ui-g-1">
+						<p:outputLabel value="من تاريخ"></p:outputLabel>
+					</div>
+					<div class="ui-g-2">
+						<p:calendar style="width:100%" id="dtfrom" required="true"
+							requiredMessage="ادخل التاريخ" pattern="yyyy-MM-dd"
+							value="#{billReceiveBean.dateFrom}">
+							<!-- 								<p:ajax process="@form" event="blur" immediate="true" delay="100" update="vcs:cnt,vcs:calc"  -->
+							<!-- 									listener="#{billReceiveBean.update}"></p:ajax> -->
+						</p:calendar>
+					</div>
+					<div class="ui-g-1">
+						<p:outputLabel value="الي تاريخ"></p:outputLabel>
+					</div>
+					<div class="ui-g-2">
+
+						<p:calendar style="width:100%" id="dtto" required="true"
+							requiredMessage="ادخل التاريخ" pattern="yyyy-MM-dd"
+							value="#{billReceiveBean.dateTo}">
+							<!-- 								<p:ajax process="@form" immediate="true" event="blur" delay="100" update="vcs:cnt,vcs:calc"  -->
+							<!-- 									listener="#{billReceiveBean.update}"></p:ajax> -->
+						</p:calendar>
+
+					</div>
+					
+						<p:commandButton style="float:left;width:120px;" actionListener="#{billReceiveBean.update}"
+							process="@form" class="bb" value="استعلام"
+							update="vcs:cnt,vcs:calc">
+						</p:commandButton>
+
+					
+				</div>
+
+
+				<p:dataTable id="cnt" var="billReceive"
+					value="#{billReceiveBean.billsRecieve}" widgetVar="cellcnt"
+					paginatorPosition="bottom"
+					filteredValue="#{billReceiveBean.filtredBills}"
+					sortBy="#{billReceive.sanadNo}" sortOrder="descending" rows="13"
+					paginator="true"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+
+					
+					<p:column style="text-align:center" headerText="تاريخ السند">
+
+
+						<h:outputText value="#{billReceive.billDate}" />
+
+
+
+					</p:column>
+										
+					<p:column style="text-align:center" headerText="رقم السند">
+
+
+
+						<h:outputText value="#{billReceive.sanadNo}" />
+
+
+					</p:column>
+					<p:column style="text-align:center" headerText="اسم العميل">
+
+
+
+						<h:outputText value="#{billReceive.customerName}" />
+
+
+					</p:column>
+					
+
+					<p:column style="text-align:center" headerText="البيان">
+
+
+						<h:outputText value="#{billReceive.billReason}" />
+
+
+
+
+					</p:column>
+					
+					<p:column style="text-align:center" headerText="المبلغ المدفوع">
+
+
+						<h:outputText value="#{billReceive.amountPay}" />
+
+
+
+					</p:column>
+					<p:column style="text-align:center" headerText="المبلغ المتبقي ">
+
+
+						<h:outputText value="#{billReceive.amountRest}" />
+
+
+
+					</p:column>
+					<p:column style="text-align:center" headerText="الحالة">
+
+
+						<h:outputText value="#{billReceive.tax==1?'شامل الضريبة':'غير شامل الضريبة'}" />
+
+
+
+					</p:column>
+					<p:columnGroup type="footer">
+
+						<p:row>
+							<p:column colspan="4" footerText="المجموع" />
+							<p:column colspan="1" footerText="#{billReceiveBean.totalWithoutTax}" />
+							<p:column colspan="1" footerText="#{billReceiveBean.totalRest}" />
+							<p:column colspan="1" footerText="" />
+						</p:row>
+
+					</p:columnGroup>
+
+
+
+				</p:dataTable>
+				<h:panelGroup id="calc">
+					<div class="ui-g">
+						<div class="ui-g-2">
+							<h4 style="color: #7CB342; text-align: center;">
+								<p:outputLabel value="نسبة ابو خيال"></p:outputLabel>
+							</h4>
+
+						</div>
+						
+						<div class="ui-g-4">
+							<p:outputLabel value="#{billReceiveBean.commision}"></p:outputLabel>
+						</div>
+						<div class="ui-g-2">
+							<h4 style="color: #7CB342; text-align: center;">
+								<p:outputLabel value="مصروفات القسم"></p:outputLabel>
+							</h4>
+
+						</div>
+						
+												<div class="ui-g-4">
+							<p:outputLabel value="#{billReceiveBean.totalBillsPay}"></p:outputLabel>
+						</div>
+						<div class="ui-g-2">
+							<h4 style="color: #7CB342; text-align: center;">
+								<p:outputLabel value="الاجمالي بعد خصم الضرائب"></p:outputLabel>
+							</h4>
+
+						</div>
+						<div class="ui-g-4">
+							<p:outputLabel value="#{billReceiveBean.total}"></p:outputLabel>
+						</div>
+						
+						<div class="ui-g-2">
+							<h4 style="color: #7CB342; text-align: center;">
+								<p:outputLabel value="صافي ايرادات القسم"></p:outputLabel>
+							</h4>
+
+						</div>
+						
+						<div class="ui-g-4">
+							<p:outputLabel value="#{billReceiveBean.deptIncome}"></p:outputLabel>
+						</div>
+						
+						<div class="ui-g-2">
+							<h4 style="color: #7CB342; text-align: center;">
+								<p:outputLabel value="نسبة رئيس القسم"></p:outputLabel>
+							</h4>
+
+						</div>
+						<div class="ui-g-4">
+							<p:outputLabel value="#{billReceiveBean.mngCommision}"></p:outputLabel>
+						</div>
+
+					</div>
+				</h:panelGroup>
 			</div>
-			<div class="ui-g-5" >
-			
-		<p:selectOneMenu style="margin-bottom:70px;width:50%" value="#{billReceiveBean.departmentId}" >
-		<f:selectItem itemLabel="اختر القسم"></f:selectItem>
-		<f:selectItem itemLabel="الكل" itemValue="0" ></f:selectItem>
-		<f:selectItems value="#{billReceiveBean.depts}" var="dept"
-		itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}" noSelectionValue="true"
-		></f:selectItems>
-		<p:ajax listener="#{billReceiveBean.update}" update="@form" process="@this"></p:ajax>
-		</p:selectOneMenu>
-		
-		</div>
-			</div>
-		</secc:authorize>	
-		
-			<p:dataTable id="cnt" var="billReceive"
-				value="#{billReceiveBean.billsRecieve}" 
-				widgetVar="cellcnt" paginatorPosition="bottom"
-				filteredValue="#{billReceiveBean.filtredBills}"
-				sortBy="#{billReceive.sanadNo}" sortOrder="descending" rows="13"
-				paginator="true"
-				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-				
-				
-
-				<p:column style="text-align:center" headerText="اسم صاحب السند">
-				
-					
-						
-							<h:outputText value="#{billReceive.customerName}" />
-						
-					
-				</p:column>
-				
-				<p:column style="text-align:center" headerText="نوع السند">
-					
-						
-							<h:outputText
-								value="#{billReceive.billReason}" />
-							
-						
-						
-					
-				</p:column>
-				<p:column style="text-align:center" headerText="تاريخ السند">
-					
-						
-							<h:outputText value="#{billReceive.billDate}" />
-						
-						
-					
-				</p:column>
-				<p:column style="text-align:center" headerText="المبلغ المدفوع">
-					
-						
-							<h:outputText value="#{billReceive.amountPay}"/>
-						
-						
-					
-				</p:column>
-				<p:columnGroup type="footer">
-            
-            <p:row>
-                <p:column colspan="3"  footerText="المجموع" />
-                <p:column colspan="1" footerText="#{billReceiveBean.total}" />
-            </p:row>
-            
-        </p:columnGroup>
-								
-				
-				
-			</p:dataTable>
-		</div>
-	</h:form>
+		</h:form>
 
 
-</ui:define>
+	</ui:define>
 </ui:composition>
 </html>

@@ -56,6 +56,7 @@ public class BillSandBean {
 				strDate = sdfDate.format(sandDate);
 			}
 			billSnad.setBillDate(strDate);
+			billSnad.setDate(new Date("yyyy-MM-dd"));
 			status = sandServiceImpl.addSand(billSnad);
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "�� �����", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
