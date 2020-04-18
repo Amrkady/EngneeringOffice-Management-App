@@ -14,10 +14,12 @@ public interface SandService {
 	boolean addContract(Contracts contract);
 
 	Integer getContractNo();
-	
+
 	public List<Contracts> getContractsByDept(Integer deptId);
+
 //	public Contracts getContractById(Integer id);
 	public Contracts loadContractByContNo(Integer contractNo);
+
 	public boolean updateContract(Contracts contract);
 
 	public Integer getSandNo();
@@ -25,10 +27,17 @@ public interface SandService {
 	public List<Bills> getBillsReceiveByDeptDate(Integer deptId, Date dateFrom, Date dateTo);
 
 	public List<Bills> getAllBillsReceive();
-	
 
 	public List<BillsPay> getBillsPayByDeptDate(Integer deptId, Date dateFrom, Date dateTo);
 
 	public List<BillsPay> getAllBillsPay();
+
+	public List<BillsPay> getBillsPayByDept(Integer deptId);
+
+	boolean addBillsPay(BillsPay bill);
+
+	boolean updateBillsPay(BillsPay bill);
+
+	Integer findBillsSandNo();
 
 }

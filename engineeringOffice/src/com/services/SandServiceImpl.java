@@ -29,35 +29,33 @@ public class SandServiceImpl implements SandService {
 	public boolean addContract(Contracts contract) {
 		return commonDao.saveObject(contract);
 	}
-	
+
 	@Override
 	public Integer getContractNo() {
 		return commonDao.findContractNo();
 	}
-	
+
 	@Override
-	public List<Contracts> getContractsByDept(Integer deptId){
-		 
-		return commonDao.findContractsByDept(deptId); 
+	public List<Contracts> getContractsByDept(Integer deptId) {
+		return commonDao.findContractsByDept(deptId);
 	}
+
 	@Override
 	public List<Bills> getBillsReceiveByDeptDate(Integer deptId, Date dateFrom, Date dateTo) {
-
 		return commonDao.findBillsReceiveByDeptDate(deptId, dateFrom, dateTo);
 	}
 
 	@Override
 	public List<Bills> getAllBillsReceive() {
-
 		List billsRecieve = commonDao.findAll(Bills.class);
 		return billsRecieve;
 	}
 
 	@Override
-	public Contracts loadContractByContNo(Integer contractNo)
-	{
+	public Contracts loadContractByContNo(Integer contractNo) {
 		return commonDao.loadContractByContNo(contractNo);
 	}
+
 	@Override
 	public boolean updateContract(Contracts contract) {
 		return commonDao.updateObject(contract);
@@ -70,15 +68,32 @@ public class SandServiceImpl implements SandService {
 
 	@Override
 	public List<BillsPay> getBillsPayByDeptDate(Integer deptId, Date dateFrom, Date dateTo) {
-
 		return commonDao.findBillsPayByDeptDate(deptId, dateFrom, dateTo);
 	}
 
 	@Override
 	public List<BillsPay> getAllBillsPay() {
-
 		List billsPay = commonDao.findAll(BillsPay.class);
 		return billsPay;
 	}
 
+	@Override
+	public List<BillsPay> getBillsPayByDept(Integer deptId) {
+		return commonDao.findBillsPayByDept(deptId);
+	}
+
+	@Override
+	public boolean addBillsPay(BillsPay bill) {
+		return commonDao.saveObject(bill);
+	}
+
+	@Override
+	public boolean updateBillsPay(BillsPay bill) {
+		return commonDao.updateObject(bill);
+	}
+
+	@Override
+	public Integer findBillsSandNo() {
+		return commonDao.findBillsSandNo();
+	}
 }

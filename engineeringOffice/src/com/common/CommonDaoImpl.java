@@ -156,18 +156,19 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		return criteria.list();
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
-		@Override
-		@Transactional
-		public List<Contracts> findContractsByDept(Integer depId){
-			
-			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
-			criteria.add(Restrictions.eq("deptId", depId));
-			List<Contracts> contracts=criteria.list();
-			return contracts;
-	
-		}
+	@Override
+	@Transactional
+	public List<Contracts> findContractsByDept(Integer depId) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
+		criteria.add(Restrictions.eq("deptId", depId));
+		List<Contracts> contracts = criteria.list();
+		return contracts;
+
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
@@ -185,26 +186,25 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-		public Contracts loadContractByContNo(Integer contractNo)
-		{
-			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
+	public Contracts loadContractByContNo(Integer contractNo) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Contracts.class);
 		criteria.add(Restrictions.eq("conNo", contractNo));
-			Contracts contract=(Contracts) criteria.uniqueResult();
-			return contract;
-			
-		}
+		Contracts contract = (Contracts) criteria.uniqueResult();
+		return contract;
+
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<Users> findUsersByDept(Integer depId)
-	{
+	public List<Users> findUsersByDept(Integer depId) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Users.class);
 		criteria.add(Restrictions.eq("deptId", depId));
 		criteria.add(Restrictions.eq("manager", 0));
-		List<Users> users= criteria.list();
+		List<Users> users = criteria.list();
 		return users;
 	}
-	
+
 	@Override
 	@Transactional
 	public Integer saveAttachment(Attachment attach) {
@@ -266,4 +266,25 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		return attachments;
 
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<BillsPay> findBillsPayByDept(Integer depId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BillsPay.class);
+		criteria.add(Restrictions.eq("deptId", depId));
+		List<BillsPay> billsPay = criteria.list();
+		return billsPay;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public Integer findBillsSandNo() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BillsPay.class);
+		criteria.setProjection(Projections.count("id"));
+		Long id = (Long) criteria.uniqueResult();
+		return id.intValue();
+	}
+
 }
