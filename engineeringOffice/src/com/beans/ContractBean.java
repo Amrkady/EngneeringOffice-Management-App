@@ -36,7 +36,7 @@ public class ContractBean {
 
 	@PostConstruct
 	public void init() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyyy");
 		Calendar cal = Calendar.getInstance();
 		GregorianCalendar.getInstance().getTime();
 		contractDate = cal.getTime();
@@ -98,7 +98,6 @@ public class ContractBean {
 		parameters.put("buildDetails", contract.getLicenseType());
 		parameters.put("from", contract.getOutFrom());
 		parameters.put("outDate", contract.getOutHijridate());
-		parameters.put("costByLet", contract.getAmountByLetter());
 		parameters.put("cost", contract.getAmount().toString());
 		parameters.put("licence", contract.isLicence() == true ? 1 : 0); // 0 for no or 1 for yes
 		parameters.put("torba", contract.isTorba() == true ? 1 : 0); // 0 for no or 1 for yes

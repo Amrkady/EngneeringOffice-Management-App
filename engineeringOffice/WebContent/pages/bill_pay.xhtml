@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:secc="http://www.springframework.org/security/tags">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+</head>
+<h:body>
+	<ui:composition template="/template1.xhtml">
+		<ui:define name="content">
+			<h:form dir="rtl" id="form">
+				<p:messages autoUpdate="true" closable="true"></p:messages>
+				<h1 style="color: #7CB342; text-align: center;">سندات صرف</h1>
+				<div class="image-box-footer" align="left">
+
+					<p:commandButton id="cBadd" value="اضافة سند صرف" immediate="true"
+						icon="ui-icon ui-icon-plus" action="#{billPayBean.showdlAdd}"
+						update="@form">
+					</p:commandButton>
+				</div>
+				<br />
+				<secc:authorize ifAnyGranted="ROLE_ADMIN">
+					<div class="ui-g">
+						<div class="ui-g-1">
+							<p:outputLabel value="اختر القسم"></p:outputLabel>
+						</div>
+						<div class="ui-g-4">
+							<p:selectOneMenu style="width:50%"
+								value="#{billPayBean.departmentId}">
+								<f:selectItem itemLabel="اختر القسم" noSelectionValue="true"></f:selectItem>
+								<f:selectItems value="#{billPayBean.depts}" var="dept"
+									itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
+								<p:ajax listener="#{billPayBean.getBillsByDeptId}"
+									update="@form" process="@this"></p:ajax>
+							</p:selectOneMenu>
+
+						</div>
+					</div>
+				</secc:authorize>
+				<p:dataTable id="billTable" var="billPay"
+					value="#{billPayBean.bills}" paginatorPosition="bottom"
+					sortBy="#{billPay.sanadNo}" sortOrder="descending" rows="9"
+					paginator="true" emptyMessage="لا يوجد بيانات"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<p:column width="10%" style="text-align:center"
+						headerText="رقم السند">
+						<h:outputText value="#{billPay.sanadNo}" />
+					</p:column>
+					<p:column width="20%" style="text-align:center"
+						headerText="مكتوب باسم ">
+						<h:outputText value="#{billPay.customerName}" />
+					</p:column>
+					<p:column width="15%" style="text-align:center"
+						headerText="ذلك مقابل">
+						<h:outputText value="#{billPay.billReason}" />
+					</p:column>
+					<p:column width="15%" style="text-align:center"
+						headerText="تاريخ السند">
+						<h:outputText value="#{billPay.billDate}" />
+					</p:column>
+					<p:column width="10%" style="text-align:center"
+						headerText="المبلغ المدفوع">
+						<h:outputText value="#{billPay.amountPay}" />
+					</p:column>
+					<p:column width="10%" style="text-align:center"
+						headerText="تابع لقسم">
+						<h:outputText value="#{billPay.deptName}" />
+					</p:column>
+					<p:column width="10%" style="text-align:center" headerText="تعديل">
+						<p:commandButton id="cBa" value="تعديل" immediate="true"
+							 oncomplete="PF('whsdlAdd').show();"
+							action="#{billPayBean.update(billPay)}">
+						</p:commandButton>
+					</p:column>
+					<p:column width="10%" style="text-align:center" headerText="طباعة">
+						<p:commandButton value="طباعة"
+							action="#{billPayBean.print(billPay)}" ajax="false"
+							immediate="true" onclick="this.form.target='_blank'">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog position="center" widgetVar="whsdlAdd" responsive="true"
+					hideEffect="explode" showEffect="explode" width="70%" modal="true" dynamic="true"
+					closable="true" dir="rtl" resizable="true" >
+					<h:panelGroup id="panelGroupAdd" width="70%">
+						<p:fieldset width="50%" legend="بيانات السند ">
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value="رقم السند" />
+								</div>
+								<div id="sand" class="ui-g-4">
+									<p:outputLabel value="#{billPayBean.billsPay.sanadNo}"></p:outputLabel>
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="المبلغ" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputNumber
+										validatorMessage="يجب ان  يحتوي المبلغ علي ارقام فقط"
+										value="#{billPayBean.billsPay.amountPay}" required="true"
+										requiredMessage="ادخل المبلغ ">
+
+									</p:inputNumber>
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value="المتبقي" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputNumber validatorMessage="المتبقي يجب ان يكون ارقام فقط"
+										value="#{billPayBean.billsPay.amountRest}" required="true"
+										requiredMessage="ادخل المتبقى ">
+									</p:inputNumber>
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="التاريخ" />
+								</div>
+								<div class="ui-g-4">
+									<p:calendar styleClass="form-control" id="absenceDate"
+										pattern="dd/mm/yyyy" value="#{billPayBean.sandDate}"
+										required="true" requiredMessage="ادخل التاريخ ">
+									</p:calendar>
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value=" الاسم" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputText value="#{billPayBean.billsPay.customerName}" />
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="القسم" />
+								</div>
+								<div class="ui-g-4">
+									<p:selectOneMenu class="form-control" style="width:70%;"
+										value="#{billPayBean.billsPay.deptId}">
+										<f:selectItem itemLabel="اخترالقسم" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems value="#{billPayBean.depts}" var="dept"
+											itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
+									</p:selectOneMenu>
+								</div>
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value="وذلك مقابل" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputText value="#{billPayBean.billsPay.billReason}"
+										required="true" requiredMessage="ادخل السبب ">
+									</p:inputText>
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="طريقة الدفع" />
+								</div>
+								<div class="ui-g-4">
+
+									<p:selectOneMenu style="width:70%;" required="true"
+										requiredMessage="ادخل طريقة الدفع "
+										value="#{billPayBean.billsPay.billType}">
+										<f:selectItem itemLabel="اختر طريقة الدفع"
+											noSelectionOption="true"></f:selectItem>
+										<f:selectItem itemLabel="نقدا" itemValue="نقدا"></f:selectItem>
+										<f:selectItem itemLabel="شبكة" itemValue="شبكة"></f:selectItem>
+										<f:selectItem itemLabel="شيك" itemValue="شيك"></f:selectItem>
+										<f:selectItem itemLabel="تحويل" itemValue="تحويل"></f:selectItem>
+									</p:selectOneMenu>
+								</div>
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value="الضريبة" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputNumber value="#{billPayBean.billsPay.tax}" />
+									
+								</div>
+							</div>
+							<div class="iamge-box-footer" align="left">
+								<p:commandButton update="@form" value="حفظ"
+									icon="ui-icon ui-icon-save" process="@all" ajax="true"
+									action="#{billPayBean.save}">
+								</p:commandButton>
+								<p:spacer width="4" height="4"></p:spacer>
+								<p:commandButton styleClass="orange-btn" value="عودة"
+									icon="ui-icon ui-icon-back" immediate="true"
+									onclick="PF('whsdlAdd').hide();" />
+							</div>
+						</p:fieldset>
+					</h:panelGroup>
+				</p:dialog>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

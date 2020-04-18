@@ -1,5 +1,7 @@
 package com.entities;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +48,7 @@ public class Contracts {
 	private Integer nat_no;
 	// ������
 	@Column(name = "amount")
-	private Integer amount;
+	private BigDecimal amount;
 
 	@Column(name = "customer_id")
 	private Integer customerId;
@@ -144,11 +146,11 @@ public class Contracts {
 		this.nat_no = nat_no;
 	}
 
-	public Integer getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Integer amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 
