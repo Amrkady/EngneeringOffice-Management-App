@@ -18,6 +18,16 @@
 			<h:form dir="rtl" id="form">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
 				<h1 style="color: #7CB342; text-align: center;">سند قبض</h1>
+				<div class="image-box-footer" align="left">
+					<h:panelGroup id="print" rendered="#{sandBean.enablePrint}">
+						<h:commandButton class="bb" value="طباعة"
+							style="width:10%; align:left" icon="ui-icon ui-icon-print "
+							action="#{sandBean.save}" onclick="this.form.target='_blank'"
+							ajax="false">
+						</h:commandButton>
+					</h:panelGroup>
+				</div>
+
 				<p:fieldset width="50%" legend="بيانات السند ">
 
 					<div class="ui-g">
@@ -25,30 +35,34 @@
 							<h:outputLabel value="رقم السند" />
 						</div>
 						<div id="sand" class="ui-g-4">
-						<p:outputLabel value="#{sandBean.billSnad.sanadNo}"></p:outputLabel>
+							<p:outputLabel id="sndNo" value="#{sandBean.sandNo}"></p:outputLabel>
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المبلغ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber 
+							<p:inputNumber
 								validatorMessage="يجب ان  يحتوي المبلغ علي ارقام فقط"
 								value="#{sandBean.billSnad.amountPay}" required="true"
 								requiredMessage="ادخل المبلغ ">
-
+                             <p:ajax process="@this" ></p:ajax>
 							</p:inputNumber>
 						</div>
 					</div>
 
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<h:outputLabel value="المبلغ بالحروف " />
+							<h:outputLabel value="التاريخ" />
 						</div>
 						<div class="ui-g-4">
-							<p:inputText 
-								value="#{sandBean.billSnad.amountLetters}" required="true"
-								requiredMessage="ادخل المبلغ بالحروف ">
-							</p:inputText>
+
+							<p:calendar styleClass="form-control" id="absenceDate"
+								pattern="yyyy-mm-dd" value="#{sandBean.sandDate}"
+								navigator="true" locale="ar" pagedate="#{sandBean.sandDate}"
+								required="true" requiredMessage="ادخل التاريخ ">
+
+							</p:calendar>
+
 						</div>
 						<div class="ui-g-1">
 							<h:outputLabel value="المتبقي" />
@@ -67,7 +81,7 @@
 						<div class="ui-g-1">
 							<h:outputLabel value="وذلك مقابل" />
 						</div>
-_						<div class="ui-g-4">
+						<div class="ui-g-4">
 							<p:inputText class="aa" value="#{sandBean.billSnad.billReason}"
 								required="true" requiredMessage="ادخل السبب ">
 							</p:inputText>
@@ -76,52 +90,54 @@ _						<div class="ui-g-4">
 							<h:outputLabel value="طريقة الدفع" />
 						</div>
 						<div class="ui-g-4">
-							
-							<p:selectOneMenu style="width:50%;" required="true" requiredMessage="ادخل طريقة الدفع " value="#{sandBean.billSnad.billType}" >
-							<f:selectItem itemLabel="اختر طريقة الدفع"></f:selectItem>
-							<f:selectItem itemLabel="نقدا" itemValue="نقدا"></f:selectItem>
-							<f:selectItem itemLabel="شبكة" itemValue="شبكة"></f:selectItem>
-							<f:selectItem itemLabel="شيك" itemValue="شيك"></f:selectItem>
+
+							<p:selectOneMenu style="width:50%;" required="true"
+								requiredMessage="ادخل طريقة الدفع "
+								value="#{sandBean.billSnad.billType}">
+								<f:selectItem itemLabel="اختر طريقة الدفع"></f:selectItem>
+								<f:selectItem itemLabel="نقدا" itemValue="نقدا"></f:selectItem>
+								<f:selectItem itemLabel="شبكة" itemValue="شبكة"></f:selectItem>
+								<f:selectItem itemLabel="شيك" itemValue="شيك"></f:selectItem>
+								<f:selectItem itemLabel="تحويل" itemValue="تحويل"></f:selectItem>
 							</p:selectOneMenu>
 						</div>
 
 					</div>
 
 					<div class="ui-g">
-						<!-- 						<div class="ui-g-1"> -->
-						<!-- 							<h:outputLabel value="القسم" /> -->
-						<!-- 						</div> -->
-						<!-- 						<div class="ui-g-4"> -->
-						<!-- 							<p:inputText value="#{sandBean.billSnad.deptName}"> -->
-						<!-- 							</p:inputText> -->
-						<!-- 						</div> -->
 						<div class="ui-g-1">
-							<h:outputLabel value="التاريخ" />
+							<h:outputLabel value="يوجد ضريبة ؟" />
 						</div>
 						<div class="ui-g-4">
-
-							<p:calendar styleClass="form-control" id="absenceDate"
-								pattern="dd/mm/yyyy" value="#{sandBean.sandDate}"
-								required="true" requiredMessage="ادخل التاريخ ">
-
-							</p:calendar>
-
+							<p:selectBooleanCheckbox value="#{sandBean.vat}" >
+							<p:ajax update="d2 form:d4" listener="#{sandBean.updateCom}" />
+							</p:selectBooleanCheckbox>
 						</div>
-
+						<div class="ui-g-1">
+							<h:outputLabel id="d1" value="المبلغ شامل الضريبة ؟" />
+						</div>
+						<div class="ui-g-4">
+						<h:panelGroup  >
+							<p:selectBooleanCheckbox id="d2" value="#{sandBean.taxs}" disabled="#{!sandBean.vat}">
+							<p:ajax update="form:d4" listener="#{sandBean.updateTotal}" />
+							</p:selectBooleanCheckbox>
+						</h:panelGroup>
+						</div>
+					</div>
+					<div class="ui-g" >
+						<div class="ui-g-1">
+							<h:outputLabel id="d3" value="المبلغ الكلي" />
+						</div>
+						<div class="ui-g-4">
+							<h:outputLabel id="d4" value="#{sandBean.total}"  />
+						</div>
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<h:commandButton class="bb" value="حفظ و طباعة "
-							icon="ui-icon ui-icon-print " style="width:10%; align:left"
-							action="#{sandBean.save}" onclick="this.form.target='_blank'"
-							ajax="false"    id="print" >
-							
+						<h:commandButton class="bb" value="حفظ "
+							style="width:10%; align:left" action="#{sandBean.addBillOrSnad}">
 						</h:commandButton>
-<!-- 						<p:commandButton class="bb" value="حفظ "  id="save" update="print" -->
-<!-- 							icon="ui-icon ui-icon-plus " rendered="#{!sandBean.status}" -->
-<!-- 							action="#{sandBean.addBillOrSnad}"> -->
-<!-- 						</p:commandButton> -->
-						
+
 					</div>
 				</p:fieldset>
 

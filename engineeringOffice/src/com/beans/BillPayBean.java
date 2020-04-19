@@ -138,7 +138,7 @@ public class BillPayBean {
 				strDate = sdfDate.format(sandDate);
 			}
 			billsPay.setBillDate(strDate);
-			billsPay.setDate(new Date("yyyy-MM-dd"));
+			billsPay.setDate(new Date());
 			if (billsPay.getId() == null) {
 				sandServiceImpl.addBillsPay(billsPay);
 				billsPay = new BillsPay();

@@ -14,6 +14,7 @@
 	<parameter name="halaa" class="java.lang.Integer"/>
 	<parameter name="header" class="java.lang.String"/>
 	<parameter name="footer" class="java.lang.String"/>
+	<parameter name="tax" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT max(us.id) FROM sqldb.roles us;]]>
 	</queryString>
@@ -340,6 +341,13 @@
 				</textElement>
 				<text><![CDATA[ريال]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="172" y="54" width="130" height="18" uuid="fb59b44f-33b9-43ff-9662-c820c84720c4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tax}== 1 ? "شامل الضريبة":"غير شامل الضريبة"]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>

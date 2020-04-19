@@ -39,9 +39,9 @@ public class ContractBean {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyyy");
 		Calendar cal = Calendar.getInstance();
 		GregorianCalendar.getInstance().getTime();
-		contractDate = cal.getTime();
+		// contractDate = cal.getTime();
 
-		System.out.println(">>>>>>" + contractDate);
+		// System.out.println(">>>>>>" + contractDate);
 		contract = new Contracts();
 		HttpServletRequest httprequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();

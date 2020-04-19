@@ -15,16 +15,15 @@
 <h:body>
 	<ui:composition template="/template1.xhtml">
 		<ui:define name="content">
-			<h:form dir="rtl">
+			<h:form dir="rtl" id="form">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
 				<h1 style="color: #7CB342; text-align: center;">عقد</h1>
 				<div class="image-box-footer" align="left">
 					<h:panelGroup id="print" rendered="#{contractBean.enablePrint}">
 						<h:commandButton class="bb" value="طباعة"
-							
 							style="width:10%; align:left" icon="ui-icon ui-icon-print "
 							action="#{contractBean.save}" onclick="this.form.target='_blank'"
-							 ajax="false">
+							ajax="false">
 						</h:commandButton>
 					</h:panelGroup>
 				</div>
@@ -44,7 +43,7 @@
 							<h:outputLabel value="التاريخ" />
 						</div>
 						<div class="ui-g-4">
-							<p:calendar style="width:100%" id="absenceDate" required="true" 
+							<p:calendar style="width:100%" id="absenceDate" required="true"
 								requiredMessage="ادخل التاريخ" pattern="dd/mm/yyyy"
 								value="#{contractBean.contractDate}">
 							</p:calendar>
