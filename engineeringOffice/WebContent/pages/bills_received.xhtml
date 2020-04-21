@@ -30,7 +30,7 @@
 				<!-- 					</p:commandButton> -->
 				<!-- 					</div></div> -->
 
-				<div class="ui-g" style="margin-bottom: 70px;">
+				<div class="ui-g" style="margin-bottom: 40px;">
 					<secc:authorize ifAnyGranted="ROLE_ADMIN">
 						<div class="ui-g-1">
 							<p:outputLabel value="اختر القسم"></p:outputLabel>
@@ -73,12 +73,12 @@
 						</p:calendar>
 
 					</div>
-					
-						<p:commandButton style="float:left;width:120px;" actionListener="#{billReceiveBean.update}"
+					<div class="ui-g-1">					
+						<p:commandButton  actionListener="#{billReceiveBean.update}"
 							process="@form" class="bb" value="استعلام"
 							update="vcs:cnt,vcs:calc">
 						</p:commandButton>
-
+				</div>
 					
 				</div>
 
