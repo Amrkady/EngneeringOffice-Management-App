@@ -34,6 +34,7 @@ public class BillSandBean {
 	private boolean vat;
 	private boolean taxs;
 	private double total;
+	private double taxValue;
 
 	@PostConstruct
 	public void init() {
@@ -65,9 +66,15 @@ public class BillSandBean {
 			billSnad.setBillDate(strDate);
 			billSnad.setDate(new Date());
 			billSnad.setSanadNo(sandNo);
-			billSnad.setAmountPay(new BigDecimal(total));
-			if (taxs == true) {
+			if (total != 0.0) {
+				billSnad.setAmountPay(new BigDecimal(total));
+			} else {
+				total = billSnad.getAmountPay().doubleValue();
+			}
+			if (vat == true) {
 				billSnad.setTax(1);
+			} else {
+				billSnad.setTax(0);
 			}
 			status = sandServiceImpl.addSand(billSnad);
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Êã ÇáÍÝÙ", "");
@@ -76,6 +83,7 @@ public class BillSandBean {
 			enablePrint = true;
 			Utils.updateUIComponent("form:print");
 			Utils.updateUIComponent("form:sndNo");
+			Utils.updateUIComponent("form:d4");
 
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "áã íÊã ÇáÍÝÙ ÇÚÏ ÇáãÍÇæáÉ", "");
@@ -96,8 +104,16 @@ public class BillSandBean {
 			parameters.put("custName", billSnad.getCustomerName());
 
 			String reyal = String.valueOf(billSnad.getAmountPay());
-			reyal = reyal.substring(0, reyal.indexOf("."));
-			parameters.put("reyal", Integer.parseInt(reyal));
+			if (reyal.contains(".")) {
+				reyal = reyal.substring(0, reyal.indexOf("."));
+				parameters.put("reyal", Integer.parseInt(reyal));
+				String hall = String.valueOf(billSnad.getAmountPay());
+				hall = hall.substring(hall.indexOf(".") + 1);
+				parameters.put("halaa", Integer.parseInt(hall));
+			} else {
+				parameters.put("reyal", billSnad.getAmountPay().intValue());
+				parameters.put("halaa", 00);
+			}
 
 			parameters.put("costRest", billSnad.getAmountRest());
 			parameters.put("for", billSnad.getBillReason());
@@ -105,11 +121,10 @@ public class BillSandBean {
 			parameters.put("dept", billSnad.getDeptName());
 			parameters.put("date", billSnad.getBillDate());
 			parameters.put("costByLet", billSnad.getAmountPay());
-			parameters.put("tax", billSnad.getTax());
+			parameters.put("tax", billSnad.getAmountPay().doubleValue() - this.taxValue);
+			parameters.put("taxValue", this.taxValue);
 
-			String hall = String.valueOf(billSnad.getAmountPay());
-			hall = hall.substring(hall.indexOf(".") + 1);
-			parameters.put("halaa", Integer.parseInt(hall));
+
 
 			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
 					.getRealPath("/reports/footer.png");
@@ -129,17 +144,20 @@ public class BillSandBean {
 	public void updateCom() {
 		if (billSnad.getAmountPay() != null && vat == true) {
 			double taxCal = (5 / 100.0);
+			taxValue = billSnad.getAmountPay().doubleValue() * taxCal;
+			taxValue = Math.round(taxValue * 100) / 100.00d;
 			total = billSnad.getAmountPay().doubleValue() + billSnad.getAmountPay().doubleValue() * taxCal;
-			total = Math.round(total * 100) / 100.0d;
-			// billSnad.setAmountPay(new BigDecimal(total));
+			total = Math.round(total * 100) / 100.00d;
 			Utils.updateUIComponent("form:d4");
 			System.out.println(">>>>>>>>1111111111111");
 		} else {
 			if (billSnad.getAmountPay() != null) {
 				total = billSnad.getAmountPay().doubleValue();
-				total = Math.round(total * 100) / 100.0d;
+				total = Math.round(total * 100) / 100.00d;
+				taxValue = 0.0;
 			} else {
 				total = 0.0;
+				taxValue = 0.0;
 			}
 		}
 
@@ -233,6 +251,14 @@ public class BillSandBean {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public double getTaxValue() {
+		return taxValue;
+	}
+
+	public void setTaxValue(double taxValue) {
+		this.taxValue = taxValue;
 	}
 
 }

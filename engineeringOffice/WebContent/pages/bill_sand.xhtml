@@ -56,9 +56,9 @@
 						</div>
 						<div class="ui-g-4">
 
-							<p:calendar styleClass="form-control" id="absenceDate"
+							<p:calendar styleClass="form-control" 
 								pattern="yyyy-mm-dd" value="#{sandBean.sandDate}"
-								navigator="true" locale="ar" pagedate="#{sandBean.sandDate}"
+								navigator="true" locale="ar"
 								required="true" requiredMessage="ادخل التاريخ ">
 
 							</p:calendar>
@@ -110,23 +110,19 @@
 						</div>
 						<div class="ui-g-4">
 							<p:selectBooleanCheckbox value="#{sandBean.vat}" >
-							<p:ajax update="d2 form:d4" listener="#{sandBean.updateCom}" />
+							<p:ajax update="d4 d1" listener="#{sandBean.updateCom}" />
 							</p:selectBooleanCheckbox>
 						</div>
 						<div class="ui-g-1">
-							<h:outputLabel id="d1" value="المبلغ شامل الضريبة ؟" />
+							<h:outputLabel  value="قيمة الضريبة" />
 						</div>
 						<div class="ui-g-4">
-						<h:panelGroup  >
-							<p:selectBooleanCheckbox id="d2" value="#{sandBean.taxs}" disabled="#{!sandBean.vat}">
-							<p:ajax update="form:d4" listener="#{sandBean.updateTotal}" />
-							</p:selectBooleanCheckbox>
-						</h:panelGroup>
+						<h:outputLabel id="d1" value="#{sandBean.taxValue}" />
 						</div>
 					</div>
 					<div class="ui-g" >
 						<div class="ui-g-1">
-							<h:outputLabel id="d3" value="المبلغ الكلي" />
+							<h:outputLabel  value="المبلغ الكلي" />
 						</div>
 						<div class="ui-g-4">
 							<h:outputLabel id="d4" value="#{sandBean.total}"  />
