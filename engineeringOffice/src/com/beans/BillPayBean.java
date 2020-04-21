@@ -36,7 +36,15 @@ public class BillPayBean {
 	private BillsPay billsPay;
 	private Date sandDate;
 	private Integer departmentId;
-
+	private Date dateFrom;
+	private Date dateTo;
+	private boolean taxFlag;
+	private double totalWithoutTax;
+	private double totalRest;
+	private double taxValue;
+	private double totalAfterTax;
+	private BillsPay billPay;
+	private double billHasTax;
 	@PostConstruct
 	public void init() {
 		billsPay = new BillsPay();
@@ -44,12 +52,14 @@ public class BillPayBean {
 		if (curUser != null) {
 			if (curUser.getRoleId() == Constant.ROLE_MANAGER) {
 				/// GET BY DEPT
-				bills = sandServiceImpl.getBillsPayByDept(curUser.getDeptId());
-				Departments usrDept = departmentServiceImpl.findDeptById(curUser.getDeptId());
-				depts.add(usrDept);
+//				bills = sandServiceImpl.getBillsPayByDept(curUser.getDeptId());
+				// Departments usrDept =
+				// departmentServiceImpl.findDeptById(curUser.getDeptId());
+				// depts.add(usrDept);
+				departmentId = Utils.findCurrentUser().getDeptId();
 			} else if (curUser.getRoleId() == Constant.ROLE_ADMIN || curUser.getRoleId() == Constant.ROLE_ACCOUNTANT) {
 				// GET ALL
-				bills = sandServiceImpl.getAllBillsPay();
+//				bills = sandServiceImpl.getAllBillsPay();
 				depts = departmentServiceImpl.loadDepartments();
 				System.out.println("alllldepts");
 
@@ -60,7 +70,24 @@ public class BillPayBean {
 
 	public void getBillsByDeptId() {
 		if (departmentId != null) {
-			bills = sandServiceImpl.getBillsPayByDept(departmentId);
+			totalWithoutTax = 0;
+			totalRest = 0;
+			taxValue = 0;
+			billHasTax = 0;
+			totalAfterTax = 0;
+			bills = sandServiceImpl.getBillsPayByDeptDate(departmentId, dateFrom, dateTo);
+			for (int i = 0; i < bills.size(); i++) {
+				billPay = bills.get(i);
+				totalWithoutTax += billPay.getAmountPay().doubleValue();
+				totalRest += billPay.getAmountRest().doubleValue();
+				if (billPay.getTax() == 1) {
+					taxValue += (billPay.getAmountPay().doubleValue() / 1.05) * 0.05;
+					billHasTax += billPay.getAmountPay().doubleValue();
+
+				}
+
+			}
+			totalAfterTax = billHasTax - taxValue;
 		}
 	}
 
@@ -137,6 +164,7 @@ public class BillPayBean {
 			if (sandDate != null) {
 				strDate = sdfDate.format(sandDate);
 			}
+			billsPay.setTax(taxFlag == true ? 1 : 0);
 			billsPay.setBillDate(strDate);
 			billsPay.setDate(new Date());
 			if (billsPay.getId() == null) {
@@ -146,11 +174,11 @@ public class BillPayBean {
 				sandServiceImpl.updateBillsPay(billsPay);
 				billsPay = new BillsPay();
 			}
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Êã ÇáÍÝÙ ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			init();
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "áã íÊã ÇáÍÝÙ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -211,6 +239,46 @@ public class BillPayBean {
 
 	public void setBills(List<BillsPay> bills) {
 		this.bills = bills;
+	}
+
+	public Date getDateFrom() {
+		return dateFrom;
+	}
+
+	public void setDateFrom(Date dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+
+	public Date getDateTo() {
+		return dateTo;
+	}
+
+	public void setDateTo(Date dateTo) {
+		this.dateTo = dateTo;
+	}
+
+	public boolean isTaxFlag() {
+		return taxFlag;
+	}
+
+	public void setTaxFlag(boolean taxFlag) {
+		this.taxFlag = taxFlag;
+	}
+
+	public double getTotalWithoutTax() {
+		return totalWithoutTax;
+	}
+
+	public double getTotalRest() {
+		return totalRest;
+	}
+
+	public double getTaxValue() {
+		return taxValue;
+	}
+
+	public double getTotalAfterTax() {
+		return totalAfterTax;
 	}
 
 }
