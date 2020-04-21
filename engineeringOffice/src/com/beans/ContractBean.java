@@ -39,7 +39,7 @@ public class ContractBean {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyyy");
 		Calendar cal = Calendar.getInstance();
 		GregorianCalendar.getInstance().getTime();
-		// contractDate = cal.getTime();
+		contractDate = cal.getTime();
 
 		// System.out.println(">>>>>>" + contractDate);
 		contract = new Contracts();
@@ -71,13 +71,13 @@ public class ContractBean {
 			contract.setSent(0);
 			sandServiceImpl.addContract(contract);
 			conNo++;
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Êã ÇáÇÖÇÝÉ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			enablePrint = true;
 			Utils.updateUIComponent("form:print");
 
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "áã ÊÊã ÇáÇÖÇÝÉ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 

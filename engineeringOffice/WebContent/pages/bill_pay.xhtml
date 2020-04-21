@@ -27,56 +27,89 @@
 					</p:commandButton>
 				</div>
 				<br />
-				<secc:authorize ifAnyGranted="ROLE_ADMIN">
+				<h:panelGroup id="grb">
 					<div class="ui-g">
+					<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ACCOUNTANT">
 						<div class="ui-g-1">
 							<p:outputLabel value="اختر القسم"></p:outputLabel>
 						</div>
-						<div class="ui-g-4">
+						<div class="ui-g-3">
 							<p:selectOneMenu style="width:50%"
 								value="#{billPayBean.departmentId}">
 								<f:selectItem itemLabel="اختر القسم" noSelectionValue="true"></f:selectItem>
 								<f:selectItems value="#{billPayBean.depts}" var="dept"
 									itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
-								<p:ajax listener="#{billPayBean.getBillsByDeptId}"
-									update="@form" process="@this"></p:ajax>
+								
 							</p:selectOneMenu>
 
 						</div>
+						</secc:authorize>
+						<div class="ui-g-1">
+							<p:outputLabel value=" من تاريخ"></p:outputLabel>
+						</div>
+						<div class="ui-g-2">
+
+							<p:calendar style="width:100%" id="dtfrom" required="true"
+								requiredMessage="ادخل التاريخ" pattern="yyyy-MM-dd"
+								value="#{billPayBean.dateFrom}">
+
+							</p:calendar>
+						</div>
+
+						<div class="ui-g-1">
+							<p:outputLabel value="الي تاريخ "></p:outputLabel>
+						</div>
+						<div class="ui-g-2">
+							<p:calendar style="width:100%"  required="true"
+								requiredMessage="ادخل التاريخ" pattern="yyyy-MM-dd"
+								value="#{billPayBean.dateTo}">
+
+							</p:calendar>
+						</div>
+						<div class="ui-g-1">
+						<p:commandButton style="float:left;width:120px;" actionListener="#{billPayBean.getBillsByDeptId}"
+							process="form:grb" class="bb" value="استعلام"
+							update="@form">
+						</p:commandButton>
+						</div>
 					</div>
-				</secc:authorize>
+				</h:panelGroup>
 				<p:dataTable id="billTable" var="billPay"
 					value="#{billPayBean.bills}" paginatorPosition="bottom"
 					sortBy="#{billPay.sanadNo}" sortOrder="descending" rows="9"
 					paginator="true" emptyMessage="لا يوجد بيانات"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 					<p:column width="10%" style="text-align:center"
+						headerText="تاريخ السند">
+						<h:outputText value="#{billPay.billDate}" />
+					</p:column>
+					<p:column width="20%" style="text-align:center"
 						headerText="رقم السند">
 						<h:outputText value="#{billPay.sanadNo}" />
 					</p:column>
-					<p:column width="20%" style="text-align:center"
-						headerText="مكتوب باسم ">
+					<p:column width="15%" style="text-align:center"
+						headerText="اسم العميل">
 						<h:outputText value="#{billPay.customerName}" />
 					</p:column>
 					<p:column width="15%" style="text-align:center"
-						headerText="ذلك مقابل">
+						headerText="البيان">
 						<h:outputText value="#{billPay.billReason}" />
-					</p:column>
-					<p:column width="15%" style="text-align:center"
-						headerText="تاريخ السند">
-						<h:outputText value="#{billPay.billDate}" />
 					</p:column>
 					<p:column width="10%" style="text-align:center"
 						headerText="المبلغ المدفوع">
 						<h:outputText value="#{billPay.amountPay}" />
 					</p:column>
 					<p:column width="10%" style="text-align:center"
-						headerText="تابع لقسم">
-						<h:outputText value="#{billPay.deptName}" />
+						headerText="المبلغ المتبقي">
+						<h:outputText value="#{billPay.amountRest}" />
 					</p:column>
+					<p:column width="10%" style="text-align:center" headerText="الحالة">
+						<h:outputText value="#{billPay.tax==1?'شامل الضريبة':'غير شامل الضريبة'}" />
+					</p:column>
+					
 					<p:column width="10%" style="text-align:center" headerText="تعديل">
 						<p:commandButton id="cBa" value="تعديل" immediate="true"
-							 oncomplete="PF('whsdlAdd').show();"
+							oncomplete="PF('whsdlAdd').show();"
 							action="#{billPayBean.update(billPay)}">
 						</p:commandButton>
 					</p:column>
@@ -86,11 +119,24 @@
 							immediate="true" onclick="this.form.target='_blank'">
 						</p:commandButton>
 					</p:column>
-				</p:dataTable>
+					<p:columnGroup type="footer">
 
+						<p:row>
+							<p:column colspan="4" footerText="المجموع" />
+							<p:column colspan="1" footerText="#{billPayBean.totalWithoutTax}" />
+							<p:column colspan="1" footerText="#{billPayBean.totalRest}" />
+							<p:column colspan="1" footerText="" />
+							<p:column colspan="1" footerText="" />
+							<p:column colspan="1" footerText="" />
+						</p:row>
+
+					</p:columnGroup>
+					
+				</p:dataTable>
+				
 				<p:dialog position="center" widgetVar="whsdlAdd" responsive="true"
-					hideEffect="explode" showEffect="explode" width="70%" modal="true" dynamic="true"
-					closable="true" dir="rtl" resizable="true" >
+					hideEffect="explode" showEffect="explode" width="70%" modal="true"
+					dynamic="true" closable="true" dir="rtl" resizable="true">
 					<h:panelGroup id="panelGroupAdd" width="70%">
 						<p:fieldset width="50%" legend="بيانات السند ">
 							<div class="ui-g">
@@ -182,16 +228,16 @@
 
 							<div class="ui-g">
 								<div class="ui-g-1">
-									<h:outputLabel value="الضريبة" />
+									<h:outputLabel value="ضريبي" />
 								</div>
 								<div class="ui-g-4">
-									<p:inputNumber value="#{billPayBean.billsPay.tax}" />
-									
+									<p:selectBooleanCheckbox value="#{billPayBean.taxFlag}" />  
+
 								</div>
 							</div>
 							<div class="iamge-box-footer" align="left">
 								<p:commandButton update="@form" value="حفظ"
-									icon="ui-icon ui-icon-save" process="@all" ajax="true"
+									icon="ui-icon ui-icon-save" process="form:panelGroupAdd" ajax="true"
 									action="#{billPayBean.save}">
 								</p:commandButton>
 								<p:spacer width="4" height="4"></p:spacer>
@@ -202,7 +248,29 @@
 						</p:fieldset>
 					</h:panelGroup>
 				</p:dialog>
+				<h:panelGroup id="calcgrb">
+									<div class="ui-g">
+						<div class="ui-g-2">
+							<h4 style="color: #7CB342; text-align: center;">
+								<p:outputLabel value="قيمة الضريبة"></p:outputLabel>
+							</h4>
 
+						</div>
+						
+						<div class="ui-g-4">
+							<p:outputLabel value="#{billPayBean.taxValue}"></p:outputLabel>
+						</div>
+						<div class="ui-g-2">
+							<h4 style="color: #7CB342; text-align: center;">
+								<p:outputLabel value="المبلغ  بعد الضريبة"></p:outputLabel>
+							</h4>
+
+						</div>
+						<div class="ui-g-4">
+							<p:outputLabel value="#{billPayBean.totalAfterTax}"></p:outputLabel>
+						</div>
+				</div>
+		</h:panelGroup>
 			</h:form>
 		</ui:define>
 	</ui:composition>
