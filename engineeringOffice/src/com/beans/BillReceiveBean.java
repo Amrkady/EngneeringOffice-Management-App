@@ -90,7 +90,12 @@ public class BillReceiveBean {
 			}
 
 		}
-
+		commision = Math.round(commision * 100) / 100.00d;
+		total = Math.round(total * 100) / 100.00d;
+		totalWithoutTax = Math.round(totalWithoutTax * 100) / 100.00d;
+		deptIncome = Math.round(deptIncome * 100) / 100.00d;
+		mngCommision = Math.round(mngCommision * 100) / 100.00d;
+		totalBillsPay = Math.round(totalBillsPay * 100) / 100.00d;
 	}
 
 	private void findTotalPay() {

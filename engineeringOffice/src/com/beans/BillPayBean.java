@@ -87,7 +87,9 @@ public class BillPayBean {
 				}
 
 			}
+			taxValue = Math.round(taxValue * 100) / 100.00d;
 			totalAfterTax = billHasTax - taxValue;
+			totalAfterTax = Math.round(totalAfterTax * 100) / 100.00d;
 		}
 	}
 
