@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -149,6 +150,7 @@ public class BillPayBean {
 		billsPay = new BillsPay();
 		Integer sandNo = sandServiceImpl.findBillsSandNo();
 		billsPay.setSanadNo(sandNo == 0 ? 1 : sandNo + 1);
+		sandDate = GregorianCalendar.getInstance().getTime();
 		System.out.print(">>>>>>>>>>" + billsPay.getSanadNo());
 		Utils.openDialog("whsdlAdd");
 
@@ -175,6 +177,7 @@ public class BillPayBean {
 			} else {
 				sandServiceImpl.updateBillsPay(billsPay);
 				billsPay = new BillsPay();
+				sandDate = null;
 			}
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "�� ����� ", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
