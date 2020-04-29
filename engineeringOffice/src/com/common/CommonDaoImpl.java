@@ -287,4 +287,31 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		return id.intValue();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Bills> findBillsByDate(Date dateFrom, Date dateTo) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Bills.class);
+		criteria.add(Restrictions.ge("date", dateFrom));
+		criteria.add(Restrictions.le("date", dateTo));
+		List<Bills> bills = criteria.list();
+		return bills;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+
+	public List<BillsPay> findBillsPayByDate(Date dateFrom, Date dateTo) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BillsPay.class);
+		criteria.add(Restrictions.ge("date", dateFrom));
+		criteria.add(Restrictions.le("date", dateTo));
+		List<BillsPay> billsPay = criteria.list();
+		return billsPay;
+
+	}
+
 }

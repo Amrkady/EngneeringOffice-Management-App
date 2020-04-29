@@ -96,4 +96,16 @@ public class SandServiceImpl implements SandService {
 	public Integer findBillsSandNo() {
 		return commonDao.findBillsSandNo();
 	}
+
+	@Override
+	public List<Bills> getBillsByDate(Date dateFrom, Date dateTo) {
+		return commonDao.findBillsByDate(dateFrom, dateTo);
+
+	}
+
+	@Override
+	public List<BillsPay> getBillsPayByDate(Date dateFrom, Date dateTo) {
+		return commonDao.findBillsPayByDate(dateFrom, dateTo);
+
+	}
 }

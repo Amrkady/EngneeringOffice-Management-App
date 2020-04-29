@@ -44,6 +44,8 @@ public List<Contracts> findContractsByDept(Integer depId);
 
 	public List<Bills> findBillsReceiveByDeptDate(Integer depId, Date dateFrom, Date dateTo);
 
+	public List<Bills> findBillsByDate(Date dateFrom, Date dateTo);
+
 	public List<BillsPay> findBillsPayByDeptDate(Integer depId, Date dateFrom, Date dateTo);
 
 	List<Attachment> findAttachmentsByTransId(Integer transId);
@@ -51,5 +53,7 @@ public List<Contracts> findContractsByDept(Integer depId);
 	List<BillsPay> findBillsPayByDept(Integer depId);
 
 	Integer findBillsSandNo();
+
+	public List<BillsPay> findBillsPayByDate(Date dateFrom, Date dateTo);
 
 }

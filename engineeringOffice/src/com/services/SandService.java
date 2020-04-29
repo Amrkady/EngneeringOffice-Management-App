@@ -26,6 +26,8 @@ public interface SandService {
 
 	public List<Bills> getBillsReceiveByDeptDate(Integer deptId, Date dateFrom, Date dateTo);
 
+	public List<Bills> getBillsByDate(Date dateFrom, Date dateTo);
+
 	public List<Bills> getAllBillsReceive();
 
 	public List<BillsPay> getBillsPayByDeptDate(Integer deptId, Date dateFrom, Date dateTo);
@@ -39,5 +41,7 @@ public interface SandService {
 	boolean updateBillsPay(BillsPay bill);
 
 	Integer findBillsSandNo();
+
+	public List<BillsPay> getBillsPayByDate(Date dateFrom, Date dateTo);
 
 }
