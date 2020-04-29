@@ -3,6 +3,7 @@ package com.beans;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class BillSandBean {
 
 	@PostConstruct
 	public void init() {
-		// sandDate = GregorianCalendar.getInstance().getTime();
+		sandDate = GregorianCalendar.getInstance().getTime();
 		// System.out.println(">>>>.." + sandDate);
 		billSnad = new Bills();
 		HttpServletRequest httprequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
