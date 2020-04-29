@@ -91,7 +91,9 @@
 				 <value>com.entities.OperationType</value>
 				 <value>com.entities.Transaction</value>
 				 <value>com.entities.Attachment</value>
-				 <value>com.entities.BillsPay</value>  
+				 <value>com.entities.BillsPay</value>
+				 <value>com.entities.BankDeposit</value>
+				   
 
 			</list>
 		</property>

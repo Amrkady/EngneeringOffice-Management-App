@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import com.common.Constant;
+import com.entities.BankDeposit;
 import com.entities.Bills;
 import com.entities.BillsPay;
 import com.services.DepartmentService;
@@ -50,6 +52,7 @@ public class RevenueBean {
 	private double visa;
 	private double visaCommision;
 	private double taxValue;
+	private BankDeposit bnkDeposit = new BankDeposit();
 
 	public void load() {
 		cash = 0;
@@ -129,6 +132,15 @@ public class RevenueBean {
 		visaCommision = Math.round(visaCommision * 100) / 100.00d;
 		taxValue = Math.round(taxValue * 100) / 100.00d;
 
+	}
+
+	public void addDeposit() {
+
+		bnkDeposit.setDate(new Date());
+		sandServiceImpl.addBankDeposit(bnkDeposit);
+
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "تمت الاضافة بنجاح", "");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public String print(Bills selectedBill) {
@@ -372,6 +384,14 @@ public class RevenueBean {
 
 	public void setTaxValue(double taxValue) {
 		this.taxValue = taxValue;
+	}
+
+	public BankDeposit getBnkDeposit() {
+		return bnkDeposit;
+	}
+
+	public void setBnkDeposit(BankDeposit bnkDeposit) {
+		this.bnkDeposit = bnkDeposit;
 	}
 
 }

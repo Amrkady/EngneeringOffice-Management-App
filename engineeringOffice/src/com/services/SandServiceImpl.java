@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.common.CommonDao;
+import com.entities.BankDeposit;
 import com.entities.Bills;
 import com.entities.BillsPay;
 import com.entities.Contracts;
@@ -107,5 +108,10 @@ public class SandServiceImpl implements SandService {
 	public List<BillsPay> getBillsPayByDate(Date dateFrom, Date dateTo) {
 		return commonDao.findBillsPayByDate(dateFrom, dateTo);
 
+	}
+
+	@Override
+	public boolean addBankDeposit(BankDeposit bnkDeposit) {
+		return commonDao.saveObject(bnkDeposit);
 	}
 }
