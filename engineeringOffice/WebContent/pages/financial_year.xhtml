@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:secc="http://www.springframework.org/security/tags">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+</head>
+<h:body>
+	<ui:composition template="/template1.xhtml">
+		<ui:define name="content">
+			<h:form dir="rtl" id="form">
+				<p:messages autoUpdate="true" closable="true"></p:messages>
+				<h1 style="color: #7CB342; text-align: center;">السنة المالية</h1>
+
+				<br />
+				<div class="ui-g">
+					<div class="ui-g-1">
+						<p:outputLabel value="اختر السنة"></p:outputLabel>
+					</div>
+					<div class="ui-g-3">
+						<p:selectOneMenu style="width:70%" value="#{financailBean.year}">
+							<f:selectItem itemLabel="اختر السنة" noSelectionValue="true"></f:selectItem>
+							<f:selectItems value="#{financailBean.years}"></f:selectItems>
+							<p:ajax listener="#{financailBean.loadData}" update="@form"
+								process="@this"></p:ajax>
+						</p:selectOneMenu>
+					</div>
+				</div>
+				<p:accordionPanel dir="ltr" style="width:95% ;">
+					<p:tab title="ميزان المراجعة ">
+						<div class="ui-g">
+							<div class="ui-g-1">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="الصندوق" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value="الصندوق" />
+							</div>
+							<div class="ui-g-1">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="البنك" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value="البنك" />
+							</div>
+							<div class="ui-g-1">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="الايرادات" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value="الايرادات" />
+							</div>
+							<div class="ui-g-1">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="المصروفات" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value="المصروفات" />
+							</div>
+						</div>
+						<br />
+						<br />
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="الارصدة الدائنة" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value="الارصدة الدائنة" />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="الارصدة المدينة" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+
+								<h:outputText value="الارصدة المدينة" />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="مجموع الحساب" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value="مجموع الحساب" />
+							</div>
+						</div>
+						<div class="image-box-footer" align="left">
+							<h:commandButton class="bb" value="طباعة"
+								style="width:10%; align:left" icon="ui-icon ui-icon-print "
+								onclick="this.form.target='_blank'" ajax="false"
+								action="#{sandBean.save}"
+								>
+							</h:commandButton>
+							
+						</div>
+					</p:tab>
+					<p:tab title="قائمة الدخل لمكتب هندسي ">
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h2 style="color: black; text-align: center;">
+									<h:outputText value="الايرادات" />
+								</h2>
+							</div>
+							<div class="ui-g-3">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h2 style="color: black; text-align: center;">
+									<h:outputText value="المصروفات" />
+								</h2>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="ايرادات القسم المعماري" />
+								</h4>
+							</div>
+							<div class="ui-g-3">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="مصروفات القسم المعماري" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="ايرادات القسم المساحة" />
+								</h4>
+							</div>
+							<div class="ui-g-3">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="مصروفات القسم المساحة" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="ايرادات القسم المكتب" />
+								</h4>
+							</div>
+							<div class="ui-g-3">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="مصروفات  القسم المكتب" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="اجمالى الايرادات" />
+								</h4>
+							</div>
+							<div class="ui-g-3">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="اجمالى المصروفات" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value="50000" />
+							</div>
+						</div>
+						<br />
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="صافى الربح قبل الضريبة" />
+								</h4>
+							</div>
+							<div class="ui-g-3">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<br />
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="الضريبة" />
+								</h4>
+							</div>
+							<div class="ui-g-3">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="ضريبة الذكاه" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<p:inputText value="50000" />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="صافى الربح" />
+								</h4>
+							</div>
+							<div class="ui-g-3">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="image-box-footer" align="left">
+							<h:commandButton class="bb" value="طباعة"
+								style="width:10%; align:left" icon="ui-icon ui-icon-print "
+								onclick="this.form.target='_blank'" ajax="false"
+								action="#{sandBean.save}"
+								>
+							</h:commandButton>
+							
+						</div>
+					</p:tab>
+					<p:tab title="قائمة المركز المالى " style="font-width : bold;">
+						<div class="ui-g">
+							<div class="ui-g-1">
+								<h2 style="color: black; text-align: center;">
+									<h:outputText value="الاصول" />
+								</h2>
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h3 style="color: black; text-align: center;">
+									<h:outputText value="الاصول المتداولة" />
+								</h3>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h3 style="color: black; text-align: center;">
+									<h:outputText value="الالتزامات والحقوق الملكية" />
+								</h3>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="الصندوق" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="جاري الشريك الاول" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="البنك" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="جاري الشريك الثاني" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="مجموع الاصول المتداولة" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="جاري الشريك الثالث" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+							<div class="ui-g-2">
+								<h4 style="color: #7CB342; text-align: center;">
+									<h:outputText value="مجموع الالتزامات والحقوق الملكية" />
+								</h4>
+							</div>
+							<div class="ui-g-2">
+								<h:outputText value=" " />
+							</div>
+						</div>
+						<div class="image-box-footer" align="left">
+							<h:commandButton class="bb" value="طباعة"
+								style="width:10%; align:left" icon="ui-icon ui-icon-print "
+								onclick="this.form.target='_blank'" ajax="false"
+								action="#{sandBean.save}"
+								>
+							</h:commandButton>
+							
+						</div>
+					</p:tab>
+				</p:accordionPanel>
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>
