@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:secc="http://www.springframework.org/security/tags">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+</head>
+<h:body>
+	<ui:composition template="/template1.xhtml">
+		<ui:define name="content">
+			<h:form dir="rtl" id="form">
+				<p:messages autoUpdate="true" closable="true"></p:messages>
+				<h1 style="color: #7CB342; text-align: center;">الايرادات
+					العمومية</h1>
+					<br></br><br></br>
+				<h:panelGroup id="grb">
+					<div class="ui-g">
+
+						
+						<div class="ui-g-1">
+							<p:outputLabel value=" من تاريخ"></p:outputLabel>
+						</div>
+						<div class="ui-g-2">
+
+							<p:calendar style="width:100%" id="dtfrom" required="true"
+								requiredMessage="ادخل التاريخ" pattern="yyyy-MM-dd"
+								value="#{revenueBean.dateFrom}">
+
+							</p:calendar>
+						</div>
+
+						<div class="ui-g-1">
+							<p:outputLabel value="الي تاريخ "></p:outputLabel>
+						</div>
+						<div class="ui-g-2">
+							<p:calendar style="width:100%" required="true"
+								requiredMessage="ادخل التاريخ" pattern="yyyy-MM-dd"
+								value="#{revenueBean.dateTo}">
+
+							</p:calendar>
+						</div>
+						<div class="ui-g-1">
+							<p:commandButton style="float:left;width:120px;"
+								actionListener="#{revenueBean.load}" process="form:grb"
+								class="bb" value="استعلام" update="@form">
+							</p:commandButton>
+						</div>
+					</div>
+				</h:panelGroup>
+				<br></br><br></br>
+				<p:dataTable id="billTable" var="bill" value="#{revenueBean.bills}"
+					paginatorPosition="bottom" sortBy="#{bill.sanadNo}"
+					sortOrder="descending" rows="9" paginator="true"
+					emptyMessage="لا يوجد بيانات"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<p:column width="10%" style="text-align:center"
+						headerText="تاريخ السند">
+						<h:outputText value="#{bill.billDate}" />
+					</p:column>
+					<p:column width="20%" style="text-align:center"
+						headerText="رقم السند">
+						<h:outputText value="#{bill.sanadNo}" />
+					</p:column>
+					<p:column width="15%" style="text-align:center"
+						headerText="اسم العميل">
+						<h:outputText value="#{bill.customerName}" />
+					</p:column>
+					<p:column width="15%" style="text-align:center" headerText="البيان">
+						<h:outputText value="#{bill.billReason}" />
+					</p:column>
+					<p:column width="10%" style="text-align:center"
+						headerText="المبلغ المدفوع">
+						<h:outputText value="#{bill.amountPay}" />
+					</p:column>
+					<p:column width="10%" style="text-align:center"
+						headerText="المبلغ المتبقي">
+						<h:outputText value="#{bill.amountRest}" />
+					</p:column>
+					<p:column width="10%" style="text-align:center" headerText="الحالة">
+						<h:outputText
+							value="#{bill.tax==1?'شامل الضريبة':'غير شامل الضريبة'}" />
+					</p:column>
+
+					
+					<p:column width="10%" style="text-align:center" headerText="طباعة">
+						<p:commandButton value="طباعة"
+							action="#{revenueBean.print(bill)}" ajax="false"
+							immediate="true" onclick="this.form.target='_blank'">
+						</p:commandButton>
+					</p:column>
+					<p:columnGroup type="footer">
+
+						<p:row>
+							<p:column colspan="4" footerText="المجموع" />
+							<p:column colspan="1" footerText="#{revenueBean.totalReceive}" />
+							<p:column colspan="1" footerText="#{revenueBean.totalRest}" />
+							<p:column colspan="1" footerText="" />
+							<p:column colspan="1" footerText="" />
+							
+						</p:row>
+
+					</p:columnGroup>
+
+				</p:dataTable>
+				
+				<div class="ui-g">
+				<div class="ui-g-1">
+				<p:outputLabel value="النقدي"></p:outputLabel>
+				</div>
+				<div class="ui-g-2">
+				<p:outputLabel value="#{revenueBean.cash}"></p:outputLabel>
+				</div>
+				<div class="ui-g-1">
+				<p:outputLabel value="الشبكة"></p:outputLabel>
+				</div>
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="#{revenueBean.visa}"></p:outputLabel>
+				</div>
+				<div class="ui-g-1">
+				<p:outputLabel value="عمولة الشبكة"></p:outputLabel>
+				</div>
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="#{revenueBean.visaCommision}"></p:outputLabel>
+				</div>
+				<div class="ui-g-1">
+				<p:outputLabel value="تحويل"></p:outputLabel>
+				</div>
+				<div class="ui-g-2">
+				<p:outputLabel value="#{revenueBean.transfer}"></p:outputLabel>
+				</div>
+				
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="الايرادات العامة خلال الشهر"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.totalAfterTaxComm}"></p:outputLabel>
+				</div>
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="نسبة ابو خيال"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.partnerCommision}"></p:outputLabel>
+				</div>
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="المصروفات العامة خلال الشهر"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.totalPayAfterTax}"></p:outputLabel>
+				</div>
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="ايرادات القسم المعماري"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.archDept}"></p:outputLabel>
+				</div>
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="ايرادات القسم المساحة"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.spaceDept}"></p:outputLabel>
+				</div>
+				
+				
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="ايرادات المكتب"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.officeDept}"></p:outputLabel>
+				</div>
+				
+				<div class="ui-g-2">
+				<p:outputLabel value="صافي ربح الشهر"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.netProfitMonth}"></p:outputLabel>
+				</div>
+				<div class="ui-g-2">
+				<p:outputLabel value="نسبة ابو صالح"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.ownerComm}"></p:outputLabel>
+				</div>
+				<div class="ui-g-2">
+				<p:outputLabel value="نسبة ابو خالد"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.ownerComm}"></p:outputLabel>
+				</div>
+				<div class="ui-g-2">
+				<p:outputLabel value="قيمة الضريبة"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:outputLabel value="#{revenueBean.taxValue}"></p:outputLabel>
+				</div>
+				
+				
+				
+				</div>
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>
