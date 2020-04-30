@@ -3,6 +3,7 @@ package com.services;
 import java.util.Date;
 import java.util.List;
 
+import com.entities.BankDeposit;
 import com.entities.Bills;
 import com.entities.BillsPay;
 import com.entities.Contracts;
@@ -43,5 +44,7 @@ public interface SandService {
 	Integer findBillsSandNo();
 
 	public List<BillsPay> getBillsPayByDate(Date dateFrom, Date dateTo);
+
+	public boolean addBankDeposit(BankDeposit bnkDeposit);
 
 }

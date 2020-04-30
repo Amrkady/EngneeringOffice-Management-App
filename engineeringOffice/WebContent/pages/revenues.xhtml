@@ -208,6 +208,20 @@
 				<div class="ui-g-4">
 				<p:outputLabel value="#{revenueBean.taxValue}"></p:outputLabel>
 				</div>
+				<h:panelGroup>
+				<div class="ui-g-2">
+				
+				<p:outputLabel value="الايداع البنكي"></p:outputLabel>
+				</div>
+				<div class="ui-g-4">
+				<p:inputNumber id="dep" required="true" value="#{revenueBean.bnkDeposit.value}"></p:inputNumber>
+				</div>
+				<div class="ui-g-4">
+				<p:commandButton style="width:30%" class="bb" value="اضافة" >
+				<f:ajax execute="dep" listener="#{revenueBean.addDeposit}"></f:ajax>
+				</p:commandButton>
+				</div>
+				</h:panelGroup>
 				
 				
 				
