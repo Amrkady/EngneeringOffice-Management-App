@@ -15,6 +15,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.entities.Attachment;
+import com.entities.BankDeposit;
 import com.entities.Bills;
 import com.entities.BillsPay;
 import com.entities.Contracts;
@@ -291,7 +292,6 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	@Override
 	@Transactional
 	public List<Bills> findBillsByDate(Date dateFrom, Date dateTo) {
-
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Bills.class);
 		criteria.add(Restrictions.ge("date", dateFrom));
 		criteria.add(Restrictions.le("date", dateTo));
@@ -314,4 +314,19 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 
 	}
 
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<BankDeposit> findBankDepositByYear(Date dateFrom, Date dateTo) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BankDeposit.class);
+		criteria.add(Restrictions.ge("date", dateFrom));
+		criteria.add(Restrictions.le("date", dateTo));
+		// DateFormat dateFormat = new SimpleDateFormat("yyyy");
+//		Date d = dateFormat.parse(year);
+//		criteria.add(Restrictions.like("date", year, MatchMode.END));
+		List<BankDeposit> bankDeposit = criteria.list();
+		return bankDeposit;
+
+	}
 }

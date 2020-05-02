@@ -43,7 +43,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value="الصندوق" />
+								<h:outputText value="#{financailBean.boxValue}" />
 							</div>
 							<div class="ui-g-1">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -51,7 +51,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value="البنك" />
+								<h:outputText value="#{financailBean.bankValue}" />
 							</div>
 							<div class="ui-g-1">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -59,7 +59,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value="الايرادات" />
+								<h:outputText value="#{financailBean.totalAfterTaxComm}" />
 							</div>
 							<div class="ui-g-1">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -67,7 +67,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value="المصروفات" />
+								<h:outputText value="#{financailBean.totalPayAfterTax}" />
 							</div>
 						</div>
 						<br />
@@ -79,7 +79,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value="الارصدة الدائنة" />
+								<h:outputText value="#{financailBean.creditor}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -88,7 +88,7 @@
 							</div>
 							<div class="ui-g-2">
 
-								<h:outputText value="الارصدة المدينة" />
+								<h:outputText value="#{financailBean.debtor}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -96,17 +96,18 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value="مجموع الحساب" />
+								<h:outputText
+									value="#{financailBean.creditor + financailBean.debtor}" />
 							</div>
 						</div>
 						<div class="image-box-footer" align="left">
 							<h:commandButton class="bb" value="طباعة"
+								rendered="#{!financailBean.enablePrint}"
 								style="width:10%; align:left" icon="ui-icon ui-icon-print "
 								onclick="this.form.target='_blank'" ajax="false"
-								action="#{sandBean.save}"
-								>
+								action="#{financailBean.printReviewSystem}">
 							</h:commandButton>
-							
+
 						</div>
 					</p:tab>
 					<p:tab title="قائمة الدخل لمكتب هندسي ">
@@ -135,7 +136,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-3">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.archDept}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -143,7 +144,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.srfArc}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -153,7 +154,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-3">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.spaceDept}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -161,7 +162,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.srfSpace}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -171,7 +172,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-3">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.officeDept}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -179,7 +180,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.srfOffice}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -189,7 +190,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-3">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.totalBills}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -197,7 +198,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value="50000" />
+								<h:outputText value="#{financailBean.totalPay}" />
 							</div>
 						</div>
 						<br />
@@ -208,7 +209,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-3">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.totalProfitBeforTaxs}" />
 							</div>
 						</div>
 						<br />
@@ -219,7 +220,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-3">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.taxValue}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
@@ -227,8 +228,16 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<p:inputText value="50000" />
+								<p:inputNumber value="#{financailBean.zakahTax}">
+									<p:ajax process="@this"></p:ajax>
+								</p:inputNumber>
 							</div>
+						</div>
+						<div class="image-box-footer" align="left">
+							<h:commandButton class="bb" value="حفظ"
+								style="width:10%; align:left" action="#{financailBean.addTaxs}">
+								<p:ajax process="@this" update="pro"></p:ajax>
+							</h:commandButton>
 						</div>
 						<div class="ui-g">
 							<div class="ui-g-2">
@@ -237,17 +246,18 @@
 								</h4>
 							</div>
 							<div class="ui-g-3">
-								<h:outputText value=" " />
+								<h:outputText id="pro"
+									value="#{financailBean.totalProfitAfterTaxs}" />
 							</div>
 						</div>
 						<div class="image-box-footer" align="left">
 							<h:commandButton class="bb" value="طباعة"
+								rendered="#{!financailBean.enablePrint}"
 								style="width:10%; align:left" icon="ui-icon ui-icon-print "
 								onclick="this.form.target='_blank'" ajax="false"
-								action="#{sandBean.save}"
-								>
+								action="#{financailBean.printIcomeMenu}">
 							</h:commandButton>
-							
+
 						</div>
 					</p:tab>
 					<p:tab title="قائمة المركز المالى " style="font-width : bold;">
@@ -283,15 +293,15 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.boxValue}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
-									<h:outputText value="جاري الشريك الاول" />
+									<h:outputText value="جاري الشريك الاول  ابو صالح" />
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.ownerComm}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -301,15 +311,15 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.bankValue}" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
-									<h:outputText value="جاري الشريك الثاني" />
+									<h:outputText value="جاري الشريك الثاني ابو خالد" />
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.ownerComm}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -319,15 +329,16 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText
+									value="#{financailBean.bankValue + financailBean.boxValue }" />
 							</div>
 							<div class="ui-g-2">
 								<h4 style="color: #7CB342; text-align: center;">
-									<h:outputText value="جاري الشريك الثالث" />
+									<h:outputText value="جاري الشريك الثالث ابوخيال" />
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText value="#{financailBean.partnerCommision}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -343,17 +354,18 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<h:outputText value=" " />
+								<h:outputText
+									value="#{financailBean.partnerCommision +(2 * financailBean.ownerComm)}" />
 							</div>
 						</div>
 						<div class="image-box-footer" align="left">
 							<h:commandButton class="bb" value="طباعة"
+								rendered="#{!financailBean.enablePrint}"
 								style="width:10%; align:left" icon="ui-icon ui-icon-print "
 								onclick="this.form.target='_blank'" ajax="false"
-								action="#{sandBean.save}"
-								>
+								action="#{financailBean.printFinacialCenter}">
 							</h:commandButton>
-							
+
 						</div>
 					</p:tab>
 				</p:accordionPanel>

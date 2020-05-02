@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,7 +24,6 @@ import common.util.Utils;
 @ManagedBean
 @ViewScoped
 public class RevenueBean {
-
 	@ManagedProperty(value = "#{sandServiceImpl}")
 	private SandService sandServiceImpl;
 	@ManagedProperty(value = "#{departmentServiceImpl}")
@@ -53,6 +53,11 @@ public class RevenueBean {
 	private double visaCommision;
 	private double taxValue;
 	private BankDeposit bnkDeposit = new BankDeposit();
+	
+	@PostConstruct
+	public void init() {
+
+	}
 
 	public void load() {
 		cash = 0;
@@ -83,13 +88,13 @@ public class RevenueBean {
 			} else if (bill.getTax() == 0) {
 				totalAfterTaxComm += bill.getAmountPay().doubleValue();
 			}
-			if (bill.getBillType().equals("Ù†Ù‚Ø¯Ø§")) {
+			if (bill.getBillType().equals("äÞÏí")) {
 				cash += bill.getAmountPay().doubleValue();
-			} else if (bill.getBillType().equals("Ø´Ø¨ÙƒØ©")) {
+			} else if (bill.getBillType().equals("ÔÈßÉ")) {
 				visa += bill.getAmountPay().doubleValue();
 				visaCommision += bill.getAmountPay().doubleValue() * 0.0084;
 
-			} else if (bill.getBillType().equals("ØªØ­ÙˆÙŠÙ„")) {
+			} else if (bill.getBillType().equals("ÊÍæíá")) {
 				transfer+=bill.getAmountPay().doubleValue();
 			}
 
