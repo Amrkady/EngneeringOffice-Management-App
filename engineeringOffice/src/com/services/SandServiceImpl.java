@@ -114,4 +114,10 @@ public class SandServiceImpl implements SandService {
 	public boolean addBankDeposit(BankDeposit bnkDeposit) {
 		return commonDao.saveObject(bnkDeposit);
 	}
+
+
+	@Override
+	public List<BankDeposit> findBankDepositByYear(Date dateFrom, Date dateTo) {
+		return commonDao.findBankDepositByYear(dateFrom, dateTo);
+	}
 }

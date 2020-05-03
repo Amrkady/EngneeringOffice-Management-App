@@ -47,4 +47,6 @@ public interface SandService {
 
 	public boolean addBankDeposit(BankDeposit bnkDeposit);
 
+	List<BankDeposit> findBankDepositByYear(Date dateFrom, Date dateTo);
+
 }

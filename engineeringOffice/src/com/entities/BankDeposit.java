@@ -23,7 +23,7 @@ public class BankDeposit {
 	@Column(name = "value")
 	private BigDecimal value;
 
-	@Column(name = "date")
+	@Column(name = "deposit_date")
 	private Date date;
 
 	public Integer getId() {

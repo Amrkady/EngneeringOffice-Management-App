@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.entities.Attachment;
+import com.entities.BankDeposit;
 import com.entities.Bills;
 import com.entities.BillsPay;
 import com.entities.Contracts;
@@ -55,5 +56,8 @@ public List<Contracts> findContractsByDept(Integer depId);
 	Integer findBillsSandNo();
 
 	public List<BillsPay> findBillsPayByDate(Date dateFrom, Date dateTo);
+
+	List<BankDeposit> findBankDepositByYear(Date dateFrom, Date dateTo);
+
 
 }
