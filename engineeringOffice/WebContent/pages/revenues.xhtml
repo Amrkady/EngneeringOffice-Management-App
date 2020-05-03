@@ -110,7 +110,7 @@
 					</p:columnGroup>
 
 				</p:dataTable>
-				
+				<h:panelGroup rendered="#{revenueBean.flag}">
 				<div class="ui-g">
 				<div class="ui-g-1">
 				<p:outputLabel value="النقدي"></p:outputLabel>
@@ -216,10 +216,17 @@
 				<div class="ui-g-4">
 				<p:inputNumber id="dep" required="true" value="#{revenueBean.bnkDeposit.value}"></p:inputNumber>
 				</div>
-				<div class="ui-g-4">
-				<p:commandButton style="width:30%" class="bb" value="اضافة" >
+				<div class="ui-g-3">
+				<p:commandButton style="width:50%" class="bb" value="اضافة" >
 				<f:ajax execute="dep" listener="#{revenueBean.addDeposit}"></f:ajax>
 				</p:commandButton>
+				</div>
+				<div class="ui-g-3">
+				<h:commandButton immediate="true" rendered="#{revenueBean.flag}" style="width:50%"  class="bb" value="طباعة"
+							 icon="ui-icon ui-icon-print "
+							action="#{revenueBean.printAll}" onclick="this.form.target='_blank'"
+							ajax="false">
+				</h:commandButton>
 				</div>
 				</h:panelGroup>
 				
@@ -227,7 +234,7 @@
 				
 				</div>
 
-
+</h:panelGroup>
 			</h:form>
 		</ui:define>
 	</ui:composition>

@@ -53,6 +53,7 @@ public class RevenueBean {
 	private double visaCommision;
 	private double taxValue;
 	private BankDeposit bnkDeposit = new BankDeposit();
+	private boolean flag;
 
 	public void load() {
 		cash = 0;
@@ -131,6 +132,11 @@ public class RevenueBean {
 		ownerComm = Math.round(ownerComm * 100) / 100.00d;
 		visaCommision = Math.round(visaCommision * 100) / 100.00d;
 		taxValue = Math.round(taxValue * 100) / 100.00d;
+		if(bills.size()!=0) {
+			flag=true;
+		} else {
+			flag =false;
+		}
 
 	}
 
@@ -192,6 +198,46 @@ public class RevenueBean {
 			// TODO: handle exception
 		}
 		return "";
+	}
+
+	public String printAll() {
+		System.out.print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		try {
+			String reportName = "/reports/Bills_snad.jasper";
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			// الايرادات العامة خلال الشهر
+			parameters.put("sndNo", totalAfterTaxComm);
+			// نسبة ابو خيال
+			parameters.put("custName", partnerCommision);
+			// المصروفات العامة خلال الشهر
+			parameters.put("costRest", totalPayAfterTax);
+			// ايرادات القسم المعماري
+			parameters.put("for", archDept);
+			// ايرادات قسم المساحة
+			parameters.put("payType", spaceDept);
+			// ايرادات قسم المكتب
+			parameters.put("dept", officeDept);
+			// صافي ربح الشهر
+			parameters.put("date", netProfitMonth);
+			// نسبة ابو صالح--نسبة ابو خالد
+			parameters.put("costByLet", ownerComm);
+			// قيمة الضريبة
+			parameters.put("costByLet", taxValue);
+
+			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
+					.getRealPath("/reports/footer.png");
+			parameters.put("footer", footerPath);
+			String headerPath = FacesContext.getCurrentInstance().getExternalContext()
+					.getRealPath("/reports/header.png");
+			parameters.put("header", headerPath);
+//		//parameters.put("userId", employerId);
+			Utils.printPdfReport(reportName, parameters);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "";
+
 	}
 
 	public SandService getSandServiceImpl() {
@@ -392,6 +438,14 @@ public class RevenueBean {
 
 	public void setBnkDeposit(BankDeposit bnkDeposit) {
 		this.bnkDeposit = bnkDeposit;
+	}
+
+	public boolean isFlag() {
+		return flag;
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
 	}
 
 }
