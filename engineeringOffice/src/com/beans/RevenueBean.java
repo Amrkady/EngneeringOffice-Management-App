@@ -56,12 +56,10 @@ public class RevenueBean {
 
 	private boolean flag;
 
-	
 	@PostConstruct
 	public void init() {
 
 	}
-
 
 	public void load() {
 		cash = 0;
@@ -92,16 +90,15 @@ public class RevenueBean {
 			} else if (bill.getTax() == 0) {
 				totalAfterTaxComm += bill.getAmountPay().doubleValue();
 			}
-			if (bill.getBillType().equals("����")) {
+			if (bill.getBillType().equals("����")) {
 				cash += bill.getAmountPay().doubleValue();
-			} else if (bill.getBillType().equals("����")) {
+			} else if (bill.getBillType().equals("����")) {
 				visa += bill.getAmountPay().doubleValue();
 				visaCommision += bill.getAmountPay().doubleValue() * 0.0084;
 
-			} else if (bill.getBillType().equals("�����")) {
-				transfer+=bill.getAmountPay().doubleValue();
+			} else if (bill.getBillType().equals("�����")) {
+				transfer += bill.getAmountPay().doubleValue();
 			}
-
 
 			if (bill.getDeptId() == Constant.arch_dept) {
 				archDept += bill.getAmountPay().doubleValue();
@@ -140,10 +137,10 @@ public class RevenueBean {
 		ownerComm = Math.round(ownerComm * 100) / 100.00d;
 		visaCommision = Math.round(visaCommision * 100) / 100.00d;
 		taxValue = Math.round(taxValue * 100) / 100.00d;
-		if(bills.size()!=0) {
-			flag=true;
+		if (bills.size() != 0) {
+			flag = true;
 		} else {
-			flag =false;
+			flag = false;
 		}
 
 	}
@@ -211,27 +208,19 @@ public class RevenueBean {
 	public String printAll() {
 		System.out.print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		try {
-			String reportName = "/reports/Bills_snad.jasper";
+			String reportName = "/reports/monthly_report.jasper";
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			// الايرادات العامة خلال الشهر
-			parameters.put("sndNo", totalAfterTaxComm);
-			// نسبة ابو خيال
-			parameters.put("custName", partnerCommision);
-			// المصروفات العامة خلال الشهر
-			parameters.put("costRest", totalPayAfterTax);
-			// ايرادات القسم المعماري
-			parameters.put("for", archDept);
-			// ايرادات قسم المساحة
-			parameters.put("payType", spaceDept);
-			// ايرادات قسم المكتب
-			parameters.put("dept", officeDept);
-			// صافي ربح الشهر
-			parameters.put("date", netProfitMonth);
-			// نسبة ابو صالح--نسبة ابو خالد
-			parameters.put("costByLet", ownerComm);
-			// قيمة الضريبة
-			parameters.put("costByLet", taxValue);
-
+			// monthly_report
+			parameters.put("inArc", archDept);
+			parameters.put("inSpace", spaceDept);
+			parameters.put("inOffice", officeDept);
+			parameters.put("totalIn", totalAfterTaxComm);
+			parameters.put("totalOut", totalPayAfterTax);
+			parameters.put("totalAfterTax", netProfitMonth);
+			parameters.put("tax", taxValue);
+			parameters.put("first", ownerComm);
+			parameters.put("second", ownerComm);
+			parameters.put("third", partnerCommision);
 			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
 					.getRealPath("/reports/footer.png");
 			parameters.put("footer", footerPath);

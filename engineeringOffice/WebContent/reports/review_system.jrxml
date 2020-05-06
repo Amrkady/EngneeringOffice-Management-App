@@ -41,14 +41,14 @@
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[المحاسب]]></text>
+				<text><![CDATA[الادارة]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="415" y="347" width="70" height="18" uuid="d096ff3b-bbc6-4af1-9560-58f5401ad29d"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[توقيع المستلم]]></text>
+				<text><![CDATA[المحاسب]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="35" y="372" width="210" height="18" uuid="b08abe28-a9cb-47e4-a1e8-46b3a1dc8d06"/>
@@ -126,14 +126,14 @@
 				<reportElement x="60" y="232" width="148" height="40" uuid="9c037433-e57f-4491-8c6a-0ea5c75411e2"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="208" y="72" width="136" height="39" uuid="f7d278a4-de81-409b-98a2-adbe971bbe8e"/>
+				<reportElement x="60" y="72" width="147" height="39" uuid="f7d278a4-de81-409b-98a2-adbe971bbe8e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
 				<text><![CDATA[الارصدة الدائنة]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="74" width="147" height="39" uuid="c2b1c464-8b30-46ce-a27c-3ba24bf1fa4f"/>
+				<reportElement x="209" y="73" width="135" height="39" uuid="c2b1c464-8b30-46ce-a27c-3ba24bf1fa4f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
@@ -181,24 +181,24 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
-				<text><![CDATA[المجموع]]></text>
+				<text><![CDATA[الاجمالي]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="208" y="114" width="137" height="39" uuid="d22eadc7-1163-44d3-9494-8baa4bc18b8d"/>
+				<reportElement x="60" y="114" width="147" height="39" uuid="d22eadc7-1163-44d3-9494-8baa4bc18b8d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
 				<text><![CDATA[-]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="208" y="154" width="137" height="39" uuid="b66480f5-ac2f-4ac2-82bc-4fb9d2f00b2a"/>
+				<reportElement x="60" y="154" width="147" height="39" uuid="b66480f5-ac2f-4ac2-82bc-4fb9d2f00b2a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
 				<text><![CDATA[-]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="208" y="193" width="137" height="39" uuid="94ba7d96-35ac-4392-b3e7-8e2bf6d8c5d2"/>
+				<reportElement x="60" y="193" width="147" height="39" uuid="94ba7d96-35ac-4392-b3e7-8e2bf6d8c5d2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
@@ -207,14 +207,14 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="209" y="232" width="136" height="39" uuid="0039c3aa-e8e2-4ac1-b92b-a61bb1e02591"/>
+				<reportElement x="60" y="232" width="147" height="39" uuid="0039c3aa-e8e2-4ac1-b92b-a61bb1e02591"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
 				<text><![CDATA[-]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="208" y="271" width="136" height="39" uuid="0d5f796f-85ad-441e-9e6a-0914c01c477f"/>
+				<reportElement x="60" y="271" width="146" height="39" uuid="0d5f796f-85ad-441e-9e6a-0914c01c477f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
@@ -223,7 +223,7 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="60" y="271" width="148" height="39" uuid="3acb64d1-35e0-4b10-a37c-582ecb8a0268"/>
+				<reportElement x="208" y="271" width="136" height="39" uuid="3acb64d1-35e0-4b10-a37c-582ecb8a0268"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
@@ -232,7 +232,7 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="62" y="232" width="147" height="39" uuid="2e92c100-a523-4b9e-992a-062154b1b4a6"/>
+				<reportElement x="209" y="232" width="135" height="39" uuid="2e92c100-a523-4b9e-992a-062154b1b4a6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
@@ -241,14 +241,14 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="61" y="193" width="148" height="39" uuid="19f70bff-5131-40fd-af0e-f085e632c8b7"/>
+				<reportElement x="210" y="193" width="134" height="39" uuid="19f70bff-5131-40fd-af0e-f085e632c8b7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
 				<text><![CDATA[-]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="61" y="154" width="148" height="39" uuid="2842d17d-e691-4821-95be-c357fc180a5f"/>
+				<reportElement x="209" y="154" width="135" height="39" uuid="2842d17d-e691-4821-95be-c357fc180a5f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
@@ -257,7 +257,7 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="61" y="114" width="148" height="39" uuid="3cf0051c-2174-4a63-b333-8c0fd813823b"/>
+				<reportElement x="209" y="114" width="135" height="39" uuid="3cf0051c-2174-4a63-b333-8c0fd813823b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>

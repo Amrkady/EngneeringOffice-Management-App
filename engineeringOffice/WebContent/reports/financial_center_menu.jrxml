@@ -41,14 +41,14 @@
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[المحاسب]]></text>
+				<text><![CDATA[الادارة]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="421" y="460" width="70" height="18" uuid="d096ff3b-bbc6-4af1-9560-58f5401ad29d"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[توقيع المستلم]]></text>
+				<text><![CDATA[المحاسب]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="41" y="485" width="210" height="18" uuid="b08abe28-a9cb-47e4-a1e8-46b3a1dc8d06"/>
@@ -155,14 +155,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
-				<text><![CDATA[مجموع الاصول المتداولة]]></text>
+				<text><![CDATA[اجمالي الاصول المتداولة]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="345" y="239" width="204" height="39" uuid="baaf2831-ae76-41d1-8dee-babcf3591c84"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
-				<text><![CDATA[الالتزامات والحقوق الملكية]]></text>
+				<text><![CDATA[الالتزامات وحقوق الملكية]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement x="208" y="279" width="136" height="40" uuid="cb15e853-1849-4991-8409-d51e6789cb9c"/>
@@ -255,7 +255,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
-				<text><![CDATA[مجموع الالتزامات والحقوق الملكية]]></text>
+				<text><![CDATA[اجمالي الالتزامات وحقوق الملكية]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="207" y="362" width="137" height="39" uuid="3dc967b6-3ae9-4a00-8898-066e411a2ba9"/>

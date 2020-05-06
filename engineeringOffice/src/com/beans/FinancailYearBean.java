@@ -56,6 +56,7 @@ public class FinancailYearBean {
 	private double visa;
 	private double visaCommision;
 	private double taxValue;
+	private double srfTaxValue;
 	private BankDeposit bnkDeposit = new BankDeposit();
 	private double boxValue;
 	private double bankValue;
@@ -102,6 +103,7 @@ public class FinancailYearBean {
 
 	public void loadData() {
 		debtor = 0;
+		srfTaxValue = 0;
 		boxValue = 0;
 		creditor = 0;
 		bankValue = 0;
@@ -122,6 +124,7 @@ public class FinancailYearBean {
 				DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
 				dateFrom = dateFormat.parse(dateFormat2.format(dateFrom));
 				dateTo = dateFormat.parse(dateFormat2.format(dateTo));
+				year--;
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -190,42 +193,51 @@ public class FinancailYearBean {
 					} else if (billPay.getDeptId() == Constant.office_dept) {
 						srfOffice += billPay.getAmountPay().doubleValue();
 					}
-
 					if (billPay.getTax() == 1) {
 						totalPayAfterTax += billPay.getAmountPay().doubleValue()
 								- ((billPay.getAmountPay().doubleValue() / 1.05) * 0.05);
+						srfTaxValue += (billPay.getAmountPay().doubleValue() / 1.05) * 0.05;
 					} else if (billPay.getTax() == 0) {
 						totalPayAfterTax += billPay.getAmountPay().doubleValue();
 					}
 				}
 				netProfitMonth = totalAfterTaxComm - totalPayAfterTax;
-				ownerComm = netProfitMonth / 2;
+				// ownerComm = netProfitMonth / 2;
 
 				totalReceive = Math.round(totalReceive * 100) / 100.00d;
 				totalRest = Math.round(totalRest * 100) / 100.00d;
-				partnerCommision = Math.round(partnerCommision * 100) / 100.00d;
+
 				totalAfterTaxComm = Math.round(totalAfterTaxComm * 100) / 100.00d;
 				archDept = Math.round(archDept * 100) / 100.00d;
 				spaceDept = Math.round(spaceDept * 100) / 100.00d;
 				officeDept = Math.round(officeDept * 100) / 100.00d;
+				srfArc = Math.round(srfArc * 100) / 100.00d;
+				srfSpace = Math.round(srfSpace * 100) / 100.00d;
 
 				totalPayAfterTax = Math.round(totalPayAfterTax * 100) / 100.00d;
 				netProfitMonth = Math.round(netProfitMonth * 100) / 100.00d;
-				ownerComm = Math.round(ownerComm * 100) / 100.00d;
+
 				visaCommision = Math.round(visaCommision * 100) / 100.00d;
-				taxValue = Math.round(taxValue * 100) / 100.00d;
 
 				totalPay = srfArc + srfSpace + srfOffice;
 				totalBills = archDept + spaceDept + officeDept;
+
 				totalPay = Math.round(totalPay * 100) / 100.00d;
 				totalBills = Math.round(totalBills * 100) / 100.00d;
+				taxValue = taxValue - srfTaxValue;
+				taxValue = Math.round(taxValue * 100) / 100.00d;
 
 				totalProfitBeforTaxs = totalBills - totalPay;
+
 				totalProfitBeforTaxs = Math.round(totalProfitBeforTaxs * 100) / 100.00d;
 				totalProfitAfterTaxs = totalBills - totalPay - taxValue;
+				partnerCommision = totalProfitAfterTaxs * 5 / 100;
+				partnerCommision = Math.round(partnerCommision * 100) / 100.00d;
+				ownerComm = (totalProfitAfterTaxs - partnerCommision) / 2;
+				ownerComm = Math.round(ownerComm * 100) / 100.00d;
 				totalProfitAfterTaxs = Math.round(totalProfitAfterTaxs * 100) / 100.00d;
-
-				year--;
+				// srfOffice = srfOffice - ownerComm - ownerComm - partnerCommision;
+				srfOffice = Math.round(srfOffice * 100) / 100.00d;
 				System.out.println(year);
 				getBoxAndBank();
 			}
@@ -654,6 +666,14 @@ public class FinancailYearBean {
 
 	public void setEnablePrint(boolean enablePrint) {
 		this.enablePrint = enablePrint;
+	}
+
+	public double getSrfTaxValue() {
+		return srfTaxValue;
+	}
+
+	public void setSrfTaxValue(double srfTaxValue) {
+		this.srfTaxValue = srfTaxValue;
 	}
 
 }

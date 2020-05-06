@@ -48,14 +48,14 @@
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[المحاسب]]></text>
+				<text><![CDATA[الادارة]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="415" y="422" width="70" height="18" uuid="d096ff3b-bbc6-4af1-9560-58f5401ad29d"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[توقيع المستلم]]></text>
+				<text><![CDATA[المحاسب]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="35" y="447" width="210" height="18" uuid="b08abe28-a9cb-47e4-a1e8-46b3a1dc8d06"/>
@@ -165,14 +165,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
-				<text><![CDATA[القسم المكتب]]></text>
+				<text><![CDATA[المكتب]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="345" y="232" width="133" height="39" uuid="baaf2831-ae76-41d1-8dee-babcf3591c84"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
-				<text><![CDATA[المجموع]]></text>
+				<text><![CDATA[الاجمالي]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement x="60" y="272" width="220" height="40" uuid="cb15e853-1849-4991-8409-d51e6789cb9c"/>
@@ -255,7 +255,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
-				<textFieldExpression><![CDATA[ (""+$P{outSpace} ).replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+				<textFieldExpression><![CDATA[(""+$P{outSpace} ).replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
                 .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
