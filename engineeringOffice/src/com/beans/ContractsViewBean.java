@@ -7,13 +7,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.common.Constant;
+import com.entities.Contracts;
 import com.services.SandService;
 
-import com.entities.*;
 import common.util.Utils;
 
 @ManagedBean
@@ -27,8 +27,9 @@ public class ContractsViewBean {
 
 	@PostConstruct
 	public void init() {
-		if(Utils.findCurrentUser().getManager()==1)
+		if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_MANAGER) {
 			contracts=sandServiceImpl.getContractsByDept(Utils.findCurrentUser().getDeptId());
+		}
 	}
 	
 	public String transferContract(Integer contractNo)

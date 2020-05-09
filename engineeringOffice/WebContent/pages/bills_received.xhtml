@@ -18,7 +18,7 @@
 			<p:messages autoUpdate="true" closable="true"></p:messages>
 
 			<div class="card card-w-title" dir="rtl">
-				<h1 style="color: #7CB342; text-align: center;">
+				<h1 style="color: #1565C0; text-align: center;">
 					سندات القبض<span class="fa fa-fw fa-clock-o"></span>
 				</h1>
 				<br />
@@ -87,7 +87,7 @@
 					value="#{billReceiveBean.billsRecieve}" widgetVar="cellcnt"
 					paginatorPosition="bottom"
 					filteredValue="#{billReceiveBean.filtredBills}"
-					sortBy="#{billReceive.sanadNo}" sortOrder="descending" rows="13"
+					sortBy="#{billReceive.sanadNo}" sortOrder="descending" rows="10"
 					paginator="true"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -168,10 +168,13 @@
 
 
 				</p:dataTable>
+				<br></br>
+				<br></br>
+				<p:fieldset  toggleable="true" toggleSpeed="500">
 				<h:panelGroup id="calc">
 					<div class="ui-g">
 						<div class="ui-g-2">
-							<h4 style="color: #7CB342; text-align: center;">
+							<h4 style="color: #1565C0; text-align: center;">
 								<p:outputLabel value="نسبة ابو خيال"></p:outputLabel>
 							</h4>
 
@@ -181,7 +184,7 @@
 							<p:outputLabel value="#{billReceiveBean.commision}"></p:outputLabel>
 						</div>
 						<div class="ui-g-2">
-							<h4 style="color: #7CB342; text-align: center;">
+							<h4 style="color: #1565C0; text-align: center;">
 								<p:outputLabel value="مصروفات القسم"></p:outputLabel>
 							</h4>
 
@@ -191,7 +194,7 @@
 							<p:outputLabel value="#{billReceiveBean.totalBillsPay}"></p:outputLabel>
 						</div>
 						<div class="ui-g-2">
-							<h4 style="color: #7CB342; text-align: center;">
+							<h4 style="color: #1565C0; text-align: center;">
 								<p:outputLabel value="الاجمالي بعد خصم الضرائب"></p:outputLabel>
 							</h4>
 
@@ -201,7 +204,7 @@
 						</div>
 						
 						<div class="ui-g-2">
-							<h4 style="color: #7CB342; text-align: center;">
+							<h4 style="color: #1565C0; text-align: center;">
 								<p:outputLabel value="صافي ايرادات القسم"></p:outputLabel>
 							</h4>
 
@@ -212,7 +215,7 @@
 						</div>
 						
 						<div class="ui-g-2">
-							<h4 style="color: #7CB342; text-align: center;">
+							<h4 style="color: #1565C0; text-align: center;">
 								<p:outputLabel value="نسبة رئيس القسم"></p:outputLabel>
 							</h4>
 
@@ -223,6 +226,7 @@
 
 					</div>
 				</h:panelGroup>
+				</p:fieldset>
 			</div>
 		</h:form>
 

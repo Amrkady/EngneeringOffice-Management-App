@@ -17,7 +17,7 @@
 		<ui:define name="content">
 			<h:form dir="rtl" id="form">
 				<p:messages id="msg" autoUpdate="true" closable="true"></p:messages>
-				<h1 style="color: #7CB342; text-align: center;">الاقسام</h1>
+				<h1 style="color: #1565C0; text-align: center;">الاقسام</h1>
 
 				<div class="image-box-footer" align="left">
 
@@ -31,16 +31,8 @@
 					emptyMessage="لايوجد بيانات" rowIndexVar="rowIndex"
 					widgetVar="cellemp" paginatorPosition="bottom" editable="true"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-					paginator="true" rows="9">
-					<f:facet name="header">
-						<p:outputPanel>
-							<h:outputText value="ابحث فى كل الحقول:" />
-							<p:inputText id="globalFilter" onkeyup="PF('cellemp').filter()"
-								style="width:150px" placeholder="كلمة البحث">
-							</p:inputText>
-						</p:outputPanel>
-					</f:facet>
-
+					paginator="true" rows="10">
+					
 					<p:ajax event="rowEdit" listener="#{deptBean.onRowEdit}"
 						update=":form:msg  :form:myTable" />
 					<p:ajax event="rowEditCancel" listener="#{deptBean.onRowCancel}"
@@ -84,7 +76,7 @@
 						<p:rowEditor />
 					</p:column>
 					<p:column headerText="حذف" style="width:5%">
-						<p:commandButton update=":form:myTable" icon="pi pi-times-circle"
+						<p:commandButton update=":form:myTable"  style="background-color:red" icon="ui-icon ui-icon-remove"
 							title="حذف" action="#{deptBean.deleteDepartment(tDept)}">
 
 						</p:commandButton>
@@ -121,7 +113,7 @@
 
 						<div class="iamge-box-footer" align="left">
 							<p:commandButton value="حفظ" icon="ui-icon ui-icon-save"
-								process="@all" action="#{deptBean.addDept}">
+								process="@all" action="#{deptBean.addDept}" update="form">
 							</p:commandButton>
 							<p:spacer height="4"></p:spacer>
 							<p:commandButton styleClass="orange-btn" value="عودة"

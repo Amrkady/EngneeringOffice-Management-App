@@ -61,7 +61,7 @@ public class ContractBean {
 	public String addContract() {
 		try {
 			String strDate = "";
-			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/mm/yyyy");
+			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
 			if (contractDate != null) {
 				strDate = sdfDate.format(contractDate);
 			}

@@ -17,28 +17,28 @@
 		<ui:define name="content">
 			<h:form dir="rtl" id="form">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
-				<h1 style="color: #7CB342; text-align: center;">سند قبض</h1>
+				<h1 style="color: #1565C0; text-align: center;">سند قبض</h1>
 				<div class="image-box-footer" align="left">
-					<h:panelGroup id="print" rendered="#{sandBean.enablePrint}">
-						<h:commandButton class="bb" value="طباعة"
+					<h:panelGroup id="print" >
+						<p:commandButton rendered="#{sandBean.enablePrint}"  value="طباعة"
 							style="width:10%; align:left" icon="ui-icon ui-icon-print "
 							action="#{sandBean.save}" onclick="this.form.target='_blank'"
 							ajax="false">
-						</h:commandButton>
+						</p:commandButton>
 					</h:panelGroup>
 				</div>
 
-				<p:fieldset width="50%" legend="بيانات السند ">
+				<p:fieldset  toggleSpeed="500"   width="50%" legend="بيانات السند ">
 
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<h:outputLabel value="رقم السند" />
+							<p:outputLabel value="رقم السند" ></p:outputLabel>
 						</div>
 						<div id="sand" class="ui-g-4">
 							<p:outputLabel id="sndNo" value="#{sandBean.sandNo}"></p:outputLabel>
 						</div>
 						<div class="ui-g-1">
-							<h:outputLabel value="المبلغ" />
+							<p:outputLabel value="المبلغ" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:inputNumber
@@ -52,23 +52,23 @@
 
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<h:outputLabel value="التاريخ" />
+							<p:outputLabel value="التاريخ" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 
 							<p:calendar styleClass="form-control" 
 								pattern="yyyy/MM/dd" value="#{sandBean.sandDate}"
-								navigator="true" locale="ar"
+								navigator="true" 
 								required="true" requiredMessage="ادخل التاريخ ">
 
 							</p:calendar>
 
 						</div>
 						<div class="ui-g-1">
-							<h:outputLabel value="المتبقي" />
+							<p:outputLabel value="المتبقي" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-							<p:inputNumber class="aa"
+							<p:inputNumber 
 								validatorMessage="المتبقي يجب ان يكون ارقام فقط"
 								value="#{sandBean.billSnad.amountRest}" required="true"
 								requiredMessage="ادخل المتبقى ">
@@ -79,15 +79,15 @@
 					</div>
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<h:outputLabel value="وذلك مقابل" />
+							<p:outputLabel value="وذلك مقابل" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-							<p:inputText class="aa" value="#{sandBean.billSnad.billReason}"
+							<p:inputText  value="#{sandBean.billSnad.billReason}"
 								required="true" requiredMessage="ادخل السبب ">
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
-							<h:outputLabel value="طريقة الدفع" />
+							<p:outputLabel value="طريقة الدفع" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 
@@ -106,7 +106,7 @@
 
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<h:outputLabel value="يوجد ضريبة ؟" />
+							<p:outputLabel value="يوجد ضريبة ؟" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:selectBooleanCheckbox value="#{sandBean.vat}" >
@@ -114,25 +114,26 @@
 							</p:selectBooleanCheckbox>
 						</div>
 						<div class="ui-g-1">
-							<h:outputLabel  value="قيمة الضريبة" />
+							<p:outputLabel  value="قيمة الضريبة" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-						<h:outputLabel id="d1" value="#{sandBean.taxValue}" />
+						<p:outputLabel id="d1" value="#{sandBean.taxValue}" ></p:outputLabel>
 						</div>
 					</div>
 					<div class="ui-g" >
 						<div class="ui-g-1">
-							<h:outputLabel  value="المبلغ الكلي" />
+							<p:outputLabel  value="المبلغ الكلي" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-							<h:outputLabel id="d4" value="#{sandBean.total}"  />
+							<p:outputLabel id="d4" value="#{sandBean.total}"  ></p:outputLabel>
 						</div>
 					</div>
 
 					<div class="iamge-box-footer" align="left">
-						<h:commandButton class="bb" value="حفظ "
-							style="width:10%; align:left" action="#{sandBean.addBillOrSnad}">
-						</h:commandButton>
+						<p:commandButton  value="حفظ "
+							style="width:10%; align:left" update="print" actionListener="#{sandBean.addBillOrSnad}">
+							
+						</p:commandButton>
 
 					</div>
 				</p:fieldset>

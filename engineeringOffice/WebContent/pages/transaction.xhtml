@@ -15,7 +15,7 @@
 			<h:form id="frm">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
 				<div class="card card-w-title" dir="rtl">
-					<h1 style="color: #7CB342; text-align: center;">ارسال المعاملة</h1>
+					<h1 style="color: #1565C0; text-align: center;">ارسال المعاملة</h1>
 
 
 					<p:fieldset  toggleable="true" toggleSpeed="500">
@@ -71,11 +71,11 @@
 <!-- 						</div> -->
 								</div>
 								<div style="margin-top: 20px" class="ui-g-12">
-									<h:commandButton   class="bb" update="@form"
-										style="width:30%;display:block;margin:auto;"
+									<p:commandButton    update="@form"
+										style="float:left;width:10%"
 										value="ارسال المعاملة">
 										<f:ajax execute="@form" listener="#{transactionBean.save}" event="click" render="@form"></f:ajax>
-									</h:commandButton>
+									</p:commandButton>
 								</div>
 
 							</div>

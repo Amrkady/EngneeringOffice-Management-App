@@ -164,7 +164,7 @@ public class BillPayBean {
 		}
 		try {
 			String strDate = "";
-			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/mm/yyyy");
+			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
 			if (sandDate != null) {
 				strDate = sdfDate.format(sandDate);
 			}

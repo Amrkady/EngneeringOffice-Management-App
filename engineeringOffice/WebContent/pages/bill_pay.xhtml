@@ -18,7 +18,7 @@
 		<ui:define name="content">
 			<h:form dir="rtl" id="form">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
-				<h1 style="color: #7CB342; text-align: center;">سندات صرف</h1>
+				<h1 style="color: #1565C0; text-align: center;">سندات صرف</h1>
 				<div class="image-box-footer" align="left">
 
 					<p:commandButton id="cBadd" value="اضافة سند صرف" immediate="true"
@@ -76,7 +76,7 @@
 				</h:panelGroup>
 				<p:dataTable id="billTable" var="billPay"
 					value="#{billPayBean.bills}" paginatorPosition="bottom"
-					sortBy="#{billPay.sanadNo}" sortOrder="descending" rows="9"
+					sortBy="#{billPay.sanadNo}" sortOrder="descending" rows="10"
 					paginator="true" emptyMessage="لا يوجد بيانات"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 					<p:column width="10%" style="text-align:center"
@@ -251,7 +251,7 @@
 				<h:panelGroup id="calcgrb">
 									<div class="ui-g">
 						<div class="ui-g-2">
-							<h4 style="color: #7CB342; text-align: center;">
+							<h4 style="color: #1565C0; text-align: center;">
 								<p:outputLabel value="قيمة الضريبة"></p:outputLabel>
 							</h4>
 
@@ -261,7 +261,7 @@
 							<p:outputLabel value="#{billPayBean.taxValue}"></p:outputLabel>
 						</div>
 						<div class="ui-g-2">
-							<h4 style="color: #7CB342; text-align: center;">
+							<h4 style="color: #1565C0; text-align: center;">
 								<p:outputLabel value="المبلغ  بعد الضريبة"></p:outputLabel>
 							</h4>
 

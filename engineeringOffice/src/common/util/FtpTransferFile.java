@@ -9,7 +9,7 @@ import java.net.URLConnection;
 public class FtpTransferFile {
 	static String user = "";
 	static String pass = "";
-	static String host = "ftp://192.168.100.9:21/";
+	static String host = "ftp://192.168.1.3:21/";
 
 	public static String uploadFile(InputStream inputStream, String uploadPath) {
 //		String ftpUrl = "ftp://%s:%s@%s/%s";

@@ -50,13 +50,13 @@ public class deptsBean {
 			departmentServiceImpl.addDepartment(dept);
 			FacesMessage msg = new FacesMessage("��� �������", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
-			depts = departmentServiceImpl.loadDepartments();
+
 			// update manager user = 1
 			Users us = userServiceImpl.findUserById(dept.getDeptManager());
 			us.setRoleId(Constant.ROLE_MANAGER);
-			us.setManager(1);
-			userServiceImpl.updateUser(us);
 
+			userServiceImpl.updateUser(us);
+			depts = departmentServiceImpl.loadDepartments();
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage("�� ��� �������", "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);

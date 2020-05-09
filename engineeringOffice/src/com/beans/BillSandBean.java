@@ -60,7 +60,7 @@ public class BillSandBean {
 		try {
 			String strDate = "";
 			// System.out.println(sandServiceImpl.addSand(billSnad));
-			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/mm/yyyy");
+			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
 			if (sandDate != null) {
 				strDate = sdfDate.format(sandDate);
 			}

@@ -103,6 +103,10 @@ body .ui-datatable .ui-datatable-header .ui-inputfield, body .ui-datatable .ui-d
 			<p:remoteCommand name="logout" action="#{loginBean.logout}"
 				immediate="true" />
 		</h:form>
+		<style >th {
+  background-color: #1565C0 !important;
+  color: white
+}</style>
 		<script>
 			PrimeFaces.locales['ar'] = {
 				closeText : 'إغلق',
@@ -184,6 +188,7 @@ body .ui-datatable .ui-datatable-header .ui-inputfield, body .ui-datatable .ui-d
 		</script>
 	</p:dialog>
 	<div class="layout-wrapper layout-rtl">
+	<ui:include src="sidebar.xhtml" />
 
 
 		<div class="layout-main">
