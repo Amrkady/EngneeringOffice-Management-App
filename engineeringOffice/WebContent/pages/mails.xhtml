@@ -109,11 +109,11 @@
 									</p:column>
 									<p:column headerText="الحالة" width="10%"
 										style="FONT-WEIGHT: # {mailOut.markRead== 1? '':'bold'};"
-										filterBy="# {mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
+										filterBy="#{mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
 										filterMatchMode="contains">
 										<h:outputText
-											value="# {mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
-											style="color: # {mailOut.markRead== 1? '':'black'};" />
+											value="#{mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
+											style="color: #{mailOut.markRead== 1? '':'black'};" />
 									</p:column>
 									<p:column style="width:5%">
 										<p:commandButton icon="ui-icon ui-icon-search"
