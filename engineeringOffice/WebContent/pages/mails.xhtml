@@ -65,7 +65,7 @@
 									</p:column>
 									<p:column style="width:5%">
 										<p:commandButton icon="ui-icon ui-icon-search"
-											action="#{mailBean.viewRowSelected(mailIn)}">
+											action="#{mailBean.viewRowSelectedIn(mailIn)}">
 
 										</p:commandButton>
 									</p:column>
@@ -103,18 +103,17 @@
 										  #{mailOut.hDate} | #{mailOut.date}
 									</p:column>
 									<p:column headerText="الموضوع" width="60%"
-										style="text-align:right;FONT-WEIGHT: #{mailOut.markRead== 1? '':'bold'};"
 										filterBy="#{mailOut.subject}" filterMatchMode="contains">
 										<h:outputText value="#{mailOut.subject}"
-											style="color: #{mailOut.markRead== 1? '':'black'};" />
+											 />
 									</p:column>
 									<p:column headerText="الحالة" width="10%"
-										style="FONT-WEIGHT: #{mailOut.markRead== 1? '':'bold'};"
-										filterBy="#{mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
+										style="FONT-WEIGHT: # {mailOut.markRead== 1? '':'bold'};"
+										filterBy="# {mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
 										filterMatchMode="contains">
 										<h:outputText
-											value="#{mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
-											style="color: #{mailOut.markRead== 1? '':'black'};" />
+											value="# {mailOut.markRead == 0 ? 'غير مقروء':'مقروء'}"
+											style="color: # {mailOut.markRead== 1? '':'black'};" />
 									</p:column>
 									<p:column style="width:5%">
 										<p:commandButton icon="ui-icon ui-icon-search"

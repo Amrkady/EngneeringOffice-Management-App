@@ -63,6 +63,14 @@ public class MailBean {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 		session.setAttribute("selectedMail", selectedMail);
+		return "mailView";
+	}
+
+	public String viewRowSelectedIn(Transaction mail) {
+		selectedMail = mail;
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+		session.setAttribute("selectedMail", selectedMail);
 		selectedMail.setMarkRead(1);
 		transactionServiceImpl.updateTransaction(selectedMail);
 		return "mailView";
