@@ -46,10 +46,12 @@ public class BillPayBean {
 	private double totalAfterTax;
 	private BillsPay billPay;
 	private double billHasTax;
+	private Users curUser;
+
 	@PostConstruct
 	public void init() {
 		billsPay = new BillsPay();
-		Users curUser = Utils.findCurrentUser();
+		curUser = Utils.findCurrentUser();
 		if (curUser != null) {
 			if (curUser.getRoleId() == Constant.ROLE_MANAGER) {
 				/// GET BY DEPT
@@ -58,6 +60,7 @@ public class BillPayBean {
 				// departmentServiceImpl.findDeptById(curUser.getDeptId());
 				// depts.add(usrDept);
 				departmentId = Utils.findCurrentUser().getDeptId();
+
 			} else if (curUser.getRoleId() == Constant.ROLE_ADMIN || curUser.getRoleId() == Constant.ROLE_ACCOUNTANT) {
 				// GET ALL
 //				bills = sandServiceImpl.getAllBillsPay();
@@ -110,6 +113,7 @@ public class BillPayBean {
 			parameters.put("payType", selectedBill.getBillType());
 			parameters.put("dept", selectedBill.getDeptName());
 			parameters.put("date", selectedBill.getBillDate());
+			parameters.put("tax", selectedBill.getTax());
 			String hall = String.valueOf(selectedBill.getAmountPay());
 			hall = hall.substring(hall.indexOf(".") + 1);
 			parameters.put("halaa", Integer.parseInt(hall));
@@ -129,11 +133,11 @@ public class BillPayBean {
 
 	public void update(BillsPay selectedBill) {
 		if (selectedBill != null) {
-			System.out.print("update>>>>>>>>>>");
 			// billsPay = new BillsPay();
 
 			billsPay = selectedBill;
 			billsPay.setAmountPay(selectedBill.getAmountPay());
+			System.out.println("update>>>>>>>>>>" + billsPay.getSanadNo());
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			try {
 				sandDate = dateFormat.parse(selectedBill.getBillDate());
@@ -143,7 +147,7 @@ public class BillPayBean {
 			}
 			// Utils.openDialog("whsdlAdd");
 		}
-
+		Utils.openDialog("whsdlAdd");
 	}
 
 	public void showdlAdd() {
@@ -157,6 +161,9 @@ public class BillPayBean {
 	}
 
 	public String save() {
+		if (curUser.getRoleId() == Constant.ROLE_MANAGER) {
+			billsPay.setDeptId(departmentId);
+		}
 
 		if (billsPay.getDeptId() != null) {
 			Departments usrDept = departmentServiceImpl.findDeptById(billsPay.getDeptId());
@@ -284,6 +291,14 @@ public class BillPayBean {
 
 	public double getTotalAfterTax() {
 		return totalAfterTax;
+	}
+
+	public Users getCurUser() {
+		return curUser;
+	}
+
+	public void setCurUser(Users curUser) {
+		this.curUser = curUser;
 	}
 
 }

@@ -29,20 +29,20 @@
 				<br />
 				<h:panelGroup id="grb">
 					<div class="ui-g">
-					<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ACCOUNTANT">
-						<div class="ui-g-1">
-							<p:outputLabel value="اختر القسم"></p:outputLabel>
-						</div>
-						<div class="ui-g-3">
-							<p:selectOneMenu style="width:50%"
-								value="#{billPayBean.departmentId}">
-								<f:selectItem itemLabel="اختر القسم" noSelectionValue="true"></f:selectItem>
-								<f:selectItems value="#{billPayBean.depts}" var="dept"
-									itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
-								
-							</p:selectOneMenu>
+						<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ACCOUNTANT">
+							<div class="ui-g-1">
+								<p:outputLabel value="اختر القسم"></p:outputLabel>
+							</div>
+							<div class="ui-g-3">
+								<p:selectOneMenu style="width:50%"
+									value="#{billPayBean.departmentId}">
+									<f:selectItem itemLabel="اختر القسم" noSelectionValue="true"></f:selectItem>
+									<f:selectItems value="#{billPayBean.depts}" var="dept"
+										itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
 
-						</div>
+								</p:selectOneMenu>
+
+							</div>
 						</secc:authorize>
 						<div class="ui-g-1">
 							<p:outputLabel value=" من تاريخ"></p:outputLabel>
@@ -60,20 +60,21 @@
 							<p:outputLabel value="الي تاريخ "></p:outputLabel>
 						</div>
 						<div class="ui-g-2">
-							<p:calendar style="width:100%"  required="true"
+							<p:calendar style="width:100%" required="true"
 								requiredMessage="ادخل التاريخ" pattern="yyyy-MM-dd"
 								value="#{billPayBean.dateTo}">
 
 							</p:calendar>
 						</div>
 						<div class="ui-g-1">
-						<p:commandButton style="float:left;width:120px;" actionListener="#{billPayBean.getBillsByDeptId}"
-							process="form:grb" class="bb" value="استعلام"
-							update="@form">
-						</p:commandButton>
+							<p:commandButton style="float:left;width:120px;"
+								actionListener="#{billPayBean.getBillsByDeptId}"
+								process="form:grb" class="bb" value="استعلام" update="@form">
+							</p:commandButton>
 						</div>
 					</div>
 				</h:panelGroup>
+				<br />
 				<p:dataTable id="billTable" var="billPay"
 					value="#{billPayBean.bills}" paginatorPosition="bottom"
 					sortBy="#{billPay.sanadNo}" sortOrder="descending" rows="10"
@@ -83,7 +84,7 @@
 						headerText="تاريخ السند">
 						<h:outputText value="#{billPay.billDate}" />
 					</p:column>
-					<p:column width="20%" style="text-align:center"
+					<p:column width="7%" style="text-align:center"
 						headerText="رقم السند">
 						<h:outputText value="#{billPay.sanadNo}" />
 					</p:column>
@@ -91,26 +92,27 @@
 						headerText="اسم العميل">
 						<h:outputText value="#{billPay.customerName}" />
 					</p:column>
-					<p:column width="15%" style="text-align:center"
-						headerText="البيان">
+					<p:column width="15%" style="text-align:center" headerText="البيان">
 						<h:outputText value="#{billPay.billReason}" />
 					</p:column>
-					<p:column width="10%" style="text-align:center"
+					<p:column width="15%" style="text-align:center"
 						headerText="المبلغ المدفوع">
 						<h:outputText value="#{billPay.amountPay}" />
 					</p:column>
-					<p:column width="10%" style="text-align:center"
+					<p:column width="15%" style="text-align:center"
 						headerText="المبلغ المتبقي">
 						<h:outputText value="#{billPay.amountRest}" />
 					</p:column>
 					<p:column width="10%" style="text-align:center" headerText="الحالة">
-						<h:outputText value="#{billPay.tax==1?'شامل الضريبة':'غير شامل الضريبة'}" />
+						<h:outputText
+							value="#{billPay.tax==1?'شامل الضريبة':'غير شامل الضريبة'}" />
 					</p:column>
-					
+
 					<p:column width="10%" style="text-align:center" headerText="تعديل">
-						<p:commandButton id="cBa" value="تعديل" immediate="true"
-							oncomplete="PF('whsdlAdd').show();"
+						<p:commandButton id="cBa" value="تعديل"  immediate="true"
+						    process="@this"
 							action="#{billPayBean.update(billPay)}">
+							<f:ajax render="form:panelGroupAdd"></f:ajax>
 						</p:commandButton>
 					</p:column>
 					<p:column width="10%" style="text-align:center" headerText="طباعة">
@@ -123,7 +125,7 @@
 
 						<p:row>
 							<p:column colspan="4" footerText="المجموع" />
-							<p:column colspan="1" footerText="#{billPayBean.totalWithoutTax}" />
+							<p:column colspan="1" footerText="#{billPayBean.totalWithoutTax}"  />
 							<p:column colspan="1" footerText="#{billPayBean.totalRest}" />
 							<p:column colspan="1" footerText="" />
 							<p:column colspan="1" footerText="" />
@@ -131,10 +133,10 @@
 						</p:row>
 
 					</p:columnGroup>
-					
+
 				</p:dataTable>
-				
-				<p:dialog position="center" widgetVar="whsdlAdd" responsive="true"
+
+				<p:dialog position="center" widgetVar="whsdlAdd" responsive="true" 
 					hideEffect="explode" showEffect="explode" width="70%" modal="true"
 					dynamic="true" closable="true" dir="rtl" resizable="true">
 					<h:panelGroup id="panelGroupAdd" width="70%">
@@ -185,18 +187,20 @@
 								<div class="ui-g-4">
 									<p:inputText value="#{billPayBean.billsPay.customerName}" />
 								</div>
-								<div class="ui-g-1">
-									<h:outputLabel value="القسم" />
-								</div>
-								<div class="ui-g-4">
-									<p:selectOneMenu class="form-control" style="width:70%;"
-										value="#{billPayBean.billsPay.deptId}">
-										<f:selectItem itemLabel="اخترالقسم" itemValue=""
-											noSelectionOption="true" />
-										<f:selectItems value="#{billPayBean.depts}" var="dept"
-											itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
-									</p:selectOneMenu>
-								</div>
+								<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ACCOUNTANT">
+									<div class="ui-g-1">
+										<h:outputLabel value="القسم" />
+									</div>
+									<div class="ui-g-4">
+										<p:selectOneMenu class="form-control" style="width:70%;"
+											value="#{billPayBean.billsPay.deptId}">
+											<f:selectItem itemLabel="اخترالقسم" itemValue=""
+												noSelectionOption="true" />
+											<f:selectItems value="#{billPayBean.depts}" var="dept"
+												itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
+										</p:selectOneMenu>
+									</div>
+								</secc:authorize>
 							</div>
 
 							<div class="ui-g">
@@ -220,7 +224,7 @@
 											noSelectionOption="true"></f:selectItem>
 										<f:selectItem itemLabel="نقدا" itemValue="نقدا"></f:selectItem>
 										<f:selectItem itemLabel="شبكة" itemValue="شبكة"></f:selectItem>
-										
+
 										<f:selectItem itemLabel="تحويل" itemValue="تحويل"></f:selectItem>
 									</p:selectOneMenu>
 								</div>
@@ -231,14 +235,14 @@
 									<h:outputLabel value="ضريبي" />
 								</div>
 								<div class="ui-g-4">
-									<p:selectBooleanCheckbox value="#{billPayBean.taxFlag}" />  
+									<p:selectBooleanCheckbox value="#{billPayBean.taxFlag}" />
 
 								</div>
 							</div>
 							<div class="iamge-box-footer" align="left">
 								<p:commandButton update="@form" value="حفظ"
-									icon="ui-icon ui-icon-save" process="form:panelGroupAdd" ajax="true"
-									action="#{billPayBean.save}">
+									icon="ui-icon ui-icon-save" process="form:panelGroupAdd"
+									ajax="true" action="#{billPayBean.save}">
 								</p:commandButton>
 								<p:spacer width="4" height="4"></p:spacer>
 								<p:commandButton styleClass="orange-btn" value="عودة"
@@ -249,14 +253,14 @@
 					</h:panelGroup>
 				</p:dialog>
 				<h:panelGroup id="calcgrb">
-									<div class="ui-g">
+					<div class="ui-g">
 						<div class="ui-g-2">
 							<h4 style="color: #1565C0; text-align: center;">
 								<p:outputLabel value="قيمة الضريبة"></p:outputLabel>
 							</h4>
 
 						</div>
-						
+
 						<div class="ui-g-4">
 							<p:outputLabel value="#{billPayBean.taxValue}"></p:outputLabel>
 						</div>
@@ -269,8 +273,8 @@
 						<div class="ui-g-4">
 							<p:outputLabel value="#{billPayBean.totalAfterTax}"></p:outputLabel>
 						</div>
-				</div>
-		</h:panelGroup>
+					</div>
+				</h:panelGroup>
 			</h:form>
 		</ui:define>
 	</ui:composition>

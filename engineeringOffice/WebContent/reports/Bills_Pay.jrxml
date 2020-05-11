@@ -342,7 +342,7 @@
 				<text><![CDATA[ريال]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="172" y="54" width="130" height="18" uuid="fb59b44f-33b9-43ff-9662-c820c84720c4"/>
+				<reportElement x="165" y="54" width="108" height="18" uuid="fb59b44f-33b9-43ff-9662-c820c84720c4"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="12"/>
 				</textElement>
