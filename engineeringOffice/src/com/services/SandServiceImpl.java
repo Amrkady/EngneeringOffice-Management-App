@@ -120,4 +120,10 @@ public class SandServiceImpl implements SandService {
 	public List<BankDeposit> findBankDepositByYear(Date dateFrom, Date dateTo) {
 		return commonDao.findBankDepositByYear(dateFrom, dateTo);
 	}
+
+	@Override
+	public List<Contracts> getAllContracts() {
+		List contracts = commonDao.findAll(Contracts.class);
+		return contracts;
+	}
 }

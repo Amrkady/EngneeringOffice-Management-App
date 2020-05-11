@@ -30,6 +30,9 @@ public class ContractsViewBean {
 		if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_MANAGER) {
 			contracts=sandServiceImpl.getContractsByDept(Utils.findCurrentUser().getDeptId());
 		}
+		else if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_ADMIN) {
+			contracts=sandServiceImpl.getAllContracts();
+		}
 	}
 	
 	public String transferContract(Integer contractNo)

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15838311149220" configfile="/engineeringOffice/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15842964817750" referenceLink="//@navigationRule.6/@fromViewId|" outlinks="pf15842964817751 pf15843936209530 pf15844722539510 pf15845609384470 pf15850091959100 pf15852636580060 pf15854972230320" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15842964817750" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf15842964817751 pf15843936209530 pf15844722539510 pf15845609384470 pf15850091959100 pf15852636580060 pf15854972230320 pf15892260260562 pf15892260260563 pf15892260260564 pf15892260260565 pf15892260260566 pf15892260260567 pf158922642016214" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/customers.xhtml" id="pf15842964817752" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15842964817751" path="/pages/customers.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/bill_sand.xhtml" id="pf15843936209531" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf15843936209530" path="/pages/bill_sand.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/contract.xhtml" id="pf15844722539511" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf15844722539510" path="/pages/contract.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/contract.xhtml" id="pf15844722539511" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf15844722539510" path="/pages/contract.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/login.xhtml" id="pf15845609384471" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15845609384470" path="/pages/login.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf15850091959101" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf15850091959100" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/transaction.xhtml" id="pf15852636580071" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf15852636580060" path="/pages/transaction.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/mails_view.xhtml" id="pf15854972230331" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf15854972230320" path="/pages/mails_view.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/transaction.xhtml" id="pf15852636580071" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf15852636580060" path="/pages/transaction.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/mails_view.xhtml" id="pf15854972230331" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf15854972230320" path="/pages/mails_view.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/departments.xhtml" id="pf15892260260568" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf15892260260562" path="/pages/departments.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/usersScreen.xhtml" id="pf15892260260569" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf15892260260563" path="/pages/usersScreen.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/revenues.xhtml" id="pf158922602605610" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf15892260260564" path="/pages/revenues.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/contracts_view.xhtml" id="pf158922602605611" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf15892260260565" path="/pages/contracts_view.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/bills_received.xhtml" id="pf158922602605612" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf15892260260566" path="/pages/bills_received.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/bill_pay.xhtml" id="pf158922602605613" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" inlinks="pf15892260260567" path="/pages/bill_pay.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/mails.xhtml" id="pf158922642016215" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf158922642016214" path="/pages/mails.xhtml"/>
   <links id="pf15842964817751" target="pf15842964817752" source="pf15842964817750" outcome="customers" redirect="true"/>
   <links id="pf15843936209530" target="pf15843936209531" source="pf15842964817750" outcome="bills" redirect="true"/>
   <links id="pf15844722539510" target="pf15844722539511" source="pf15842964817750" outcome="contract" redirect="true"/>
@@ -15,4 +22,11 @@
   <links id="pf15850091959100" target="pf15850091959101" source="pf15842964817750" outcome="success" redirect="true"/>
   <links id="pf15852636580060" target="pf15852636580071" source="pf15842964817750" outcome="trans" redirect="true"/>
   <links id="pf15854972230320" target="pf15854972230331" source="pf15842964817750" outcome="mailView" redirect="true"/>
+  <links id="pf15892260260562" target="pf15892260260568" source="pf15842964817750" outcome="depts" redirect="true"/>
+  <links id="pf15892260260563" target="pf15892260260569" source="pf15842964817750" outcome="users" redirect="true"/>
+  <links id="pf15892260260564" target="pf158922602605610" source="pf15842964817750" outcome="revenues" redirect="true"/>
+  <links id="pf15892260260565" target="pf158922602605611" source="pf15842964817750" outcome="contracts_v" redirect="true"/>
+  <links id="pf15892260260566" target="pf158922602605612" source="pf15842964817750" outcome="dept_rev" redirect="true"/>
+  <links id="pf15892260260567" target="pf158922602605613" source="pf15842964817750" outcome="pays" redirect="true"/>
+  <links id="pf158922642016214" target="pf158922642016215" source="pf15842964817750" outcome="mail" redirect="true"/>
 </pageflow:Pageflow>
