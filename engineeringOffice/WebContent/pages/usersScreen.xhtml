@@ -158,8 +158,10 @@
 								<p:outputLabel value="الرقم السري " />
 							</div>
 							<div class="ui-g-4">
-								<p:password value="#{userBean.usr.password}" required="true"
+								<p:password  validatorMessage="يجب ان يحتوي الرقم السري علي ارقام وحروف كبيرة وصغيرة وعلامات خاصة" value="#{userBean.usr.password}" required="true"
 									requiredMessage="ادخل الرقم السري ">
+									<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^*()_]).{8,20})"></f:validateRegex>
+									
 								</p:password>
 							</div>
 
