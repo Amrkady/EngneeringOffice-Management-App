@@ -1,22 +1,19 @@
 package com.beans;
 
 import javax.faces.application.FacesMessage;
-import org.springframework.security.authentication.AuthenticationManager;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.context.RequestContext;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-
 import com.entities.Users;
-import com.services.CustomerService;
 import com.services.UserService;
 
 
@@ -86,7 +83,7 @@ public class LoginBean {
 		SecurityContextHolder.clearContext();
 		FacesContext.getCurrentInstance().getViewRoot().getViewMap().clear();
 		flag=true;
-		return null;
+		return "login";
 	}
 	
 	

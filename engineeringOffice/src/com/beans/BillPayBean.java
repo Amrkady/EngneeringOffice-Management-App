@@ -186,11 +186,13 @@ public class BillPayBean {
 				billsPay = new BillsPay();
 				sandDate = null;
 			}
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "�� ����� ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					Utils.loadMessagesFromFile("success.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			init();
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "�� ��� �����", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					Utils.loadMessagesFromFile("error.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
