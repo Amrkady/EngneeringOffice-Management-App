@@ -219,13 +219,17 @@ th {
 			<h:outputText value="" />
 		</f:facet>
 	</p:ajaxStatus>
-	<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" oncomplete="PF('statusDialog').hide()" onerror="PF('statusDialog').hide()"/>
-             
-			<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" width="20%" height="20%">
-    			<p:graphicImage name="/images/loading.gif" width="100%"/>
-			</p:dialog>
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()"
+		oncomplete="PF('statusDialog').hide()"
+		onerror="PF('statusDialog').hide()">
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false" width="20%"
+			height="20%">
+			<p:graphicImage name="/images/loading.gif" width="100%" />
+		</p:dialog>
 	</p:ajaxStatus>
-	
+
 	<h:outputStylesheet name="css/nanoscroller.css"
 		library="serenity-layout" />
 	<h:outputStylesheet name="css/layout-moody.css"

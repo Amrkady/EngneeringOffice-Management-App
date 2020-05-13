@@ -30,7 +30,7 @@ public class UserBean {
 	private List<Users> users;
 	private Users user;
 	private Users usr = new Users();
-	
+
 	private boolean MNG = false;
 
 	@PostConstruct
@@ -39,19 +39,18 @@ public class UserBean {
 		depts = departmentServiceImpl.loadDepartments();
 		users = userServiceImpl.getAllUser();
 	}
-	
+
 	public String getDeptById(Integer deptId) {
-		if(deptId != null)
-		{
-		   Departments dept= departmentServiceImpl.findDeptById(deptId);
-		   return dept.getDeptName();
+		if (deptId != null) {
+			Departments dept = departmentServiceImpl.findDeptById(deptId);
+			return dept.getDeptName();
 		}
 		return "";
 	}
 
 	public String addUser() {
 		try {
-			if(MNG) {
+			if (MNG) {
 				usr.setManager(1);
 				usr.setRoleId(Constant.ROLE_ADMIN);
 			} else {
@@ -60,14 +59,16 @@ public class UserBean {
 			}
 			usr.setLoginName(usr.getLoginName().toUpperCase());
 			userServiceImpl.addUser(usr);
-			FacesMessage msg = new FacesMessage("��� �������", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					Utils.loadMessagesFromFile("success.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			users = userServiceImpl.getAllUser();
 			Utils.closeDialog("whsdlAdd");
 			usr = new Users();
 			init();
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("�� ��� �������", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					Utils.loadMessagesFromFile("error.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -78,12 +79,14 @@ public class UserBean {
 		if (userD != null) {
 			try {
 				userServiceImpl.deleteUser(userD);
-				FacesMessage msg = new FacesMessage("�� �����", "");
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+						Utils.loadMessagesFromFile("success.delete"), "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				users = userServiceImpl.getAllUser();
-			
+
 			} catch (Exception e) {
-				FacesMessage msg = new FacesMessage("�� ��� �����", "");
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						Utils.loadMessagesFromFile("error.delete"), "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				e.printStackTrace();
 			}
@@ -96,11 +99,13 @@ public class UserBean {
 			user = (Users) event.getObject();
 			user.setLoginName(user.getLoginName().toUpperCase());
 			userServiceImpl.updateUser(user);
-			FacesMessage msg = new FacesMessage("�� ��� �������", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					Utils.loadMessagesFromFile("success.update"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			// users = userServiceImpl.getAllUser();
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("�� ��� ��� �������", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, Utils.loadMessagesFromFile("error.update"),
+					"");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -108,7 +113,8 @@ public class UserBean {
 	}
 
 	public void onRowCancel(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("�� ����� �������", "");
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, Utils.loadMessagesFromFile("error.update"),
+				"");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 	}
@@ -178,9 +184,5 @@ public class UserBean {
 	public void setUsr(Users usr) {
 		this.usr = usr;
 	}
-
-
-
-
 
 }

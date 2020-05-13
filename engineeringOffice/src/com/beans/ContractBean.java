@@ -71,13 +71,15 @@ public class ContractBean {
 			contract.setSent(0);
 			sandServiceImpl.addContract(contract);
 			conNo++;
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "�� �������", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					Utils.loadMessagesFromFile("success.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			enablePrint = true;
 			Utils.updateUIComponent("form:print");
 
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "�� ��� �������", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					Utils.loadMessagesFromFile("error.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 

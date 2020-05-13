@@ -78,7 +78,8 @@ public class BillSandBean {
 				billSnad.setTax(0);
 			}
 			status = sandServiceImpl.addSand(billSnad);
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, " „ «·Õ›Ÿ", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					Utils.loadMessagesFromFile("success.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			sandNo++;
 			enablePrint = true;
@@ -87,7 +88,8 @@ public class BillSandBean {
 			Utils.updateUIComponent("form:d4");
 
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "·„ Ì „ «·Õ›Ÿ «⁄œ «·„Õ«Ê·…", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					Utils.loadMessagesFromFile("error.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 			status = false;
@@ -124,8 +126,6 @@ public class BillSandBean {
 			parameters.put("costByLet", billSnad.getAmountPay());
 			parameters.put("tax", billSnad.getAmountPay().doubleValue() - this.taxValue);
 			parameters.put("taxValue", this.taxValue);
-
-
 
 			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
 					.getRealPath("/reports/footer.png");
