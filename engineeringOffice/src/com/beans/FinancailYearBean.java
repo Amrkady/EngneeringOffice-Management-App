@@ -317,6 +317,9 @@ public class FinancailYearBean {
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("box", boxValue);
 			parameters.put("bank", bankValue);
+			double total = boxValue + bankValue;
+			total = Math.round(total * 100) / 100.00d;
+			parameters.put("total", total);
 			parameters.put("first", ownerComm);
 			parameters.put("second", ownerComm);
 			parameters.put("third", partnerCommision);
