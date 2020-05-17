@@ -90,13 +90,13 @@ public class RevenueBean {
 			} else if (bill.getTax() == 0) {
 				totalAfterTaxComm += bill.getAmountPay().doubleValue();
 			}
-			if (bill.getBillType().equals("‰ﬁœ«")) {
+			if (bill.getBillType().equals(Utils.loadMessagesFromFile("cash"))) {
 				cash += bill.getAmountPay().doubleValue();
-			} else if (bill.getBillType().equals("‘»ﬂ…")) {
+			} else if (bill.getBillType().equals(Utils.loadMessagesFromFile("visa"))) {
 				visa += bill.getAmountPay().doubleValue();
 				visaCommision += bill.getAmountPay().doubleValue() * 0.0084;
 
-			} else if (bill.getBillType().equals(" ÕÊ»·")) {
+			} else if (bill.getBillType().equals(Utils.loadMessagesFromFile("transfer"))) {
 				transfer += bill.getAmountPay().doubleValue();
 			}
 
@@ -146,12 +146,20 @@ public class RevenueBean {
 	}
 
 	public void addDeposit() {
-
+		try {
 		bnkDeposit.setDate(new Date());
 		sandServiceImpl.addBankDeposit(bnkDeposit);
 
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "ÿ™ŸÖÿ™ ÿßŸÑÿßÿ∂ÿßŸÅÿ© ÿ®ŸÜÿ¨ÿßÿ≠", "");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					Utils.loadMessagesFromFile("success.operation"),
+				"");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		} catch (Exception e) {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					Utils.loadMessagesFromFile("error.operation"), "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+			e.printStackTrace();
+		}
 	}
 
 	public String print(Bills selectedBill) {

@@ -48,7 +48,7 @@ public class deptsBean {
 	public String addDept() {
 		try {
 			departmentServiceImpl.addDepartment(dept);
-			FacesMessage msg = new FacesMessage("��� �������", "");
+			FacesMessage msg = new FacesMessage(Utils.loadMessagesFromFile("success.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 
 			// update manager user = 1
@@ -58,7 +58,7 @@ public class deptsBean {
 			userServiceImpl.updateUser(us);
 			depts = departmentServiceImpl.loadDepartments();
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("�� ��� �������", "");
+			FacesMessage msg = new FacesMessage(Utils.loadMessagesFromFile("error.operation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -69,7 +69,7 @@ public class deptsBean {
 		if (deptD != null) {
 			try {
 				departmentServiceImpl.deleteDepartment(deptD);
-				FacesMessage msg = new FacesMessage("�� �����", "");
+				FacesMessage msg = new FacesMessage(Utils.loadMessagesFromFile("success.delete"), "");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				depts = departmentServiceImpl.loadDepartments();
 				// update manager user = 0
@@ -77,8 +77,8 @@ public class deptsBean {
 				us.setManager(0);
 				userServiceImpl.updateUser(us);
 			} catch (Exception e) {
-				FacesMessage msg = new FacesMessage("�� ��� �����", "");
-				FacesContext.getCurrentInstance().addMessage(null, msg);
+//				FacesMessage msg = new FacesMessage(Utils.loadMessagesFromFile("error.delete"), "");
+//				FacesContext.getCurrentInstance().addMessage(null, msg);
 				e.printStackTrace();
 			}
 		}
@@ -90,7 +90,7 @@ public class deptsBean {
 			dept = (Departments) event.getObject();
 
 			departmentServiceImpl.updateDepartment(dept);
-			FacesMessage msg = new FacesMessage("�� ��� �������", "");
+			FacesMessage msg = new FacesMessage(Utils.loadMessagesFromFile("success.update"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			// update manager user = 1
 			Users us = userServiceImpl.findUserById(dept.getDeptManager());
@@ -98,7 +98,7 @@ public class deptsBean {
 			us.setRoleId(Constant.ROLE_MANAGER);
 			userServiceImpl.updateUser(us);
 		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage("�� ��� ��� �������", "");
+			FacesMessage msg = new FacesMessage(Utils.loadMessagesFromFile("error.update"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
@@ -106,8 +106,8 @@ public class deptsBean {
 	}
 
 	public void onRowCancel(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("�� ����� �������", "");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+//		FacesMessage msg = new FacesMessage("�� ����� �������", "");
+//		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 	}
 

@@ -161,13 +161,13 @@ public class FinancailYearBean {
 					} else if (bill.getTax() == 0) {
 						totalAfterTaxComm += bill.getAmountPay().doubleValue();
 					}
-					if (bill.getBillType().equals("‰ﬁœÌ")) {
+					if (bill.getBillType().equals(Utils.loadMessagesFromFile("cash"))) {
 						cash += bill.getAmountPay().doubleValue();
-					} else if (bill.getBillType().equals("‘»ﬂ…")) {
+					} else if (bill.getBillType().equals(Utils.loadMessagesFromFile("visa"))) {
 						visa += bill.getAmountPay().doubleValue();
 						visaCommision += bill.getAmountPay().doubleValue() * 0.0084;
 
-					} else if (bill.getBillType().equals(" ÕÊÌ·")) {
+					} else if (bill.getBillType().equals(Utils.loadMessagesFromFile("transfer"))) {
 						transfer += bill.getAmountPay().doubleValue();
 					}
 

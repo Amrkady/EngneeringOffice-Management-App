@@ -126,4 +126,9 @@ public class SandServiceImpl implements SandService {
 		List contracts = commonDao.findAll(Contracts.class);
 		return contracts;
 	}
+
+	@Override
+	public boolean updateBillsReceive(Bills billReceive) {
+		return commonDao.updateObject(billReceive);
+	}
 }

@@ -50,4 +50,6 @@ public interface SandService {
 	List<BankDeposit> findBankDepositByYear(Date dateFrom, Date dateTo);
 
 	public List<Contracts> getAllContracts();
+
+	public boolean updateBillsReceive(Bills billReceive);
 }
