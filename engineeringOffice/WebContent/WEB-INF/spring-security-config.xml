@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns:sec="http://www.springframework.org/schema/security"
+<beans:beans 
+	xmlns:sec="http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
  						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
@@ -10,11 +11,11 @@
 		<sec:csrf disabled="true" />
 
 		<sec:intercept-url pattern="/pages/customers.xhtml"
-		 access="hasAnyRole('ROLE_ADMIN')" />
+		 access="isAuthenticated()" />
 		<sec:intercept-url pattern="/pages/bill_sand.xhtml"  
-		access="hasAnyRole('ROLE_ADMIN')"/>
+		access="isAuthenticated()"/>
 		<sec:intercept-url pattern="/pages/contract.xhtml"
-		 access="hasAnyRole('ROLE_ADMIN')" />
+		 access="isAuthenticated()" />
 		 <sec:form-login login-page="/pages/login.xhtml"
 			authentication-failure-url="/pages/login.xhtml" />
 			<sec:logout invalidate-session="true"
@@ -24,6 +25,7 @@
 	</sec:http>
 	<sec:authentication-manager alias="authenticationManager">
 		<sec:authentication-provider
-			user-service-ref="myUserDetailsService"></sec:authentication-provider>
+			user-service-ref="myUserDetailsService">
+		</sec:authentication-provider>
 	</sec:authentication-manager>
 </beans:beans>
