@@ -109,7 +109,8 @@ public class TransactionBean extends Scanner {
 			transactionServiceImpl.addAttachment(attachment);
 		}
 		
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "تم الارسال بنجاح", "");
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, Utils.loadMessagesFromFile("success.send"),
+				"");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		trans.setSubject(null);
 		trans.setTrTo(null);

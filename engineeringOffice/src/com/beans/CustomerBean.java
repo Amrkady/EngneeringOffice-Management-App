@@ -11,15 +11,14 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.HttpRequest;
-
 import com.entities.Customers;
 import com.entities.Departments;
 import com.entities.OperationType;
 import com.models.CustomerModel;
 import com.services.CustomerService;
 import com.services.DepartmentService;
-import com.services.DepartmentServiceImpl;
+
+import common.util.Utils;
 
 
 @ManagedBean
@@ -53,16 +52,22 @@ public class CustomerBean {
 		if(customers.getNatNo().toString().length()!=10 ||customers.getPhone().length()!=10) {
 		if(customers.getNatNo().toString().length()!=10)
 		{
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "خطأ", "");
+					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							Utils.loadMessagesFromFile("id.validation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			}
 		if(customers.getPhone().length()!=10)
 		{
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "خطأ", "");
+					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							Utils.loadMessagesFromFile("phone.validation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);}
-	}else step=2;
+	} else {
+			step=2;
+		}
 		}else if(step==2) {
-			if(departmentId!=null)step=3;
+			if(departmentId!=null) {
+				step=3;
+			}
 		}
 	}
 
@@ -86,9 +91,11 @@ public class CustomerBean {
 		httpSession.setAttribute("CustomerObject", customerModel);
 		validate();
 		System.out.println(operationId);
-		if(operationId==1)
-		return "bills";
-		else if(operationId==2) return "contract";
+		if(operationId==1) {
+			return "bills";
+		} else if(operationId==2) {
+			return "contract";
+		}
 		
 		}
 		catch (Exception e) {

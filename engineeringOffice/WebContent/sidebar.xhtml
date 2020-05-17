@@ -30,19 +30,26 @@
 								icon="ui-icon ui-icon-reorder" outcome="depts" />
 							<p:menuitem  value="ايرادات القسم "
 								icon="ui-icon ui-icon-receipt" outcome="dept_rev" />
+								<p:menuitem  value="المصروفات"
+								icon="ui-icon ui-icon-receipt" outcome="pays" />
 								
 							<p:menuitem  value="البريد"
 								icon="ui-icon ui-icon-email" outcome="mail" />
 							<p:menuitem  value="المستخدمين"
 								icon="ui-icon ui-icon-people" outcome="users" />
-							<p:menuitem  value="الايرادات العمومية"
-								icon="ui-icon ui-icon-receipt" outcome="revenues" />
-							<p:menuitem  value="المصروفات"
-								icon="ui-icon ui-icon-receipt" outcome="pays" />
+							
+							
 							<p:menuitem  value="العقود"
 								icon="ui-icon ui-icon-receipt" outcome="contracts_v" />
+								
+							<p:submenu label="الحسابات" icon="ui-icon ui-icon-calculator">
 								<p:menuitem  value="السنة المالية"
 								icon="ui-icon ui-icon-receipt" outcome="financial" />
+								<p:menuitem  value="الايرادات العمومية"
+								icon="ui-icon ui-icon-receipt" outcome="revenues" />
+								<p:menuitem  value="المصروفات"
+								icon="ui-icon ui-icon-receipt" outcome="pays" />
+							</p:submenu>	
 															
 
 						</pm:menu>

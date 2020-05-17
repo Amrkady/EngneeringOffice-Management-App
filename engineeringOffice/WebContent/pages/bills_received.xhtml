@@ -29,7 +29,7 @@
 
 				<!-- 					</p:commandButton> -->
 				<!-- 					</div></div> -->
-
+				<h:panelGroup id="png" >
 				<div class="ui-g" style="margin-bottom: 40px;">
 					<secc:authorize ifAnyGranted="ROLE_ADMIN">
 						<div class="ui-g-1">
@@ -75,13 +75,13 @@
 					</div>
 					<div class="ui-g-1">					
 						<p:commandButton  actionListener="#{billReceiveBean.update}"
-							process="@form" class="bb" value="استعلام"
+							process="png" class="bb" value="استعلام"
 							update="vcs:cnt,vcs:calc">
 						</p:commandButton>
 				</div>
 					
 				</div>
-
+				</h:panelGroup>
 
 				<p:dataTable id="cnt" var="billReceive"
 					value="#{billReceiveBean.billsRecieve}" widgetVar="cellcnt"
@@ -91,51 +91,32 @@
 					paginator="true"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-
-					
 					<p:column style="text-align:center" headerText="تاريخ السند">
 
-
 						<h:outputText value="#{billReceive.billDate}" />
-
-
 
 					</p:column>
 										
 					<p:column style="text-align:center" headerText="رقم السند">
 
-
-
 						<h:outputText value="#{billReceive.sanadNo}" />
-
 
 					</p:column>
 					<p:column style="text-align:center" headerText="اسم العميل">
 
-
-
 						<h:outputText value="#{billReceive.customerName}" />
-
 
 					</p:column>
 					
-
 					<p:column style="text-align:center" headerText="البيان">
 
-
 						<h:outputText value="#{billReceive.billReason}" />
-
-
-
 
 					</p:column>
 					
 					<p:column style="text-align:center" headerText="المبلغ المدفوع">
 
-
 						<h:outputText value="#{billReceive.amountPay}" />
-
-
 
 					</p:column>
 					<p:column style="text-align:center" headerText="المبلغ المتبقي ">
@@ -148,11 +129,21 @@
 					</p:column>
 					<p:column style="text-align:center" headerText="الحالة">
 
-
 						<h:outputText value="#{billReceive.tax==1?'شامل الضريبة':'غير شامل الضريبة'}" />
 
-
-
+					</p:column>
+					<p:column width="10%" style="text-align:center" headerText="تعديل">
+						<p:commandButton id="cBa" value="تعديل"  immediate="true"
+						    process="@this"
+							action="#{billReceiveBean.edit(billReceive)}">
+							<f:ajax render="vcs:panelGroupAdd"></f:ajax>
+						</p:commandButton>
+					</p:column>
+					<p:column width="10%" style="text-align:center" headerText="طباعة">
+						<p:commandButton value="طباعة"
+							action="#{billReceiveBean.print(billReceive)}" ajax="false"
+							immediate="true" onclick="this.form.target='_blank'">
+						</p:commandButton>
 					</p:column>
 					<p:columnGroup type="footer">
 
@@ -161,6 +152,7 @@
 							<p:column colspan="1" footerText="#{billReceiveBean.totalWithoutTax}" />
 							<p:column colspan="1" footerText="#{billReceiveBean.totalRest}" />
 							<p:column colspan="1" footerText="" />
+							<p:column colspan="1" footerText="" />
 						</p:row>
 
 					</p:columnGroup>
@@ -168,6 +160,139 @@
 
 
 				</p:dataTable>
+				
+				<p:dialog position="center" widgetVar="whsdlAdd" responsive="true" 
+					hideEffect="explode" showEffect="explode" width="70%" modal="true"
+					dynamic="true" closable="false"  dir="rtl" resizable="true">
+					<h:panelGroup id="panelGroupAdd" width="70%">
+						<p:fieldset width="50%" legend="بيانات السند ">
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value="رقم السند" />
+								</div>
+								<div id="sand" class="ui-g-4">
+									<p:outputLabel value="#{billReceiveBean.billReceive.sanadNo}"></p:outputLabel>
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="المبلغ" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputNumber
+										validatorMessage="يجب ان  يحتوي المبلغ علي ارقام فقط"
+										value="#{billReceiveBean.billReceive.amountPay}" required="true"
+										requiredMessage="ادخل المبلغ ">
+
+									</p:inputNumber>
+								</div>
+							</div>
+							<div class="ui-g">
+							
+								<div class="ui-g-1">
+									<h:outputLabel value="المتبقي" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputNumber validatorMessage="المتبقي يجب ان يكون ارقام فقط"
+										value="#{billReceiveBean.billReceive.amountRest}" required="true"
+										requiredMessage="ادخل المتبقى ">
+									</p:inputNumber>
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="التاريخ" />
+								</div>
+								<div class="ui-g-4">
+									<p:calendar styleClass="form-control" id="absenceDate"
+										pattern="yyyy/MM/dd" value="#{billReceiveBean.billDate}"
+										required="true" requiredMessage="ادخل التاريخ ">
+									</p:calendar>
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value=" الاسم" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputText value="#{billReceiveBean.billReceive.customerName}" />
+								</div>
+								<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ACCOUNTANT">
+									<div class="ui-g-1">
+										<h:outputLabel value="القسم" />
+									</div>
+									<div class="ui-g-4">
+										<p:selectOneMenu class="form-control" style="width:70%;"
+											value="#{billReceiveBean.billReceive.deptId}">
+											<f:selectItem itemLabel="اخترالقسم" itemValue=""
+												noSelectionOption="true" />
+											<f:selectItems value="#{billReceiveBean.depts}" var="dept"
+												itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
+										</p:selectOneMenu>
+									</div>
+								</secc:authorize>
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value="وذلك مقابل" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputText value="#{billReceiveBean.billReceive.billReason}"
+										required="true" requiredMessage="ادخل السبب ">
+									</p:inputText>
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="طريقة الدفع" />
+								</div>
+								<div class="ui-g-4">
+
+									<p:selectOneMenu style="width:70%;" required="true"
+										requiredMessage="ادخل طريقة الدفع "
+										value="#{billReceiveBean.billReceive.billType}">
+										<f:selectItem itemLabel="اختر طريقة الدفع"
+											noSelectionOption="true"></f:selectItem>
+										<f:selectItem itemLabel="نقدا" itemValue="نقدا"></f:selectItem>
+										<f:selectItem itemLabel="شبكة" itemValue="شبكة"></f:selectItem>
+
+										<f:selectItem itemLabel="تحويل" itemValue="تحويل"></f:selectItem>
+									</p:selectOneMenu>
+								</div>
+								<div class="ui-g-1">
+							<p:outputLabel value="يوجد ضريبة ؟" ></p:outputLabel>
+						</div>
+						<div class="ui-g-4">
+							<p:selectBooleanCheckbox value="#{billReceiveBean.flag}" >
+							<p:ajax process="panelGroupAdd" update="d4 d1" listener="#{billReceiveBean.updateComm}" />
+							</p:selectBooleanCheckbox>
+						</div>
+						<div class="ui-g-1">
+							<p:outputLabel  value="قيمة الضريبة" ></p:outputLabel>
+						</div>
+						<div class="ui-g-4">
+						<p:outputLabel id="d1" value="#{billReceiveBean.taxVal}" ></p:outputLabel>
+						</div>
+					</div>
+					<div class="ui-g" >
+						<div class="ui-g-1">
+							<p:outputLabel  value="المبلغ الكلي" ></p:outputLabel>
+						</div>
+						<div class="ui-g-4">
+							<p:outputLabel id="d4" value="#{billReceiveBean.totalVal}"></p:outputLabel>
+						</div>
+					</div>
+							
+
+							<div class="iamge-box-footer" align="left">
+								<p:commandButton update="@form"  value="حفظ"
+									icon="ui-icon ui-icon-save" action="#{billReceiveBean.save}" process="vcs:panelGroupAdd"
+									ajax="true" >
+								</p:commandButton>
+								<p:spacer width="4" height="4"></p:spacer>
+								<p:commandButton action="#{billReceiveBean.back}" styleClass="orange-btn" value="عودة"
+									icon="ui-icon ui-icon-back" immediate="true"
+									onclick="PF('whsdlAdd').hide();" />
+							</div>
+						</p:fieldset>
+					</h:panelGroup>
+				</p:dialog>
+								
 				<br></br>
 				<br></br>
 				<p:fieldset  toggleable="true" toggleSpeed="500">

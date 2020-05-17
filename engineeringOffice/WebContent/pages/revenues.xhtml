@@ -219,8 +219,9 @@
 									value="#{revenueBean.bnkDeposit.value}"></p:inputNumber>
 							</div>
 							<div class="ui-g-3">
-								<p:commandButton icon="ui-icon ui-icon-plus" value="اضافة">
+								<p:commandButton oncomplete="window.scrollTo(0,0);" icon="ui-icon ui-icon-plus" value="اضافة">
 									<f:ajax execute="dep" listener="#{revenueBean.addDeposit}"></f:ajax>
+									
 								</p:commandButton>
 							</div>
 							<div class="ui-g-3">
