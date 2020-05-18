@@ -21,7 +21,7 @@
 				<div class="image-box-footer" align="left">
 					<h:panelGroup id="print" >
 						<p:commandButton rendered="#{sandBean.enablePrint}"  value="طباعة"
-							style="width:10%; align:left" icon="ui-icon ui-icon-print "
+							style="width:10%; align:left" icon="ui-icon ui-icon-print " immediate="true"
 							action="#{sandBean.save}" onclick="this.form.target='_blank'"
 							ajax="false">
 						</p:commandButton>
@@ -56,7 +56,7 @@
 						</div>
 						<div class="ui-g-4">
 
-							<p:calendar styleClass="form-control" 
+							<p:calendar styleClass="form-control"  id="date"
 								pattern="yyyy/MM/dd" value="#{sandBean.sandDate}"
 								navigator="true" 
 								required="true" requiredMessage="ادخل التاريخ ">

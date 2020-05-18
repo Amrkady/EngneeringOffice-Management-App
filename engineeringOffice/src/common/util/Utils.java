@@ -995,29 +995,28 @@ public class Utils {
 			switch (x) {
 
 			case 1:
-				day = "ÇáÇÍÏ";
+				day = loadMessagesFromFile("sunday");
 				break;
 			case 2:
-				day = "ÇáÇÊäíä";
+				day = loadMessagesFromFile("monday");
 
 				break;
 			case 3:
-				day = "ÇáËáÇËÇÁ";
+				day = loadMessagesFromFile("tuesday");
 				break;
 			case 4:
-				day = "ÇáÇÑÈÚÇÁ";
+				day = loadMessagesFromFile("wednesday");
 				break;
 			case 5:
-				day = "ÇáÎãíÓ";
+				day = loadMessagesFromFile("thursday");
 				break;
 
 			case 6:
-				day = "ÇáÌãÚÉ";
+				day = loadMessagesFromFile("friday");
 				break;
 			case 7:
-				day = "ÇáÓÈÊ";
+				day = loadMessagesFromFile("saturday");
 				break;
-
 			default:
 				break;
 			}

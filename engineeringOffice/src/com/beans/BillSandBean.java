@@ -83,9 +83,11 @@ public class BillSandBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			sandNo++;
 			enablePrint = true;
+			sandDate = null;
 			Utils.updateUIComponent("form:print");
 			Utils.updateUIComponent("form:sndNo");
 			Utils.updateUIComponent("form:d4");
+			Utils.updateUIComponent("form:date");
 
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -126,7 +128,6 @@ public class BillSandBean {
 			parameters.put("costByLet", billSnad.getAmountPay());
 			parameters.put("tax", billSnad.getAmountPay().doubleValue() - this.taxValue);
 			parameters.put("taxValue", this.taxValue);
-
 			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
 					.getRealPath("/reports/footer.png");
 			parameters.put("footer", footerPath);
