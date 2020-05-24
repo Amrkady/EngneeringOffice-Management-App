@@ -139,9 +139,17 @@
 							<f:ajax render="vcs:panelGroupAdd"></f:ajax>
 						</p:commandButton>
 					</p:column>
+					<p:column width="10%" style="text-align:center" headerText="تسديد">
+						<p:commandButton rendered="#{billReceive.amountRest != '0.00'}" value="تسديد"  immediate="true"
+						    process="@this"
+							action="#{billReceiveBean.pay(billReceive)}">
+							<f:ajax render="vcs:panelGroupPay"></f:ajax>
+						</p:commandButton>
+					</p:column>
+					
 					<p:column width="10%" style="text-align:center" headerText="طباعة">
-						<p:commandButton value="طباعة"
-							action="#{billReceiveBean.print(billReceive)}" ajax="false"
+						<p:commandButton 
+							action="#{billReceiveBean.print(billReceive)}" icon="ui-icon ui-icon-print" ajax="false"
 							immediate="true" onclick="this.form.target='_blank'">
 						</p:commandButton>
 					</p:column>
@@ -153,6 +161,8 @@
 							<p:column colspan="1" footerText="#{billReceiveBean.totalRest}" />
 							<p:column colspan="1" footerText="" />
 							<p:column colspan="1" footerText="" />
+							<p:column colspan="1" footerText="" />
+							<p:column colspan="1" footerText="" />
 						</p:row>
 
 					</p:columnGroup>
@@ -160,6 +170,139 @@
 
 
 				</p:dataTable>
+				<p:dialog position="center" widgetVar="whsdlpay" responsive="true" 
+					hideEffect="explode" showEffect="explode" width="70%" modal="true"
+					dynamic="true" closable="false"  dir="rtl" resizable="true">
+					<h:panelGroup id="panelGroupPay" width="70%">
+						<p:fieldset width="50%" legend="بيانات السند ">
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value="رقم السند" />
+								</div>
+								<div id="sand" class="ui-g-4">
+									<p:outputLabel value="#{billReceiveBean.billReceive.sanadNo}"></p:outputLabel>
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="المبلغ" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputNumber
+										validatorMessage="يجب ان  يحتوي المبلغ علي ارقام فقط"
+										value="#{billReceiveBean.billReceive.amountPay}" required="true"
+										requiredMessage="ادخل المبلغ ">
+
+									</p:inputNumber>
+								</div>
+							</div>
+							<div class="ui-g">
+							
+								<div class="ui-g-1">
+									<h:outputLabel value="المتبقي" />
+								</div>
+								<div class="ui-g-4">
+									<p:outputLabel value="#{billReceiveBean.billReceive.amountRest}"></p:outputLabel>
+									
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="التاريخ" />
+								</div>
+								<div class="ui-g-4">
+									<p:calendar disabled="true" styleClass="form-control" id="absDate"
+										pattern="yyyy/MM/dd" value="#{billReceiveBean.billDate}"
+										required="true" requiredMessage="ادخل التاريخ ">
+									</p:calendar>
+								</div>
+							</div>
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value=" الاسم" />
+								</div>
+								<div class="ui-g-4">
+									<p:outputLabel value="#{billReceiveBean.billReceive.customerName}" />
+								</div>
+								
+									<div class="ui-g-1">
+										<h:outputLabel value="القسم" />
+									</div>
+									<div class="ui-g-4">
+										
+										
+										<p:selectOneMenu editable="false" disabled="true" class="form-control" style="width:70%;"
+											value="#{billReceiveBean.billReceive.deptId}">
+											<f:selectItem itemLabel="اخترالقسم" itemValue=""
+												noSelectionOption="true" />
+											<f:selectItems value="#{billReceiveBean.depts}" var="dept"
+												itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
+										</p:selectOneMenu>
+										
+										
+									</div>
+								
+							</div>
+
+							<div class="ui-g">
+								<div class="ui-g-1">
+									<h:outputLabel value="وذلك مقابل" />
+								</div>
+								<div class="ui-g-4">
+									<p:outputLabel value="#{billReceiveBean.billReceive.billReason}">
+									</p:outputLabel>
+								</div>
+								<div class="ui-g-1">
+									<h:outputLabel value="طريقة الدفع" />
+								</div>
+								<div class="ui-g-6">
+
+									<p:selectOneMenu style="width:70%;" required="true"
+										requiredMessage="ادخل طريقة الدفع "
+										value="#{billReceiveBean.billReceive.billType}">
+										<f:selectItem itemLabel="اختر طريقة الدفع"
+											noSelectionOption="true"></f:selectItem>
+										<f:selectItem itemLabel="نقدا" itemValue="نقدا"></f:selectItem>
+										<f:selectItem itemLabel="شبكة" itemValue="شبكة"></f:selectItem>
+
+										<f:selectItem itemLabel="تحويل" itemValue="تحويل"></f:selectItem>
+									</p:selectOneMenu>
+								</div>
+								<div class="ui-g-1">
+							<p:outputLabel value="يوجد ضريبة ؟" ></p:outputLabel>
+						</div>
+						<div class="ui-g-4">
+							<p:selectBooleanCheckbox disabled="true"  value="#{billReceiveBean.flag}" >
+							
+							</p:selectBooleanCheckbox>
+						</div>
+						<div class="ui-g-1">
+							<p:outputLabel  value="قيمة الضريبة" ></p:outputLabel>
+						</div>
+						<div class="ui-g-4">
+						<p:outputLabel id="d5" value="#{billReceiveBean.taxVal}" ></p:outputLabel>
+						</div>
+					</div>
+					<div class="ui-g" >
+						<div class="ui-g-1">
+							<p:outputLabel  value="المبلغ الكلي" ></p:outputLabel>
+						</div>
+						<div class="ui-g-4">
+							<p:outputLabel id="d6" value="#{billReceiveBean.totalVal}"></p:outputLabel>
+						</div>
+					</div>
+							
+
+							<div class="iamge-box-footer" align="left">
+								<p:commandButton update="@form"  value="حفظ"
+									icon="ui-icon ui-icon-save" action="#{billReceiveBean.addRestBill}" process="vcs:panelGroupPay"
+									ajax="true" >
+								</p:commandButton>
+								<p:spacer width="4" height="4"></p:spacer>
+								<p:commandButton action="#{billReceiveBean.back}" styleClass="orange-btn" value="عودة"
+									icon="ui-icon ui-icon-back" immediate="true"
+									onclick="PF('whsdlPay').hide();" />
+							</div>
+						</p:fieldset>
+					</h:panelGroup>
+				</p:dialog>
+				
 				
 				<p:dialog position="center" widgetVar="whsdlAdd" responsive="true" 
 					hideEffect="explode" showEffect="explode" width="70%" modal="true"
@@ -241,7 +384,7 @@
 								<div class="ui-g-1">
 									<h:outputLabel value="طريقة الدفع" />
 								</div>
-								<div class="ui-g-4">
+								<div class="ui-g-6">
 
 									<p:selectOneMenu style="width:70%;" required="true"
 										requiredMessage="ادخل طريقة الدفع "
@@ -257,7 +400,7 @@
 								<div class="ui-g-1">
 							<p:outputLabel value="يوجد ضريبة ؟" ></p:outputLabel>
 						</div>
-						<div class="ui-g-4">
+						<div class="ui-g-6">
 							<p:selectBooleanCheckbox value="#{billReceiveBean.flag}" >
 							<p:ajax process="panelGroupAdd" update="d4 d1" listener="#{billReceiveBean.updateComm}" />
 							</p:selectBooleanCheckbox>
@@ -340,14 +483,15 @@
 						</div>
 						
 						<div class="ui-g-2">
-							<h4 style="color: #1565C0; text-align: center;">
+							<h3 style="font-weight:bold;color: #1565C0; text-align: center;">
 								<p:outputLabel value="نسبة رئيس القسم"></p:outputLabel>
-							</h4>
+							</h3>
 
 						</div>
-						<div class="ui-g-4">
+						<div style="border:1px solid blue;box-shadow:2px 2px blue;background-color:#1565C0;color:white;text-align:center;border-radius: 15px;" class="ui-g-1">
 							<p:outputLabel value="#{billReceiveBean.mngCommision}"></p:outputLabel>
 						</div>
+						
 
 					</div>
 				</h:panelGroup>

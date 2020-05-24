@@ -59,6 +59,8 @@ public class BillReceiveBean {
 	private boolean flag;
 	private double totalVal;
 	private double amountPay;
+	private Integer sandNo;
+	private Bills newBill;
 
 	@PostConstruct
 	public void init() {
@@ -229,6 +231,53 @@ public class BillReceiveBean {
 		Utils.openDialog("whsdlAdd");
 	}
 
+	public void pay(Bills selectedBill) {
+		sandNo = sandServiceImpl.getSandNo() + 1;
+
+		if (selectedBill != null) {
+			// billsPay = new BillsPay();
+			newBill = selectedBill;
+			billReceive = new Bills();
+
+			billReceive.setAmountPay(selectedBill.getAmountRest());
+			billReceive.setAmountRest(new BigDecimal(0));
+			billReceive.setDate(new Date());
+			billReceive.setCustomerName(selectedBill.getCustomerName());
+			billReceive.setDeptName(selectedBill.getDeptName());
+			billReceive.setDeptId(selectedBill.getDeptId());
+			billReceive.setBillReason(selectedBill.getBillReason());
+			billReceive.setSanadNo(sandNo);
+			billReceive.setCustomerId(selectedBill.getCustomerId());
+			
+			
+			if (selectedBill.getTax() == 1) {
+				billReceive.setTax(1);
+				billReceive.setAmountPay(selectedBill.getAmountRest());
+				totalVal = billReceive.getAmountPay().doubleValue()
+						+ (billReceive.getAmountPay().doubleValue() * 5 / 100);
+				taxVal = (billReceive.getAmountPay().doubleValue() * 5 / 100);
+				flag = true;
+				
+			} else {
+				billReceive.setTax(0);
+				billReceive.setAmountPay(selectedBill.getAmountRest());
+				totalVal = billReceive.getAmountPay().doubleValue();
+				taxVal = 0;
+				flag = false;
+			}
+
+
+			billDate = new Date();
+
+				// TODO Auto-generated catch block
+				
+
+			// Utils.openDialog("whsdlAdd");
+		}
+		Utils.openDialog("whsdlpay");
+
+	}
+
 	public void updateComm() {
 		if (flag == true) {
 			taxVal = billReceive.getAmountPay().doubleValue() * 0.05;
@@ -241,6 +290,35 @@ public class BillReceiveBean {
 			taxVal = 0;
 			totalVal = 0;
 		}
+	}
+
+	public void addRestBill() {
+		if (newBill != null)
+
+		{
+			try {
+				billReceive.setAmountPay(new BigDecimal(totalVal));
+				billReceive.setDate(new Date());
+				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+				billReceive.setBillDate(dateFormat.format(new Date()));
+
+		sandServiceImpl.addSand(billReceive);
+
+		newBill.setAmountRest(new BigDecimal(0));
+		sandServiceImpl.updateBillsReceive(newBill);
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+						Utils.loadMessagesFromFile("success.operation"), "");
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			} catch (Exception e) {
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						Utils.loadMessagesFromFile("error.operation"), "");
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+				e.printStackTrace();
+			}
+			billReceive = new Bills();
+			update();
+		}
+
 	}
 
 	public String save() {
@@ -504,6 +582,22 @@ public class BillReceiveBean {
 
 	public void setAmountPay(double amountPay) {
 		this.amountPay = amountPay;
+	}
+
+	public Integer getSandNo() {
+		return sandNo;
+	}
+
+	public void setSandNo(Integer sandNo) {
+		this.sandNo = sandNo;
+	}
+
+	public Bills getNewBill() {
+		return newBill;
+	}
+
+	public void setNewBill(Bills newBill) {
+		this.newBill = newBill;
 	}
 
 }

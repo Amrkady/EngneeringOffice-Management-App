@@ -110,18 +110,18 @@ public class RevenueBean {
 
 		}
 		partnerCommision = totalReceive * 5 / 100;
-		totalAfterTaxComm = totalAfterTaxComm - partnerCommision;
+
 
 		for (int i = 0; i < billsPay.size(); i++) {
 			billPay = billsPay.get(i);
-			if (billPay.getTax() == 1) {
-				totalPayAfterTax += billPay.getAmountPay().doubleValue()
-						- ((billPay.getAmountPay().doubleValue() / 1.05) * 0.05);
-			} else if (billPay.getTax() == 0) {
+//			if (billPay.getTax() == 1) {
+//				totalPayAfterTax += billPay.getAmountPay().doubleValue()
+//						- ((billPay.getAmountPay().doubleValue() / 1.05) * 0.05);
+//			} else if (billPay.getTax() == 0) {
 				totalPayAfterTax += billPay.getAmountPay().doubleValue();
-			}
+//			}
 		}
-		netProfitMonth = totalAfterTaxComm - totalPayAfterTax;
+		netProfitMonth = totalAfterTaxComm + taxValue - totalPayAfterTax - partnerCommision;
 		ownerComm = netProfitMonth / 2;
 
 		totalReceive = Math.round(totalReceive * 100) / 100.00d;
