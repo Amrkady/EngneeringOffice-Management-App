@@ -2,3 +2,4 @@ eclipse.preferences.version=1
 encoding//WebContent/index.xhtml=UTF-8
 encoding//WebContent/login.xhtml=UTF-8
 encoding//src/com/beans/CustomerBean.java=UTF-8
+encoding//src/com/beans/CustomerViewBean.java=UTF-8

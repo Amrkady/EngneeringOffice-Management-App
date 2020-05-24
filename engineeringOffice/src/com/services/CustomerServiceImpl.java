@@ -1,5 +1,7 @@
 package com.services;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.common.CommonDao;
@@ -15,6 +17,13 @@ public Integer addCustomer(Customers customer) {
 	return commonDao.saveCustomer(customer);
 	
 }
+
+	@Override
+	public List<Customers> getAllCustomers() {
+		List list = commonDao.findAll(Customers.class);
+		return list;
+	}
+
 public CommonDao getCommonDao() {
 	return commonDao;
 }
@@ -22,4 +31,5 @@ public CommonDao getCommonDao() {
 public void setCommonDao(CommonDao commonDao) {
 	this.commonDao = commonDao;
 }
+
 }

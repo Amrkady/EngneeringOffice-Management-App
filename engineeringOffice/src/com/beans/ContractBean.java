@@ -32,8 +32,12 @@ public class ContractBean {
 	private Date contractDate;
 	private CustomerModel cm = new CustomerModel();
 	private boolean enablePrint = false;
+	private boolean hide = false;
 	private Integer conNo = new Integer(0);
-
+	private Integer second = new Integer(0);
+	private String sizes;
+	private String reportSizes;
+	private String[] selected;
 	@PostConstruct
 	public void init() {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyyy");
@@ -114,6 +118,21 @@ public class ContractBean {
 		return "";
 	}
 
+	public String checkSize() {
+		reportSizes = "";
+		if (sizes.equalsIgnoreCase("1")) {
+			reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("one-complete");
+		} else if (sizes.equalsIgnoreCase("2")) {
+			reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("two-complete");
+		} else if (sizes.equalsIgnoreCase("3")) {
+			// show check boxs
+			hide = true;
+
+		}
+
+		return "";
+	}
+
 	public SandService getSandServiceImpl() {
 		return sandServiceImpl;
 	}
@@ -160,6 +179,46 @@ public class ContractBean {
 
 	public void setEnablePrint(boolean enablePrint) {
 		this.enablePrint = enablePrint;
+	}
+
+	public String getSizes() {
+		return sizes;
+	}
+
+	public void setSizes(String sizes) {
+		this.sizes = sizes;
+	}
+
+	public Integer getSecond() {
+		return second;
+	}
+
+	public void setSecond(Integer second) {
+		this.second = second;
+	}
+
+	public String getReportSizes() {
+		return reportSizes;
+	}
+
+	public void setReportSizes(String reportSizes) {
+		this.reportSizes = reportSizes;
+	}
+
+	public boolean isHide() {
+		return hide;
+	}
+
+	public void setHide(boolean hide) {
+		this.hide = hide;
+	}
+
+	public String[] getSelected() {
+		return selected;
+	}
+
+	public void setSelected(String[] selected) {
+		this.selected = selected;
 	}
 
 }

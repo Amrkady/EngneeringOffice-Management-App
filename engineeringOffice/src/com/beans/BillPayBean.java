@@ -83,7 +83,7 @@ public class BillPayBean {
 			for (int i = 0; i < bills.size(); i++) {
 				billPay = bills.get(i);
 				totalWithoutTax += billPay.getAmountPay().doubleValue();
-				totalRest += billPay.getAmountRest().doubleValue();
+//				totalRest += billPay.getAmountRest().doubleValue();
 				if (billPay.getTax() == 1) {
 					taxValue += (billPay.getAmountPay().doubleValue() / 1.05) * 0.05;
 					billHasTax += billPay.getAmountPay().doubleValue();
@@ -91,9 +91,11 @@ public class BillPayBean {
 				}
 
 			}
-			taxValue = Math.round(taxValue * 100) / 100.00d;
+
 			totalAfterTax = billHasTax - taxValue;
 			totalAfterTax = Math.round(totalAfterTax * 100) / 100.00d;
+			taxValue = Math.round(taxValue * 100) / 100.00d;
+			totalWithoutTax = Math.round(totalWithoutTax * 100) / 100.00d;
 		}
 	}
 
@@ -108,7 +110,6 @@ public class BillPayBean {
 			reyal = reyal.substring(0, reyal.indexOf("."));
 			parameters.put("reyal", Integer.parseInt(reyal));
 			parameters.put("costByLet", selectedBill.getAmountPay());
-			parameters.put("costRest", selectedBill.getAmountRest());
 			parameters.put("for", selectedBill.getBillReason());
 			parameters.put("payType", selectedBill.getBillType());
 			parameters.put("dept", selectedBill.getDeptName());

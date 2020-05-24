@@ -19,18 +19,18 @@
 				<p:messages autoUpdate="true" closable="true"></p:messages>
 				<h1 style="color: #1565C0; text-align: center;">عقد</h1>
 				<div class="image-box-footer" align="left">
-					<h:panelGroup id="print" >
-						<p:commandButton rendered="#{contractBean.enablePrint}"  value="طباعة"
-							style="width:10%; align:left" icon="ui-icon ui-icon-print "
-							action="#{contractBean.save}" onclick="this.form.target='_blank'"
-							ajax="false">
+					<h:panelGroup id="print">
+						<p:commandButton rendered="#{contractBean.enablePrint}"
+							value="طباعة" style="width:10%; align:left"
+							icon="ui-icon ui-icon-print " action="#{contractBean.save}"
+							onclick="this.form.target='_blank'" ajax="false">
 						</p:commandButton>
 					</h:panelGroup>
 				</div>
 
 				<div class="ui-g">
 					<div class="ui-g-1">
-						<p:outputLabel value="رقم العقد" ></p:outputLabel>
+						<p:outputLabel value="رقم العقد"></p:outputLabel>
 					</div>
 					<div class="ui-g-2">
 						<p:outputLabel value="#{contractBean.conNo}" />
@@ -40,7 +40,7 @@
 				<p:fieldset width="50%" legend="بيانات العقد ">
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<p:outputLabel value="التاريخ" ></p:outputLabel>
+							<p:outputLabel value="التاريخ"></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:calendar style="width:100%" id="absenceDate" required="true"
@@ -49,7 +49,7 @@
 							</p:calendar>
 						</div>
 						<div class="ui-g-1">
-							<p:outputLabel value="المبلغ" ></p:outputLabel>
+							<p:outputLabel value="المبلغ"></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:inputNumber validatorMessage="المبلغ يجب ان يكون ارقام فقط"
@@ -60,7 +60,7 @@
 					</div>
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<p:outputLabel value="رقم الملكية" ></p:outputLabel>
+							<p:outputLabel value="رقم الملكية"></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:inputText value="#{contractBean.contract.ownerNo}"
@@ -69,7 +69,7 @@
 							</p:inputText>
 						</div>
 						<div class="ui-g-1">
-							<p:outputLabel value="صادر بتاريخ " ></p:outputLabel>
+							<p:outputLabel value="صادر بتاريخ "></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:inputText id="hiri1"
@@ -85,7 +85,7 @@
 
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<p:outputLabel value="صادر من جهة " ></p:outputLabel>
+							<p:outputLabel value="صادر من جهة "></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:inputText value="#{contractBean.contract.outFrom}"
@@ -94,7 +94,7 @@
 						</div>
 
 						<div class="ui-g-2">
-							<p:outputLabel value="استخراج ترخيص" ></p:outputLabel>
+							<p:outputLabel value="استخراج ترخيص"></p:outputLabel>
 						</div>
 						<div class="ui-g-1">
 							<p:selectBooleanCheckbox value="#{contractBean.contract.licence}">
@@ -103,7 +103,7 @@
 						</div>
 
 						<div class="ui-g-1">
-							<p:outputLabel value="خصائص المبنى " ></p:outputLabel>
+							<p:outputLabel value="خصائص المبنى "></p:outputLabel>
 						</div>
 						<div class="ui-g-3">
 							<p:selectOneMenu id="build"
@@ -123,13 +123,13 @@
 					</div>
 					<div class="ui-g">
 						<div class="ui-g-1">
-							<p:outputLabel value="اختبار التربة" ></p:outputLabel>
+							<p:outputLabel value="اختبار التربة"></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:selectBooleanCheckbox value="#{contractBean.contract.torba}" />
 						</div>
 						<div class="ui-g-2">
-							<p:outputLabel value="مخطط تكييف" ></p:outputLabel>
+							<p:outputLabel value="مخطط تكييف"></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:selectBooleanCheckbox value="#{contractBean.contract.airCon}" />
@@ -137,14 +137,42 @@
 
 					</div>
 
+					<div class="ui-g">
+						<div class="ui-g-1">
+							<p:outputLabel for="console" value="مخططات الاوزان" />
+						</div>
+						<div class="ui-g-3">
+							<p:selectOneRadio id="console" value="#{contractBean.sizes}"
+								unselectable="true">
+								<f:selectItem itemLabel="مخطط اوزان واحد" itemValue="1" />
+								<f:selectItem itemLabel="مخطط اوزان ثانى" itemValue="2" />
+								<f:selectItem itemLabel="مخطط اوزان ثالث" itemValue="3" />
+								<p:ajax event="change" update="grid" process="@this" listener="#{contractBean.checkSize}" />
+							</p:selectOneRadio>
+						</div>
+					</div>
+					<div class="ui-g">
+					<h:panelGroup id="grid" rendered="#{contractBean.hide}">
+						<p:selectManyCheckbox id="grid2"
+							value="#{contractBean.selected}" layout="responsive"
+							columns="3">
+							<f:selectItem itemLabel="مخطط معماري" itemValue="مخطط معماري" />
+							<f:selectItem itemLabel="مخطط انشائى" itemValue="مخطط انشائى" />
+							<f:selectItem itemLabel="مخطط صحي (سباكة)" itemValue="مخطط صحي (سباكة)" />
+							<f:selectItem itemLabel="مخطط كهربائى" itemValue="مخطط كهربائى" />
+							<f:selectItem itemLabel="تصميم مخطط اضاءة" itemValue="تصميم مخطط اضاءة" />
+							<f:selectItem itemLabel="(3D)تصميم واجهة" itemValue="(3D)تصميم واجهة" />
+							<f:selectItem itemLabel="(3D)تصميم حديقة" itemValue="(3D)تصميم حديقة" />
+						</p:selectManyCheckbox>
+						</h:panelGroup>
+					</div>
 					<div class="iamge-box-footer" align="left">
-						<p:commandButton  value="حفظ"
-							style="width:10%; align:left"
+						<p:commandButton value="حفظ" style="width:10%; align:left"
 							action="#{contractBean.addContract}">
 						</p:commandButton>
 						<p:spacer width="10"></p:spacer>
-						<p:commandButton  value="انشاء سند قبض "
-							immediate="true" action="bills" style="width:10%; align:left">
+						<p:commandButton value="انشاء سند قبض " immediate="true"
+							action="bills" style="width:10%; align:left">
 						</p:commandButton>
 					</div>
 				</p:fieldset>

@@ -11,6 +11,7 @@
 	<parameter name="onwerNo" class="java.lang.String"/>
 	<parameter name="buildDetails" class="java.lang.String"/>
 	<parameter name="from" class="java.lang.String"/>
+	<parameter name="sizes" class="java.lang.String"/>
 	<parameter name="outDate" class="java.lang.String"/>
 	<parameter name="cost" class="java.lang.String"/>
 	<parameter name="header" class="java.lang.String"/>
@@ -201,21 +202,12 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-10" y="355" width="580" height="20" uuid="e6958625-bd65-428b-a884-86ba73d4a662"/>
+				<reportElement x="-10" y="355" width="565" height="35" uuid="e6958625-bd65-428b-a884-86ba73d4a662"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Arial" size="13"/>
 				</textElement>
-				<textFieldExpression><![CDATA["1. يرغب الطرف الثاني بتصميم مخطط أوزان الهندسي المتكون من لوحات معمارية وإنشائية وكهربائية وصحية وتصميم حديقة وواجهة  ".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
-                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
-                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{sizes}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="-29" y="375" width="580" height="20" uuid="9172ddfc-1a4f-484f-a0a9-95d16df2efc4"/>
-				<textElement textAlignment="Right" verticalAlignment="Top">
-					<font fontName="Arial" size="13"/>
-				</textElement>
-				<text><![CDATA[ثلاثي الأبعاد (3D) وتصميم داخلي للصالة الرئيسية وغرفة النوم الرئيسية ثلاثي الأبعاد (3D).]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="-7" y="415" width="561" height="20" uuid="56a8c1f4-2ef2-4721-b5bc-2412cce59e00"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
@@ -332,6 +324,15 @@
 					<font fontName="Arial" size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[".2".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
+                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="550" y="356" width="25" height="20" uuid="f712790c-094f-406f-9738-4d5468223ae1"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[".1".replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
                 .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
