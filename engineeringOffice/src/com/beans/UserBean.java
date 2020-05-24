@@ -29,6 +29,7 @@ public class UserBean {
 	private List<Departments> depts;
 	private List<Users> users;
 	private Users user;
+	private Users currUser;
 	private Users usr = new Users();
 
 	private boolean MNG = false;
@@ -38,6 +39,7 @@ public class UserBean {
 		user = new Users();
 		depts = departmentServiceImpl.loadDepartments();
 		users = userServiceImpl.getAllUser();
+		currUser = Utils.findCurrentUser();
 	}
 
 	public String getDeptById(Integer deptId) {
@@ -129,6 +131,20 @@ public class UserBean {
 		usr = new Users();
 	}
 
+	public void editUser() {
+		if (currUser.getPhone().length() == 10) {
+			userServiceImpl.updateUser(currUser);
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					Utils.loadMessagesFromFile("success.update"), "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		} else {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					Utils.loadMessagesFromFile("phone.validation"), "");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+
+	}
+
 	public List<Users> getUsers() {
 		return users;
 	}
@@ -183,6 +199,14 @@ public class UserBean {
 
 	public void setUsr(Users usr) {
 		this.usr = usr;
+	}
+
+	public Users getCurrUser() {
+		return currUser;
+	}
+
+	public void setCurrUser(Users currUser) {
+		this.currUser = currUser;
 	}
 
 }

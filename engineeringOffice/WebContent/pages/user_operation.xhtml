@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<ui:composition template="/template1.xhtml">
+	<ui:define name="content">
+		<h:form>
+
+
+
+			<p:messages autoUpdate="true" closable="true"></p:messages>
+			<div class="card card-w-title" dir="rtl">
+				<h1 style="color: #1565C0; text-align: center;">بيانات المستخدم</h1>
+				<p:fieldset >	
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<p:outputLabel value=" الاسم" />
+							</div>
+							<div class="ui-g-4">
+								<p:inputText required="true" value="#{userBean.currUser.name}" />
+							</div>
+							
+						</div>
+
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<p:outputLabel value="رمز الدخول" />
+							</div>
+							<div class="ui-g-4">
+								<p:inputText  value="#{userBean.currUser.loginName}" required="true"
+									requiredMessage="ادخل رمز الدخول">
+								</p:inputText>
+							</div>
+							<div class="ui-g-2">
+								<p:outputLabel value="الرقم السري " />
+							</div>
+							<div class="ui-g-4">
+								<p:password  validatorMessage="يجب ان يحتوي الرقم السري علي ارقام وحروف كبيرة وصغيرة وعلامات خاصة" value="#{userBean.currUser.password}" required="true"
+									requiredMessage="ادخل الرقم السري ">
+									<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^*()_]).{8,20})"></f:validateRegex>
+									
+								</p:password>
+							</div>
+
+						</div>
+						<div class="ui-g">
+							<div class="ui-g-2">
+								<p:outputLabel value="رقم الجوال " />
+							</div>
+							<div class="ui-g-4">
+								<p:inputText value="#{userBean.currUser.phone}" />
+							</div>
+							<div class="ui-g-2">
+								<p:outputLabel value="العنوان" />
+							</div>
+							<div class="ui-g-4">
+								<p:inputText value="#{userBean.currUser.address}" />
+							</div>
+						</div>
+						
+
+						<div class="iamge-box-footer" align="left">
+							<p:commandButton   value="حفظ" icon="ui-icon ui-icon-save"
+								process="@form" action="#{userBean.editUser}">
+							</p:commandButton>
+							
+							
+						</div>
+					</p:fieldset>
+
+				
+
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

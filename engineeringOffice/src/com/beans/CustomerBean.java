@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.common.Constant;
 import com.entities.Customers;
 import com.entities.Departments;
 import com.entities.OperationType;
@@ -62,7 +63,12 @@ public class CustomerBean {
 							Utils.loadMessagesFromFile("phone.validation"), "");
 			FacesContext.getCurrentInstance().addMessage(null, msg);}
 	} else {
-			step=2;
+				if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_MANAGER) {
+					departmentId = Utils.findCurrentUser().getDeptId();
+					step = 3;
+				} else {
+				step=2;
+			}
 		}
 		}else if(step==2) {
 			if(departmentId!=null) {
