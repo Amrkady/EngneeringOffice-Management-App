@@ -102,8 +102,9 @@
 						<h:outputText value="#{billReceive.sanadNo}" />
 
 					</p:column>
-					<p:column style="text-align:center" headerText="اسم العميل">
-
+					<p:column style="text-align:center" headerText="اسم العميل"
+					filterBy="#{billReceive.customerName}" filterMatchMode="contains">
+					
 						<h:outputText value="#{billReceive.customerName}" />
 
 					</p:column>

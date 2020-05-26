@@ -91,7 +91,7 @@
 						<h:outputText value="#{billPay.sanadNo}" />
 					</p:column>
 					<p:column width="20%" style="text-align:center"
-						headerText="اسم العميل">
+						headerText="اسم العميل" filterBy="#{billPay.customerName}" filterMatchMode="contains">
 						<h:outputText value="#{billPay.customerName}" />
 					</p:column>
 					<p:column width="15%" style="text-align:center" headerText="البيان">
