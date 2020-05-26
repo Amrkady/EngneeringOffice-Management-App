@@ -5,38 +5,43 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>تسجيل الدخول</title>
-<link rel="stylesheet" type="text/css" href="resources/css/login.css"></link>
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>تسجيل الدخول</title>
+	<link rel="stylesheet" type="text/css" href="resources/css/login.css"></link>
 
 
-</head>
-<body style="background-image: url('resources/images/login2-bg.jpg');height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;">
-<form class="login-form">
-<h:form>
+</h:head>
+<h:body
+	style="background-image: url('resources/images/login2-bg.jpg'); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;">
+	<!-- <form class="login-form"> -->
+	<h:form >
 
-	<div  class="login-page">
-		<div class="form">
-			
-			
-				<h:inputText style="margin-bottom:15px" class="aa" value="#{loginBean.userName}" a:placeholder="username"/>
+		<div class="login-page">
+			<div  class="form">
+
+
+				<h:inputText style="margin-bottom:10px" class="aa"
+					value="#{loginBean.userName}" a:placeholder="كود الدخول" />
 				<br /> <br />
-				<h:inputSecret style="margin-bottom:15px" class="aa" value="#{loginBean.password}" a:placeholder="password" />
-                 <br /> <br />
-				<h:commandButton value="login" action="#{loginBean.login}" class="bb"></h:commandButton>
+				<h:inputSecret style="margin-bottom:10px" class="aa"
+					value="#{loginBean.password}" a:placeholder="الرقم السري" />
+				<br /> 
+				
+				<p:captcha label="Captcha" />
+				<br /> 
+				<h:commandButton style="font-size:20px" value="تسجيل دخول" action="#{loginBean.login}"
+					class="bb"></h:commandButton>
 
-			
+
+			</div>
 		</div>
-	</div>
 
-</h:form>
-</form>
+	</h:form>
+	<!-- </form> -->
 
-</body>
+
+</h:body>
 </html>

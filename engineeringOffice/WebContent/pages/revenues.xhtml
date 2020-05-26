@@ -71,7 +71,7 @@
 						<h:outputText value="#{bill.sanadNo}" />
 					</p:column>
 					<p:column width="15%" style="text-align:center"
-						headerText="اسم العميل">
+						headerText="اسم العميل" filterBy="#{bill.customerName}" filterMatchMode="contains">
 						<h:outputText value="#{bill.customerName}" />
 					</p:column>
 					<p:column width="15%" style="text-align:center" headerText="البيان">
@@ -189,19 +189,19 @@
 							<p:outputLabel value="صافي ربح الشهر"></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-							<p:outputLabel value="#{revenueBean.netProfitMonth}"></p:outputLabel>
+							<p:outputLabel style="border:1px solid blue;box-shadow:2px 2px blue;background-color:#1565C0;color:white;text-align:center;border-radius: 15px;" value="#{revenueBean.netProfitMonth}"></p:outputLabel>
 						</div>
 						<div class="ui-g-2">
 							<p:outputLabel value="نسبة ابو صالح"></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-							<p:outputLabel value="#{revenueBean.ownerComm}"></p:outputLabel>
+							<p:outputLabel style="border:1px solid blue;box-shadow:2px 2px blue;background-color:#1565C0;color:white;text-align:center;border-radius: 15px;" value="#{revenueBean.ownerComm}"></p:outputLabel>
 						</div>
 						<div class="ui-g-2">
 							<p:outputLabel value="نسبة ابو خالد"></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
-							<p:outputLabel value="#{revenueBean.ownerComm}"></p:outputLabel>
+							<p:outputLabel style="border:1px solid blue;box-shadow:2px 2px blue;background-color:#1565C0;color:white;text-align:center;border-radius: 15px;" value="#{revenueBean.ownerComm}"></p:outputLabel>
 						</div>
 						<div class="ui-g-2">
 							<p:outputLabel value="قيمة الضريبة"></p:outputLabel>
