@@ -33,16 +33,20 @@
 						<h:outputText value="#{cus.customerName}" />
 					</p:column>
 					<p:column headerText="رقم السجل" filterBy="#{cus.natNo}"
-						filterMatchMode="contains" style="width: 20%">
+						filterMatchMode="contains" style="width: 15%">
 						<h:outputText value="#{cus.natNo}" />
 					</p:column>
 					<p:column headerText="رقم الجوال" filterBy="#{cus.phone}"
-						filterMatchMode="contains" style="width: 20%">
+						filterMatchMode="contains" style="width: 15%">
 						<h:outputText value="#{cus.phone}" />
 					</p:column>
 					<p:column headerText="العنوان" filterBy="#{cus.address}"
-						filterMatchMode="contains" style="width: 20%">
+						filterMatchMode="contains" style="width: 15%">
 						<h:outputText value="#{cus.address}" />
+					</p:column>
+					<p:column headerText="القسم" filterBy="#{cus.address}"
+						filterMatchMode="contains" style="width: 15%">
+						<h:outputText value="#{cus.deptName}" />
 					</p:column>
 				</p:dataTable>
 			</h:form>

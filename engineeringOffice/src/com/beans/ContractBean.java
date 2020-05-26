@@ -38,6 +38,7 @@ public class ContractBean {
 	private String sizes;
 	private String reportSizes;
 	private String[] selected;
+
 	@PostConstruct
 	public void init() {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyyy");
@@ -94,6 +95,22 @@ public class ContractBean {
 	public String save() {
 		String reportName = "/reports/contractReport.jasper";
 		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		if (sizes.equalsIgnoreCase("1") || sizes.equalsIgnoreCase("2")) {
+			parameters.put("sizes", reportSizes);
+		} else if (sizes.equalsIgnoreCase("3")) {
+			String value = Utils.loadMessagesFromFile("three-start");
+			for (int i = 0; i < selected.length; i++) {
+				if (i + 1 == selected.length) {
+					value = value + selected[i];
+				} else {
+					value = value + selected[i] + " - ";
+				}
+			}
+			value = value + ".";
+			parameters.put("sizes", value);
+		}
+
 		parameters.put("day", contract.getDayLetter());
 		parameters.put("date", contract.getContractDate());
 		parameters.put("recordNo", cm.getNatNo().toString());
@@ -122,11 +139,17 @@ public class ContractBean {
 		reportSizes = "";
 		if (sizes.equalsIgnoreCase("1")) {
 			reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("one-complete");
+			System.out.println("reportSizes" + reportSizes);
+			hide = false;
 		} else if (sizes.equalsIgnoreCase("2")) {
 			reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("two-complete");
+			System.out.println("reportSizes" + reportSizes);
+			hide = false;
 		} else if (sizes.equalsIgnoreCase("3")) {
 			// show check boxs
+			System.out.println("qqqqqqqq");
 			hide = true;
+			Utils.updateUIComponent("form:grid");
 
 		}
 

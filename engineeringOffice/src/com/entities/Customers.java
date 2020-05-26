@@ -1,7 +1,12 @@
 package com.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -16,7 +21,7 @@ public class Customers {
 
 	@Column(name = "nat_no")
 	private Integer natNo;
-	
+
 	@Column(name = "customer_name", nullable = false)
 	private String customerName;
 
@@ -28,6 +33,12 @@ public class Customers {
 
 	@Column(name = "notes")
 	private String notes;
+
+	@Column(name = "dept_id")
+	private Integer deptId;
+
+	@Formula("(select d.dept_name from Departments d where d.id = dept_id)")
+	private String deptName;
 
 	public Integer getId() {
 		return id;
@@ -76,6 +87,21 @@ public class Customers {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
+
+	public Integer getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
 
 }

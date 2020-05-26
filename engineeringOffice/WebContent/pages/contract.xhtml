@@ -138,33 +138,43 @@
 					</div>
 
 					<div class="ui-g">
-						<div class="ui-g-1">
-							<p:outputLabel for="console" value="مخططات الاوزان" />
-						</div>
-						<div class="ui-g-3">
-							<p:selectOneRadio id="console" value="#{contractBean.sizes}"
-								unselectable="true">
-								<f:selectItem itemLabel="مخطط اوزان واحد" itemValue="1" />
-								<f:selectItem itemLabel="مخطط اوزان ثانى" itemValue="2" />
-								<f:selectItem itemLabel="مخطط اوزان ثالث" itemValue="3" />
-								<p:ajax event="change" update="grid" process="@this" listener="#{contractBean.checkSize}" />
-							</p:selectOneRadio>
+						<div class="ui-g-2">
+							<p:outputLabel for="console" style="color: #1565C0;" value="مخططات الاوزان" />
 						</div>
 					</div>
 					<div class="ui-g">
-					<h:panelGroup id="grid" rendered="#{contractBean.hide}">
-						<p:selectManyCheckbox id="grid2"
-							value="#{contractBean.selected}" layout="responsive"
-							columns="3">
-							<f:selectItem itemLabel="مخطط معماري" itemValue="مخطط معماري" />
-							<f:selectItem itemLabel="مخطط انشائى" itemValue="مخطط انشائى" />
-							<f:selectItem itemLabel="مخطط صحي (سباكة)" itemValue="مخطط صحي (سباكة)" />
-							<f:selectItem itemLabel="مخطط كهربائى" itemValue="مخطط كهربائى" />
-							<f:selectItem itemLabel="تصميم مخطط اضاءة" itemValue="تصميم مخطط اضاءة" />
-							<f:selectItem itemLabel="(3D)تصميم واجهة" itemValue="(3D)تصميم واجهة" />
-							<f:selectItem itemLabel="(3D)تصميم حديقة" itemValue="(3D)تصميم حديقة" />
-						</p:selectManyCheckbox>
+						<div class="ui-g-10" dir="rtl">
+							<p:selectOneRadio id="console" value="#{contractBean.sizes}" 
+								unselectable="true">
+								<f:selectItem itemLabel="مخطط اوزان اول" itemValue="1" />
+								<f:selectItem itemLabel="مخطط اوزان ثانى" itemValue="2" />
+								<f:selectItem itemLabel="مخطط اوزان ثالث" itemValue="3" />
+								<p:ajax event="change" update="grid" process="@this"
+									listener="#{contractBean.checkSize}" />
+							</p:selectOneRadio>
+						</div>
+					</div>
+					<div class="ui-g-12" style="border-width :0;" dir="rtl">
+						<h:panelGroup id="grid">
+							<p:fieldset>
+								<p:selectManyCheckbox id="grid2" rendered="#{contractBean.hide}"
+									value="#{contractBean.selected}" layout="responsive" 
+									columns="3">
+									<f:selectItem  itemLabel="مخطط معماري" itemValue="مخطط معماري" />
+									<f:selectItem itemLabel="مخطط انشائى" itemValue="مخطط انشائى" />
+									<f:selectItem itemLabel="مخطط صحي (سباكة)"
+										itemValue="مخطط صحي (سباكة)" />
+									<f:selectItem itemLabel="مخطط كهربائى" itemValue="مخطط كهربائى" />
+									<f:selectItem itemLabel="تصميم مخطط اضاءة"
+										itemValue="تصميم مخطط اضاءة" />
+									<f:selectItem itemLabel="تصميم واجهة(3D)"
+										itemValue="تصميم واجهة(3D)" />
+									<f:selectItem itemLabel="تصميم حديقة(3D)"
+										itemValue="تصميم حديقة(3D)" />
+								</p:selectManyCheckbox>
+							</p:fieldset>
 						</h:panelGroup>
+
 					</div>
 					<div class="iamge-box-footer" align="left">
 						<p:commandButton value="حفظ" style="width:10%; align:left"

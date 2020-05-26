@@ -328,7 +328,7 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="550" y="356" width="25" height="20" uuid="f712790c-094f-406f-9738-4d5468223ae1"/>
+				<reportElement x="547" y="356" width="25" height="20" uuid="f712790c-094f-406f-9738-4d5468223ae1"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Arial" size="13"/>
 				</textElement>
