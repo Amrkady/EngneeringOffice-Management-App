@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FilenameUtils;
 import org.primefaces.event.FileUploadEvent;
 
+import com.common.Constant;
 import com.entities.Attachment;
 import com.entities.Contracts;
 import com.entities.Transaction;
@@ -43,30 +44,33 @@ public class TransactionBean extends Scanner {
 	@ManagedProperty(value = "#{transactionServiceImpl}")
 	private TransactionService transactionServiceImpl;
 
-	private Contracts contract=new Contracts();
-	
+	private Contracts contract = new Contracts();
+
 	private List<Users> users;
 	private List<AttachmentModel> attachs = new ArrayList<AttachmentModel>();
-	Attachment attachment=new Attachment();
-	
-	private Transaction trans=new Transaction();
-	
+	Attachment attachment = new Attachment();
+
+	private Transaction trans = new Transaction();
+
 	@PostConstruct
 	public void init() {
-		
-		
-		
+
 //		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 //		Integer contractNo= Integer.parseInt(flash.get("contractNo").toString());
-		
-		HttpServletRequest httprequest=(HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		HttpSession httpSession=httprequest.getSession(false);
-		Integer contractNo=Integer.parseInt(httpSession.getAttribute("contractNo").toString());
-		
-		contract=sandServiceImpl.loadContractByContNo(contractNo);
-		users=userServiceImpl.findUsersByDept(Utils.findCurrentUser().getDeptId());
+
+		HttpServletRequest httprequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		HttpSession httpSession = httprequest.getSession(false);
+		Integer contractNo = Integer.parseInt(httpSession.getAttribute("contractNo").toString());
+
+		contract = sandServiceImpl.loadContractByContNo(contractNo);
+		if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_MANAGER) {
+			users = userServiceImpl.findUsersByDept(Utils.findCurrentUser().getDeptId());
+		} else if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_MANAGER) {
+			users = userServiceImpl.getAllUser();
+		}
 	}
-	
+
 	public void NewRecordupload(FileUploadEvent event) {
 
 		try {
@@ -75,25 +79,24 @@ public class TransactionBean extends Scanner {
 			attach.setAttachSize(event.getFile().getSize());
 			attach.setAttachStream(event.getFile().getInputstream());
 			attach.setAttachExt(FilenameUtils.getExtension(event.getFile().getFileName()));
-			attach.setRealName(Utils.generateRandomName()+"."+attach.getAttachExt());
+			attach.setRealName(Utils.generateRandomName() + "." + attach.getAttachExt());
 			attachs.add(attach);
-			
 
 		} catch (Exception e) {
 
 		}
 	}
+
 	public void save() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Calendar cal = Calendar.getInstance();
-		
+
 		try {
-			trans.sethDate(HijriCalendarUtil.ConvertgeorgianDatetoHijriDate(dateFormat.format(cal.getTime()).toString()));
+			trans.sethDate(
+					HijriCalendarUtil.ConvertgeorgianDatetoHijriDate(dateFormat.format(cal.getTime()).toString()));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-		
 
 		trans.setContractId(contract.getId());
 		trans.setTrFrom(Utils.findCurrentUser().getUserId());
@@ -108,9 +111,8 @@ public class TransactionBean extends Scanner {
 			attachment.setTransId(transId);
 			transactionServiceImpl.addAttachment(attachment);
 		}
-		
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, Utils.loadMessagesFromFile("success.send"),
-				"");
+
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, Utils.loadMessagesFromFile("success.send"), "");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		trans.setSubject(null);
 		trans.setTrTo(null);
@@ -133,9 +135,6 @@ public class TransactionBean extends Scanner {
 		this.contract = contract;
 	}
 
-
-	
-
 	public UserService getUserServiceImpl() {
 		return userServiceImpl;
 	}
@@ -155,18 +154,23 @@ public class TransactionBean extends Scanner {
 	public Attachment getAttachment() {
 		return attachment;
 	}
+
 	public void setAttachment(Attachment attachment) {
 		this.attachment = attachment;
 	}
+
 	public TransactionService getTransactionServiceImpl() {
 		return transactionServiceImpl;
 	}
+
 	public void setTransactionServiceImpl(TransactionService transactionServiceImpl) {
 		this.transactionServiceImpl = transactionServiceImpl;
 	}
+
 	public Transaction getTrans() {
 		return trans;
 	}
+
 	public void setTrans(Transaction trans) {
 		this.trans = trans;
 	}
@@ -178,6 +182,5 @@ public class TransactionBean extends Scanner {
 	public void setAttachs(List<AttachmentModel> attachs) {
 		this.attachs = attachs;
 	}
-	
 
 }

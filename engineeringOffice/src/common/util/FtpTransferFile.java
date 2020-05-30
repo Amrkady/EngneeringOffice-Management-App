@@ -2,52 +2,80 @@ package common.util;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
+
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 
 public class FtpTransferFile {
-	static String user = "";
-	static String pass = "";
-	static String host = "ftp://192.168.43.231:21/";
+	static String user = "haithamsaid@awzan-co.com";
+	static String pass = "fTpPaSSw00rd258847P$$ass";
+	static String host = "204.93.197.59";
+	static int port = 21;
 
 	public static String uploadFile(InputStream inputStream, String uploadPath) {
-//		String ftpUrl = "ftp://%s:%s@%s/%s";
-//		ftpUrl = String.format(ftpUrl, user, pass, host, uploadPath);
-		OutputStream outputStream = null;
+		FTPClient ftpClient = new FTPClient();
 		try {
-			URL url = new URL(host + uploadPath + ";type=i");
-			URLConnection conn = url.openConnection();
-			outputStream = conn.getOutputStream();
-			byte[] buffer = new byte[99999999];
-			int bytesRead = -1;
-			while ((bytesRead = inputStream.read(buffer)) != -1) {
-				outputStream.write(buffer, 0, bytesRead);
-			}
+
+			ftpClient.connect(host, port);
+			ftpClient.login(user, pass);
+			ftpClient.enterLocalPassiveMode();
+
+			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+			System.out.println("Start uploading first file");
+			boolean done = ftpClient.storeFile(uploadPath, inputStream);
 			inputStream.close();
-			outputStream.close();
+
 		} catch (IOException ex) {
+			System.out.println("Error: " + ex.getMessage());
 			ex.printStackTrace();
 		} finally {
+			try {
+				if (ftpClient.isConnected()) {
+					ftpClient.logout();
+					ftpClient.disconnect();
+				}
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+
 		}
+
 		return uploadPath;
 	}
 
 	public static InputStream getFileStream(String fileName) throws IOException {
 		InputStream inputStream = null;
-		URLConnection conn;
-		URL url = new URL(host + fileName + ";type=i");
-		// ftpUrl = String.format(ftpUrl, user, pass, host, fileName);
-		try {
-			conn = url.openConnection();
-			inputStream = conn.getInputStream();
-			return inputStream;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
 
+		FTPClient ftpClient = new FTPClient();
+		try {
+
+			ftpClient.connect(host, port);
+			ftpClient.login(user, pass);
+			ftpClient.enterLocalPassiveMode();
+			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+			inputStream = ftpClient.retrieveFileStream(fileName);
+
+			boolean success = ftpClient.completePendingCommand();
+			if (success) {
+				System.out.println("File #2 has been downloaded successfully.");
+			}
+		} catch (IOException ex) {
+			System.out.println("Error: " + ex.getMessage());
+			ex.printStackTrace();
+		} finally {
+			try {
+				if (ftpClient.isConnected()) {
+					ftpClient.logout();
+					ftpClient.disconnect();
+				}
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
 		}
 
-	}
+		return inputStream;
 
+	}
 }

@@ -85,8 +85,8 @@ public class RevenueBean {
 			totalRest += bill.getAmountRest().doubleValue();
 			if (bill.getTax() == 1) {
 				totalAfterTaxComm += bill.getAmountPay().doubleValue()
-						- ((bill.getAmountPay().doubleValue() / 1.05) * 0.05);
-				taxValue += (bill.getAmountPay().doubleValue() / 1.05) * 0.05;
+						- ((bill.getAmountPay().doubleValue() / 1.15) * 0.15);
+				taxValue += (bill.getAmountPay().doubleValue() / 1.15) * 0.15;
 			} else if (bill.getTax() == 0) {
 				totalAfterTaxComm += bill.getAmountPay().doubleValue();
 			}
@@ -192,9 +192,9 @@ public class RevenueBean {
 				parameters.put("tax", selectedBill.getAmountPay().doubleValue());
 				parameters.put("taxValue", 0.0);
 			} else {
-				parameters.put("taxValue", (selectedBill.getAmountPay().doubleValue() / 1.05) * 0.05);
+				parameters.put("taxValue", (selectedBill.getAmountPay().doubleValue() / 1.15) * 0.15);
 				parameters.put("tax", selectedBill.getAmountPay().doubleValue()
-						- (selectedBill.getAmountPay().doubleValue() / 1.05) * 0.05);
+						- (selectedBill.getAmountPay().doubleValue() / 1.15) * 0.15);
 
 			}
 
