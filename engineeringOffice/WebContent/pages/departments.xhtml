@@ -13,7 +13,7 @@
 
 </head>
 <h:body>
-	<ui:composition template="/template1.xhtml">
+	<ui:composition template="/pages/template1.xhtml">
 		<ui:define name="content">
 			<h:form dir="rtl" id="form">
 				<p:messages id="msg" autoUpdate="true" closable="true"></p:messages>
@@ -43,15 +43,11 @@
 					</p:column>
 					<p:column headerText="الأسم" style="width: 20%"
 						filterBy="#{tDept.deptName}" filterMatchMode="contains">
-						<p:cellEditor>
-							<f:facet name="output">
+						
+							
 								<h:outputText value="#{tDept.deptName}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="nameInput" value="#{tDept.deptName}"
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
+							
+							
 					</p:column>
 					<p:column headerText="المدير"
 						filterBy="#{deptBean.getUserById(tDept.deptManager)}"

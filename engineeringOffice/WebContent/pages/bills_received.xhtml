@@ -10,7 +10,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Insert title here</title>
 </h:head>
-<ui:composition template="/template1.xhtml">
+<ui:composition template="/pages/template1.xhtml">
 	<ui:define name="content">
 
 
@@ -30,8 +30,8 @@
 				<!-- 					</p:commandButton> -->
 				<!-- 					</div></div> -->
 				<h:panelGroup id="png" >
-				<div class="ui-g" style="margin-bottom: 40px;">
-					<secc:authorize ifAnyGranted="ROLE_ADMIN">
+				<div class="ui-g" >
+					<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_ACCOUNTANT">
 						<div class="ui-g-1">
 							<p:outputLabel value="اختر القسم"></p:outputLabel>
 						</div>
@@ -187,7 +187,7 @@
 									<h:outputLabel value="المبلغ" />
 								</div>
 								<div class="ui-g-4">
-									<p:inputNumber
+									<p:inputNumber disabled="true"
 										validatorMessage="يجب ان  يحتوي المبلغ علي ارقام فقط"
 										value="#{billReceiveBean.billReceive.amountPay}" required="true"
 										requiredMessage="ادخل المبلغ ">
@@ -266,7 +266,7 @@
 									</p:selectOneMenu>
 								</div>
 								<div class="ui-g-1">
-							<p:outputLabel value="يوجد ضريبة ؟" ></p:outputLabel>
+							<p:outputLabel value="يوجد ضريبة" ></p:outputLabel>
 						</div>
 						<div class="ui-g-4">
 							<p:selectBooleanCheckbox disabled="true"  value="#{billReceiveBean.flag}" >
@@ -399,7 +399,7 @@
 									</p:selectOneMenu>
 								</div>
 								<div class="ui-g-1">
-							<p:outputLabel value="يوجد ضريبة ؟" ></p:outputLabel>
+							<p:outputLabel value="يوجد ضريبة " ></p:outputLabel>
 						</div>
 						<div class="ui-g-6">
 							<p:selectBooleanCheckbox value="#{billReceiveBean.flag}" >

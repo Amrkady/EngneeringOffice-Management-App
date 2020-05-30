@@ -38,6 +38,7 @@ public class ContractBean {
 	private String sizes;
 	private String reportSizes;
 	private String[] selected;
+	private boolean light;
 
 	@PostConstruct
 	public void init() {
@@ -65,6 +66,7 @@ public class ContractBean {
 
 	public String addContract() {
 		try {
+			checkSize();
 			String strDate = "";
 			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
 			if (contractDate != null) {
@@ -138,11 +140,22 @@ public class ContractBean {
 	public String checkSize() {
 		reportSizes = "";
 		if (sizes.equalsIgnoreCase("1")) {
-			reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("one-complete");
+			if (light) {
+				reportSizes = Utils.loadMessagesFromFile("base")+Utils.loadMessagesFromFile("light")+Utils.loadMessagesFromFile("base2") + Utils.loadMessagesFromFile("one-complete");
+			} else {
+				reportSizes = Utils.loadMessagesFromFile("base")+Utils.loadMessagesFromFile("base2") + Utils.loadMessagesFromFile("one-complete");
+			}
 			System.out.println("reportSizes" + reportSizes);
 			hide = false;
 		} else if (sizes.equalsIgnoreCase("2")) {
-			reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("two-complete");
+			if (light) {
+				reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("light")
+						+ Utils.loadMessagesFromFile("base2") + Utils.loadMessagesFromFile("two-complete");
+			} else {
+				reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("base2")
+						+ Utils.loadMessagesFromFile("two-complete");
+			}
+//			reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("two-complete");
 			System.out.println("reportSizes" + reportSizes);
 			hide = false;
 		} else if (sizes.equalsIgnoreCase("3")) {
@@ -242,6 +255,14 @@ public class ContractBean {
 
 	public void setSelected(String[] selected) {
 		this.selected = selected;
+	}
+
+	public boolean isLight() {
+		return light;
+	}
+
+	public void setLight(boolean light) {
+		this.light = light;
 	}
 
 }

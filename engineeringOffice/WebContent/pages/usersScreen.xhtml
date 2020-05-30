@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding='UTF-8' ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -13,7 +13,7 @@
 
 </head>
 <h:body>
-	<ui:composition template="/template1.xhtml">
+	<ui:composition template="/pages/template1.xhtml">
 		<ui:define name="content">
 			<h:form dir="rtl" id="form">
 				<p:messages id="msg" autoUpdate="true" closable="true"></p:messages>
@@ -76,14 +76,9 @@
 
 					<p:column headerText="رمز الدخول" filterBy="#{user.loginName}"
 						filterMatchMode="contains" style="width: 15%">
-						<p:cellEditor>
-							<f:facet name="output">
+						
 								<h:outputText value="#{user.loginName}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{user.loginName}" style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
+						
 					</p:column>
 					<p:column headerText="الجوال" filterBy="#{user.phone}"
 						filterMatchMode="contains" style="width: 15%">

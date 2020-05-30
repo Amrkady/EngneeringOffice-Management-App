@@ -145,7 +145,7 @@ public class BillSandBean {
 
 	public void updateCom() {
 		if (billSnad.getAmountPay() != null && vat == true) {
-			double taxCal = (5 / 100.0);
+			double taxCal = (15 / 100.0);
 			taxValue = billSnad.getAmountPay().doubleValue() * taxCal;
 			taxValue = Math.round(taxValue * 100) / 100.00d;
 			total = billSnad.getAmountPay().doubleValue() + billSnad.getAmountPay().doubleValue() * taxCal;
@@ -173,7 +173,7 @@ public class BillSandBean {
 			System.out.println(">>>>>>>>222222");
 		} else {
 			if (billSnad.getAmountPay() != null) {
-				double taxCal = (5 / 100.0);
+				double taxCal = (15 / 100.0);
 				total = billSnad.getAmountPay().doubleValue() + billSnad.getAmountPay().doubleValue() * taxCal;
 				total = Math.round(total * 100) / 100.0d;
 			} else {

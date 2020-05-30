@@ -124,7 +124,7 @@ public class BillReceiveBean {
 				totalBillsPay += billPay.getAmountPay().doubleValue();
 			} else if (billPay.getTax() == 1) {
 				totalBillsPay += (billPay.getAmountPay()).doubleValue()
-						- ((billPay.getAmountPay().doubleValue() / 1.05) * 0.05);
+						- ((billPay.getAmountPay().doubleValue() / 1.15) * 0.15);
 			}
 		}
 
@@ -137,7 +137,7 @@ public class BillReceiveBean {
 			if (bill.getTax() == 0) {
 				total += bill.getAmountPay().doubleValue();
 			} else if (bill.getTax() == 1) {
-				total += (bill.getAmountPay().doubleValue()) - ((bill.getAmountPay().doubleValue() * 0.05) / 1.05);
+				total += (bill.getAmountPay().doubleValue()) - ((bill.getAmountPay().doubleValue() * 0.15) / 1.15);
 			}
 
 			totalRest += billsRecieve.get(i).getAmountRest().doubleValue();
@@ -175,9 +175,9 @@ public class BillReceiveBean {
 				parameters.put("tax", selectedBill.getAmountPay().doubleValue());
 				parameters.put("taxValue", 0.0);
 			} else {
-				parameters.put("taxValue", (selectedBill.getAmountPay().doubleValue() / 1.05) * 0.05);
+				parameters.put("taxValue", (selectedBill.getAmountPay().doubleValue() / 1.15) * 0.15);
 				parameters.put("tax", selectedBill.getAmountPay().doubleValue()
-						- (selectedBill.getAmountPay().doubleValue() / 1.05) * 0.05);
+						- (selectedBill.getAmountPay().doubleValue() / 1.15) * 0.15);
 
 			}
 
@@ -203,12 +203,12 @@ public class BillReceiveBean {
 			billReceive = selectedBill;
 			if (billReceive.getTax() == 1) {
 				flag = true;
-				taxVal = (billReceive.getAmountPay().doubleValue() / 1.05) * 0.05;
+				taxVal = (billReceive.getAmountPay().doubleValue() / 1.15) * 0.15;
 				taxVal = Math.round(taxVal * 100) / 100.00d;
 				totalVal = billReceive.getAmountPay().doubleValue();
 				totalVal = Math.round(totalVal * 100) / 100.00d;
 				amountPay = billReceive.getAmountPay().doubleValue()
-						- (billReceive.getAmountPay().doubleValue() / 1.05) * 0.05;
+						- (billReceive.getAmountPay().doubleValue() / 1.15) * 0.15;
 				billReceive.setAmountPay(new BigDecimal(amountPay));
 
 			} else {
@@ -254,8 +254,8 @@ public class BillReceiveBean {
 				billReceive.setTax(1);
 				billReceive.setAmountPay(selectedBill.getAmountRest());
 				totalVal = billReceive.getAmountPay().doubleValue()
-						+ (billReceive.getAmountPay().doubleValue() * 5 / 100);
-				taxVal = (billReceive.getAmountPay().doubleValue() * 5 / 100);
+						+ (billReceive.getAmountPay().doubleValue() * 15 / 100);
+				taxVal = (billReceive.getAmountPay().doubleValue() * 15 / 100);
 				flag = true;
 				
 			} else {
@@ -280,7 +280,7 @@ public class BillReceiveBean {
 
 	public void updateComm() {
 		if (flag == true) {
-			taxVal = billReceive.getAmountPay().doubleValue() * 0.05;
+			taxVal = billReceive.getAmountPay().doubleValue() * 0.15;
 
 			totalVal = billReceive.getAmountPay().doubleValue() + taxVal;
 			taxVal = Math.round(taxVal * 100) / 100.00d;

@@ -156,8 +156,8 @@ public class FinancailYearBean {
 					totalRest += bill.getAmountRest().doubleValue();
 					if (bill.getTax() == 1) {
 						totalAfterTaxComm += bill.getAmountPay().doubleValue()
-								- ((bill.getAmountPay().doubleValue() / 1.05) * 0.05);
-						taxValue += (bill.getAmountPay().doubleValue() / 1.05) * 0.05;
+								- ((bill.getAmountPay().doubleValue() / 1.15) * 0.15);
+						taxValue += (bill.getAmountPay().doubleValue() / 1.15) * 0.15;
 					} else if (bill.getTax() == 0) {
 						totalAfterTaxComm += bill.getAmountPay().doubleValue();
 					}
@@ -195,8 +195,8 @@ public class FinancailYearBean {
 					}
 					if (billPay.getTax() == 1) {
 						totalPayAfterTax += billPay.getAmountPay().doubleValue()
-								- ((billPay.getAmountPay().doubleValue() / 1.05) * 0.05);
-						srfTaxValue += (billPay.getAmountPay().doubleValue() / 1.05) * 0.05;
+								- ((billPay.getAmountPay().doubleValue() / 1.15) * 0.15);
+						srfTaxValue += (billPay.getAmountPay().doubleValue() / 1.15) * 0.15;
 					} else if (billPay.getTax() == 0) {
 						totalPayAfterTax += billPay.getAmountPay().doubleValue();
 					}

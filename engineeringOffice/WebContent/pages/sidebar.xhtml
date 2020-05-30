@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/serenity"
+	xmlns:secc="http://www.springframework.org/security/tags">
+	<div class="layout-sidebar 'layout-sidebar-dark'}">
+		<div class="sidebar-logo">
+			<p:graphicImage style="width:70%" name="images/login/logo.png"
+				library="serenity-layout" />
+			<!--                 <span class="app-name">#{msg['municipality']}</span> -->
+			<a href="#" class="sidebar-anchor" title="Toggle Menu"></a>
+		</div>
+		<div class="nano">
+			<div class="nano-content sidebar-scroll-content">
+				<div class="layout-menu-container">
+					<h:form id="menuform">
+						<secc:authorize ifAnyGranted="ROLE_SUPPORT">
+							<p:menuitem id="menu2" value="#{msg['menu.personnel.letter']}"
+								icon="fa fa-fw fa-file-text"
+								action="#{mainManagedBean.goToCreatComment}" />
+						</secc:authorize>
+						<pm:menu>
+							<p:menuitem value="الرئيسية" outcome="success"
+								icon="ui-icon ui-icon-home" />
+							<p:menuitem value="البريد" icon="ui-icon ui-icon-email"
+								outcome="mail" />
+							<secc:authorize
+								ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER,ROLE_ACCOUNTANT">
+								<p:submenu label="العملاء" icon="ui-icon ui-icon-people">
+									<p:menuitem value="اضافة عميل" icon="ui-icon ui-icon-people"
+										outcome="customers" />
+									<secc:authorize ifAnyGranted="ROLE_ADMIN">
+										<p:menuitem value="استعلام العملاء"
+											icon="ui-icon ui-icon-people" outcome="cusView" />
+									</secc:authorize>
+								</p:submenu>
+							</secc:authorize>
+							<secc:authorize ifAnyGranted="ROLE_ADMIN">
+								<p:menuitem value="الاقسام" icon="ui-icon ui-icon-reorder"
+									outcome="depts" />
+								<p:menuitem value="المستخدمين" icon="ui-icon ui-icon-people"
+									outcome="users" />
+							</secc:authorize>
+							<secc:authorize
+								ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER,ROLE_ACCOUNTANT">
+								<p:menuitem value="ايرادات القسم "
+									icon="ui-icon ui-icon-receipt" outcome="dept_rev" />
+							</secc:authorize>
+							<secc:authorize
+								ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER">
+								<p:menuitem value="المصروفات" icon="ui-icon ui-icon-receipt"
+									outcome="pays" />
+							</secc:authorize>
+							<secc:authorize ifAnyGranted="ROLE_MANAGER,ROLE_ADMIN">
+								<p:menuitem value="العقود" icon="ui-icon ui-icon-receipt"
+									outcome="contracts_v" />
+							</secc:authorize>
+							<secc:authorize ifAnyGranted="ROLE_ACCOUNTANT">
+								<p:submenu label="الحسابات" icon="ui-icon ui-icon-calculator">
+									<p:menuitem value="السنة المالية"
+										icon="ui-icon ui-icon-receipt" outcome="financial" />
+									<p:menuitem value="الايرادات العمومية"
+										icon="ui-icon ui-icon-receipt" outcome="revenues" />
+									<p:menuitem value="المصروفات" icon="ui-icon ui-icon-receipt"
+										outcome="pays" />
+								</p:submenu>
+							</secc:authorize>
+						</pm:menu>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</div>
+</ui:composition>
+
+
+
+
+

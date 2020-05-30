@@ -11,16 +11,51 @@
 		<sec:csrf disabled="true" />
 
 		<sec:intercept-url pattern="/pages/customers.xhtml"
-		 access="isAuthenticated()" />
+		 access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER,ROLE_ACCOUNTANT')" />
 		<sec:intercept-url pattern="/pages/bill_sand.xhtml"  
-		access="isAuthenticated()"/>
+		access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER,ROLE_ACCOUNTANT')"/>
 		<sec:intercept-url pattern="/pages/contract.xhtml"
+		 access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER,ROLE_ACCOUNTANT')" />
+		 <sec:intercept-url pattern="/pages/dashboard.xhtml"
 		 access="isAuthenticated()" />
+		 <sec:intercept-url pattern="/pages/contractView.xhtml"
+		 access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER')" />
+		 <sec:intercept-url pattern="/pages/bill_pay.xhtml"
+		 access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER,ROLE_ACCOUNTANT')" />
+		 <sec:intercept-url pattern="/pages/departments.xhtml"
+		 access="hasAnyRole('ROLE_ADMIN')" />
+		 <sec:intercept-url pattern="/pages/mails.xhtml"
+		 access="isAuthenticated()" />
+		 <sec:intercept-url pattern="/pages/departments.xhtml"
+		 access="hasAnyRole('ROLE_ADMIN')" />
+		 <sec:intercept-url pattern="/pages/Revenues.xhtml"
+		 access="hasAnyRole('ROLE_ACCOUNTANT')" />
+		 <sec:intercept-url pattern="/pages/user_operation.xhtml"
+		 access="isAuthenticated()" />
+		 <sec:intercept-url pattern="/pages/usersScreen.xhtml"
+		 access="hasAnyRole('ROLE_ADMIN')" />
+		 <sec:intercept-url pattern="/pages/financial_year.xhtml"
+		 access="hasAnyRole('ROLE_ACCOUNTANT')" />
+		 <sec:intercept-url pattern="/pages/customerView.xhtml"
+		 access="hasAnyRole('ROLE_ADMIN')" />
+		 <sec:intercept-url pattern="/pages/bill_received.xhtml"
+		 access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER,ROLE_ACCOUNTANT')" />
+		 <sec:intercept-url pattern="/pages/transaction.xhtml"
+		 access="hasAnyRole('ROLE_MANAGER,ROLE_ADMIN')" />
+		 
+		 
+		 
+		 <sec:intercept-url pattern="/pages/licences/fine_rebound_model.xhtml"
+			access="hasAnyRole('ROLE_FINE_REBOUND,ROLE_SUPPORT')" />
+			
 		 <sec:form-login login-page="/pages/login.xhtml"
 			authentication-failure-url="/pages/login.xhtml" />
 			<sec:logout invalidate-session="true"
 			delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"
 			 />
+		<sec:session-management invalid-session-url="/login.xhtml">
+			<sec:concurrency-control />
+		</sec:session-management>
 		
 	</sec:http>
 	<sec:authentication-manager alias="authenticationManager">

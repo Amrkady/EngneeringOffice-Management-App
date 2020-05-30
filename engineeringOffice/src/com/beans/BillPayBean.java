@@ -85,7 +85,7 @@ public class BillPayBean {
 				totalWithoutTax += billPay.getAmountPay().doubleValue();
 //				totalRest += billPay.getAmountRest().doubleValue();
 				if (billPay.getTax() == 1) {
-					taxValue += (billPay.getAmountPay().doubleValue() / 1.05) * 0.05;
+					taxValue += (billPay.getAmountPay().doubleValue() / 1.15) * 0.15;
 					billHasTax += billPay.getAmountPay().doubleValue();
 
 				}

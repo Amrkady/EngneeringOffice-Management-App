@@ -13,7 +13,7 @@
 
 </head>
 <h:body>
-	<ui:composition template="/template1.xhtml">
+	<ui:composition template="/pages/template1.xhtml">
 		<ui:define name="content">
 			<h:form dir="rtl" id="form">
 				<p:messages autoUpdate="true" closable="true"></p:messages>
@@ -121,30 +121,31 @@
 							</p:selectOneMenu>
 						</div>
 					</div>
-					<div class="ui-g">
-						<div class="ui-g-1">
-							<p:outputLabel value="اختبار التربة"></p:outputLabel>
-						</div>
-						<div class="ui-g-4">
-							<p:selectBooleanCheckbox value="#{contractBean.contract.torba}" />
-						</div>
-						<div class="ui-g-2">
-							<p:outputLabel value="مخطط تكييف"></p:outputLabel>
-						</div>
-						<div class="ui-g-4">
-							<p:selectBooleanCheckbox value="#{contractBean.contract.airCon}" />
-						</div>
+<!-- 					<div class="ui-g"> -->
+<!-- 						<div class="ui-g-1"> -->
+<!-- 							<p:outputLabel value="اختبار التربة"></p:outputLabel> -->
+<!-- 						</div> -->
+<!-- 						<div class="ui-g-4"> -->
+<!-- 							<p:selectBooleanCheckbox value="#{contractBean.contract.torba}" /> -->
+<!-- 						</div> -->
+<!-- 						<div class="ui-g-2"> -->
+<!-- 							<p:outputLabel value="مخطط تكييف"></p:outputLabel> -->
+<!-- 						</div> -->
+<!-- 						<div class="ui-g-4"> -->
+<!-- 							<p:selectBooleanCheckbox value="#{contractBean.contract.airCon}" /> -->
+<!-- 						</div> -->
 
-					</div>
+<!-- 					</div> -->
 
 					<div class="ui-g">
 						<div class="ui-g-2">
-							<p:outputLabel for="console" style="color: #1565C0;" value="مخططات الاوزان" />
+							<p:outputLabel for="console" style="color: #1565C0;"
+								value="مخططات الاوزان" />
 						</div>
 					</div>
 					<div class="ui-g">
 						<div class="ui-g-10" dir="rtl">
-							<p:selectOneRadio id="console" value="#{contractBean.sizes}" 
+							<p:selectOneRadio id="console" value="#{contractBean.sizes}"
 								unselectable="true">
 								<f:selectItem itemLabel="مخطط اوزان اول" itemValue="1" />
 								<f:selectItem itemLabel="مخطط اوزان ثانى" itemValue="2" />
@@ -154,13 +155,13 @@
 							</p:selectOneRadio>
 						</div>
 					</div>
-					<div class="ui-g-12" style="border-width :0;" dir="rtl">
+					<div class="ui-g-12" style="border-width: 0;" dir="rtl">
 						<h:panelGroup id="grid">
 							<p:fieldset>
 								<p:selectManyCheckbox id="grid2" rendered="#{contractBean.hide}"
-									value="#{contractBean.selected}" layout="responsive" 
+									value="#{contractBean.selected}" layout="responsive"
 									columns="3">
-									<f:selectItem  itemLabel="مخطط معماري" itemValue="مخطط معماري" />
+									<f:selectItem itemLabel="مخطط معماري" itemValue="مخطط معماري" />
 									<f:selectItem itemLabel="مخطط انشائى" itemValue="مخطط انشائى" />
 									<f:selectItem itemLabel="مخطط صحي (سباكة)"
 										itemValue="مخطط صحي (سباكة)" />
@@ -172,6 +173,35 @@
 									<f:selectItem itemLabel="تصميم حديقة(3D)"
 										itemValue="تصميم حديقة(3D)" />
 								</p:selectManyCheckbox>
+								<!-- 								<div class="ui-g-1"> -->
+								<p:selectBooleanCheckbox value="#{contractBean.contract.torba}" />
+								<!-- 								</div> -->
+								<!-- 								<div class="ui-g-1"> -->
+								<p:outputLabel value="اختبار التربة"></p:outputLabel>
+								<!-- 								</div> -->
+
+								<div style="margin-right: 300px;display: inline;" class="ui-g">
+
+
+									<p:selectBooleanCheckbox
+										value="#{contractBean.contract.airCon}" />
+
+<!-- 									<div class="ui-g-1"> -->
+										<p:outputLabel value="مخطط تكييف"></p:outputLabel>
+<!-- 									</div> -->
+								</div>
+<!-- 								<div style="margin-right: 300px;display: inline;" class="ui-g"> -->
+
+
+									<p:selectBooleanCheckbox rendered="#{!contractBean.hide}"
+										value="#{contractBean.light}" />
+
+<!-- 									<div class="ui-g-1"> -->
+										<p:outputLabel value="مخطط اضاءة" rendered="#{!contractBean.hide}"></p:outputLabel>
+<!-- 									</div> -->
+<!-- 								</div> -->
+								
+
 							</p:fieldset>
 						</h:panelGroup>
 
