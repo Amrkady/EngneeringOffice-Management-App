@@ -92,7 +92,7 @@ public class FinancailYearBean {
 			boxValue = cash - bankdebt;
 			bankValue = (transfer + visa + bankdebt) - visaCommision;
 			debtor = boxValue + bankValue + totalPayAfterTax;
-			creditor = totalAfterTaxComm;
+			creditor = totalReceive;
 			debtor = Math.round(debtor * 100) / 100.00d;
 			creditor = Math.round(creditor * 100) / 100.00d;
 			boxValue = Math.round(boxValue * 100) / 100.00d;
@@ -194,14 +194,13 @@ public class FinancailYearBean {
 						srfOffice += billPay.getAmountPay().doubleValue();
 					}
 					if (billPay.getTax() == 1) {
-						totalPayAfterTax += billPay.getAmountPay().doubleValue()
-								- ((billPay.getAmountPay().doubleValue() / 1.15) * 0.15);
+						totalPayAfterTax += billPay.getAmountPay().doubleValue();
 						srfTaxValue += (billPay.getAmountPay().doubleValue() / 1.15) * 0.15;
 					} else if (billPay.getTax() == 0) {
 						totalPayAfterTax += billPay.getAmountPay().doubleValue();
 					}
 				}
-				netProfitMonth = totalAfterTaxComm - totalPayAfterTax;
+				// netProfitMonth = totalAfterTaxComm - totalPayAfterTax;
 				// ownerComm = netProfitMonth / 2;
 
 				totalReceive = Math.round(totalReceive * 100) / 100.00d;
@@ -231,9 +230,9 @@ public class FinancailYearBean {
 
 				totalProfitBeforTaxs = Math.round(totalProfitBeforTaxs * 100) / 100.00d;
 				totalProfitAfterTaxs = totalBills - totalPay - taxValue;
-				partnerCommision = totalProfitAfterTaxs * 5 / 100;
+				// partnerCommision = totalProfitAfterTaxs * 5 / 100;
 				partnerCommision = Math.round(partnerCommision * 100) / 100.00d;
-				ownerComm = (totalProfitAfterTaxs - partnerCommision) / 2;
+				ownerComm = totalProfitAfterTaxs / 2;
 				ownerComm = Math.round(ownerComm * 100) / 100.00d;
 				totalProfitAfterTaxs = Math.round(totalProfitAfterTaxs * 100) / 100.00d;
 				// srfOffice = srfOffice - ownerComm - ownerComm - partnerCommision;
@@ -247,8 +246,13 @@ public class FinancailYearBean {
 	public String addTaxs() {
 		totalProfitAfterTaxs = totalProfitAfterTaxs - zakahTax;
 		totalProfitAfterTaxs = Math.round(totalProfitAfterTaxs * 100) / 100.00d;
+		ownerComm = totalProfitAfterTaxs / 2;
+		ownerComm = Math.round(ownerComm * 100) / 100.00d;
 		System.out.println(">>>>>>>>" + totalProfitAfterTaxs);
 		Utils.updateUIComponent("form:pro");
+		Utils.updateUIComponent("form:one");
+		Utils.updateUIComponent("form:two");
+		Utils.updateUIComponent("form:total1");
 		return "";
 	}
 

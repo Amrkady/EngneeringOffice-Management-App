@@ -59,7 +59,7 @@
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<p:outputLabel value="#{financailBean.totalAfterTaxComm}" />
+								<p:outputLabel value="#{financailBean.totalReceive}" />
 							</div>
 							<div class="ui-g-1">
 								<h4 style="color: #1565C0; text-align: center;">
@@ -90,7 +90,7 @@
 
 								<p:outputLabel value="#{financailBean.debtor}" />
 							</div>
-							
+
 						</div>
 						<div class="image-box-footer" align="left">
 							<p:commandButton class="bb" value="طباعة"
@@ -226,9 +226,9 @@
 							</div>
 						</div>
 						<div class="image-box-footer" align="left">
-							<p:commandButton class="bb" value="حفظ"
+							<p:commandButton class="bb" value="حفظ" update="pro2"
 								style="width:10%; align:left" action="#{financailBean.addTaxs}">
-								<p:ajax process="@this" update="pro"></p:ajax>
+								<f:ajax  render="pro pro2 one two total1"></f:ajax>
 							</p:commandButton>
 						</div>
 						<div class="ui-g">
@@ -238,12 +238,13 @@
 								</h4>
 							</div>
 							<div class="ui-g-3">
-								<p:outputLabel id="pro"
-									value="#{financailBean.totalProfitAfterTaxs}" />
+								<h:panelGroup id="pro">
+									<p:outputLabel id="pro2" value="#{financailBean.totalProfitAfterTaxs}" />
+								</h:panelGroup>
 							</div>
 						</div>
 						<div class="image-box-footer" align="left">
-							<p:commandButton  value="طباعة"
+							<p:commandButton value="طباعة"
 								rendered="#{!financailBean.enablePrint}"
 								style="width:10%; align:left" icon="ui-icon ui-icon-print "
 								onclick="this.form.target='_blank'" ajax="false"
@@ -269,7 +270,7 @@
 							<div class="ui-g-2">
 								<p:outputLabel value=" " />
 							</div>
-							<div class="ui-g-2">
+							<div class="ui-g-3">
 								<h3 style="color: #1565C0; text-align: center;">
 									<p:outputLabel value="الالتزامات والحقوق الملكية" />
 								</h3>
@@ -287,13 +288,13 @@
 							<div class="ui-g-2">
 								<p:outputLabel value="#{financailBean.boxValue}" />
 							</div>
-							<div class="ui-g-2">
+							<div class="ui-g-3">
 								<h4 style="color: #1565C0; text-align: center;">
 									<p:outputLabel value="جاري الشريك الاول  ابو صالح" />
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<p:outputLabel value="#{financailBean.ownerComm}" />
+								<p:outputLabel id="one" value="#{financailBean.ownerComm}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -305,13 +306,13 @@
 							<div class="ui-g-2">
 								<p:outputLabel value="#{financailBean.bankValue}" />
 							</div>
-							<div class="ui-g-2">
+							<div class="ui-g-3">
 								<h4 style="color: #1565C0; text-align: center;">
 									<p:outputLabel value="جاري الشريك الثاني ابو خالد" />
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<p:outputLabel value="#{financailBean.ownerComm}" />
+								<p:outputLabel id="two" value="#{financailBean.ownerComm}" />
 							</div>
 						</div>
 						<div class="ui-g">
@@ -324,40 +325,23 @@
 								<p:outputLabel
 									value="#{financailBean.bankValue + financailBean.boxValue }" />
 							</div>
-							<div class="ui-g-2">
-								<h4 style="color: #1565C0; text-align: center;">
-									<p:outputLabel value="جاري الشريك الثالث ابوخيال" />
-								</h4>
-							</div>
-							<div class="ui-g-2">
-								<p:outputLabel value="#{financailBean.partnerCommision}" />
-							</div>
-						</div>
-						<div class="ui-g">
-							<div class="ui-g-2">
-								<p:outputLabel value=" " />
-							</div>
-							<div class="ui-g-2">
-								<p:outputLabel value=" " />
-							</div>
-							<div class="ui-g-2">
+							<div class="ui-g-3">
 								<h4 style="color: #1565C0; text-align: center;">
 									<p:outputLabel value="مجموع الالتزامات والحقوق الملكية" />
 								</h4>
 							</div>
 							<div class="ui-g-2">
-								<p:outputLabel
-									value="#{financailBean.partnerCommision +(2 * financailBean.ownerComm)}" />
+								<p:outputLabel id="total1"
+									value="#{2 * financailBean.ownerComm}" />
 							</div>
 						</div>
 						<div class="image-box-footer" align="left">
-							<p:commandButton  value="طباعة"
+							<p:commandButton value="طباعة"
 								rendered="#{!financailBean.enablePrint}"
 								style="width:10%; align:left" icon="ui-icon ui-icon-print "
 								onclick="this.form.target='_blank'" ajax="false"
 								action="#{financailBean.printFinacialCenter}">
 							</p:commandButton>
-
 						</div>
 					</p:tab>
 				</p:accordionPanel>
