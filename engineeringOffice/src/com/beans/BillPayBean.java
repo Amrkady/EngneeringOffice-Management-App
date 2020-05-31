@@ -124,6 +124,7 @@ public class BillPayBean {
 			String headerPath = FacesContext.getCurrentInstance().getExternalContext()
 					.getRealPath("/reports/header.png");
 			parameters.put("header", headerPath);
+			System.out.println("headerrrrrrrrr pathhhhhhhhhhhhhhhhhhhhh :: " + headerPath);
 			Utils.printPdfReport(reportName, parameters);
 
 		} catch (Exception e) {

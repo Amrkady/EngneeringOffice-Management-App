@@ -37,7 +37,7 @@ public class Customers {
 	@Column(name = "dept_id")
 	private Integer deptId;
 
-	@Formula("(select d.dept_name from Departments d where d.id = dept_id)")
+	@Formula("(select d.dept_name from departments d where d.id = dept_id)")
 	private String deptName;
 
 	public Integer getId() {
