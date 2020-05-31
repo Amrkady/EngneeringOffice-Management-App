@@ -66,7 +66,7 @@ public class TransactionBean extends Scanner {
 		contract = sandServiceImpl.loadContractByContNo(contractNo);
 		if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_MANAGER) {
 			users = userServiceImpl.findUsersByDept(Utils.findCurrentUser().getDeptId());
-		} else if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_MANAGER) {
+		} else if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_ADMIN) {
 			users = userServiceImpl.getAllUser();
 		}
 	}
