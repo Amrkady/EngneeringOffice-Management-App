@@ -31,8 +31,9 @@
 					emptyMessage="لايوجد بيانات" rowIndexVar="rowIndex"
 					widgetVar="cellemp" paginatorPosition="bottom" editable="true"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-					paginator="true" rows="10">
-					
+					paginator="true" rows="10"
+					filteredValue="#{deptBean.filteredDepts}">
+				
 					<p:ajax event="rowEdit" listener="#{deptBean.onRowEdit}"
 						update=":form:msg  :form:myTable" />
 					<p:ajax event="rowEditCancel" listener="#{deptBean.onRowCancel}"

@@ -36,10 +36,12 @@
 					paginator="true"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-					<p:column style="text-align:center" headerText="رقم العقد">
+					<p:column style="text-align:center"  filterBy="#{contract.conNo}"
+					filterMatchMode="contains"  headerText="رقم العقد">
 						<h:outputText value="#{contract.conNo}" />
 					</p:column>
-					<p:column style="text-align:center" headerText="اسم صاحب العقد">
+					<p:column style="text-align:center" filterBy="#{contract.customerName}"
+					filterMatchMode="contains" headerText="اسم صاحب العقد">
 						<h:outputText value="#{contract.customerName}" />
 					</p:column>
 					<p:column style="text-align:center" headerText="نوع الرخصة">

@@ -31,6 +31,7 @@ public class UserBean {
 	private Users user;
 	private Users currUser;
 	private Users usr = new Users();
+	private List<Users> filteredUsers;
 
 	private boolean MNG = false;
 
@@ -207,6 +208,14 @@ public class UserBean {
 
 	public void setCurrUser(Users currUser) {
 		this.currUser = currUser;
+	}
+
+	public List<Users> getFilteredUsers() {
+		return filteredUsers;
+	}
+
+	public void setFilteredUsers(List<Users> filteredUsers) {
+		this.filteredUsers = filteredUsers;
 	}
 
 }

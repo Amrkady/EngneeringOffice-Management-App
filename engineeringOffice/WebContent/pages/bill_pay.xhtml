@@ -81,6 +81,7 @@
 					value="#{billPayBean.bills}" paginatorPosition="bottom"
 					sortBy="#{billPay.sanadNo}" sortOrder="descending" rows="10" 
 					paginator="true" emptyMessage="لا يوجد بيانات" 
+					filteredValue="#{billPayBean.filtredBills}"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 					<p:column width="15%" style="text-align:center"
 						headerText="تاريخ السند">
