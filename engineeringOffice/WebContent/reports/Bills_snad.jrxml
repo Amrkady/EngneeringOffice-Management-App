@@ -17,7 +17,7 @@
 	<parameter name="tax" class="java.lang.Double"/>
 	<parameter name="taxValue" class="java.lang.Double"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT max(us.id) FROM awzancoc_sqldb.roles us;]]>
+		<![CDATA[SELECT max(us.id) FROM sqldb.roles us;]]>
 	</queryString>
 	<background>
 		<band splitType="Stretch"/>

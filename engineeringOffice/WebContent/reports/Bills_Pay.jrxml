@@ -15,7 +15,7 @@
 	<parameter name="footer" class="java.lang.String"/>
 	<parameter name="tax" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT max(us.id) FROM awzancoc_sqldb.roles us;]]>
+		<![CDATA[SELECT max(us.id) FROM sdqldb.roles us;]]>
 	</queryString>
 	<background>
 		<band splitType="Stretch"/>

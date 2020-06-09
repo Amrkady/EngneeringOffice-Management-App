@@ -20,7 +20,7 @@
 	<parameter name="torba" class="java.lang.Integer"/>
 	<parameter name="airCon" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT max(us.id) FROM awzancoc_sqldb.roles us;]]>
+		<![CDATA[SELECT max(us.id) FROM sqldb.roles us;]]>
 	</queryString>
 	<background>
 		<band splitType="Stretch"/>
