@@ -31,5 +31,9 @@ public CommonDao getCommonDao() {
 public void setCommonDao(CommonDao commonDao) {
 	this.commonDao = commonDao;
 }
+@Override
+public Customers findCustomerById(Integer customerId) {
+		return (Customers) commonDao.findEntityById(Customers.class, customerId);
+}
 
 }

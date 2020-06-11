@@ -150,7 +150,7 @@
 								<f:selectItem itemLabel="مخطط اوزان اول" itemValue="1" />
 								<f:selectItem itemLabel="مخطط اوزان ثانى" itemValue="2" />
 								<f:selectItem itemLabel="مخطط اوزان ثالث" itemValue="3" />
-								<p:ajax event="change" update="grid" process="@this"
+								<p:ajax event="change" update="grid grid2 torba air lig" process="@this"
 									listener="#{contractBean.checkSize}" />
 							</p:selectOneRadio>
 						</div>
@@ -174,7 +174,7 @@
 										itemValue="تصميم حديقة(3D)" />
 								</p:selectManyCheckbox>
 								<!-- 								<div class="ui-g-1"> -->
-								<p:selectBooleanCheckbox value="#{contractBean.contract.torba}" />
+								<p:selectBooleanCheckbox id="torba" value="#{contractBean.contract.torba}" />
 								<!-- 								</div> -->
 								<!-- 								<div class="ui-g-1"> -->
 								<p:outputLabel value="اختبار التربة"></p:outputLabel>
@@ -183,7 +183,7 @@
 								<div style="margin-right: 300px;display: inline;" class="ui-g">
 
 
-									<p:selectBooleanCheckbox
+									<p:selectBooleanCheckbox id="air"
 										value="#{contractBean.contract.airCon}" />
 
 <!-- 									<div class="ui-g-1"> -->
@@ -193,7 +193,7 @@
 <!-- 								<div style="margin-right: 300px;display: inline;" class="ui-g"> -->
 
 
-									<p:selectBooleanCheckbox rendered="#{!contractBean.hide}"
+									<p:selectBooleanCheckbox rendered="#{!contractBean.hide}" id="lig"
 										value="#{contractBean.light}" />
 
 <!-- 									<div class="ui-g-1"> -->

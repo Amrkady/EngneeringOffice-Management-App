@@ -49,7 +49,7 @@
 									icon="ui-icon ui-icon-receipt" outcome="dept_rev" />
 							</secc:authorize>
 							<secc:authorize
-								ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER">
+								ifAnyGranted="ROLE_MANAGER">
 								<p:menuitem value="المصروفات" icon="ui-icon ui-icon-receipt"
 									outcome="pays" />
 							</secc:authorize>
@@ -57,7 +57,7 @@
 								<p:menuitem value="العقود" icon="ui-icon ui-icon-receipt"
 									outcome="contracts_v" />
 							</secc:authorize>
-							<secc:authorize ifAnyGranted="ROLE_ACCOUNTANT">
+							<secc:authorize ifAnyGranted="ROLE_ACCOUNTANT,ROLE_ADMIN">
 								<p:submenu label="الحسابات" icon="ui-icon ui-icon-calculator">
 									<p:menuitem value="السنة المالية"
 										icon="ui-icon ui-icon-receipt" outcome="financial" />
