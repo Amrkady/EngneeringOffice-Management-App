@@ -66,7 +66,6 @@ public class ContractBean {
 
 	public String addContract() {
 		try {
-			checkSize();
 			String strDate = "";
 			SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
 			if (contractDate != null) {
@@ -76,6 +75,7 @@ public class ContractBean {
 			contract.setDayLetter(Utils.getDayDate(strDate));
 			contract.setConNo(conNo);
 			contract.setSent(0);
+			check();
 			sandServiceImpl.addContract(contract);
 			conNo++;
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -137,16 +137,95 @@ public class ContractBean {
 		return "";
 	}
 
+	public void check() {
+		planSet();
+		if (sizes.equalsIgnoreCase("3")) {
+			contract.setPlan(3);
+			for (int i = 0; i < selected.length; i++) {
+				if (selected[i].equalsIgnoreCase(Utils.loadMessagesFromFile("elc"))) {
+					contract.setElectric(1);
+				}
+				if (selected[i].trim().equalsIgnoreCase(Utils.loadMessagesFromFile("light2"))) {
+					contract.setLightPlan(1);
+				}
+				if (selected[i].equalsIgnoreCase(Utils.loadMessagesFromFile("view"))) {
+					contract.setView(1);
+				}
+				if (selected[i].equalsIgnoreCase(Utils.loadMessagesFromFile("garden"))) {
+					contract.setPark(1);
+				}
+				if (selected[i].equalsIgnoreCase(Utils.loadMessagesFromFile("arc"))) {
+					contract.setArch(1);
+				}
+				if (selected[i].equalsIgnoreCase(Utils.loadMessagesFromFile("building"))) {
+					contract.setBuild(1);
+				}
+				if (selected[i].equalsIgnoreCase(Utils.loadMessagesFromFile("health"))) {
+					contract.setSbaka(1);
+				}
+
+			}
+		} else if (sizes.equalsIgnoreCase("2")) {
+			contract.setPlan(2);
+
+			contract.setLight(light == true ? 1 : 0);
+		} else if (sizes.equalsIgnoreCase("1")) {
+			contract.setPlan(1);
+			contract.setLight(light == true ? 1 : 0);
+
+		}
+		contract.setLicOut(contract.isLicence() == true ? 1 : 0);
+		contract.setTrba(contract.isTorba() == true ? 1 : 0); // 0 for no or 1 for yes
+		contract.setAirCond(contract.isAirCon() == true ? 1 : 0); // 0 for no or 1 for yes
+	}
+
 	public String checkSize() {
 		reportSizes = "";
 		if (sizes.equalsIgnoreCase("1")) {
+			contract.setTrba(0); // 0 for no or 1 for yes
+			contract.setAirCond(0); // 0 for no or 1 for yes
+			contract.setLight(0);
+			contract.setTorba(false);
+			contract.setAirCon(false);
+			light = false;
+			hide = false;
+		} else if (sizes.equalsIgnoreCase("2")) {
+			contract.setTrba(0); // 0 for no or 1 for yes
+			contract.setAirCond(0); // 0 for no or 1 for yes
+			contract.setLight(0);
+			contract.setTorba(false);
+			contract.setAirCon(false);
+			light = false;
+			hide = false;
+		} else if (sizes.equalsIgnoreCase("3")) {
+			selected = null;
+			contract.setElectric(0);
+			contract.setLightPlan(0);
+			contract.setView(0);
+			contract.setPark(0);
+			contract.setArch(0);
+			contract.setBuild(0);
+			contract.setSbaka(0);
+			hide = true;
+			Utils.updateUIComponent("form:grid");
+
+		}
+
+		return "";
+	}
+
+	public void planSet() {
+		reportSizes = "";
+		if (sizes.equalsIgnoreCase("1")) {
 			if (light) {
-				reportSizes = Utils.loadMessagesFromFile("base")+Utils.loadMessagesFromFile("light")+Utils.loadMessagesFromFile("base2") + Utils.loadMessagesFromFile("one-complete");
+				reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("light")
+						+ Utils.loadMessagesFromFile("base2") + Utils.loadMessagesFromFile("one-complete");
 			} else {
-				reportSizes = Utils.loadMessagesFromFile("base")+Utils.loadMessagesFromFile("base2") + Utils.loadMessagesFromFile("one-complete");
+				reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("base2")
+						+ Utils.loadMessagesFromFile("one-complete");
 			}
 			System.out.println("reportSizes" + reportSizes);
-			hide = false;
+
 		} else if (sizes.equalsIgnoreCase("2")) {
 			if (light) {
 				reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("light")
@@ -155,18 +234,7 @@ public class ContractBean {
 				reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("base2")
 						+ Utils.loadMessagesFromFile("two-complete");
 			}
-//			reportSizes = Utils.loadMessagesFromFile("base") + Utils.loadMessagesFromFile("two-complete");
-			System.out.println("reportSizes" + reportSizes);
-			hide = false;
-		} else if (sizes.equalsIgnoreCase("3")) {
-			// show check boxs
-			System.out.println("qqqqqqqq");
-			hide = true;
-			Utils.updateUIComponent("form:grid");
-
 		}
-
-		return "";
 	}
 
 	public SandService getSandServiceImpl() {

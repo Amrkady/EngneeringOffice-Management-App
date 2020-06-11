@@ -47,8 +47,12 @@
 					<p:column style="text-align:center" headerText="نوع الرخصة">
 						<h:outputText value="#{contract.licenseType}" />
 					</p:column>
+					
 					<p:column style="text-align:center" headerText="تاريخ العقد">
 						<h:outputText value="#{contract.contractDate}" />
+					</p:column>
+					<p:column style="text-align:center" headerText="القسم">
+						<h:outputText value="#{contract.deptName}" />
 					</p:column>
 					<p:column style="text-align:center" headerText="الحالة">
 						<h:outputText value="#{contract.sent==1 ? 'مرسلة':'غير مرسلة'}" />
@@ -56,6 +60,13 @@
 					<p:column style="width:5%">
 						<p:commandButton icon="ui-icon ui-icon-email"
 							action="#{contractsViewBean.transferContract(contract.conNo)}">
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="طباعة" style="width:5%">
+						<p:commandButton 
+							 style="width:10%; align:left"
+							icon="ui-icon ui-icon-print " action="#{contractsViewBean.save(contract)}"
+							onclick="this.form.target='_blank'" ajax="false">
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>

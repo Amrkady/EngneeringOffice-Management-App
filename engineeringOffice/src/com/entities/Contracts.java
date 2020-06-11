@@ -62,6 +62,41 @@ public class Contracts {
 	@Column(name = "sent")
 	private Integer sent;
 
+	@Column(name = "lic_out")
+	private Integer licOut = new Integer(0);
+
+	@Column(name = "plan")
+	private Integer plan = new Integer(0);
+
+	@Column(name = "torba")
+	private Integer trba = new Integer(0);
+
+	@Column(name = "air_cond")
+	private Integer airCond = new Integer(0);
+
+	@Column(name = "light")
+	private Integer light = new Integer(0);
+
+	@Column(name = "arch")
+	private Integer arch = new Integer(0);
+	@Column(name = "sbaka")
+	private Integer sbaka = new Integer(0);
+
+	@Column(name = "electric")
+	private Integer electric = new Integer(0);
+
+	@Column(name = "view")
+	private Integer view = new Integer(0);
+
+	@Column(name = "park")
+	private Integer park = new Integer(0);
+
+	@Column(name = "build")
+	private Integer build = new Integer(0);
+
+	@Column(name = "light_plan")
+	private Integer lightPlan = new Integer(0);
+
 	@Formula("(select c.customer_name from customers c where c.id = customer_id)")
 	private String customerName;
 
@@ -74,6 +109,8 @@ public class Contracts {
 	@Transient
 	private boolean airCon;
 
+	@Formula("(select d.dept_name from departments d where d.id = dept_id)")
+	private String deptName;
 	public Integer getId() {
 		return id;
 	}
@@ -216,6 +253,110 @@ public class Contracts {
 
 	public void setAirCon(boolean airCon) {
 		this.airCon = airCon;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public Integer getLicOut() {
+		return licOut;
+	}
+
+	public void setLicOut(Integer licOut) {
+		this.licOut = licOut;
+	}
+
+	public Integer getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Integer plan) {
+		this.plan = plan;
+	}
+
+	public Integer getTrba() {
+		return trba;
+	}
+
+	public void setTrba(Integer trba) {
+		this.trba = trba;
+	}
+
+	public Integer getAirCond() {
+		return airCond;
+	}
+
+	public void setAirCond(Integer airCond) {
+		this.airCond = airCond;
+	}
+
+	public Integer getLight() {
+		return light;
+	}
+
+	public void setLight(Integer light) {
+		this.light = light;
+	}
+
+	public Integer getArch() {
+		return arch;
+	}
+
+	public void setArch(Integer arch) {
+		this.arch = arch;
+	}
+
+	public Integer getSbaka() {
+		return sbaka;
+	}
+
+	public void setSbaka(Integer sbaka) {
+		this.sbaka = sbaka;
+	}
+
+	public Integer getView() {
+		return view;
+	}
+
+	public void setView(Integer view) {
+		this.view = view;
+	}
+
+	public Integer getPark() {
+		return park;
+	}
+
+	public void setPark(Integer park) {
+		this.park = park;
+	}
+
+	public Integer getBuild() {
+		return build;
+	}
+
+	public void setBuild(Integer build) {
+		this.build = build;
+	}
+
+	public Integer getLightPlan() {
+		return lightPlan;
+	}
+
+	public void setLightPlan(Integer lightPlan) {
+		this.lightPlan = lightPlan;
+	}
+
+	public Integer getElectric() {
+		return electric;
+	}
+
+	public void setElectric(Integer electric) {
+		this.electric = electric;
 	}
 
 }
