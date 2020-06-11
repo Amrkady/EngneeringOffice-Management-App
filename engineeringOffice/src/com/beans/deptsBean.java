@@ -29,6 +29,7 @@ public class deptsBean {
 	private List<Departments> depts;
 	private List<Users> users;
 	private Departments dept;
+	private List<Departments> filteredDepts;
 
 	@PostConstruct
 	public void init() {
@@ -154,6 +155,14 @@ public class deptsBean {
 
 	public void setDept(Departments dept) {
 		this.dept = dept;
+	}
+
+	public List<Departments> getFilteredDepts() {
+		return filteredDepts;
+	}
+
+	public void setFilteredDepts(List<Departments> filteredDepts) {
+		this.filteredDepts = filteredDepts;
 	}
 
 }

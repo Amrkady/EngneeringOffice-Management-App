@@ -240,7 +240,7 @@ public class BillReceiveBean {
 			billReceive = new Bills();
 
 			billReceive.setAmountPay(selectedBill.getAmountRest());
-			billReceive.setAmountRest(new BigDecimal(0));
+			billReceive.setAmountRest(new BigDecimal(0.00));
 			billReceive.setDate(new Date());
 			billReceive.setCustomerName(selectedBill.getCustomerName());
 			billReceive.setDeptName(selectedBill.getDeptName());
@@ -331,6 +331,11 @@ public class BillReceiveBean {
 			}
 			if (flag == true) {
 				billReceive.setAmountPay(new BigDecimal(totalVal));
+//				billReceive.setAmountPay(new BigDecimal(100 * (billReceive.getAmountPay().doubleValue() / 100.00d)));
+				billReceive.setAmountPay(
+						new BigDecimal(Math.round(billReceive.getAmountPay().doubleValue() * 100) / 100.00d));
+
+				System.out.println(billReceive.getAmountPay());
 				billReceive.setTax(1);
 			} else {
 				billReceive.setTax(0);
@@ -353,6 +358,7 @@ public class BillReceiveBean {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			e.printStackTrace();
 		}
+		update();
 		return "";
 	}
 

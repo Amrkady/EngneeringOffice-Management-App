@@ -47,7 +47,7 @@ public class BillPayBean {
 	private BillsPay billPay;
 	private double billHasTax;
 	private Users curUser;
-
+	private List<BillsPay> filtredBills;
 	@PostConstruct
 	public void init() {
 		billsPay = new BillsPay();
@@ -303,6 +303,14 @@ public class BillPayBean {
 
 	public void setCurUser(Users curUser) {
 		this.curUser = curUser;
+	}
+
+	public List<BillsPay> getFiltredBills() {
+		return filtredBills;
+	}
+
+	public void setFiltredBills(List<BillsPay> filtredBills) {
+		this.filtredBills = filtredBills;
 	}
 
 }

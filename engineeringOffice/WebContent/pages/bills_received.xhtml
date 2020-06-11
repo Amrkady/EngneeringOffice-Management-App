@@ -141,7 +141,7 @@
 						</p:commandButton>
 					</p:column>
 					<p:column width="10%" style="text-align:center" headerText="تسديد">
-						<p:commandButton rendered="#{billReceive.amountRest != '0.00'}" value="تسديد"  immediate="true"
+						<p:commandButton rendered="#{billReceive.amountRest > 0}" value="تسديد"  immediate="true"
 						    process="@this"
 							action="#{billReceiveBean.pay(billReceive)}">
 							<f:ajax render="vcs:panelGroupPay"></f:ajax>
