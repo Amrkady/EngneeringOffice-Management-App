@@ -185,10 +185,10 @@
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Arial" size="13"/>
 				</textElement>
-				<text><![CDATA[الغرض من هذا العقد هو أن يقوم الطرف الأول بتنفيذ أعمال تصميم مخطط أوزان الهندسي لمبنى سكني تابع للطرف الثاني بصك ملكية رقم]]></text>
+				<text><![CDATA[الغرض من هذا العقد هو أن يقوم الطرف الأول بتنفيذ أعمال تصميم مخطط هندسي لمبنى سكني تابع للطرف الثاني بصك ملكية رقم]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="-5" y="339" width="575" height="20" uuid="5ced3619-0a57-4ef0-a48e-2ba26d3c60bf"/>
+				<reportElement x="-5" y="339" width="573" height="20" uuid="5ced3619-0a57-4ef0-a48e-2ba26d3c60bf"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Arial" size="13"/>
 				</textElement>
