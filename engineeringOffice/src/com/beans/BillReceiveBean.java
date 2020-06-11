@@ -175,12 +175,14 @@ public class BillReceiveBean {
 				parameters.put("tax", selectedBill.getAmountPay().doubleValue());
 				parameters.put("taxValue", 0.0);
 			} else {
+
 				double taxVal = (selectedBill.getAmountPay().doubleValue() / 1.15) * 0.15;
-				taxVal = Math.round((taxVal * 100) / 100.00d);
+
+				taxVal = Math.round(taxVal * 100) / 100.00d;
 				parameters.put("taxValue", taxVal);
 				double tax = selectedBill.getAmountPay().doubleValue()
 						- (selectedBill.getAmountPay().doubleValue() / 1.15) * 0.15;
-				tax = Math.round((tax * 100) / 100.00d);
+				tax = Math.round(tax * 100) / 100.00d;
 				parameters.put("tax", tax);
 
 			}

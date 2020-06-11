@@ -57,7 +57,7 @@
 					<p:column style="text-align:center" headerText="الحالة">
 						<h:outputText value="#{contract.sent==1 ? 'مرسلة':'غير مرسلة'}" />
 					</p:column>
-					<p:column style="width:5%">
+					<p:column headerText="ارسال" style="width:5%">
 						<p:commandButton icon="ui-icon ui-icon-email"
 							action="#{contractsViewBean.transferContract(contract.conNo)}">
 						</p:commandButton>

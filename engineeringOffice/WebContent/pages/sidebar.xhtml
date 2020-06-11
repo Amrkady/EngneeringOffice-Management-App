@@ -54,11 +54,11 @@
 									outcome="pays" />
 							</secc:authorize>
 							<secc:authorize ifAnyGranted="ROLE_MANAGER,ROLE_ADMIN">
-								<p:menuitem value="العقود" icon="ui-icon ui-icon-receipt"
+								<p:menuitem value="العقود" icon="ui-icon ui-icon-library-books"
 									outcome="contracts_v" />
 							</secc:authorize>
 							<secc:authorize ifAnyGranted="ROLE_ACCOUNTANT,ROLE_ADMIN">
-								<p:submenu label="الحسابات" icon="ui-icon ui-icon-calculator">
+								<p:submenu label="الحسابات" icon="ui-icon ui-icon-business">
 									<p:menuitem value="السنة المالية"
 										icon="ui-icon ui-icon-receipt" outcome="financial" />
 									<p:menuitem value="الايرادات العمومية"
