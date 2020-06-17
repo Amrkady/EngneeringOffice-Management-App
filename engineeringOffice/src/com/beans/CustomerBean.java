@@ -47,11 +47,15 @@ public class CustomerBean {
 	public void check() {
 		if (step == 1) {
 			System.out.println("4444444444444444444444444444444444444444444444444");
-			if (customers.getNatNo().toString().length() != 10 || customers.getPhone().length() != 10) {
-				if (customers.getNatNo().toString().length() != 10) {
-					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							Utils.loadMessagesFromFile("id.validation"), "");
-					FacesContext.getCurrentInstance().addMessage(null, msg);
+
+			if (customers.getPhone().length() != 10
+					|| (customers.getNatNo() != null && customers.getNatNo().toString().length() != 10)) {
+				if (customers.getNatNo() != null) {
+					if (customers.getNatNo().toString().length() != 10) {
+						FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								Utils.loadMessagesFromFile("id.validation"), "");
+						FacesContext.getCurrentInstance().addMessage(null, msg);
+					}
 				}
 				if (customers.getPhone().length() != 10) {
 					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,

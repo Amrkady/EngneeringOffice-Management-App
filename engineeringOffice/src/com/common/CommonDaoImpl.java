@@ -249,7 +249,10 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 	public List<BillsPay> findBillsPayByDeptDate(Integer depId, Date dateFrom, Date dateTo) {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(BillsPay.class);
-		criteria.add(Restrictions.eq("deptId", depId));
+		if (depId != 0) {
+			criteria.add(Restrictions.eq("deptId", depId));
+		}
+
 		criteria.add(Restrictions.ge("date", dateFrom));
 		criteria.add(Restrictions.le("date", dateTo));
 		List<BillsPay> billsPay = criteria.list();

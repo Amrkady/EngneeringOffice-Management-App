@@ -29,13 +29,13 @@
 		 <sec:intercept-url pattern="/pages/departments.xhtml"
 		 access="hasAnyRole('ROLE_ADMIN')" />
 		 <sec:intercept-url pattern="/pages/Revenues.xhtml"
-		 access="hasAnyRole('ROLE_ACCOUNTANT')" />
+		 access="hasAnyRole('ROLE_ACCOUNTANT,ROLE_ADMIN')" />
 		 <sec:intercept-url pattern="/pages/user_operation.xhtml"
 		 access="isAuthenticated()" />
 		 <sec:intercept-url pattern="/pages/usersScreen.xhtml"
 		 access="hasAnyRole('ROLE_ADMIN')" />
 		 <sec:intercept-url pattern="/pages/financial_year.xhtml"
-		 access="hasAnyRole('ROLE_ACCOUNTANT')" />
+		 access="hasAnyRole('ROLE_ACCOUNTANT,ROLE_ADMIN')" />
 		 <sec:intercept-url pattern="/pages/customerView.xhtml"
 		 access="hasAnyRole('ROLE_ADMIN')" />
 		 <sec:intercept-url pattern="/pages/bill_received.xhtml"

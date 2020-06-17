@@ -54,6 +54,9 @@
 					<p:column style="text-align:center" headerText="القسم">
 						<h:outputText value="#{contract.deptName}" />
 					</p:column>
+					<p:column style="text-align:center" headerText="نوع المخطط">
+						<h:outputText value="#{contract.planType}" />
+					</p:column>
 					<p:column style="text-align:center" headerText="الحالة">
 						<h:outputText value="#{contract.sent==1 ? 'مرسلة':'غير مرسلة'}" />
 					</p:column>

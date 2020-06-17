@@ -39,6 +39,7 @@
 								<p:selectOneMenu style="width:50%"
 									value="#{billPayBean.departmentId}">
 									<f:selectItem itemLabel="اختر القسم" noSelectionValue="true"></f:selectItem>
+									<f:selectItem itemLabel="الكل" itemValue="0"></f:selectItem>
 									<f:selectItems value="#{billPayBean.depts}" var="dept"
 										itemLabel="#{dept.deptName}" itemValue="#{dept.deptId}"></f:selectItems>
 
@@ -101,6 +102,10 @@
 					<p:column width="15%" style="text-align:center"
 						headerText="المبلغ المدفوع">
 						<h:outputText value="#{billPay.amountPay}" />
+					</p:column>
+					<p:column width="15%" style="text-align:center"
+						headerText="القسم">
+						<h:outputText value="#{billPay.deptName}" />
 					</p:column>
 					<p:column width="15%" style="text-align:center" headerText="الحالة">
 						<h:outputText

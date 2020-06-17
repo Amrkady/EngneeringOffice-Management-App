@@ -19,11 +19,11 @@
 			<div class="card card-w-title" dir="rtl">
 				<h1 style="color: #1565C0; text-align: center;">المعلومات</h1>
 				<p:fieldset rendered="#{customerBean.step eq 1}"
-					legend="بيانات العميل"  toggleSpeed="500">
+					legend="بيانات العميل" toggleSpeed="500">
 					<!--         <p:ajax event="toggle"   /> -->
 					<div>
 
-					
+
 						<div class="ui-g">
 
 
@@ -31,7 +31,7 @@
 								<p:outputLabel value="اسم العميل"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText  required="true"
+								<p:inputText required="true"
 									requiredMessage="يجب ادخال اسم العميل"
 									value="#{customerBean.customers.customerName}">
 								</p:inputText>
@@ -40,7 +40,7 @@
 								<p:outputLabel value="رقم الجوال"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText  required="true"
+								<p:inputText required="true"
 									validatorMessage="يجب ان يكون رقم الجوال ارقام فقط"
 									requiredMessage="يجب ادخال الجوال"
 									value="#{customerBean.customers.phone}">
@@ -51,9 +51,7 @@
 								<p:outputLabel value="رقم السجل"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText converterMessage="رقم الهوية يجب ان يكون 10  ارقام فقط"
-									 requiredMessage="يجب ادخال الهوية" required="true"
-									value="#{customerBean.customers.natNo}">
+								<p:inputText value="#{customerBean.customers.natNo}">
 									<!-- 									<f:validateLength maximum="10" minimum="0"></f:validateLength> -->
 									<!-- 										<f:validateRegex pattern="[0-9]+" /> -->
 								</p:inputText>
@@ -63,30 +61,27 @@
 								<p:outputLabel value="العنوان"></p:outputLabel>
 							</div>
 							<div class="ui-g-5">
-								<p:inputText  required="true"
+								<p:inputText required="true"
 									value="#{customerBean.customers.address}"
 									requiredMessage="يجب ادخال العنوان">
 								</p:inputText>
 							</div>
 							<div class="ui-g-12">
-							<p:commandButton style="float:left;width:8%" update="@form"
-								actionListener="#{customerBean.check}"
-								
-								 
-								value="التالي">
+								<p:commandButton style="float:left;width:8%" update="@form"
+									actionListener="#{customerBean.check}" value="التالي">
 
-							</p:commandButton>
+								</p:commandButton>
 							</div>
 						</div>
 
-					
+
 
 					</div>
 
 				</p:fieldset>
 
 				<p:fieldset rendered="#{customerBean.step eq 2}" legend="القسم"
-					 toggleSpeed="500">
+					toggleSpeed="500">
 					<!--         <p:ajax event="toggle"   /> -->
 					<div>
 
@@ -97,7 +92,6 @@
 							<div class="ui-g-12">
 								<p:selectOneMenu style="width:20%" required="true"
 									requiredMessage="يجب اختيار القسم"
-									
 									value="#{customerBean.departmentId}">
 									<f:selectItem itemLabel="اختر القسم" itemValue=""
 										noSelectionOption="true" />
@@ -108,9 +102,8 @@
 							</div>
 
 							<div class="ui-g-12">
-								<p:commandButton style="float:left;width:8%"  update="@form"
-									actionListener="#{customerBean.check}"
-									 value="التالي">
+								<p:commandButton style="float:left;width:8%" update="@form"
+									actionListener="#{customerBean.check}" value="التالي">
 
 								</p:commandButton>
 							</div>
@@ -124,7 +117,7 @@
 				</p:fieldset>
 
 				<p:fieldset rendered="#{customerBean.step eq 3}" legend="العملية"
-					 toggleSpeed="500">
+					toggleSpeed="500">
 					<!--         <p:ajax event="toggle"   /> -->
 					<div>
 
@@ -135,7 +128,6 @@
 							<div class="ui-g-12">
 								<p:selectOneMenu style="width:20%" required="true"
 									requiredMessage="يجب اختيار العملية"
-									
 									value="#{customerBean.operationId}">
 									<f:selectItem itemLabel="اختر العملية" itemValue=""
 										noSelectionOption="true" />
@@ -146,9 +138,8 @@
 							</div>
 
 							<div class="ui-g-12">
-								<p:commandButton style="float:left;width:8%" action="#{customerBean.save}"
-									ajax="false" 
-									value="التالي">
+								<p:commandButton style="float:left;width:8%"
+									action="#{customerBean.save}" ajax="false" value="التالي">
 
 								</p:commandButton>
 							</div>

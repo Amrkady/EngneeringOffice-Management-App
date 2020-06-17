@@ -215,25 +215,16 @@
 				<reportElement x="207" y="320" width="137" height="40" uuid="82812099-c8dd-42fa-832f-e27b08b7efb7"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="59" y="320" width="148" height="40" uuid="d9979869-48c9-416c-b581-d39410db0092"/>
+				<reportElement x="60" y="320" width="147" height="40" uuid="d9979869-48c9-416c-b581-d39410db0092"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="344" y="360" width="206" height="40" uuid="bf48da3b-ba80-48ca-b3f8-dc0964169689"/>
+				<reportElement x="344" y="359" width="206" height="43" uuid="9cb1d8b0-6242-4bb5-a967-884c1c7333e7"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="207" y="360" width="137" height="40" uuid="b61f16c8-f8cc-42ca-bec2-3e78fb24f866"/>
+				<reportElement x="207" y="359" width="137" height="43" uuid="63e0e1f2-9030-479a-8301-62dbb249bc23"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="59" y="360" width="148" height="40" uuid="94653955-8f7b-42c7-a1b6-eabbe581b489"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="344" y="400" width="206" height="40" uuid="9cb1d8b0-6242-4bb5-a967-884c1c7333e7"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="207" y="400" width="137" height="40" uuid="63e0e1f2-9030-479a-8301-62dbb249bc23"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="59" y="400" width="148" height="40" uuid="29b6d327-dc76-45f7-9488-748695edd495"/>
+				<reportElement x="60" y="359" width="147" height="43" uuid="29b6d327-dc76-45f7-9488-748695edd495"/>
 			</rectangle>
 			<textField>
 				<reportElement x="207" y="320" width="136" height="39" uuid="bde8f722-a469-47e6-af20-efd0ad7b8baa"/>
@@ -245,34 +236,18 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="345" y="362" width="204" height="39" uuid="cc20fbd2-b4b3-43e1-9aa9-78c66b9b0f40"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="18"/>
-				</textElement>
-				<text><![CDATA[جاري الشريك الثالث ابوخيال]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="345" y="402" width="204" height="39" uuid="9583ac72-6274-4d30-95eb-66ae2f86df0d"/>
+				<reportElement x="345" y="359" width="204" height="42" uuid="9583ac72-6274-4d30-95eb-66ae2f86df0d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
 				<text><![CDATA[اجمالي الالتزامات وحقوق الملكية]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="207" y="362" width="137" height="39" uuid="3dc967b6-3ae9-4a00-8898-066e411a2ba9"/>
+				<reportElement x="61" y="359" width="146" height="43" uuid="66e82158-913c-4ddb-ba78-21dbc9ead1d9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="18"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(""+$P{third}).replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
-                .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
-                .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="60" y="402" width="148" height="39" uuid="66e82158-913c-4ddb-ba78-21dbc9ead1d9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="18"/>
-				</textElement>
-				<textFieldExpression><![CDATA[(""+($P{first} + $P{second} + $P{third})).replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
+				<textFieldExpression><![CDATA[(""+($P{first} + $P{second})).replaceAll("0", "\\\u0660").replaceAll("1", "\\\u0661")
                 .replaceAll("2", "\\\u0662").replaceAll("3", "\\\u0663").replaceAll("4", "\\\u0664").replaceAll("5", "\\\u0665")
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>

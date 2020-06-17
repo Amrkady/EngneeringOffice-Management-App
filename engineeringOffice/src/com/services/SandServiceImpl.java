@@ -69,6 +69,7 @@ public class SandServiceImpl implements SandService {
 
 	@Override
 	public List<BillsPay> getBillsPayByDeptDate(Integer deptId, Date dateFrom, Date dateTo) {
+
 		return commonDao.findBillsPayByDeptDate(deptId, dateFrom, dateTo);
 	}
 

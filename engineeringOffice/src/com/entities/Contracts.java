@@ -12,6 +12,8 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
+import common.util.Utils;
+
 @Entity
 @Table(name = "contract")
 public class Contracts {
@@ -108,6 +110,9 @@ public class Contracts {
 
 	@Transient
 	private boolean airCon;
+
+	@Transient
+	private String planType;
 
 	@Formula("(select d.dept_name from departments d where d.id = dept_id)")
 	private String deptName;
@@ -357,6 +362,21 @@ public class Contracts {
 
 	public void setElectric(Integer electric) {
 		this.electric = electric;
+	}
+
+	public String getPlanType() {
+		if (plan == 1) {
+			planType = Utils.loadMessagesFromFile("awzan.first");
+		} else if (plan == 2) {
+			planType = Utils.loadMessagesFromFile("awzan.second");
+		} else if (plan == 3) {
+			planType = Utils.loadMessagesFromFile("awzan.third");
+		}
+		return planType;
+	}
+
+	public void setPlanType(String planType) {
+		this.planType = planType;
 	}
 
 }

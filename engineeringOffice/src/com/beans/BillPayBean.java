@@ -74,12 +74,17 @@ public class BillPayBean {
 
 	public void getBillsByDeptId() {
 		if (departmentId != null) {
+
 			totalWithoutTax = 0;
 			totalRest = 0;
 			taxValue = 0;
 			billHasTax = 0;
 			totalAfterTax = 0;
-			bills = sandServiceImpl.getBillsPayByDeptDate(departmentId, dateFrom, dateTo);
+			if (departmentId == 0) {
+				bills=sandServiceImpl.getAllBillsPay();
+			} else {
+				bills = sandServiceImpl.getBillsPayByDeptDate(departmentId, dateFrom, dateTo);
+			}
 			for (int i = 0; i < bills.size(); i++) {
 				billPay = bills.get(i);
 				totalWithoutTax += billPay.getAmountPay().doubleValue();

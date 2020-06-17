@@ -366,11 +366,11 @@
                 .replaceAll("6", "\\\u0666").replaceAll("7", "\\\u0667").replaceAll("8", "\\\u0668").replaceAll("9", "\\\u0669")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="7" y="118" width="555" height="20" uuid="6af1f769-a90e-4ea1-8e5c-1a4d9c740b9e"/>
+				<reportElement x="-14" y="118" width="576" height="20" uuid="6af1f769-a90e-4ea1-8e5c-1a4d9c740b9e"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
-					<font fontName="Arial" size="13"/>
+					<font fontName="Arial" size="12.5"/>
 				</textElement>
-				<text><![CDATA[يتم البدء بالتصميم الداخلي والخارجي  ثلاثي الأبعاد (3D) بعد اعتماد التصميم المعماري النهائي من قبل الطرف الأول والتوقيع عليه.]]></text>
+				<text><![CDATA[يتم البدء بالتصميم الداخلي والخارجي  ثلاثي الأبعاد(3D)بعد اعتماد التصميم المعماري النهائي من قبل الطرف الأول والتوقيع عليه(إن وجد).]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="138" y="138" width="425" height="20" uuid="cece0c87-8ca8-452c-847f-ec84084d3124"/>
