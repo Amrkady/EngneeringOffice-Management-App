@@ -11,7 +11,7 @@
 	<parameter name="header" class="java.lang.String"/>
 	<parameter name="footer" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT max(us.id) FROM awzancoc_sqldb.roles us;]]>
+		<![CDATA[SELECT max(us.id) FROM haitham_sqldb.roles us;]]>
 	</queryString>
 	<background>
 		<band splitType="Stretch"/>

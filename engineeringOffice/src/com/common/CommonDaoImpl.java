@@ -317,7 +317,6 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
@@ -331,5 +330,19 @@ public class CommonDaoImpl extends HibernateTemplate implements CommonDao {
 		List<BankDeposit> bankDeposit = criteria.list();
 		return bankDeposit;
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	@Override
+	public List<Customers> getCustomersByDept(Integer deptId) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Customers.class);
+//		criteria.setProjection(Projections.distinct(Projections.property("phone")));
+
+		criteria.add(Restrictions.eq("deptId", deptId));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Customers> customers = criteria.list();
+
+		return customers;
 	}
 }

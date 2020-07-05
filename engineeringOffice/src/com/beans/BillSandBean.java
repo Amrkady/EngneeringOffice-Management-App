@@ -1,6 +1,5 @@
 package com.beans;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -67,11 +66,7 @@ public class BillSandBean {
 			billSnad.setBillDate(strDate);
 			billSnad.setDate(new Date());
 			billSnad.setSanadNo(sandNo);
-			if (total != 0.0) {
-				billSnad.setAmountPay(new BigDecimal(total));
-			} else {
-				total = billSnad.getAmountPay().doubleValue();
-			}
+
 			if (vat == true) {
 				billSnad.setTax(1);
 			} else {
@@ -126,7 +121,8 @@ public class BillSandBean {
 			parameters.put("dept", billSnad.getDeptName());
 			parameters.put("date", billSnad.getBillDate());
 			parameters.put("costByLet", billSnad.getAmountPay());
-			parameters.put("tax", billSnad.getAmountPay().doubleValue() - this.taxValue);
+			parameters.put("tax",
+					billSnad.getAmountPay().doubleValue() - taxValue);
 			parameters.put("taxValue", this.taxValue);
 			String footerPath = FacesContext.getCurrentInstance().getExternalContext()
 					.getRealPath("/reports/footer.png");
@@ -145,10 +141,10 @@ public class BillSandBean {
 
 	public void updateCom() {
 		if (billSnad.getAmountPay() != null && vat == true) {
-			double taxCal = (15 / 100.0);
-			taxValue = billSnad.getAmountPay().doubleValue() * taxCal;
+//			double taxCal = (15 / 100.0);
+			taxValue = (billSnad.getAmountPay().doubleValue() / 1.15) * 0.15;
 			taxValue = Math.round(taxValue * 100) / 100.00d;
-			total = billSnad.getAmountPay().doubleValue() + billSnad.getAmountPay().doubleValue() * taxCal;
+			total = billSnad.getAmountPay().doubleValue() - ((billSnad.getAmountPay().doubleValue() / 1.15) * 0.15);
 			total = Math.round(total * 100) / 100.00d;
 			Utils.updateUIComponent("form:d4");
 			System.out.println(">>>>>>>>1111111111111");

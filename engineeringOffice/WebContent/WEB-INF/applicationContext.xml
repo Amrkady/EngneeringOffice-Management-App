@@ -66,9 +66,9 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://mysql3000.mochahost.com:3306/awzancoc_sqldb?zeroDateTimeBehavior=convertToNull" />
-		<property name="user" value="awzancoc_sqlDBA" />
-		<property name="password" value="sfboaAAnM@@HAM2411" />
+			value="jdbc:mysql://50.31.138.73:3306/haitham_sqldb?zeroDateTimeBehavior=convertToNull" />
+		<property name="user" value="haitham_sqlDBA" />
+		<property name="password" value="amk365@@s$47d852fnmrt" />
 		<property name="initialPoolSize" value="1" />
 		<property name="maxPoolSize" value="20" />
 		<property name="maxStatements" value="20" />

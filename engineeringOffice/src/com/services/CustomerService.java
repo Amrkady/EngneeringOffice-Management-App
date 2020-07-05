@@ -12,4 +12,6 @@ public interface CustomerService {
 
 	public Customers findCustomerById(Integer customerId);
 
+	public List<Customers> getCustomersByDept(Integer deptId);
+
 }

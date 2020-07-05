@@ -37,7 +37,7 @@
 		 <sec:intercept-url pattern="/pages/financial_year.xhtml"
 		 access="hasAnyRole('ROLE_ACCOUNTANT,ROLE_ADMIN')" />
 		 <sec:intercept-url pattern="/pages/customerView.xhtml"
-		 access="hasAnyRole('ROLE_ADMIN')" />
+		 access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER')" />
 		 <sec:intercept-url pattern="/pages/bill_received.xhtml"
 		 access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER,ROLE_ACCOUNTANT')" />
 		 <sec:intercept-url pattern="/pages/transaction.xhtml"

@@ -211,10 +211,11 @@ public class BillReceiveBean {
 				flag = true;
 				taxVal = (billReceive.getAmountPay().doubleValue() / 1.15) * 0.15;
 				taxVal = Math.round(taxVal * 100) / 100.00d;
-				totalVal = billReceive.getAmountPay().doubleValue();
-				totalVal = Math.round(totalVal * 100) / 100.00d;
-				amountPay = billReceive.getAmountPay().doubleValue()
+				amountPay = billReceive.getAmountPay().doubleValue();
+				amountPay = Math.round(amountPay * 100) / 100.00d;
+				totalVal = billReceive.getAmountPay().doubleValue()
 						- (billReceive.getAmountPay().doubleValue() / 1.15) * 0.15;
+				totalVal = Math.round(totalVal * 100) / 100.00d;
 				billReceive.setAmountPay(new BigDecimal(amountPay));
 
 			} else {
@@ -259,9 +260,13 @@ public class BillReceiveBean {
 			if (selectedBill.getTax() == 1) {
 				billReceive.setTax(1);
 				billReceive.setAmountPay(selectedBill.getAmountRest());
+
+				taxVal = (billReceive.getAmountPay().doubleValue() / 1.05) * 0.15;
+				taxVal = Math.round(taxVal * 100) / 100.00d;
+
 				totalVal = billReceive.getAmountPay().doubleValue()
-						+ (billReceive.getAmountPay().doubleValue() * 15 / 100);
-				taxVal = (billReceive.getAmountPay().doubleValue() * 15 / 100);
+						- taxVal;
+				totalVal = Math.round(totalVal * 100) / 100.00d;
 				flag = true;
 				
 			} else {
@@ -286,9 +291,9 @@ public class BillReceiveBean {
 
 	public void updateComm() {
 		if (flag == true) {
-			taxVal = billReceive.getAmountPay().doubleValue() * 0.15;
+			taxVal = (billReceive.getAmountPay().doubleValue() / 1.15) * 0.15;
 
-			totalVal = billReceive.getAmountPay().doubleValue() + taxVal;
+			totalVal = billReceive.getAmountPay().doubleValue() - taxVal;
 			taxVal = Math.round(taxVal * 100) / 100.00d;
 
 			totalVal = Math.round(totalVal * 100) / 100.00d;
@@ -303,7 +308,7 @@ public class BillReceiveBean {
 
 		{
 			try {
-				billReceive.setAmountPay(new BigDecimal(totalVal));
+
 				billReceive.setDate(new Date());
 				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 				billReceive.setBillDate(dateFormat.format(new Date()));
@@ -336,7 +341,7 @@ public class BillReceiveBean {
 				strDate = sdfDate.format(billDate);
 			}
 			if (flag == true) {
-				billReceive.setAmountPay(new BigDecimal(totalVal));
+//				billReceive.setAmountPay(new BigDecimal(totalVal));
 //				billReceive.setAmountPay(new BigDecimal(100 * (billReceive.getAmountPay().doubleValue() / 100.00d)));
 				billReceive.setAmountPay(
 						new BigDecimal(Math.round(billReceive.getAmountPay().doubleValue() * 100) / 100.00d));
@@ -370,7 +375,7 @@ public class BillReceiveBean {
 
 	public void back() {
 		if (billReceive.getTax() == 1) {
-			billReceive.setAmountPay(new BigDecimal(totalVal));
+//			billReceive.setAmountPay(new BigDecimal(totalVal));
 			totalVal = 0;
 
 		}

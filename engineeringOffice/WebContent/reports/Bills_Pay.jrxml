@@ -15,7 +15,7 @@
 	<parameter name="footer" class="java.lang.String"/>
 	<parameter name="tax" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT max(us.id) FROM awzancoc_sqldb.roles us;]]>
+		<![CDATA[SELECT max(us.id) FROM haitham_sqldb.roles us;]]>
 	</queryString>
 	<background>
 		<band splitType="Stretch"/>
@@ -31,14 +31,14 @@
 	<detail>
 		<band height="438" splitType="Stretch">
 			<staticText>
-				<reportElement x="420" y="0" width="74" height="30" uuid="8257a97f-4657-4ea3-b437-dbbdb207b633"/>
+				<reportElement x="310" y="7" width="74" height="30" uuid="8257a97f-4657-4ea3-b437-dbbdb207b633"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="18" isBold="false" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[سنـد صرف]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="165" y="0" width="150" height="30" uuid="7e6afe56-14df-4d3c-902b-03a03f86ba86"/>
+				<reportElement x="87" y="7" width="150" height="30" uuid="7e6afe56-14df-4d3c-902b-03a03f86ba86"/>
 				<textElement textAlignment="Left">
 					<font fontName="SansSerif" size="18" isUnderline="true"/>
 				</textElement>
@@ -317,6 +317,13 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tax}== 1 ? "شامل الضريبة":"غير شامل الضريبة"]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="410" y="0" width="154" height="15" uuid="992f382e-d123-47f9-a7cb-476e2c89e420"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الرقم الضريبي : 301331071400003 ]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<pageFooter>

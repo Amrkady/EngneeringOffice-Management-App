@@ -7,16 +7,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.common.CommonDao;
 import com.entities.Customers;
 
-
 public class CustomerServiceImpl implements CustomerService {
-CommonDao commonDao;
+	CommonDao commonDao;
 
-@Override
-@Transactional
-public Integer addCustomer(Customers customer) {
-	return commonDao.saveCustomer(customer);
-	
-}
+	@Override
+	@Transactional
+	public Integer addCustomer(Customers customer) {
+		return commonDao.saveCustomer(customer);
+
+	}
 
 	@Override
 	public List<Customers> getAllCustomers() {
@@ -24,16 +23,22 @@ public Integer addCustomer(Customers customer) {
 		return list;
 	}
 
-public CommonDao getCommonDao() {
-	return commonDao;
-}
+	public CommonDao getCommonDao() {
+		return commonDao;
+	}
 
-public void setCommonDao(CommonDao commonDao) {
-	this.commonDao = commonDao;
-}
-@Override
-public Customers findCustomerById(Integer customerId) {
+	public void setCommonDao(CommonDao commonDao) {
+		this.commonDao = commonDao;
+	}
+
+	@Override
+	public Customers findCustomerById(Integer customerId) {
 		return (Customers) commonDao.findEntityById(Customers.class, customerId);
-}
+	}
+
+	@Override
+	public List<Customers> getCustomersByDept(Integer deptId) {
+		return commonDao.getCustomersByDept(deptId);
+	}
 
 }

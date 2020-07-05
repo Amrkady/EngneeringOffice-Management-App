@@ -17,7 +17,7 @@
 	<parameter name="tax" class="java.lang.Double"/>
 	<parameter name="taxValue" class="java.lang.Double"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT max(us.id) FROM awzancoc_sqldb.roles us;]]>
+		<![CDATA[SELECT max(us.id) FROM haitham_sqldb.roles us;]]>
 	</queryString>
 	<background>
 		<band splitType="Stretch"/>
@@ -33,14 +33,14 @@
 	<detail>
 		<band height="438" splitType="Stretch">
 			<staticText>
-				<reportElement x="420" y="0" width="74" height="30" uuid="8257a97f-4657-4ea3-b437-dbbdb207b633"/>
+				<reportElement x="300" y="9" width="74" height="30" uuid="8257a97f-4657-4ea3-b437-dbbdb207b633"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="18" isBold="false" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[سنـد قبض]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="260" y="0" width="100" height="30" uuid="7e6afe56-14df-4d3c-902b-03a03f86ba86"/>
+				<reportElement x="131" y="9" width="100" height="30" uuid="7e6afe56-14df-4d3c-902b-03a03f86ba86"/>
 				<textElement textAlignment="Left">
 					<font fontName="SansSerif" size="18" isUnderline="true"/>
 				</textElement>
@@ -387,6 +387,13 @@
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ريال]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="158" height="15" uuid="f9e104be-fa10-4193-9820-7495b4f2abfe"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الرقم الضريبي : 301331071400003 ]]></text>
 			</staticText>
 		</band>
 	</detail>

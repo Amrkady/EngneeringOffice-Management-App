@@ -8,8 +8,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import com.common.Constant;
 import com.entities.Customers;
 import com.services.CustomerService;
+
+import common.util.Utils;
 
 @ManagedBean
 @ViewScoped
@@ -20,7 +23,11 @@ public class CustomerViewBean {
 
 	@PostConstruct
 	public void init() {
-		customers = customerServiceImpl.getAllCustomers();
+		if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_ADMIN) {
+			customers = customerServiceImpl.getAllCustomers();
+		} else if (Utils.findCurrentUser().getRoleId() == Constant.ROLE_MANAGER) {
+			customers=customerServiceImpl.getCustomersByDept(Utils.findCurrentUser().getDeptId());
+		}
 	}
 
 	public CustomerService getCustomerServiceImpl() {

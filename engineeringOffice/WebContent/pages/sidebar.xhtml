@@ -31,7 +31,7 @@
 								<p:submenu label="العملاء" icon="ui-icon ui-icon-people">
 									<p:menuitem value="اضافة عميل" icon="ui-icon ui-icon-people"
 										outcome="customers" />
-									<secc:authorize ifAnyGranted="ROLE_ADMIN">
+									<secc:authorize ifAnyGranted="ROLE_ADMIN,ROLE_MANAGER">
 										<p:menuitem value="استعلام العملاء"
 											icon="ui-icon ui-icon-people" outcome="cusView" />
 									</secc:authorize>
@@ -59,7 +59,7 @@
 							</secc:authorize>
 							<secc:authorize ifAnyGranted="ROLE_ACCOUNTANT,ROLE_ADMIN">
 								<p:submenu label="الحسابات" icon="ui-icon ui-icon-business">
-									<p:menuitem value="السنة المالية"
+									<p:menuitem value="القوائم المالية"
 										icon="ui-icon ui-icon-receipt" outcome="financial" />
 									<p:menuitem value="الايرادات العمومية"
 										icon="ui-icon ui-icon-receipt" outcome="revenues" />

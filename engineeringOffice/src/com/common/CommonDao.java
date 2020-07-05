@@ -59,5 +59,7 @@ public List<Contracts> findContractsByDept(Integer depId);
 
 	List<BankDeposit> findBankDepositByYear(Date dateFrom, Date dateTo);
 
+	public List<Customers> getCustomersByDept(Integer deptId);
+
 
 }

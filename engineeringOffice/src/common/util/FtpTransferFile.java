@@ -7,9 +7,9 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
 public class FtpTransferFile {
-	static String user = "haithamsaid@awzan-co.com";
+	static String user = "haithamsaid@awzan-2030.com";
 	static String pass = "fTpPaSSw00rd258847P$$ass";
-	static String host = "204.93.197.59";
+	static String host = "198.38.90.110";
 	static int port = 21;
 
 	public static String uploadFile(InputStream inputStream, String uploadPath) {
